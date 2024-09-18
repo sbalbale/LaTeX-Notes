@@ -1,0 +1,246 @@
+\documentclass[10pt]{article} % Reduced font size for the document
+\usepackage[margin=0.5in]{geometry} % Set 0.5 inch margins
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{circuitikz} % Circuit drawing package
+\setlength{\columnsep}{1cm}
+
+
+% Custom title formatting
+\title{
+    \raggedright
+    \large EECE 2150: Quiz 1 Notesheet \hfill Sean Balbale \hfill September 18, 2024
+    \vspace{-4em} % Adjust spacing below the title
+}
+\date{} % Remove date field
+
+\begin{document}
+
+% \maketitle
+
+\section*{EECE 2150: Quiz 1 Notesheet - Sean Balbale - September 18, 2024}
+
+
+\begin{multicols}{2}
+
+\section*{1. Basic Circuit Elements}
+
+\subsection*{1.1 Resistors}
+A \textbf{resistor} resists the flow of electric charge. The resistance \( R \) is a function of size, shape, and material:
+\[
+\displaystyle R = \frac{\rho \ell}{A} = \frac{\ell}{\sigma A}
+\]
+where:
+\begin{itemize}\itemsep0pt
+    \item \( \rho \) is the resistivity,
+    \item \( \sigma \) is the conductivity,
+    \item \( \ell \) is the length,
+    \item \( A \) is the cross-sectional area.
+\end{itemize}
+
+\noindent\textbf{Ohm's Law:} Voltage \( V \), current \( I \), and resistance \( R \):
+\[
+\displaystyle V = IR \quad \text{or} \quad I = \frac{V}{R}
+\]
+\textit{Example:} A resistor of \( 10 \, \Omega \) has \( 5 \, V \) applied across it. The current is:
+\[
+\displaystyle I = \frac{5 \, V}{10 \, \Omega} = 0.5 \, A
+\]
+
+
+
+\noindent\textbf{Power Dissipation:} The power dissipated by a resistor:
+\[
+\displaystyle P = IV = I^2R = \frac{V^2}{R}
+\]
+\textit{Example:} If \( 2 \, A \) flows through a \( 10 \, \Omega \) resistor, the power dissipated is:
+\[
+\displaystyle P = I^2R = (2 \, A)^2 \times 10 \, \Omega = 40 \, W
+\]
+
+\begin{center}
+\begin{circuitikz}[scale=0.6] \draw
+(0,0) to [I=$2\,A$] (0,3)
+      to [R, l=$10 \,\Omega$] (3,3)
+      to [short] (3,0)
+      to [short] (0,0);
+\end{circuitikz}
+\end{center}
+
+\subsection*{1.2 Conductance}
+Conductance \( G \) is the reciprocal of resistance:
+\[
+\displaystyle G = \frac{1}{R} \quad (\text{Siemens, } S = \Omega^{-1})
+\]
+
+\subsection*{1.3 Ideal Conductors}
+An \textbf{ideal conductor} has infinite conductivity \( \sigma \to \infty \), and zero resistance \( R = 0 \).
+
+\section*{2. Circuit Laws}
+
+\subsection*{2.1 Kirchhoff’s Current Law (KCL)}
+The sum of all currents entering a node equals the sum of all currents leaving the node:
+\[
+\displaystyle \sum_{k=1}^{n} i_k = 0
+\]
+\textit{Example:} If three currents enter a node (\( 2 \, A \), \( 4 \, A \), \( 3 \, A \)) and one current exits (\( i_x \)):
+\[
+\displaystyle 2 \, A + 4 \, A + 3 \, A = i_x
+\]
+\[
+i_x = 9 \, A
+\]
+
+
+\subsection*{2.2 Kirchhoff’s Voltage Law (KVL)}
+The sum of all voltage drops in a closed loop equals the sum of all voltage rises:
+\[
+\displaystyle \sum_{k=1}^{n} v_k = 0
+\]
+\textit{Example:} In a loop with three voltage drops (\( 10 \, V \), \( 8 \, V \), \( 4 \, V \)) and an applied voltage of \( 24 \, V \):
+\[
+\displaystyle 10 \, V + 8 \, V + 4 \, V + V_x = 24 \, V
+\]
+\[
+V_x = 2 \, V
+\]
+
+
+\section*{3. Types of Sources}
+
+\subsection*{3.1 Ideal Voltage and Current Sources}
+An \textbf{ideal voltage source} maintains a constant voltage regardless of the current. An \textbf{ideal current source} maintains a constant current regardless of the voltage across it.
+
+\begin{center}
+\begin{circuitikz}[scale=0.6] \draw
+(0,0) to [battery1, l=$V_{ideal}$] (0,3)
+      to [short] (3,3)
+      to [short] (3,0)
+      to [short] (0,0);
+\end{circuitikz}
+\end{center}
+
+\subsection*{3.2 Dependent Sources}
+A \textbf{dependent source} provides a voltage or current depending on the voltage or current elsewhere in the circuit.
+
+\begin{center}
+\begin{circuitikz}[scale=0.6] \draw
+(0,0) to [V=$V_x$, *-] (0,3)
+      to [R, l=$R_1$] (3,3)
+      to [current source, l=$I_{dep}$] (3,0)
+      to [short] (0,0);
+\end{circuitikz}
+\end{center}
+
+\section*{4. Voltage, Current, Power, and Polarity}
+
+\subsection*{4.1 Voltage}
+Voltage \( V \) is the electric potential difference between two points in a circuit:
+\[
+\displaystyle v = \frac{dw}{dq}
+\]
+where \( v \) is voltage, \( w \) is energy, and \( q \) is charge.
+
+\subsection*{4.2 Current}
+\textbf{Direct Current (DC):} A constant current over time. \\
+\textbf{Alternating Current (AC):} A sinusoidal current, e.g., 60 Hz.
+
+\subsection*{4.3 Power}
+Power is the rate of expending or absorbing energy:
+\[
+\displaystyle P = VI
+\]
+
+\noindent\textbf{Polarity Reference:}
+- If current enters the positive terminal, the element absorbs power:
+\[
+\displaystyle P = VI
+\]
+- If current enters the negative terminal, the element delivers power:
+\[
+\displaystyle P = -VI
+\]
+
+\section*{4.4 Polarity Reference Diagrams}
+
+\begin{center}
+\begin{circuitikz}[scale=0.6]
+    % Diagram (a) - Current enters positive terminal, element absorbs power
+    \draw (0,0) to [battery1, l=$V$] (0,2) -- (3,2) -- (3,0) -- (0,0);
+    \draw [->, thick] (3,0.5) -- (3,1.5) node[midway, right] {$i$};
+    \node at (1.5,-0.5) {(a) $p = vi$};
+
+    % Diagram (b) - Current leaves positive terminal, element delivers power
+    \draw (5,0) to [battery1, l=$V$] (5,2) -- (8,2) -- (8,0) -- (5,0);
+    \draw [<-, thick] (8,0.5) -- (8,1.5) node[midway, right] {$i$};
+    \node at (6.5,-0.5) {(b) $p = -vi$};
+\end{circuitikz}
+\end{center}
+
+\begin{center}
+\begin{circuitikz}[scale=0.6]
+    % Diagram (c) - Current enters negative terminal, element delivers power
+    \draw (10,0) to [battery1, l_=$V$] (10,2) -- (13,2) -- (13,0) -- (10,0);
+    \draw [<-, thick] (13,0.5) -- (13,1.5) node[midway, right] {$i$};
+    \node at (11.5,-0.5) {(c) $p = -vi$};
+
+    % Diagram (d) - Current leaves negative terminal, element absorbs power
+    \draw (15,0) to [battery1, l_=$V$] (15,2) -- (18,2) -- (18,0) -- (15,0);
+    \draw [->, thick] (18,0.5) -- (18,1.5) node[midway, right] {$i$};
+    \node at (16.5,-0.5) {(d) $p = vi$};
+\end{circuitikz}
+\end{center}
+
+\section*{5. Practice Problems}
+
+\subsection*{Problem 1: Ohm's Law}
+A \( 15 \, \Omega \) resistor has a current of \( 2 \, A \). What is the voltage across the resistor?
+
+\noindent\textbf{Solution:}
+\[
+\displaystyle V = IR = 2 \, A \times 15 \, \Omega = 30 \, V
+\]
+
+\begin{center}
+\begin{circuitikz}[scale=0.6] \draw
+(0,0) to [I=$2\,A$] (0,3)
+      to [R, l=$15 \,\Omega$] (3,3)
+      to [short] (3,0)
+      to [short] (0,0);
+\end{circuitikz}
+\end{center}
+
+\subsection*{Problem 2: Power Dissipation}
+A \( 50 \, \Omega \) resistor has \( 10 \, V \) across it. Find the power dissipated.
+
+\noindent\textbf{Solution:}
+\[
+\displaystyle P = \frac{V^2}{R} = \frac{10^2}{50} = 2 \, W
+\]
+
+\begin{center}
+\begin{circuitikz}[scale=0.6] \draw
+(0,0) to [battery1, l=$10\,V$] (0,3)
+      to [R, l=$50 \,\Omega$] (3,3)
+      to [short] (3,0)
+      to [short] (0,0);
+\end{circuitikz}
+\end{center}
+
+\subsection*{Problem 3: Kirchhoff's Current Law}
+At a node, currents of \( 3 \, A \), \( 4 \, A \), and \( 2 \, A \) enter, and a current of \( 5 \, A \) leaves. Find the unknown current \( i_x \).
+
+\noindent\textbf{Solution:}
+\[
+\displaystyle 3 \, A + 4 \, A + 2 \, A = 5 \, A + i_x
+\]
+\[
+i_x = 4 \, A
+\]
+
+
+\end{multicols}
+
+\end{document}

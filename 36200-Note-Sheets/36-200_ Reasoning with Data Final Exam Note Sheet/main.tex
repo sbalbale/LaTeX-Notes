@@ -1,0 +1,151 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin =0.5in]{geometry}
+\usepackage[inline]{enumitem}  
+\usepackage{tabularx}
+
+\title{36-200: Reasoning with Data Final Note Sheet}
+\author{Sean Balbale}
+\date{August 2022}
+
+\begin{document}
+\section*{36-200: Reasoning with Data Final Exam Note Sheet:}
+\begin{enumerate*}[label={}]
+    \item Name: Sean Balbale
+    \item Andrew Id: sbalbale
+    \item August, 2022
+\end{enumerate*}
+\subsection*{Formulas:}
+\textbf{Standard Deviation:}
+\\For a sample containing n data values, the \textbf{Sample Standard Deviation:}
+$S = \sqrt{\frac{\sum_{i=1}^{n} (X_{i} - \overline{X})^2}{n-1}}$
+\\$X_{i}$ is the variable, $\overline{X}$ is the sample mean.
+\\For a population containing N data values, the \textbf{Population Standard Deviation:}
+$\sigma = \sqrt{\frac{\sum_{i=1}^{n} (x_{i} - {\mu})^2}{N}}$
+\\$X_{i}$ is the variable, $\mu$ is the population mean.
+\\S is a statistic, $\sigma$ is a parameter.
+\\\textbf{Binomial Formula:} 
+$P(X = x) = {n \choose x} p^x \cdot (1-p)^{n-x}$
+\\P is the probability that the outcome occurs,n is the total number of trials,
+\\X is the variable, x is the instance of the variable
+\\\textbf{Binomial Coefficient:} $nCx = {n \choose x} = \frac{n!}{x!(n-x)!}$
+\\\textbf{Probability:}
+\begin{itemize}
+    \item P(A): What is the probability of A happening, Marginal Probability
+    \item $P(A \bigcap B)$: P(A and B) = 
+    \\\textbf{If statistically independent:}$P(A) \cdot P(B)$, Joint Probability
+    \\\textbf{If statistically dependant:} $P(A) \cdot P(B|A)$
+    \item $P(A \bigcup B)$: P(A or B) = 
+    \\\textbf{If mutually exclusive:} P(A) + P(B), Disjoint Probability
+    \\\textbf{If not mutually exclusive:} P(A) + P(B) - $P(A \bigcap B)$
+    \item $P(A|B)$: P(A given B) = $\frac{P(A \bigcap B)}{P(B)}$, Conditional Probability
+\end{itemize}
+\subsection*{Definitions:}
+\textbf{Population:} The complete set of people or objects of interest or the infinite set of all possible values if the same person or item were repeatedly measured in the same way.
+\\\textbf{Sample:} The subset of the population for which data can actually be obtained in a study.
+\\\textbf{Parameter:} A fixed (but usually unknown) number summarizing some feature of a population.
+\\\textbf{Statistic:} A computed number that summarizes sample data in some appropriate way, and which estimates a parameter.
+\\\textbf{Inference:} Specifying the estimate of an unknown parameter.
+\\\textbf{Mean:} The arithmetic average.
+\\\textbf{Median:} The middle value after ordering.
+\\\textbf{Standard Deviation:} The typical variation from the mean.
+\\\textbf{Variance:} The square of the standard deviation.
+\\\textbf{Quartiles:} Q1 is the 25th percentile, Q3 is the 75th percentile
+\\\textbf{Five-Number Summary:} Minimum, Q1, Median, Q3, Maximum
+\\\textbf{Inter Quartile Range (IQR):} The difference between quartiles.
+\\\textbf{The Pearson Correlation Coefficient:} A unitless number that measures the direction and strength between two quantitative variables.
+\begin{itemize}
+    \item Between -1 and 1
+    \item The sign (+ or -) matches the direction of the relationship.
+    \item Closer to Zero: \textit{less} linear.
+    \item Closer to 1 or -1: \textit{more} linear.
+    \item Correlation coefficient \textit{exactly} 1 or \textit{exactly} -1 only if all the points fall on a \textit{perfect} line.
+\end{itemize}
+\textbf{Skewness and Modality:}
+\begin{itemize}
+    \item Skewed Right: Tail to the Right.
+    \item Skewed Left: Tail to the Left.
+    \item Unimodal: One peak.
+    \item Multimodal: Multiple peaks.
+\end{itemize}
+\textbf{Statistical Independence:} 
+A and B are statistically independent if and only if $P(A|B) = P(A|B^C) = P(A)$, $B^C$ is the opposite of B.
+\subsection*{Notation:}
+\begin{itemize}
+    \item \textbf{Uppercase vs. lowercase:} Uppercase denotes a random variable, Lowercase denotes a number.
+    \item \textbf{P's:}
+    \begin{itemize}
+        \item $\hat{P}$: Denotes sample proportion, estimates \textit{p}.
+        \item \textit{p}: Denotes the 'true' population proportion, is a population parameter.
+        \item P( ): Denotes the "probability of...".
+    \end{itemize}
+    \item \textbf{X vs. $\overline{X}$:}
+    \begin{itemize}
+        \item X: Denotes sample \textit{count}, in the case of a \textit{categorical} measurement.
+        \item $\overline{X}$: Denotes sample \textit{mean}, in the case of a \textit{quantitative} measurement.
+    \end{itemize}
+\end{itemize}
+
+
+% \subsection*{Examples:}
+% \textbf{Data:}
+% \\
+% \begin{tabularx}{0.8\textwidth} { 
+%   | >{\centering\arraybackslash}X | >{\centering\arraybackslash}X | }
+%  \hline
+%  Gray & Children\\
+%  \hline
+%  Yes  & Yes\\
+%  \hline
+%  No & Yes\\
+%  \hline
+%  Yes  & No\\
+%  \hline
+%  Yes & Yes\\
+%   \hlinehttps://www.overleaf.com/project/62f33d1c312059f060fd8318
+%  No  & No\\
+%   \hline
+%  No  & No\\
+%   \hline
+%  No  & No\\
+%  \hline
+%  Yes & Yes\\
+%   \hline
+%  No  & No\\
+%   \hline
+%  No  & Yes\\
+% \hline
+% \end{tabularx}
+% \\\textbf{Contingency Table of Counts:}
+% \\
+% \begin{tabularx}{0.8\textwidth} { 
+%   | >{\centering\arraybackslash}X | >{\centering\arraybackslash}X | >{\centering\arraybackslash}X | >{\centering\arraybackslash}X | }
+%  \hline
+%   & Children & No Children & total\\
+%  \hline
+%  Gray & 3 & 1 & 4 \\
+%  \hline
+%  No Gray  & 2  & 4 & 6 \\
+%  \hline
+%  Total  & 5  & 5 & 10\\
+% \hline
+% \end{tabularx}
+% \\\textbf{Probability Table:}
+% \\
+% \begin{tabularx}{0.8\textwidth} { 
+%   | >{\centering\arraybackslash}X | >{\centering\arraybackslash}X | >{\centering\arraybackslash}X | >{\centering\arraybackslash}X | }
+%  \hline
+%   & Children & No Children & total\\
+%  \hline
+%  Gray & 0.3 & 0.1 & 0.4 \\
+%  \hline
+%  No Gray  & 0.2  & 0.4 & 0.6 \\
+%  \hline
+%  Total  & 0.5  & 0.5 & 1.0\\
+% \hline
+% \end{tabularx}
+% \\
+% \\\textbf{Analysis:}
+% This data isn't independent because the actual $P(Children \bigcap Gray) = 0.3$ not $P(Children) \times P(Gray) = P(Children \bigcap Gray) = 0.2$
+\end{document}
+

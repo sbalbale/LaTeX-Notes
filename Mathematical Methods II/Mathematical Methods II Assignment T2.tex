@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{enumerate}% http://ctan.org/pkg/enumerate
+\usepackage{titling}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{caption}
+
+\pretitle{\begin{center}\fontsize{18bp}{18bp}\selectfont}
+    \posttitle{\par\end{center}}
+\predate{\begin{center}\fontsize{14bp}{14bp}\selectfont}
+    \postdate{\par\end{center}\vspace{24bp}}
+\preauthor{}
+\author{}
+\postauthor{}
+
+\setlength{\parindent}{0pt}
+
+\title{Mathematical Methods II Assignment T2 }
+\date{22 March, 2024}
+
+\begin{document}
+
+\maketitle
+    \begin{itemize}
+          \item Attempt all seven questions. There are 40 marks available.
+          \item This assignment is open-book; you may use any resources at your disposal (calculator, graphing software, etc.), but the work you submit must be your own.
+          \item You should write your solutions in detail, indicating which theorems or techniques you have applied and why they are valid. Solutions will be marked on their accuracy and validity as well as how clearly they are explained.
+          \item Your grade for this assignment is worth $5 \%$ of your total grade.
+          \item You may choose to handwrite and scan your solutions, type them, or a mixture of both.
+          \item Your solutions must be uploaded to Canvas by 13:00 on Friday 22nd March.
+    \end{itemize}
+\newpage
+    
+Manufacturers of thermal insulation for hot water pipes are modeling the rate at which water loses temperature while stationary inside the pipe.
+
+They measure the temperature $W(t)$ (in degrees Celsius ${ }^{\circ} \mathrm{C}$ ) of the water at various times $t$ (in minutes). Their measurements are recorded as follows:
+
+\begin{center}
+\begin{tabular}{|r|r|}
+\hline
+$t$ (mins) & $W(t)\left({ }^{\circ} \mathrm{C}\right)$ \\
+\hline\hline
+0 & 58.0 \\
+1 & 57.6 \\
+2 & 57.1 \\
+3 & 56.7 \\
+4 & 66.1 \\
+5 & 55.8 \\
+6 & 55.4 \\
+$\vdots$ & $\vdots$ \\
+15 & 51.8 \\
+16 & 51.5 \\
+$\vdots$ & $\vdots$ \\
+60 & 39.0 \\
+180 & 25.8 \\
+300 & 22.8 \\
+480 & 22.1 \\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Question 1}
+One of the data points was incorrectly recorded. Write down which one.
+
+\section*{Question 2}
+Plot a graph of $W(t)$ for times between $t=0$ and $t=15$ using information from the table, ignoring the incorrect data point. You may do this by hand or using graphing software.
+
+\section*{Question 3}
+(i) Using your graph and the remaining data in the table, describe how the temperature of water in the pipe $W(t)$ changes over time. What happens as $t$ gets large?
+
+(ii) Use your graph to estimate the true value of the incorrect data point.
+
+(iii) Use the data in the table and your observations from part (i) to approximate $\lim _{t \rightarrow \infty} W(t)$. Call this value $W_{\text {ext }}$.
+
+\section*{Question 4}
+Use the data in the table to approximate the rate of change of temperature $\frac{\mathrm{d} W}{\mathrm{~d} t}$ at three or more different values of $t$. Demonstrate two different techniques for doing this.
+
+The rate of change of the temperature of the water obeys the following differential equation, called Newton's Law of Cooling:
+
+$$
+\frac{\mathrm{d} W}{\mathrm{~d} t}=k\left(W-W_{\mathrm{ext}}\right)
+$$
+
+Where $W_{\text {ext }}$ is the external temperature (the temperature outside the pipe). This is the value you approximated in Question 3(iii).
+
+\section*{Question 5}
+(i) Use your approximations for $\frac{\mathrm{d} W}{\mathrm{~d} t}$ and $W_{\text {ext }}$ to approximate the value of $k$.
+
+(ii) Hence, by separating the equation, integrating, and then using a suitable initial value, find a solution for the differential equation of the form $W(t)=\cdots$.
+
+\section*{Question 6}
+(i) Using your solution from Question 5, approximate the values of $W(10), W(120)$, and $W(600)$. Are these values the ones you would expect, and why?
+
+(ii) Estimate the time $t$ at which the temperature $W(t)$ will be $50^{\circ} \mathrm{C}$.
+
+\section*{Question 7}
+Based on your differential equation from Question 5, how do you expect the temperature of water in the pipe to change over time if the initial temperature $W(0)=5^{\circ} \mathrm{C}$?
+
+The manufacturers are testing a new insulation for the pipe, which aims to reduce the rate at which the temperature decreases. The data for the new insulation is found to fit the model.
+
+$$
+\frac{\mathrm{d} W}{\mathrm{~d} t}=-0.008\left(W-W_{\text {ext }}\right)
+$$
+
+The external temperature $W_{\text {ext }}$ and the initial temperature $W(0)$ are the same as before, but you may disregard the rest of the data in the first table and your previous approximation for $\frac{\mathrm{d} W}{\mathrm{~d} t}$.
+
+\section*{Question 8}
+By comparing this differential equation with your model from Question 5, how do you think the new insulation will affect the rate of change of temperature, compared to before?
+
+
+\end{document}
