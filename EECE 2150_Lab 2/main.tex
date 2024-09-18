@@ -2,11 +2,13 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{booktabs}
+\usepackage{siunitx}
 
 \title{Lab 2: Getting started with Ohm's Law, KVL, KCL, and Multi-Meter
 Measurements}
 \author{Sean Balbale}
 \date{September 9th, 2023}
+\setlength{\parindent}{0in}
 
 \begin{document}
 
@@ -45,11 +47,43 @@ necessary skillset for all electrical engineers.
 
 \section{Results}
 
-\subsection{From Circuit Diagrams to Protoboards}
 
+\subsection{A Very Simple DC Circuit}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{simple_resistor_circuit_for_part1.png}
+    \caption{Second Circuit built on breadboard. The red wires and rail are +6V while the black wire and blue rail are ground.}
+    \label{fig:fig1}
+\end{figure}
 
+During this lab section, a very simple circuit (Figure~\ref{fig:fig1}) was built on a 
+breadboard.  
 
-\subsection{Building a Simple LED Circuit}
+\begin{figure}[H]
+    \centering
+    \includegraphics[angle=90,origin=c,width=0.5\textwidth]{built_figure1.png}
+    \caption{Second Circuit built on breadboard. The red wires and rail are +6V while the black wire and blue rail are ground.}
+    \label{fig:fig2}
+\end{figure}
+
+Figure~\ref{fig:fig2} shows the circuit that was built.
+The theoretical amperage flowing through the resistor can be calculated
+using Ohm's Law. This calculation is shown in Equation (1).
+
+\begin{equation}
+    I = \frac{V}{R}
+    \text{, where } V = 5V \text{ and } R = 1k\Omega
+\end{equation}
+
+The actual value of the resistor used was found to be $1.0004 \: k\Omega$. When 
+connected to a multimeter the voltage drop was measured to be $4.9986 \: V$.
+The loop current was measured to be $4.9942 \: mA$. The measured values were close to the
+calculated values, which is expected due to the accuracy of the equipment used.
+The discrepancy between the calculated and measured values can be attributed to the
+tolerance of the resistor and the accuracy of the multimeter. If the voltage over the
+resistor doubles then, so will the loop current.
+
+\subsection{KCL}
 
 
 \section{Discussions and Conclusions}
