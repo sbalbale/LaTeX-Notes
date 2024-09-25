@@ -1,0 +1,258 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+
+\title{CS1800 Homework 2 Solutions}
+\author{}
+\date{}
+
+% Header for every page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Name: Sean Balbale}
+\fancyhead[R]{HW Group: None}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\section*{Problem 1: English to Logic}
+
+Given:
+\begin{itemize}
+    \item $a$: The alarm is ringing
+    \item $b$: The battery is low
+    \item $c$: The system is on
+\end{itemize}
+
+\subsection*{i. The alarm is ringing and the system is on}
+\[
+a \land c
+\]
+
+\subsection*{ii. The alarm is not ringing but the system is on}
+\[
+\neg a \land c
+\]
+
+\subsection*{iii. The system is not on and the alarm is not ringing}
+\[
+\neg c \land \neg a
+\]
+
+\subsection*{iv. There is no way that the alarm is ringing}
+\[
+\neg a
+\]
+
+\subsection*{v. The alarm is ringing or the battery is low}
+\[
+a \lor b
+\]
+
+\subsection*{vi. Despite the fact that the alarm is ringing, the battery is low}
+\[
+a \land b
+\]
+\newpage
+
+\section*{Problem 2: Arithmetic \& Logic}
+
+\subsection*{i. $(7 \geq 7) \land (8 < 5)$}
+\begin{align*}
+7 \geq 7 &\text{ is True} \\
+8 < 5 &\text{ is False} \\
+\text{True} \land \text{False} &= \text{False}
+\end{align*}
+\[
+\text{False}
+\]
+
+\subsection*{ii. $(7 \geq 7) \lor (8 < 5)$}
+\begin{align*}
+7 \geq 7 &\text{ is True} \\
+8 < 5 &\text{ is False} \\
+\text{True} \lor \text{False} &= \text{True}
+\end{align*}
+\[
+\text{True}
+\]
+
+\subsection*{iii. $(6 = 3 + 3) \land (10 < 1)$}
+\begin{align*}
+6 = 3 + 3 &\text{ is True} \\
+10 < 1 &\text{ is False} \\
+\text{True} \land \text{False} &= \text{False}
+\end{align*}
+\[
+\text{False}
+\]
+
+\subsection*{iv. $\neg(9 = 8)$}
+\begin{align*}
+9 = 8 &\text{ is False} \\
+\neg \text{False} &= \text{True}
+\end{align*}
+\[
+\text{True}
+\]
+
+\subsection*{v. $\neg((6 = 3 + 3) \lor (10 < 1))$}
+\begin{align*}
+6 = 3 + 3 &\text{ is True} \\
+10 < 1 &\text{ is False} \\
+\text{True} \lor \text{False} &= \text{True} \\
+\neg \text{True} &= \text{False}
+\end{align*}
+\[
+\text{False}
+\]
+\newpage
+
+\section*{Problem 3: Tarski World Predicates \& Quantifiers}
+
+\subsection*{i. $\text{star}(c) \land \neg \text{shade}(c)$}
+"c is a star and c is not shaded."
+\[
+\text{False}
+\]
+
+\subsection*{ii. $\exists x (\text{circ}(x) \land \text{shade}(x))$}
+"There exists an x such that x is a circle and x is shaded."
+\[
+\text{True}
+\]
+
+\subsection*{iii. $\forall x (\text{square}(x) \rightarrow \neg \text{shade}(x))$}
+"For all x, if x is a square, then x is not shaded."
+\[
+\text{True}
+\]
+
+\subsection*{iv. $\forall x \forall y (\text{star}(x) \land \neg \text{shade}(x) \land \text{next to}(x, y)) \rightarrow (\text{shade}(y) \land \text{circ}(y))$}
+"For all x and y, if x is a star and not shaded, and x is next to y, then y is shaded and is a circle."
+\[
+\text{False}
+\]
+
+\subsection*{v. $\exists x \forall y (\text{next to}(x, y))$}
+"There exists an x such that for all y, x is next to y."
+\[
+\text{False}
+\]
+
+\subsection*{vi. $\forall y \exists x (\text{shade}(x) \land \text{next to}(x, y))$}
+"For all y, there exists an x such that x is shaded and x is next to y."
+\[
+\text{True}
+\]
+\newpage
+
+\section*{Problem 4: Converse, Inverse, Contrapositive}
+
+Given the statement:
+\[
+\forall x (\neg \text{shade}(x) \rightarrow \text{circle}(x))
+\]
+
+\subsection*{i. True or False?}
+The statement is \textbf{True}.
+
+\subsection*{ii. Contrapositive:}
+\[
+\forall x (\neg \text{circle}(x) \rightarrow \text{shade}(x))
+\]
+The contrapositive is \textbf{True}.
+
+\subsection*{iii. Converse:}
+\[
+\forall x (\text{circle}(x) \rightarrow \neg \text{shade}(x))
+\]
+The converse is \textbf{False}.
+
+\subsection*{iv. Inverse:}
+\[
+\forall x (\text{shade}(x) \rightarrow \neg \text{circle}(x))
+\]
+The inverse is \textbf{False}.
+
+\subsection*{v. True conditional statement whose converse is False:}
+"If an object is a rectangle, then it is not shaded."
+The converse is False if there is an unshaded circle.
+
+\subsection*{vi. True conditional statement whose contrapositive is False:}
+This situation is not possible. If the conditional is True, the contrapositive must also be True.
+\newpage
+
+\section*{Problem 5: Vending Machine}
+
+Given:
+\begin{itemize}
+    \item $E$: The machine is empty.
+    \item $S$: The user made a selection.
+    \item $P$: The user paid a quarter.
+    \item $V$: The machine will vend a soda.
+    \item $R$: The machine will return the quarter.
+\end{itemize}
+
+\subsection*{i. Truth Table for $V$ and $R$:}
+
+\[
+\begin{array}{|c|c|c|c|c|}
+E & S & P & V & R \\
+\hline
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 1 & 1 & 0 \\
+1 & 0 & 0 & 0 & 0 \\
+1 & 0 & 1 & 0 & 1 \\
+1 & 1 & 0 & 0 & 0 \\
+1 & 1 & 1 & 0 & 1 \\
+\end{array}
+\]
+
+\subsection*{ii. Expression for $V$:}
+\[
+V = \neg E \land S \land P
+\]
+
+\subsection*{iii. Expression for $R$:}
+\[
+R = E \land P
+\]
+\newpage
+
+\section*{Problem 6: English to Logic (Part 2)}
+
+Given:
+\begin{itemize}
+    \item $h$: They have hamsters.
+    \item $w$: They have whales.
+    \item $d$: They have dinosaurs.
+\end{itemize}
+
+\subsection*{i. The zoo doesn’t have any hamsters or whales, but it does have dinosaurs.}
+\[
+\neg h \land \neg w \land d
+\]
+
+\subsection*{ii. The zoo has at least two of the three groups of animals.}
+\[
+(h \land w) \lor (h \land d) \lor (w \land d)
+\]
+
+\subsection*{iii. The zoo has exactly two of the three groups of animals.}
+\[
+(h \land w \land \neg d) \lor (h \land d \land \neg w) \lor (w \land d \land \neg h)
+\]
+
+\subsection*{iv. The zoo has, at most, one of these groups of animals.}
+\[
+(\neg h \land \neg w \land d) \lor (\neg h \land w \land \neg d) \lor (h \land \neg w \land \neg d)
+\]
+
+\end{document}
