@@ -1,0 +1,222 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\title{CS1800 Homework 4 Solutions}
+\author{}
+\date{}
+
+% Header for every page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Name: Sean Balbale}
+\fancyhead[R]{HW Group: None}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\section*{Problem 1: Survey}
+
+Given 20 multiple-choice questions, each with four possible answers (A, B, C, or D):
+
+\subsection*{i. Unique ways to complete the entire survey}
+
+Each question has 4 possible answers. Hence, the total number of ways to complete the survey is:
+
+\[
+4^{20} = 1,099,511,627,776
+\]
+
+\subsection*{ii. Unique ways to complete the survey if at least one question is unanswered}
+
+Each question now has 5 options (A, B, C, D, or no answer). Thus, the total number of ways is:
+
+\[
+5^{20-1} = 5^{19} = 1.90734863* 10^{13}
+\]
+
+\subsection*{iii. How many ways can a participant respond if they select option A for exactly 8 questions and option B for the remaining 12?}
+
+This is a combination problem, where we choose 8 questions from 20 for option A:
+
+\[
+\binom{20}{8} = \frac{20!}{8!12!} = 125,970
+\]
+
+\newpage
+
+\section*{Problem 2: Soccer Team}
+
+\subsection*{i. In how many ways can the coach choose 11 players to play?}
+
+The number of ways to choose 11 players from 20 is:
+
+\[
+\binom{20}{11} = \frac{20!}{11!9!} = 167,960
+\]
+
+\subsection*{ii. How many ways can the coach choose a lineup?}
+
+We need to choose:
+\begin{itemize}
+    \item 4 midfielders from 7: \( \binom{7}{4} \)
+    \item 3 defenders from 6: \( \binom{6}{3} \)
+    \item 3 attackers from 5: \( \binom{5}{3} \)
+    \item 1 goalkeeper from 2: \( \binom{2}{1} \)
+\end{itemize}
+
+\noindent The total number of ways is:
+
+\[
+\binom{7}{4} \times \binom{6}{3} \times \binom{5}{3} \times \binom{2}{1} = 35 \times 20 \times 10 \times 2 = 14,000
+\]
+
+\subsection*{iii. How many ways can the coach choose a lineup if one defender can also play attack?}
+
+In this case, there are 6 potential attackers and 6 defenders. The number of ways is:
+
+\[
+\binom{7}{4} \times \binom{6}{3} \times \binom{6}{3} \times \binom{2}{1} = 35 \times 20 \times 20 \times 2 = 28,000
+\]
+
+\newpage
+
+\section*{Problem 3: Sharing Books}
+
+\subsection*{i. How many ways can we distribute 15 unique books among 5 friends?}
+
+The number of ways to distribute 15 unique books to 5 friends is:
+
+\[
+5^{15} = 30,517,578,125
+\]
+
+\subsection*{ii. How many ways to distribute 15 identical books among 5 friends?}
+
+Using the stars and bars formula:
+
+\noindent Let $k=15$ and $n=5$.
+
+\[
+\binom{n+k-1}{k-1} = \binom{15+5-1}{4} = \binom{19}{4} = 3,876
+\]
+
+\subsection*{iii. How many ways if one friend does not receive exactly 4 books?}
+
+We subtract the number of ways where one friend gets exactly 4 books from the total:
+
+\[
+\text{Total ways} = \binom{19}{4}, \quad \text{Ways where one friend gets 4 books} = \binom{14}{3}
+\]
+
+Thus:
+
+\[
+\binom{19}{4} - \binom{14}{3} = 3,876 - 336 = 3,512
+\]
+
+\newpage
+
+\section*{Problem 4: Principle of Inclusion-Exclusion Factors}
+
+\subsection*{i. How many integers from 1 to 1000 are multiples of 7?}
+
+\[
+\left\lfloor \frac{1000}{7} \right\rfloor = 142
+\]
+
+\subsection*{ii. How many integers from 1 to 1000 are multiples of 11?}
+
+\[
+\left\lfloor \frac{1000}{11} \right\rfloor = 90
+\]
+
+\subsection*{iii. How many integers from 1 to 1000 are multiples of both 7 and 11?}
+
+Multiples of both 7 and 11 are multiples of the LCM (77):
+
+\[
+\left\lfloor \frac{1000}{7 \cdot 11} \right\rfloor = 12
+\]
+
+\subsection*{iv. How many integers from 1 to 1000 are multiples of 7 or 11?}
+
+Using inclusion-exclusion:
+
+\[
+142 + 90 - 12 = 220
+\]
+
+\subsection*{v. How many integers from 1 to 1000 are multiples of 7 but not 11?}
+
+\[
+142 - 12 = 130
+\]
+
+\subsection*{vi. How many integers from 1 to 1000 are multiples of neither 7 nor 11?}
+
+\[
+1000 - (142+90) = 768
+\]
+
+\newpage
+
+\section*{Problem 5: Pigeonhole Principle}
+
+\subsection*{i. How many pigeons, at least, are guaranteed to share the first nest?}
+
+\[
+\left\lceil \frac{14}{3} \right\rceil = \left\lceil 4.667 \right\rceil = 5
+\]
+
+\subsection*{ii. How many pigeons, at least, are guaranteed to be in the nest with the most pigeons?}
+
+\[
+\left\lceil \frac{14}{3} \right\rceil = 5
+\]
+
+\subsection*{iii. Minimum number of students to guarantee a table with at least 3 students}
+
+By the pigeonhole principle:
+
+\[
+n = 29 \quad \text{(at least one table will have 3 students)}
+\]
+
+If you place 2 students at each of the 14 tables, that uses up 28 students.
+However, when you add a 29th student, they will need to sit at one of the
+tables that already has 2 students, meaning that table will now have 3 students.
+Therefore, with 29 students, it's guaranteed that at least one table will have 3
+students.
+
+\subsection*{iv. What does the pigeonhole principle imply about 123 students taking an exam with 102 questions?}
+
+Since there are 123 students but only 103 possible different scores, by the
+pigeonhole principle, there must be at least two students with the same score.
+
+\newpage
+
+\section*{Problem 6: Rectangle Extra}
+
+\subsection*{i. How many integer rectangles have an area of 720?}
+
+The prime factorization of 720 is:
+
+\[
+720 = 2^4 \times 3^2 \times 5
+\]
+
+The total number of divisors (and thus possible rectangles) is:
+
+\[
+(4+1)(2+1)(1+1) = 30
+\]
+
+Thus, there are 30 distinct integer rectangles.
+
+\end{document}
