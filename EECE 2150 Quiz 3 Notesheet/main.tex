@@ -1,0 +1,233 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{circuitikz}
+
+\setlength{\columnsep}{1.5cm} % Set the column separation to a larger value
+\setlength{\voffset}{-0.25in}
+\setlength{\parindent}{0in}
+
+\title{
+    \raggedright
+    \large EECE 2150: Quiz 3 Notesheet \hfill Sean Balbale \hfill October 2024
+    \vspace{-4em}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{multicols}{2}
+
+% SECTION 1: Basic Circuit Elements
+\section*{1. Basic Circuit Elements}
+
+\subsection*{1.1 Resistors}
+\textbf{Resistor} resists the flow of charge. The resistance \(R\) is a function of length, area, and resistivity:
+\[
+R = \frac{\rho \ell}{A} \quad \text{or} \quad R = \frac{\ell}{\sigma A}
+\]
+\begin{itemize}\itemsep0pt
+    \item \( \rho \): Resistivity
+    \item \( \ell \): Length
+    \item \( A \): Area
+\end{itemize}
+
+\textbf{Ohm's Law}: Voltage, current, and resistance are related:
+\[
+V = IR \quad \text{or} \quad I = \frac{V}{R}
+\]
+
+\subsection*{1.2 Power Dissipation and Passive Sign Convention}
+\textbf{Power Dissipation}:
+\[
+P = IV = I^2 R = \frac{V^2}{R}
+\]
+- In the passive sign convention, if the current enters the positive terminal of an element, the element is absorbing power:
+\[
+P = VI
+\]
+- If the current enters the negative terminal, the element is delivering power:
+\[
+P = -VI
+\]
+
+\subsection*{1.3 Conductance}
+Conductance is the reciprocal of resistance:
+\[
+G = \frac{1}{R} \quad \text{in Siemens (S)}
+\]
+
+\subsection*{1.4 Ideal Conductors}
+\[ R = 0, \quad \sigma \to \infty \]
+No voltage drop across an ideal conductor.
+
+---
+
+% SECTION 2: Kirchhoff’s Laws
+\section*{2. Kirchhoff’s Laws}
+
+\subsection*{2.1 Kirchhoff's Current Law (KCL)}
+The sum of currents entering and leaving a node is zero:
+\[
+\sum I_{\text{in}} = \sum I_{\text{out}}
+\]
+\textit{Example}: If \( 2\,A \), \( 3\,A \), and \( 5\,A \) enter a node:
+\[
+i_x = 10\,A
+\]
+
+\subsection*{2.2 Kirchhoff's Voltage Law (KVL)}
+The sum of voltage drops in a closed loop equals the sum of voltage rises:
+\[
+\sum V_{\text{drops}} = \sum V_{\text{rises}}
+\]
+\textit{Example}: In a loop with voltage drops of \(10\,V\), \(6\,V\), and \(4\,V\), and supply \(V_s = 24\,V\):
+\[
+V_x = 4\,V
+\]
+
+---
+
+% SECTION 3: Resistors in Series and Parallel
+\section*{3. Resistors in Series and Parallel}
+
+\subsection*{3.1 Series Resistors}
+Resistors in series carry the same current:
+\[
+R_{\text{eq}} = R_1 + R_2 + \cdots + R_n
+\]
+\textbf{Voltage Division}:
+\[
+V_k = V_s \frac{R_k}{R_{\text{eq}}}
+\]
+\textit{Example}: For two resistors \(R_1 = 10\,\Omega\), \(R_2 = 5\,\Omega\), and source \(V_s = 30\,V\):
+\[
+V_1 = 20\,V, \quad V_2 = 10\,V
+\]
+
+\subsection*{3.2 Parallel Resistors}
+Resistors in parallel share the same voltage:
+\[
+\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \cdots + \frac{1}{R_n}
+\]
+\textbf{Current Division}:
+\[
+i_k = I_s \frac{R_{\text{eq}}}{R_k}
+\]
+\textit{Example}: For two resistors \(R_1 = 6\,\Omega\), \(R_2 = 3\,\Omega\), and \(I_s = 6\,A\):
+\[
+R_{\text{eq}} = 2\,\Omega, \quad i_1 = 2\,A, \quad i_2 = 4\,A
+\]
+
+---
+
+% SECTION 4: Nodal Analysis (Node Voltage Method)
+\section*{4. Nodal Analysis (Node Voltage Method)}
+
+\subsection*{4.1 Steps for Nodal Analysis}
+\begin{enumerate}\itemsep0pt
+    \item Identify essential nodes.
+    \item Choose a reference node (ground).
+    \item Write KCL equations at each essential node using node voltages.
+    \item Solve the system of equations for unknown node voltages.
+\end{enumerate}
+
+\subsection*{4.2 Example of KCL at Node}
+At node \( V_1 \):
+\[
+\frac{V_1 - V_{\text{source}}}{R_1} + \frac{V_1 - V_2}{R_2} = 0
+\]
+Solve the system of equations to find node voltages.
+
+---
+
+% SECTION 5: Mesh Analysis (Mesh Current Method)
+\section*{5. Mesh Analysis (Mesh Current Method)}
+
+\subsection*{5.1 Steps for Mesh Analysis}
+\begin{enumerate}\itemsep0pt
+    \item Identify meshes (loops without other loops inside).
+    \item Assign mesh currents.
+    \item Apply KVL in each mesh to write voltage equations.
+    \item Solve the system of equations for mesh currents.
+\end{enumerate}
+
+\subsection*{5.2 Example of KVL in Mesh}
+For a mesh with resistors \( R_1 \), \( R_2 \), and voltage source \( V_s \):
+\[
+i_a (R_1 + R_2) - i_b R_2 = V_s
+\]
+Solve for \( i_a \) and \( i_b \) in the system of equations.
+
+---
+
+% SECTION 6: Thevenin and Norton Equivalent Circuits
+\section*{6. Thevenin and Norton Equivalent Circuits}
+
+\subsection*{6.1 Thevenin's Theorem}
+Any linear circuit can be reduced to a single voltage source \( V_{\text{Th}} \) in series with \( R_{\text{Th}} \).
+\[
+V_L=V_{Th}\frac{R_L}{R_{Th}+R_L}
+\]
+
+\subsection*{6.2 Norton's Theorem}
+Any linear circuit can be reduced to a single current source \( I_N \) in parallel with \( R_N \).
+\[
+I_N = \frac{V_{\text{Th}}}{R_{\text{Th}}}, \quad R_N = R_{\text{Th}}
+\]
+
+---
+
+% SECTION 7: Source Transformations
+\section*{7. Source Transformations}
+
+\subsection*{7.1 Voltage to Current Source Transformation}
+A voltage source \( V_s \) in series with \( R \) can be transformed into a current source:
+\[
+I_s = \frac{V_s}{R}, \quad \text{in parallel with } R
+\]
+
+\subsection*{7.2 Current to Voltage Source Transformation}
+A current source \( I_s \) in parallel with \( R \) can be transformed into a voltage source:
+\[
+V_s = I_s R, \quad \text{in series with } R
+\]
+
+---
+
+% SECTION 8: Delta-Y ($\Delta$-Y) Conversion
+\section*{8. Delta-Y ($\Delta$-Y) Conversion}
+
+\subsection*{8.1 Delta to Y Conversion}
+For a delta network with resistors \(R_a\), \(R_b\), and \(R_c\), the equivalent Y-resistances are:
+\[
+R_1 = \frac{R_b R_c}{R_a + R_b + R_c}, \quad 
+R_2 = \frac{R_a R_c}{R_a + R_b + R_c}
+\]
+\[
+R_3 = \frac{R_a R_b}{R_a + R_b + R_c}
+\]
+\textit{Example}: For a delta network with \(R_a = 10\,\Omega\), \(R_b = 20\,\Omega\), and \(R_c = 30\,\Omega\):
+\[
+R_1 = 12\,\Omega, \quad R_2 = 5\,\Omega, \quad R_3 = 3.33\,\Omega
+\]
+
+\subsection*{8.2 Y to Delta Conversion}
+For a Y-network with resistors \(R_1\), \(R_2\), and \(R_3\), the equivalent delta-resistances are:
+\[
+R_a = \frac{R_1 R_2 + R_2 R_3 + R_3 R_1}{R_3}, \quad 
+R_b = \frac{R_1 R_2 + R_2 R_3 + R_3 R_1}{R_1}
+\]
+\[
+R_c = \frac{R_1 R_2 + R_2 R_3 + R_3 R_1}{R_2}
+\]
+\textit{Example}: For a Y-network with \(R_1 = 3\,\Omega\), \(R_2 = 4\,\Omega\), and \(R_3 = 5\,\Omega\):
+\[
+R_a = 9.33\,\Omega, \quad R_b = 7.67\,\Omega, \quad R_c = 6\,\Omega
+\]
+
+\end{multicols}
+\end{document}
