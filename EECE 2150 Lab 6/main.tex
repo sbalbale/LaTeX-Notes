@@ -43,6 +43,7 @@ This lab focuses on the generation, analysis, and combination of discrete-time s
 Sinusoids, particularly sine and cosine waves, are fundamental to signal processing and electrical engineering applications, 
 including biomedical signal analysis. The objective of this lab is to explore how varying parameters—amplitude, frequency, 
 and phase—affect the behavior of sinusoidal signals in both visual and auditory contexts.
+\newline
 
 By generating, plotting, and combining sinusoids, we will observe the impact of these parameters on the shape, 
 frequency content, and sound of the resulting signals. This hands-on approach deepens understanding of sinusoidal 
@@ -147,13 +148,139 @@ plotted. In \ref{fig:fig6}, the signals are shown.
 \end{figure}
 
 \subsubsection*{C.}
-Part B is repeated but with 8000 samples instead of 250. Just like the results in Part I,
+Part B is repeated but with 8000 samples. Just like the results in Part I,
 the phase shift is not audible.
 
 \subsection*{Part III}
 \subsubsection*{A.}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{fig 3a.png}
+	\caption{Sinusoidal with $A$ = $\frac{2}{\pi}$, $f$ 1 kHz, $f_s$ = 5 kHz, duration = 0.005, and Phase 0}
+	\label{fig:fig7}
+\end{figure}
+In Figure \ref{fig:fig7} we have a sinusoidal signal with an amplitude of $\pi/2$, a frequency of 1 kHz,
+a sampling frequency of 5 kHz, a duration of 0.005, and a phase of 0. The signal has
+a period of 5 samples per cycle. The total number of samples (N) is 250. This can be
+calculated through the formula:
+\[
+N = f_s \times \text{duration} = 5000 \times 0.005 = 250
+\]
+
+\subsubsection*{B.}
+Now a sinusoidal signal with an amplitude of $\frac{2}{3\pi}$, a frequency of 3 kHz, 
+a sampling frequency of 50 kHz, a duration of 0.005, and a phase of 0 is generated and
+added to the previous signal. The signals are then combined and plotted. The result is
+shown in Figure \ref{fig:fig8}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{fig 3b.png}
+	\caption{Both Sinusoidal Signals Combined}
+	\label{fig:fig8}
+\end{figure}
+
+\subsubsection*{C.}
+In this part, sinusoids with amplitude $\frac{2}{n\pi}$ and amplitude $n f_0$,
+where $f_0=1000 \; kHz$ and $n=5,7,9,...$ are generated. The signals are then combined
+and plotted. The result is shown in Figure \ref{fig:fig9}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{fig 3c.png}
+	\caption{Multiple Sinusoidal Signals Combined}
+	\label{fig:fig9}
+\end{figure}
+
+\subsubsection*{D.}
+Parts A and C are repeated, but with a duration of 1 second. The audio for the signals
+is played. They are all beeps, but the pitch of the beep increases.
+
+\subsection{Part IV}
+\subsubsection*{A.}
+You either get constructive or deconstructive interference. If the two signals are in 
+phase, then you get constructive interference and the volume increases. If the two signals are out of phase, 
+then you get deconstructive interference and the volume decreases.
+
+\subsubsection*{B.}
+If Part III C is repeated but the phase change ius $2\pi$, 
+then the signals will be out of phase and cancel out.
 
 \section{Discussion and Conclusion}
+
+\subsection{Discussion}
+
+In this lab, the generation, manipulation, and combination of discrete-time 
+sinusoidal signals were explored using MATLAB, focusing on the effects of amplitude, 
+frequency, and phase on the signals. Each part of the lab contributed to a deeper 
+understanding of these parameters in both visual and auditory forms.
+\newline
+
+In \textbf{Part I}, amplitude, frequency, sampling rate, and phase were varied to 
+observe how each affects the waveform's appearance and sound. 
+The impact of the sampling frequency was particularly important. When the sampling 
+frequency decreased (as seen in Part I, section F), the number of samples per cycle 
+decreased, resulting in increasingly poor representations of the original signal. 
+This led to noticeable degradation in both visual quality (fewer data points in each 
+cycle) and auditory quality (lower fidelity). This demonstrated the importance of 
+maintaining a sufficiently high sampling rate to avoid aliasing and signal distortion 
+in digital systems. Moreover, the phase shifts tested (Part I, sections B and D) had 
+no noticeable effect on sound but significantly altered the waveforms' visual 
+representations.
+\newline
+
+\textbf{Part II} involved combining sinusoids of varying amplitudes and phase shifts. 
+It was observed that amplitude affects the magnitude of the signal, while phase shifts 
+influence the starting point of the wave within a cycle. By combining sinusoids with 
+different amplitudes, constructive and destructive interference was effectively 
+visualized. The combination of signals with different phase shifts further highlighted 
+the principle of interference, where in-phase signals amplified each other and 
+out-of-phase signals partially or fully canceled each other out.
+\newline
+
+\textbf{Part III} involved generating and combining sinusoids with different 
+amplitudes and frequencies. A sinusoid with a frequency of 1000 Hz and an amplitude 
+of \( \frac{2}{\pi} \) was combined with another sinusoid at 3000 Hz and 
+\( \frac{2}{3\pi} \). The resulting waveform was more complex, containing components 
+of both frequencies. 
+\newline
+
+As more sinusoids with odd harmonic frequencies (e.g., 5000 Hz, 7000 Hz) were 
+added, the waveform increasingly resembled a square wave. This demonstrated the 
+principle of Fourier synthesis, where complex periodic signals are constructed by 
+summing sinusoids of different frequencies. When extended to 1 second, the sound 
+produced became richer due to the addition of harmonic content, highlighting how 
+complex sounds are synthesized in signal processing.
+\newline
+
+\textbf{Part IV} examined how constructive and destructive interference depends on 
+phase relationships. Signals that were in phase resulted in constructive interference, 
+amplifying the overall signal (increased volume in audio), while signals that were out 
+of phase caused destructive interference, leading to diminished signals or complete 
+cancellation when the phases differed by multiples of \( \pi \).
+\newline
+
+\subsection{Conclusion}
+
+The lab demonstrated how the fundamental parameters of sinusoids—amplitude, 
+frequency, phase, and sampling frequency—affect signal behavior. MATLAB 
+simulations showed how these parameters influence the shape and sound of the 
+signals, emphasizing the importance of phase in determining the starting point 
+of a wave, amplitude in controlling signal strength, and frequency in determining 
+the rate of oscillations.
+\newline
+
+Key findings include:
+\begin{itemize}
+    \item \textbf{Phase Shifts}: While inaudible in short-duration signals, phase shifts alter the appearance of sinusoidal waveforms.
+    \item \textbf{Sampling Rate}: High sampling rates are crucial for accurately representing and reconstructing signals; lower sampling rates result in signal distortion and poor sound quality.
+    \item \textbf{Combining Sinusoids}: When multiple sinusoids are combined, their relative phases and amplitudes determine whether constructive or destructive interference occurs, impacting both the visual waveform and auditory perception.
+\end{itemize}
+
+Overall, the lab reinforced essential signal processing concepts, particularly in 
+the context of digital systems where discrete-time representations of continuous 
+signals are critical. The use of MATLAB facilitated both the visualization and 
+auditory interpretation of the signals, offering practical insights that will be 
+valuable in more complex applications like biomedical signal processing.
+
 
 \section{References}
  [1] Dr. Iman Salama. “Lab 6 – Creating and Combining Sinusoids in MatLab” Northeastern University. 18 October 2024.
