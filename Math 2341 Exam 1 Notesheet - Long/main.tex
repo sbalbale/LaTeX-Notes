@@ -1,0 +1,702 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{circuitikz}
+
+\setlength{\columnsep}{1.5cm} % Set the column separation to a larger value
+\setlength{\voffset}{-0.25in}
+\setlength{\parindent}{0in}
+
+\title{
+    \raggedright
+    \large Math 2341 Exam 1 Notesheet \hfill Sean Balbale \hfill October 2024
+    \vspace{-4em}
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Chapter 1: First-Order Equations}
+
+\subsection*{1.3 Separable Equations \& Applications}
+\textbf{Steps to Solve Separable Equations:}
+\begin{enumerate}
+    \item \textbf{Separate variables:} Rewrite the differential equation in the form \( \frac{dy}{dx} = g(x) h(y) \), then separate the variables as \( \frac{1}{h(y)} dy = g(x) dx \).
+    \item \textbf{Integrate both sides:} Integrate both sides separately. The result will typically involve a constant of integration \( C \).
+    \item \textbf{Solve for \( y \):} If possible, solve the resulting equation for \( y \).
+    \item \textbf{Apply initial condition (if provided):} Use the initial condition to solve for the constant \( C \).
+\end{enumerate}
+
+\textbf{Example Problem:} Solve \( \frac{dy}{dx} = 2xy \) with initial condition \( y(0) = 1 \).
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item Rewrite the equation: \( \frac{1}{y} dy = 2x dx \).
+    \item Integrate: \( \int \frac{1}{y} dy = \int 2x dx \), so \( \ln |y| = x^2 + C \).
+    \item Exponentiate both sides: \( y = e^{x^2 + C} = Ce^{x^2} \).
+    \item Use the initial condition \( y(0) = 1 \): \( 1 = Ce^{0} \), so \( C = 1 \).
+    \item Final solution: \( y = e^{x^2} \).
+\end{enumerate}
+
+\subsection*{1.2 Equilibrium and Stability}
+\textbf{Equilibrium Points:}
+Equilibrium points are the values where \( \frac{dy}{dx} = 0 \). These points are classified based on the behavior of nearby solutions:
+\begin{itemize}
+    \item \textbf{Source:} If solutions move away from the equilibrium point as time increases, the point is called a \textit{source}.
+    \item \textbf{Sink:} If solutions move toward the equilibrium point, it is a \textit{sink}.
+    \item \textbf{Node:} Solutions either approach or move away in a non-oscillatory manner, depending on whether the node is stable (sink) or unstable (source).
+\end{itemize}
+
+\textbf{Stability Classification:}
+\begin{itemize}
+    \item \textbf{Stable:} Nearby solutions approach the equilibrium point.
+    \item \textbf{Unstable:} Nearby solutions move away from the equilibrium.
+    \item \textbf{Semi-stable:} Solutions may approach from one side and move away from the other.
+\end{itemize}
+
+\textbf{Steps to Determine Stability:}
+\begin{enumerate}
+    \item \textbf{Find equilibrium points:} Set \( \frac{dy}{dx} = 0 \) and solve for \( y \).
+    \item \textbf{Analyze the sign of \( \frac{dy}{dx} \):} Determine how the solutions behave near each equilibrium point by analyzing the sign of \( \frac{dy}{dx} \) on either side of the equilibrium.
+\end{enumerate}
+
+\textbf{Example Problem:} Find and classify the equilibrium points for \( \frac{dy}{dx} = y(2 - y) \).
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item Set \( y(2 - y) = 0 \), giving equilibrium points at \( y = 0 \) and \( y = 2 \).
+    \item Analyze \( \frac{dy}{dx} \):
+    \begin{itemize}
+        \item For \( y < 0 \), \( \frac{dy}{dx} > 0 \), so solutions move toward \( y = 0 \).
+        \item For \( 0 < y < 2 \), \( \frac{dy}{dx} > 0 \), so solutions move toward \( y = 2 \).
+        \item For \( y > 2 \), \( \frac{dy}{dx} < 0 \), so solutions move toward \( y = 2 \).
+    \end{itemize}
+    \item Conclusion: \( y = 0 \) is unstable, and \( y = 2 \) is stable (sink).
+\end{enumerate}
+
+\subsection*{1.4 Linear Equations \& Applications}
+\textbf{Steps to Solve First-Order Linear Equations:}
+\begin{enumerate}
+    \item \textbf{Standard form:} Write the equation as \( y' + p(x)y = q(x) \).
+    \item \textbf{Find the integrating factor:} Calculate the integrating factor \( I(x) = e^{\int p(x) dx} \).
+    \item \textbf{Multiply through by the integrating factor:} Multiply both sides of the equation by \( I(x) \).
+    \item \textbf{Integrate:} The left-hand side becomes \( (I(x) y)' \), allowing you to integrate both sides.
+    \item \textbf{Solve for \( y \):} Solve for \( y \), and apply initial condition if given.
+\end{enumerate}
+
+\textbf{Example Problem:} Solve \( y' + 3y = x e^{3x} \).
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item Already in standard form: \( y' + 3y = x e^{3x} \).
+    \item Find the integrating factor: \( I(x) = e^{\int 3 dx} = e^{3x} \).
+    \item Multiply by \( I(x) \): \( e^{3x} y' + 3e^{3x} y = x e^{6x} \).
+    \item The left side becomes \( (e^{3x} y)' \), so integrate both sides:
+    \[
+    \int (e^{3x} y)' dx = \int x e^{6x} dx.
+    \]
+    \item Solve the integral by parts and write the general solution.
+\end{enumerate}
+
+\subsection*{1.5 Bernoulli and Exact Equations}
+\textbf{Steps to Solve Bernoulli Equations:}
+\begin{enumerate}
+    \item \textbf{Standard form:} Write the equation as \( y' + p(x)y = q(x) y^n \).
+    \item \textbf{Substitution:} Let \( v = y^{1-n} \), and differentiate to get \( v' \).
+    \item \textbf{Transform into a linear equation:} Substitute \( v \) and \( v' \) into the original equation, turning it into a first-order linear equation in \( v \).
+    \item \textbf{Solve for \( v \):} Use the integrating factor method.
+    \item \textbf{Back-substitute for \( y \):} Solve for \( y \) in terms of \( v \).
+\end{enumerate}
+
+\textbf{Example Problem (Bernoulli):} Solve \( y' + y = y^2 \).
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item Standard form: \( y' + y = y^2 \), where \( n = 2 \).
+    \item Substitution: Let \( v = y^{-1} \), then \( v' = -y^{-2} y' \).
+    \item Transform into the linear equation: \( v' - v = -1 \).
+    \item Solve for \( v \), then substitute back \( y = \frac{1}{v} \).
+\end{enumerate}
+
+\textbf{Steps to Solve Exact Equations:}
+\begin{enumerate}
+    \item \textbf{Check for exactness:} For an equation of the form \( M(x, y)dx + N(x, y)dy = 0 \), the equation is exact if \( \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \).
+    \item \textbf{Find the potential function \( \Psi(x, y) \):} Solve \( \frac{\partial \Psi}{\partial x} = M(x, y) \) and \( \frac{\partial \Psi}{\partial y} = N(x, y) \).
+    \item \textbf{Solve for the solution:} The solution is \( \Psi(x, y) = C \), where \( C \) is a constant.
+\end{enumerate}
+
+\textbf{Example Problem (Exact Equation):} Solve \( (2xy + y^2) dx + (x^2 + 2xy) dy = 0 \).
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item Check for exactness: \( M(x, y) = 2xy + y^2 \) and \( N(x, y) = x^2 + 2xy \). We have:
+    \[
+    \frac{\partial M}{\partial y} = 2x + 2y, \quad \frac{\partial N}{\partial x} = 2x + 2y
+    \]
+    Since \( \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \), the equation is exact.
+    \item Find the potential function \( \Psi(x, y) \):
+    \[
+    \frac{\partial \Psi}{\partial x} = M(x, y) = 2xy + y^2 \Rightarrow \Psi(x, y) = x^2 y + xy^2 + h(y)
+    \]
+    \item Differentiate with respect to \( y \):
+    \[
+    \frac{\partial \Psi}{\partial y} = x^2 + 2xy + h'(y)
+    \]
+    Equate with \( N(x, y) = x^2 + 2xy \), so \( h'(y) = 0 \), which implies \( h(y) = C \).
+    \item Final solution: \( x^2 y + xy^2 = C \).
+\end{enumerate}
+
+\subsection*{Mixing Problems}
+\textbf{Steps to Solve Mixing Problems:}
+\begin{enumerate}
+    \item Let \( x(t) \) denote the amount of solute in the tank at time \( t \).
+    \item The rate of change of the solute is given by the equation:
+    \[
+    \frac{dx}{dt} = \text{Rate of solute in} - \text{Rate of solute out}.
+    \]
+    \item Set up the equation for \( \frac{dx}{dt} \) based on the inflow and outflow rates and solve the resulting differential equation.
+\end{enumerate}
+
+\textbf{Example Problem:} A tank initially contains 100 liters of water with 10 grams of salt. Brine containing 5 g/L of salt enters the tank at 4 L/min, and the well-mixed solution is drained at 2 L/min. Find the amount of salt after 10 minutes.
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item Let \( x(t) \) be the amount of salt in the tank at time \( t \).
+    \item Rate in: \( 4 \times 5 = 20 \) g/min. Rate out: \( \frac{x(t)}{V(t)} \times 2 \), where \( V(t) = 100 + 2t \).
+    \item Set up the equation:
+    \[
+    \frac{dx}{dt} = 20 - \frac{2x(t)}{100 + 2t}.
+    \]
+    \item Solve the differential equation using an integrating factor.
+\end{enumerate}
+
+\subsection*{Newton’s Law of Cooling}
+\textbf{Steps to Solve Newton’s Law of Cooling:}
+\begin{enumerate}
+    \item The rate of change of temperature is proportional to the difference between the object’s temperature and the ambient temperature:
+    \[
+    \frac{dT}{dt} = -k(T - T_{\text{ambient}}).
+    \]
+    \item Separate variables and integrate to solve for \( T(t) \).
+    \item Apply initial conditions to solve for constants.
+\end{enumerate}
+
+\textbf{Example Problem:} A cup of coffee at 90°C is left in a room at 20°C. After 10 minutes, the coffee is 70°C. When will it be 50°C?
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item Set up the equation:
+    \[
+    \frac{dT}{dt} = -k(T - 20).
+    \]
+    \item Separate variables and integrate to get \( T(t) = 20 + Ce^{-kt} \).
+    \item Use the initial condition \( T(0) = 90 \) to find \( C \), and use \( T(10) = 70 \) to solve for \( k \).
+    \item Solve for \( t \) when \( T(t) = 50 \).
+\end{enumerate}
+
+\section*{Chapter 2: Second-Order Equations}
+
+\subsection*{2.1 Introduction}
+\textbf{Steps to Solve Second-Order Homogeneous Equations:}
+\begin{enumerate}
+    \item \textbf{Write the characteristic equation:} For \( ay'' + by' + cy = 0 \), solve the characteristic equation \( ar^2 + br + c = 0 \).
+    \item \textbf{Find the roots:}
+    \begin{itemize}
+        \item Two distinct real roots: \( y = C_1 e^{r_1 x} + C_2 e^{r_2 x} \).
+        \item Repeated root: \( y = (C_1 + C_2 x) e^{r x} \).
+        \item Complex roots: \( y = e^{\alpha x}(C_1 \cos(\beta x) + C_2 \sin(\beta x)) \), where \( r = \alpha \pm i\beta \).
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Example Problem:} Solve \( y'' - 5y' + 6y = 0 \).
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item Characteristic equation: \( r^2 - 5r + 6 = 0 \).
+    \item Solve for \( r \): The roots are \( r = 2 \) and \( r = 3 \).
+    \item General solution: \( y = C_1 e^{2x} + C_2 e^{3x} \).
+\end{enumerate}
+
+\textbf{Steps to Solve Non-Homogeneous Equations:}
+\begin{enumerate}
+    \item \textbf{Solve the homogeneous equation:} Solve the homogeneous equation \( ay'' + by' + cy = 0 \) to find the complementary solution \( y_c(x) \).
+    \begin{itemize}
+        \item \textbf{Write the characteristic equation:} Solve the characteristic equation \( ar^2 + br + c = 0 \).
+        \item \textbf{Find the roots:}
+        \begin{itemize}
+            \item Two distinct real roots: \( y_c(x) = C_1 e^{r_1 x} + C_2 e^{r_2 x} \).
+            \item Repeated root: \( y_c(x) = (C_1 + C_2 x) e^{r x} \).
+            \item Complex roots: \( y_c(x) = e^{\alpha x}(C_1 \cos(\beta x) + C_2 \sin(\beta x)) \), where \( r = \alpha \pm i\beta \).
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Find the particular solution:} Based on the form of the non-homogeneous term \( f(x) \), guess the form of the particular solution \( y_p(x) \).
+    \begin{itemize}
+        \item If \( f(x) \) is a polynomial, assume \( y_p(x) \) is a polynomial of the same degree.
+        \item If \( f(x) = e^{ax} \), assume \( y_p(x) = A e^{ax} \).
+        \item If \( f(x) = \sin(bx) \) or \( \cos(bx) \), assume \( y_p(x) = A \cos(bx) + B \sin(bx) \).
+        \item If \( f(x) = e^{ax} \sin(bx) \) or \( e^{ax} \cos(bx) \), assume \( y_p(x) = e^{ax} \left( A \cos(bx) + B \sin(bx) \right) \).
+    \end{itemize}
+
+    \item \textbf{Substitute \( y_p(x) \) into the original equation:} Plug the particular solution into the non-homogeneous equation to solve for the unknown coefficients.
+
+    \item \textbf{Form the general solution:} The general solution is the sum of the complementary solution and the particular solution:
+    \[
+    y(x) = y_c(x) + y_p(x)
+    \]
+
+    \item \textbf{Solve for constants using initial conditions:} If initial conditions are provided, substitute them into the general solution to solve for the constants \( C_1 \) and \( C_2 \).
+\end{enumerate}
+
+\textbf{Example Problem:} Solve \( y'' + 3y' + 2y = 3x^2 + 5x + 7 \).
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item \textbf{Solve the homogeneous equation:}
+    \begin{itemize}
+        \item Characteristic equation: \( r^2 + 3r + 2 = 0 \).
+        \item Solve for \( r \): The roots are \( r = -1 \) and \( r = -2 \).
+        \item Complementary solution: \( y_c(x) = C_1 e^{-x} + C_2 e^{-2x} \).
+    \end{itemize}
+    
+    \item \textbf{Guess the particular solution:} Since the non-homogeneous term \( f(x) = 3x^2 + 5x + 7 \) is a polynomial of degree 2, assume:
+    \[
+    y_p(x) = A x^2 + B x + C
+    \]
+    
+    \item \textbf{Substitute \( y_p(x) \) into the original equation:}
+    \[
+    y_p'(x) = 2A x + B, \quad y_p''(x) = 2A
+    \]
+    Substitute into \( y'' + 3y' + 2y = 3x^2 + 5x + 7 \):
+    \[
+    2A + 3(2A x + B) + 2(A x^2 + B x + C) = 3x^2 + 5x + 7
+    \]
+    Expand and collect like terms:
+    \[
+    (2A) + (6A + 2B)x + (2A + 3B + 2C) = 3x^2 + 5x + 7
+    \]
+    Solve for \( A \), \( B \), and \( C \):
+    \begin{itemize}
+        \item Coefficient of \( x^2 \): \( 2A = 3 \quad \Rightarrow \quad A = \frac{3}{2} \)
+        \item Coefficient of \( x \): \( 6A + 2B = 5 \quad \Rightarrow \quad 6\left(\frac{3}{2}\right) + 2B = 5 \quad \Rightarrow \quad B = -2 \)
+        \item Constant term: \( 2A + 3B + 2C = 7 \quad \Rightarrow \quad 2\left(\frac{3}{2}\right) + 3(-2) + 2C = 7 \quad \Rightarrow \quad C = 5 \)
+    \end{itemize}
+    Therefore, the particular solution is:
+    \[
+    y_p(x) = \frac{3}{2} x^2 - 2x + 5
+    \]
+    
+    \item \textbf{General solution:}
+    \[
+    y(x) = C_1 e^{-x} + C_2 e^{-2x} + \frac{3}{2} x^2 - 2x + 5
+    \]
+\end{enumerate}
+
+
+% \textbf{Steps to Solve Second-Order Non-Homogeneous Equations:}
+% For a non-homogeneous equation of the form:
+% \[
+% y'' + p(x)y' + q(x)y = f(x)
+% \]
+% where \( f(x) \) is a known function, the solution is the sum of the complementary solution \( y_c \) (for the homogeneous equation) and a particular solution \( y_p \). The particular solution can be found using the \textbf{method of undetermined coefficients} or \textbf{variation of parameters}.
+
+
+\subsection*{Wronskian and Linearity}
+\textbf{Wronskian Determinant:} The Wronskian is used to determine the linear independence of two solutions to a second-order differential equation. For solutions \( y_1(x) \) and \( y_2(x) \), the Wronskian is given by:
+\[
+W(y_1, y_2) = y_1 y_2' - y_1' y_2.
+\]
+\begin{itemize}
+    \item If \( W(y_1, y_2) \neq 0 \) for all \( x \), the solutions are linearly independent.
+    \item If \( W(y_1, y_2) = 0 \), the solutions are linearly dependent.
+\end{itemize}
+
+\textbf{Steps to Check Linearity:}
+\begin{enumerate}
+    \item Find the general solutions \( y_1 \) and \( y_2 \).
+    \item Compute the Wronskian determinant \( W(y_1, y_2) \).
+    \item If \( W \neq 0 \), the functions are linearly independent, and the general solution is a linear combination of the two.
+\end{enumerate}
+
+\textbf{Example:} Given solutions \( y_1 = e^x \) and \( y_2 = e^{-x} \) for the equation \( y'' - y = 0 \), find whether the solutions are linearly independent.
+
+\textbf{Solution:}
+\[
+W(y_1, y_2) = \left| \begin{matrix} e^x & e^{-x} \\ e^x & -e^{-x} \end{matrix} \right| = -2.
+\]
+Since \( W \neq 0 \), the solutions are linearly independent.
+
+\subsection*{2.4 Free and Forced Mechanical Vibrations}
+\textbf{Free Vibrations:} The motion of a system is governed by:
+\[
+mx'' + cx' + kx = 0
+\]
+where \( m \) is the mass, \( c \) is the damping coefficient, and \( k \) is the spring constant.
+
+\begin{itemize}
+    \item \textbf{Undamped motion (\( c = 0 \)):}
+    \[
+    mx'' + kx = 0
+    \]
+    Characteristic equation: \( r^2 + \frac{k}{m} = 0 \). Solution: \( x(t) = C_1 \cos(\omega t) + C_2 \sin(\omega t) \), where \( \omega = \sqrt{\frac{k}{m}} \).
+    
+    \item \textbf{Damped motion (\( c \neq 0 \)):}
+    The general solution depends on whether the system is underdamped, overdamped, or critically damped, based on the discriminant \( c^2 - 4mk \).
+\end{itemize}
+
+\textbf{Forced Vibrations:} The motion is governed by:
+\[
+mx'' + cx' + kx = F(t)
+\]
+where \( F(t) \) is the external force. The solution is the sum of the complementary solution (solving the homogeneous equation) and a particular solution, often found using \textbf{undetermined coefficients} or \textbf{variation of parameters}.
+
+\subsection*{2.5 Method of Undetermined Coefficients}
+
+If 
+\[
+ay'' + by' + cy = A(x)
+\]
+where:
+
+\begin{enumerate}
+    \item \( A(x) \) is a polynomial in \( x \), then the particular solution \( y_p \) is:
+    \[
+    y_p = x^k \times (\text{a general polynomial of the same degree})
+    \]
+    where \( k \) is the number of times that 0 is a root of the characteristic equation.
+    
+    \item If \( A(x) = e^{ax} \), then:
+    \[
+    y_p = x^k e^{ax} \times (\text{a general polynomial of the same degree})
+    \]
+    where \( k \) is the number of times that \( a \) is a root of the characteristic equation.
+    
+    \item If \( A(x) = e^{ax} \cos(bx) \) or \( A(x) = e^{ax} \sin(bx) \), then:
+    \[
+    y_p = x^k e^{ax} \left[ (\text{polynomial of the same degree}) \cos(bx) + (\text{another polynomial of the same degree}) \sin(bx) \right]
+    \]
+    where \( k \) is the number of times that \( a + bi \) are roots of the characteristic equation.
+\end{enumerate}
+
+\subsection*{2.6 Variation of Parameters}
+\textbf{Steps for Variation of Parameters:}
+\begin{enumerate}
+    \item \textbf{Solve the complementary equation} to get the general solution \( y_c = C_1 y_1(x) + C_2 y_2(x) \).
+    \item \textbf{Assume a particular solution} of the form:
+    \[
+    y_p = v_1(x) y_1(x) + v_2(x) y_2(x)
+    \]
+    where \( v_1(x) \) and \( v_2(x) \) are functions to be determined.
+    \item \textbf{Solve for \( v_1(x) \) and \( v_2(x) \)} using Wronskian matrix:
+    \[
+    v_1 = -\int \frac{y_2 f(x)}{W(y_1,y_2)} dx, \quad v_2 = \int \frac{y_1 f(x)}{W(y_1,y_2)} dx
+    \]
+    \item \textbf{Integrate} to find \( v_1(x) \) and \( v_2(x) \).
+    \item \textbf{Find the particular solution:} Use \( y_p = v_1(x) y_1(x) + v_2(x) y_2(x) \).
+\end{enumerate}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \documentclass[10pt]{article}
+% \usepackage[margin=0.3in]{geometry}
+% \usepackage{amsmath, amssymb}
+% \usepackage{multicol}
+% \setlength{\columnsep}{1cm} 
+% \setlength{\parindent}{0in}
+% \title{\raggedright \large Math 2341 Exam 1 Notesheet \hfill Sean Balbale \hfill October 2024 \vspace{-3em}}
+% \date{}
+
+% \begin{document}
+% \maketitle
+% \begin{multicols}{2}
+
+% \section*{1st Order Equations}
+
+% \subsection*{Separable Equations}
+% \textbf{Solve:} 
+% \begin{enumerate}
+%     \item Separate variables. 
+%     \item Integrate both sides. 
+%     \item Solve for \( y \).
+% \end{enumerate}
+% \textbf{Example:} \( \frac{dy}{dx} = 2xy, y(0)=1 \). 
+% \[
+% \frac{1}{y}dy = 2xdx \Rightarrow \ln|y| = x^2 + C \Rightarrow y = e^{x^2}
+% \]
+ 
+% \subsection*{Equilibrium \& Stability}
+% \textbf{Equilibrium:} Set \( \frac{dy}{dx} = 0 \).
+% \textbf{Classification:} 
+% \begin{itemize}
+%     \item \textbf{Source:} If solutions move away from the equilibrium point as time increases, the point is called a \textit{source}.
+%     \item \textbf{Sink:} If solutions move toward the equilibrium point, it is a \textit{sink}.
+%     \item \textbf{Node:} Solutions either approach or move away in a non-oscillatory manner, depending on whether the node is stable (sink) or unstable (source).
+% \end{itemize}
+
+% \textbf{Stability Classification:}
+% \begin{itemize}
+%     \item \textbf{Stable:} Nearby solutions approach the equilibrium point.
+%     \item \textbf{Unstable:} Nearby solutions move away from the equilibrium.
+%     \item \textbf{Semi-stable:} Solutions may approach from one side and move away from the other.
+% \end{itemize}
+
+% \textbf{Example:} \( \frac{dy}{dx} = y(2-y) \)
+% \[
+% y = 0 \text{ (unstable)}, y = 2 \text{ (stable)}
+% \]
+
+% \subsection*{Linear Equations}
+% \textbf{Solve:} 
+% \begin{enumerate}
+%     \item Write in \( y' + p(x)y = q(x) \) form.
+%     \item Find integrating factor \( I(x) = e^{\int p(x)dx} \).
+%     \item Multiply by \( I(x) \), integrate both sides, solve for \( y \).
+% \end{enumerate}
+
+% \subsection*{Bernoulli Equations}
+% \textbf{Solve:} 
+% \begin{enumerate}
+%     \item Write \( y' + p(x)y = q(x)y^n \).
+%     \item Substitute \( v = y^{1-n} \), solve as linear equation.
+% \end{enumerate}
+% \textbf{Example:} \( y' + y = y^2 \), let \( v = y^{-1} \Rightarrow v' - v = -1 \).
+
+% \subsection*{Exact Equations}
+% \textbf{Solve:} 
+% \begin{enumerate}
+%     \item Check \( M_y = N_x \).
+%     \item Find potential function \( \Psi(x,y) \) by integrating \( M \) and \( N \).
+% \end{enumerate}
+% \textbf{Example:} \( (2xy + y^2)dx + (x^2 + 2xy)dy = 0 \), gives \( x^2y + xy^2 = C \).
+
+% \subsection*{Mixing Problems}
+% \textbf{Example:} A tank contains 100 L water, 10 g salt. Brine (5 g/L salt) enters at 4 L/min, drained at 2 L/min. Find salt after 10 min.
+% \[
+% \frac{dx}{dt} = 20 - \frac{2x(t)}{100 + 2t}.
+% \]
+% Solve by integrating factor.
+
+% \subsection*{Newton's Law of Cooling}
+% \textbf{Formula:} 
+% \[
+% \frac{dT}{dt} = -k(T - T_{\text{ambient}})
+% \]
+% \textbf{Example:} Coffee at 90°C cools in room at 20°C. After 10 min, it's 70°C. When will it be 50°C?
+% \[
+% T(t) = 20 + Ce^{-kt}
+% \]
+% Use initial conditions to find constants.
+
+% \section*{2nd Order Equations}
+
+% \subsection*{Homogeneous Equations}
+% \textbf{Solve:} \( ay'' + by' + cy = 0 \).
+% \begin{itemize}
+%     \item Distinct roots: \( y = C_1 e^{r_1 x} + C_2 e^{r_2 x} \)
+%     \item Repeated root: \( y = (C_1 + C_2x)e^{r x} \)
+%     \item Complex roots: \( y = e^{\alpha x}(C_1 \cos(\beta x) + C_2 \sin(\beta x)) \)
+% \end{itemize}
+
+% \textbf{Example:} \( y'' - 5y' + 6y = 0 \)
+% \[
+% r^2 - 5r + 6 = 0 \Rightarrow r = 2, 3 \Rightarrow y = C_1e^{2x} + C_2e^{3x}
+% \]
+
+% \subsection*{Non-Homogeneous Equations}
+% \textbf{Solve:} \( y'' + by' + cy = f(x) \)
+% \begin{enumerate}
+%     \item Find complementary solution \( y_c \) by solving homogeneous equation.
+%     \item Guess particular solution \( y_p \) based on \( f(x) \) form.
+% \end{enumerate}
+
+% \textbf{General solution:}
+% \[
+% y(x) = y_c(x) + y_p(x)
+% \]
+
+% \subsection*{Method of Undetermined Coefficients}
+
+%     The form of the particular solution \( y_p \) depends on the form of \( f(x) \):
+    
+%         -If \( f(x) \) is a polynomial in \( x \), assume \( y_p = x^k \times \text{(general polynomial of the same degree)} \), where \( k \) is the number of times that 0 is a root of the characteristic equation.
+        
+%         -If \( f(x) = e^{ax} \), assume \( y_p = x^k e^{ax} \times \text{(general polynomial of the same degree)} \), where \( k \) is the number of times that \( a \) is a root of the characteristic equation.
+        
+%         -If \( f(x) = e^{ax} \cos(bx) \) or \( f(x) = e^{ax} \sin(bx) \), assume:
+%         \newline
+    
+%         \begin{equation*}
+%             \begin{split}
+%                 y_p & = x^k e^{ax} ((\text{polynomial of same degree}) \cos(bx) \\
+%                 & + (\text{another polynomial of the same degree}) \sin(bx))
+%             \end{split}
+%         \end{equation*}
+        
+%         where \( k \) is the number of times that \( a + bi \) are roots of the characteristic equation.
+    
+    
+%     \textbf{Determine Coefficients:} Substitute your guess for \( y_p \) into the original equation and determine the unknown coefficients by matching terms.
+
+
+% \textbf{Example:} \( y'' + 3y' + 2y = 3x + 5 \)
+% \begin{itemize}
+%     \item \( y_c = C_1 e^{-x} + C_2 e^{-2x} \)
+%     \item Guess \( y_p = Ax + B \)
+%     \item Substitute into \( y'' + 3y' + 2y = 3x + 5 \), solve for \( A, B \).
+% \end{itemize}
+
+% \subsection*{Wronskian \& Linearity}
+% \textbf{Wronskian:} To check linear independence of \( y_1 \) and \( y_2 \):
+% \[
+% W(y_1, y_2) = \begin{vmatrix}
+%     y_1 & y_2 \\ 
+%     y_1' & y_2'
+%     \end{vmatrix} = y_1y_2' - y_1'y_2
+% \]
+% If \( W(y_1, y_2) \neq 0 \), the solutions are linearly independent.
+
+% \subsection*{Mechanical Vibrations}
+% \textbf{Free Vibrations:} \( mx'' + cx' + kx = 0 \).
+% \begin{itemize}
+%     \item Undamped (\( c = 0 \)): \( x(t) = C_1 \cos(\omega t) + C_2 \sin(\omega t) \), \( \omega = \sqrt{\frac{k}{m}} \)
+%     \item Damped: Depends on \( c^2 - 4mk \) (over, under, critically damped).
+% \end{itemize}
+
+% \textbf{Forced Vibrations:} \( mx'' + cx' + kx = F(t) \), solve by undetermined coefficients or variation of parameters.
+
+% \subsection*{Variation of Parameters}
+% \begin{enumerate}
+%     \item Solve complementary equation for \( y_c = C_1y_1 + C_2y_2 \).
+%     \item Assume \( y_p = v_1(x)y_1 + v_2(x)y_2 \), solve for \( v_1, v_2 \) using:
+%     \[
+%     v_1' = \frac{-y_2 f(x)}{W(y_1, y_2)}, \quad v_2' = \frac{y_1 f(x)}{W(y_1, y_2)}
+%     \]
+% \end{enumerate}
+
+% \end{multicols}
+% \end{document}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \documentclass[10pt]{article}
+% \usepackage[margin=0.25in]{geometry}
+% \usepackage{amsmath, amssymb}
+% \usepackage{multicol}
+% \setlength{\columnsep}{0.7cm} 
+% \setlength{\parindent}{0in}
+% \title{\raggedright \large Math 2341 Exam 1 Notesheet \hfill Sean Balbale \hfill October 2024 \vspace{-3em}}
+% \date{}
+
+% \begin{document}
+% \maketitle
+% \begin{multicols}{2}
+
+% \section*{1st Order Equations}
+% \subsection*{Separable Equations}
+% \textbf{Solve:} 
+% 1. Separate variables. 2. Integrate both sides. 3. Solve for \( y \). \\
+% \textbf{Example:} \( \frac{dy}{dx} = 2xy, y(0)=1 \). \(\Rightarrow y = e^{x^2}\)
+
+% \subsection*{Equilibrium \& Stability}
+% \textbf{Equilibrium:} Set \( \frac{dy}{dx} = 0 \). \\
+% \textbf{Stability:} 
+% \begin{itemize}
+%     \item \textbf{Stable:} Solutions approach equilibrium.
+%     \item \textbf{Unstable:} Solutions move away.
+%     \item \textbf{Semi-stable:} Approach one side, move away other.
+% \end{itemize}
+% \textbf{Example:} \( \frac{dy}{dx} = y(2-y) \): \( y=0 \) (unstable), \( y=2 \) (stable).
+
+% \subsection*{Linear Equations}
+% \textbf{Solve:} Write \( y' + p(x)y = q(x) \). Find integrating factor \( I(x) = e^{\int p(x)dx} \), multiply both sides, integrate, solve for \( y \).
+
+% \subsection*{Bernoulli Equations}
+% \textbf{Solve:} Write \( y' + p(x)y = q(x)y^n \). Substitute \( v = y^{1-n} \), solve as linear equation.
+
+% \subsection*{Exact Equations}
+% \textbf{Solve:} 
+% 1. Check \( M_y = N_x \). 
+% 2. Integrate \( M \) and \( N \) to find potential function \( \Psi(x,y) \).
+
+% \subsection*{Mixing Problems}
+% \textbf{Example:} A tank contains 100 L water, 10 g salt. Brine (5 g/L salt) enters at 4 L/min, drained at 2 L/min. Find salt after 10 min:
+% \[ \frac{dx}{dt} = 20 - \frac{2x(t)}{100 + 2t} \]
+
+% \subsection*{Newton's Law of Cooling}
+% \textbf{Formula:} 
+% \( \frac{dT}{dt} = -k(T - T_{\text{ambient}}) \) \\
+% \textbf{Example:} Coffee at 90°C cools in room at 20°C, after 10 min it's 70°C. \( T(t) = 20 + Ce^{-kt} \).
+
+% \section*{2nd Order Equations}
+% \subsection*{Homogeneous Equations}
+% Solve \( ay'' + by' + cy = 0 \):
+% \begin{itemize}
+%     \item Distinct roots: \( y = C_1 e^{r_1 x} + C_2 e^{r_2 x} \)
+%     \item Repeated root: \( y = (C_1 + C_2x)e^{r x} \)
+%     \item Complex roots: \( y = e^{\alpha x}(C_1 \cos(\beta x) + C_2 \sin(\beta x)) \)
+% \end{itemize}
+
+% \subsection*{Non-Homogeneous Equations}
+% Solve \( y'' + by' + cy = f(x) \):
+% 1. Solve complementary solution \( y_c \). 
+% 2. Guess \( y_p \) based on \( f(x) \).
+
+% \textbf{General solution:} \( y(x) = y_c(x) + y_p(x) \)
+
+% \subsection*{Undetermined Coefficients}
+% The form of \( y_p \) depends on \( f(x) \):
+% \begin{itemize}
+%     \item Polynomial \( f(x) \): \( y_p = x^k \times \) poly. k is number of 0 roots.
+%     \item \( f(x) = e^{ax} \): \( y_p = x^k e^{ax} \). k is times a is root.
+%     \item \( f(x) = e^{ax} \cos(bx) \) or \( \sin(bx) \): assume \( y_p = x^k e^{ax}(\text{poly} \cos(bx) + \text{poly} \sin(bx)) \) k is times \( a+bi \) are roots.
+% \end{itemize}
+% \textbf{Example:} \( y'' + 3y' + 2y = 3x + 5 \), \( y_c = C_1 e^{-x} + C_2 e^{-2x} \), guess \( y_p = Ax + B \).
+
+% \subsection*{Wronskian \& Linearity}
+% Check linear independence: 
+% \[
+% W(y_1, y_2) = y_1y_2' - y_1'y_2 \neq 0 \implies \text{independent}.
+% \]
+
+% \subsection*{Mechanical Vibrations}
+% \textbf{Free Vibrations:} \( mx'' + cx' + kx = 0 \)
+% \begin{itemize}
+%     \item Undamped (\( c = 0 \)): \( x(t) = C_1 \cos(\omega t) + C_2 \sin(\omega t) \), \( \omega = \sqrt{k/m} \)
+%     \item Damped: Depends on \( c^2 - 4mk \) (over/under/critically damped)
+% \end{itemize}
+
+% \textbf{Forced Vibrations:} Solve \( mx'' + cx' + kx = F(t) \) using undetermined coefficients or variation of parameters.
+
+% \subsection*{Variation of Parameters}
+% Solve complementary equation \( y_c = C_1y_1 + C_2y_2 \). Assume \( y_p = v_1(x)y_1 + v_2(x)y_2 \), solve for \( v_1, v_2 \) using:
+% \[
+% v_1' = \frac{-y_2 f(x)}{W(y_1, y_2)}, \quad v_2' = \frac{y_1 f(x)}{W(y_1, y_2)}
+% \]
+
+% \end{multicols}
+% \end{document}
