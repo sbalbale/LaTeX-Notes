@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1729736772.28922 "c:/Users/seanb/Documents/LaTeX-Notes/Math 2341 Exam 1 Notesheet - Long/main.tex" "main.pdf" "main" 1729736773.97676 0
-  "c:/Users/seanb/Documents/LaTeX-Notes/Math 2341 Exam 1 Notesheet - Long/main.tex" 1729736769 30375 69789360742f46f45b06ce80736e1a30 ""
+["pdflatex"] 1729742294.64065 "c:/Users/seanb/Documents/LaTeX-Notes/Math 2341 Exam 1 Notesheet - Long/main.tex" "main.pdf" "main" 1729742297.08653 0
+  "c:/Users/seanb/Documents/LaTeX-Notes/Math 2341 Exam 1 Notesheet - Long/main.tex" 1729742288 32108 12c35a4b35e8a1dff3f9755c39e4a6fc ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1709489847 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1709490429 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1709490187 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -156,8 +156,8 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1709493702 5518052 de2a91c664d75f3971de4662dc6b5a65 ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1709493775 8221429 1cc0e148646d06aec61d4f80f1872ccd ""
   "c:/texlive/2023/texmf.cnf" 1709493685 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1729736773 32 77e0dffd05b653a64f0caf3eb9bb454a "pdflatex"
-  "main.tex" 1729736769 30375 69789360742f46f45b06ce80736e1a30 ""
+  "main.aux" 1729742296 32 4d1825978335c8847f72f7c473f9edc8 "pdflatex"
+  "main.tex" 1729742288 32108 12c35a4b35e8a1dff3f9755c39e4a6fc ""
   (generated)
   "main.aux"
   "main.log"

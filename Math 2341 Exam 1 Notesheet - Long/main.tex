@@ -150,6 +150,60 @@ Equilibrium points are the values where \( \frac{dy}{dx} = 0 \). These points ar
     \item Final solution: \( x^2 y + xy^2 = C \).
 \end{enumerate}
 
+\subsection*{1.6 Logistic Equation}
+The logistic equation models population growth with limited resources, introducing a maximum population, called the carrying capacity \( M \).
+
+\textbf{Logistic Differential Equation:}
+\[
+\frac{dP}{dt} = k P (M - P)
+\]
+Where:
+\begin{itemize}
+    \item \( P(t) \) is the population at time \( t \),
+    \item \( k \) is the growth rate constant,
+    \item \( M \) is the carrying capacity (maximum population).
+\end{itemize}
+
+\textbf{Key Characteristics:}
+\begin{itemize}
+    \item \( P(t) < M \): Population grows (\( \frac{dP}{dt} > 0 \)).
+    \item \( P(t) > M \): Population decreases (\( \frac{dP}{dt} < 0 \)).
+    \item Equilibrium points: \( P = 0 \) (unstable) and \( P = M \) (stable).
+\end{itemize}
+
+\textbf{Solution of the Logistic Equation:}
+\begin{enumerate}
+    \item Separate variables:
+    \[
+    \frac{dP}{P(M - P)} = k \, dt
+    \]
+    \item Use partial fractions and integrate:
+    \[
+    \frac{1}{M} \left( \ln P - \ln |M - P| \right) = kt + C
+    \]
+    \item Solve for \( P(t) \):
+    \[
+    P(t) = \frac{M P_0}{P_0 + (M - P_0) e^{-Mkt}}
+    \]
+    Where \( P_0 \) is the initial population.
+\end{enumerate}
+
+\textbf{Example 1: Bacterial Population Growth}
+A bacterial population grows from 100 to 200 in 1 hour. The environment supports a maximum population of 1000.
+
+\[
+\frac{dP}{dt} = k P (1000 - P)
+\]
+Using the data \( P(1) = 200 \), find \( k \) and predict the population at future times.
+
+\textbf{Example 2: Wildlife Population}
+A wildlife preserve can support 500 deer. Initially, there are 50 deer, and the population grows to 150 after 2 years.
+
+\[
+\frac{dP}{dt} = r P (500 - P)
+\]
+Solve the logistic equation to find \( r \) and predict the population over time.
+
 \subsection*{Mixing Problems}
 \textbf{Steps to Solve Mixing Problems:}
 \begin{enumerate}
