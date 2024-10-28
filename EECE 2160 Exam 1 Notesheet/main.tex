@@ -6,26 +6,29 @@
 \usepackage{circuitikz}
 
 
-\setlength{\columnsep}{1.5cm}
-\setlength{\voffset}{-0.25in}
+
+\setlength{\columnsep}{1cm}
 \setlength{\parindent}{0in}
 
 
-\title{
-    \raggedright
-    \large EECE 2150: Quiz 3 Notesheet \hfill Sean Balbale \hfill October 2024
-    \vspace{-4em}
-}
-\date{}
-
 \begin{document}
-\maketitle
+EECE 2150: Quiz 3 Notesheet \hfill Sean Balbale \hfill October 2024
 
-\begin{multicols}{2}
-    
+\begin{multicols}{3}
 % SECTION 1: Logic Gates and Truth Tables
 \section{Logic Gates and Truth Tables}
-
+\subsection{NOT Gate}
+\textbf{Boolean Expression}: \( \overline{A} \) \\
+\textbf{Truth Table}:
+\[
+\begin{array}{|c|c|}
+\hline
+A & NOT A \\
+\hline
+0 & 1 \\\hline
+1 & 0 \\\hline
+\end{array}
+\]
 \subsection{AND Gate}
 \textbf{Boolean Expression}: \( A \cdot B \) \\
 \textbf{Truth Table}:
@@ -116,19 +119,14 @@ A & B & A \text{ XNOR } B \\
 \end{array}
 \]
 
-\subsection{NOT Gate}
-\textbf{Boolean Expression}: \( \overline{A} \) \\
-\textbf{Truth Table}:
-\[
-\begin{array}{|c|c|}
-\hline
-A & NOT A \\
-\hline
-0 & 1 \\\hline
-1 & 0 \\\hline
-\end{array}
-\]
+
+
+\end{multicols}
+
 --- % New Section Divider
+% \noindent\rule{\textwidth}{1pt}
+\begin{multicols*}{2}
+
 \section{NAND Gate Equivilance}
 \includegraphics[width=0.2\textwidth]{NotGateFromNAND.png}
 \includegraphics[width=0.2\textwidth]{AndGateFromNAND.png}\\
@@ -215,6 +213,12 @@ allowed number of bits occurs. When adding two numbers of the same sign, if the 
     \item \textbf{Application}: Used for selecting one of multiple signals in data routing and control systems.
 \end{itemize}
 
+
+
+\subsection{Steady State Machines}
+\textbf{Moore Machine}: Output depends on current state only. \\
+\includegraphics[width=0.4\textwidth]{moore machine example.png}
+
 \subsection{Shifters}
 Logical, Arithmetic, and Circular Shifters:
 \begin{itemize}\itemsep0pt
@@ -222,11 +226,7 @@ Logical, Arithmetic, and Circular Shifters:
     \item Arithmetic Shifter: Left, same as logical, Right, skips most significant bit.
     \item Circular Shifter: Rotates bits.
 \end{itemize}
-% \includegraphics[width=0.4\textwidth]{Left and Right Rotators.png}
-
-\subsection{Steady State Machines}
-\textbf{Moore Machine}: Output depends on current state only. \\
-\includegraphics[width=0.4\textwidth]{moore machine example.png}
+\includegraphics[width=0.4\textwidth]{Shifters.png}
 
 --- % New Section Divide
 
@@ -245,7 +245,7 @@ Logical, Arithmetic, and Circular Shifters:
     \item \textbf{Edge-Triggered}: Unlike the latch, the D flip-flop is \textbf{edge-triggered}, meaning it only updates \( Q \) on a specific transition of the clock signal (either rising or falling edge). This characteristic makes it useful in synchronous circuits.
 \end{itemize}
 
-\end{multicols}
+\end{multicols*}
 \end{document}
 
 
