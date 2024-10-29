@@ -1,0 +1,222 @@
+\documentclass[9pt]{article}
+\usepackage[margin=0.4in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{circuitikz}
+
+\setlength{\columnsep}{0.8cm}
+\setlength{\parindent}{0in}
+
+\title{
+    \vspace{-2em}
+    \large EECE 2150: Quiz 5 Notesheet \hfill Sean Balbale \hfill November 6, 2024
+    \vspace{-4em}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{multicols*}{2}
+
+% Basic Circuit Elements
+\section{Basic Circuit Elements}
+
+\subsection{Resistors}
+\textbf{Resistor} resists the flow of charge. The resistance \(R\) is a function of length, area, and resistivity:
+\[
+R = \frac{\rho \ell}{A} \quad \text{or} \quad R = \frac{\ell}{\sigma A}
+\]
+\begin{itemize}\itemsep0pt
+    \item \( \rho \): Resistivity
+    \item \( \ell \): Length
+    \item \( A \): Area
+\end{itemize}
+
+\textbf{Ohm's Law}: Voltage, current, and resistance are related:
+\[ V = IR \quad \text{or} \quad I = \frac{V}{R} \]
+
+\subsection{Power Dissipation and Passive Sign Convention}
+\textbf{Power Dissipation}:
+\[ P = IV = I^2 R = \frac{V^2}{R} \]
+- In passive sign convention, if current enters positive terminal, element absorbs power: \[ P = VI \]
+- If current enters negative terminal, element delivers power: \[ P = -VI \]
+
+\subsection{Conductance}
+Conductance is the reciprocal of resistance:
+\[ G = \frac{1}{R} \quad \text{in Siemens (S)} \]
+
+\subsection{Ideal Conductors}
+\[ R = 0, \quad \sigma \to \infty \]
+No voltage drop across an ideal conductor.
+
+--- 
+
+% Kirchhoff’s Laws
+\section{Kirchhoff’s Laws}
+
+\subsection{Kirchhoff's Current Law (KCL)}
+The sum of currents entering and leaving a node is zero:
+\[ \sum I_{\text{in}} = \sum I_{\text{out}} \]
+
+\subsection{Kirchhoff's Voltage Law (KVL)}
+The sum of voltage drops in a closed loop equals the sum of voltage rises:
+\[ \sum V_{\text{drops}} = \sum V_{\text{rises}} \]
+
+--- 
+
+% Resistors in Series and Parallel
+\section{Resistors in Series and Parallel}
+
+\subsection{Series Resistors}
+Resistors in series carry the same current:
+\[ R_{\text{eq}} = R_1 + R_2 + \cdots + R_n \]
+\textbf{Voltage Division}:
+\[ V_k = V_s \frac{R_k}{R_{\text{eq}}} \]
+
+\subsection{Parallel Resistors}
+Resistors in parallel share the same voltage:
+\[ \frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \cdots + \frac{1}{R_n} \]
+\textbf{Current Division}:
+\[ i_k = I_s \frac{R_{\text{eq}}}{R_k} \]
+
+--- 
+
+% Nodal Analysis (Node Voltage Method)
+\section{Nodal Analysis (Node Voltage Method)}
+
+\subsection{Steps for Nodal Analysis}
+\begin{enumerate}\itemsep0pt
+    \item Identify essential nodes.
+    \item Choose a reference node (ground).
+    \item Write KCL equations at each essential node using node voltages.
+    \item Solve the system of equations for unknown node voltages.
+\end{enumerate}
+
+--- 
+
+% Mesh Analysis (Mesh Current Method)
+\section{Mesh Analysis (Mesh Current Method)}
+
+\subsection{Steps for Mesh Analysis}
+\begin{enumerate}\itemsep0pt
+    \item Identify meshes (loops without other loops inside).
+    \item Assign mesh currents.
+    \item Apply KVL in each mesh to write voltage equations.
+    \item Solve the system of equations for mesh currents.
+\end{enumerate}
+
+--- 
+
+% Thevenin and Norton Equivalent Circuits
+\section{Thevenin and Norton Equivalent Circuits}
+
+\subsection{Thevenin's Theorem}
+Any linear circuit can be reduced to a single voltage source \( V_{\text{Th}} \) in series with \( R_{\text{Th}} \).
+\[ V_L=V_{Th}\frac{R_L}{R_{Th}+R_L} \]
+
+\subsection{Norton's Theorem}
+Any linear circuit can be reduced to a single current source \( I_N \) in parallel with \( R_N \).
+\[ I_N = \frac{V_{\text{Th}}}{R_{\text{Th}}}, \quad R_N = R_{\text{Th}} \]
+
+--- 
+
+% Source Transformations
+\section{Source Transformations}
+
+\subsection{Voltage to Current Source Transformation}
+A voltage source \( V_s \) in series with \( R \) can be transformed into a current source:
+\[ I_s = \frac{V_s}{R}, \quad \text{in parallel with } R \]
+
+\subsection{Current to Voltage Source Transformation}
+A current source \( I_s \) in parallel with \( R \) can be transformed into a voltage source:
+\[ V_s = I_s R, \quad \text{in series with } R \]
+
+--- 
+
+% Delta-Y (Δ-Y) Conversion
+\section{Delta-Y ($\Delta$-Y) Conversion}
+
+\subsection{Delta to Y Conversion}
+For a delta network with resistors \(R_a\), \(R_b\), and \(R_c\), the equivalent Y-resistances are:
+\[ R_1 = \frac{R_b R_c}{R_a + R_b + R_c}, \quad R_2 = \frac{R_a R_c}{R_a + R_b + R_c} \]
+\[ R_3 = \frac{R_a R_b}{R_a + R_b + R_c} \]
+
+\subsection{Y to Delta Conversion}
+For a Y-network with resistors \(R_1\), \(R_2\), and \(R_3\), the equivalent delta-resistances are:
+\[ R_a = \frac{R_1 R_2 + R_2 R_3 + R_3 R_1}{R_3}, \quad R_b = \frac{R_1 R_2 + R_2 R_3 + R_3 R_1}{R_1} \]
+\[ R_c = \frac{R_1 R_2 + R_2 R_3 + R_3 R_1}{R_2} \]
+
+--- 
+
+% Operational Amplifiers
+\section{Operational Amplifiers (Op-Amps)}
+
+\subsection{Introduction to Op-Amps}
+\textbf{Operational Amplifier (Op-Amp)} is a high-gain IC used in various mathematical and amplification operations:
+\begin{itemize}\itemsep0pt
+    \item Ideal characteristics: infinite input impedance, zero output impedance, infinite open-loop gain, and bandwidth.
+    \item Common applications: integrator, differentiator, summing amplifier, buffer amplifier, difference amplifier.
+\end{itemize}
+
+\subsection{Ideal Op-Amp Model}
+\begin{itemize}\itemsep0pt
+    \item Infinite input impedance \(R_{in} = \infty\).
+    \item Zero output impedance \(R_{out} = 0\).
+    \item Infinite open-loop gain \(A_{vo} \to \infty\).
+    \item Differential input voltage \(V_d = V^+ - V^-\), ideally \(V_d \approx 0\).
+\end{itemize}
+
+\subsection{Basic Op-Amp Configurations}
+
+\subsubsection{Inverting Amplifier}
+Gain \(A_v = -\frac{R_f}{R_{in}}\)
+\[
+V_{out} = -V_{in} \cdot \frac{R_f}{R_{in}}
+\]
+
+\subsubsection{Non-Inverting Amplifier}
+Gain \(A_v = 1 + \frac{R_f}{R_1}\)
+\[
+V_{out} = V_{in} \cdot \left(1 + \frac{R_f}{R_1}\right)
+\]
+
+\subsubsection{Voltage Follower (Buffer)}
+Gain \(A_v = 1\), used for isolation
+\[
+V_{out} = V_{in}
+\]
+
+\subsection{Real-World Op-Amp Limitations}
+
+\subsubsection{Bandwidth and Slew Rate}
+\textbf{Bandwidth:} Gain-Bandwidth Product (GBP): \(A_v \times f_{BW} = \text{constant}\)
+\textbf{Slew Rate:} Max rate of change of \( V_{out} \):
+\[
+\text{Slew Rate} = \frac{\Delta V_{out}}{\Delta t}
+\]
+
+\subsubsection{Input Offset Voltage and Bias Current}
+\textbf{Input Offset Voltage} \(V_{OS}\): Small voltage difference to zero \(V_{out}\).
+\textbf{Input Bias Current:} Average current into input terminals.
+
+\subsection{Op-Amp Analysis Techniques}
+\begin{itemize}
+    \item Assume ideal conditions (\(V^+ = V^-\), \(I^+ = I^- = 0\)).
+    \item Apply KCL at nodes, considering virtual ground in inverting amplifiers.
+\end{itemize}
+
+\subsection{Feedback in Op-Amps}
+\textbf{Types of Feedback:}
+\begin{itemize}\itemsep0pt
+    \item Negative Feedback: Stabilizes gain.
+    \item Positive Feedback: Used in oscillators.
+\end{itemize}
+Closed-Loop Gain:
+\[
+A_{CL} = \frac{A_{vo}}{1 + A_{vo} \cdot \beta}
+\]
+
+\end{multicols*}
+\end{document}
