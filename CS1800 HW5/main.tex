@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\title{CS1800 Homework 5 Solutions}
+\author{}
+\date{}
+
+% Header for every page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Name: Sean Balbale}
+\fancyhead[R]{HW Group: None}
+
+\setlength\parindent{0pt}
+
+% Use Roman numerals for subsections
+\renewcommand{\thesubsection}{\Roman{subsection}}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\section{Lost Traffic Light (Poisson Distribution)}
+
+\subsection{Independence Assumption}
+The number of cars arriving in each hour is independent of the number of cars arriving in other hours. In simple terms, what happens in one hour has no effect on what happens in the next hour.
+
+\subsection{Violation of Independence Assumption}
+A situation like a parade or road construction might violate this assumption because traffic can be influenced by such events, causing dependency in arrival times across hours.
+
+\subsection{Constant Rate Assumption}
+Cars arrive at a steady average rate throughout the day. This means there is no change in how often cars arrive at different times.
+
+\subsection{Violation of Constant Rate Assumption}
+A rush hour would violate this assumption, as traffic rates vary significantly during peak and non-peak times.
+
+\subsection{Estimate Expected Number of Cars (\( \lambda \))}
+Given the data: 33, 44, 36, 32, 45, 41, 29, 34, 38, 39.
+
+The mean rate \( \lambda \) is the average number of cars per hour:
+\[
+\lambda = \frac{33 + 44 + 36 + 32 + 45 + 41 + 29 + 34 + 38 + 39}{10} = \frac{371}{10} = 37.1
+\]
+
+\subsection{Probability of No Cars Passing (\( X = 0 \))}
+Using Poisson distribution formula for \( X = 0 \):
+\[
+P(X = 0) = \frac{e^{-\lambda} \lambda^0}{0!} = e^{-37.1}
+\]
+Using a calculator:
+\[
+P(X = 0) \approx e^{-37.1} \approx 8.26 \times 10^{-17}
+\]
+**Interpretation**: The probability of no cars passing in an hour is extremely low, suggesting that it’s highly likely your friend was at the wrong traffic light.
+
+\newpage
+
+\section{Lottery}
+
+\subsection{Probability that All Chosen Balls are Squares}
+The perfect squares from 1 to 49 are: 1, 4, 9, 16, 25, 36, 49 (7 values).
+
+We need to select 6 numbers from these 7.
+\[
+P(\text{all squares}) = \frac{\binom{7}{6}}{\binom{49}{6}} = \frac{7}{\binom{49}{6}}
+\]
+\[
+\binom{49}{6} = 13,983,816 \quad \text{(calculated)}
+\]
+\[
+P(\text{all squares}) = \frac{7}{13,983,816} \approx 5 \times 10^{-7}
+\]
+
+\subsection{Probability that All Numbers are Composite}
+Composite numbers from 1 to 49 (excluding primes) are: 1, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 26, 27, 28, 30, 32, 33, 34, 35, 36, 38, 39, 40, 42, 44, 45, 46, 48, 49 (34 values).
+
+Selecting 6 from these 34:
+\[
+P(\text{all composite}) = \frac{\binom{34}{6}}{\binom{49}{6}}
+\]
+\[
+\binom{34}{6} = 1,344,904 \quad \text{(calculated)}
+\]
+\[
+P(\text{all composite}) = \frac{1,344,904}{13,983,816} \approx 0.0962
+\]
+
+\newpage
+
+\section{Health Insurance}
+
+\subsection{Expected Cost}
+Expected value \( E(X) \):
+\[
+E(X) = 150 \times 0.0025 + 3000 \times 0.0005 + 10000 \times 0.001 + 5000 \times 0.0005 + 0 \times 0.9955
+\]
+\[
+E(X) = 0.375 + 1.5 + 10 + 2.5 = 14.375
+\]
+The expected cost per day is \$14.375.
+
+\subsection{Pricing Problem Description}
+The insurance company charges \$10 per day, but the expected cost is \$14.375. This suggests that, over time, the company will lose money because the expected payout is greater than the collected premiums.
+
+\subsection{Variance of Healthcare Costs}
+Variance \( \text{Var}(X) \):
+\[
+\text{Var}(X) = (150^2 \times 0.0025) + (3000^2 \times 0.0005) + (10000^2 \times 0.001) + (5000^2 \times 0.0005) + (0^2 \times 0.9955) - (14.375)^2
+\]
+Calculations yield:
+\[
+\text{Var}(X) \approx 78734.84
+\]
+
+\subsection{Lower Cost Variance}
+The customer with the weekly Tylenol charge would have lower variance because they have a consistent, small expense, whereas the major operation has high variability and occurs infrequently.
+
+\newpage
+
+\section{Hot Wheels}
+
+\subsection{Random Variables}
+Let \( A \) be the event that a car has a flame paint job.\newline
+Let \( B \) be the event that a car is speeding.
+
+\subsection{Probability Any Car is Not Speeding}
+\[
+P(\text{Not Speeding}) = P(A) \times P(\text{Not Speeding} \mid A) + P(\neg A) \times P(\text{Not Speeding} \mid \neg A)
+\]
+\[
+= 0.01 \times 0.96 + 0.99 \times 0.72 = 0.0096 + 0.7128 = 0.7224
+\]
+
+\subsection{Probability Car has Flame Paint Given It is Not Speeding}
+Using Bayes’ theorem:
+\[
+P(A \mid \text{Not Speeding}) = \frac{P(A) \times P(\text{Not Speeding} \mid A)}{P(\text{Not Speeding})}
+\]
+\[
+= \frac{0.01 \times 0.96}{0.7224} \approx 0.0133
+\]
+
+\newpage
+
+\section{Counting Umbrellas}
+
+\subsection{Probability Exactly Two Umbrellas are Brought}
+Using the binomial formula \( P(X = k) = \binom{n}{k} p^k (1-p)^{n-k} \):
+\[
+P(X = 2) = \binom{250}{2} (0.15)^2 (0.85)^{248}
+\]
+Calculation yields:
+\[
+P(X = 2) \approx 0.213
+\]
+
+\subsection{Probability 1 or More Umbrellas are Brought}
+\[
+P(X \geq 1) = 1 - P(X = 0)
+\]
+\[
+P(X = 0) = (0.85)^{250} \approx 0.0003
+\]
+\[
+P(X \geq 1) \approx 1 - 0.0003 = 0.9997
+\]
+
+\subsection{Problematic Assumption of Binomial Model}
+The model assumes each student’s decision to bring an umbrella is independent. In reality, students may communicate with each other or react to the same weather forecast, making the decisions dependent.
+
+\subsection{Overestimation or Underestimation}
+The model likely **underestimates** the probability that no umbrellas are brought, because if students communicate, they may coordinate to bring fewer umbrellas.
+
+\end{document}
