@@ -52,9 +52,9 @@ P(X = 0) = \frac{e^{-\lambda} \lambda^0}{0!} = e^{-37.1}
 \]
 Using a calculator:
 \[
-P(X = 0) \approx e^{-37.1} \approx 8.26 \times 10^{-17}
+P(X = 0) = e^{-37.1} = 7.721 \times 10^{-17}
 \]
-**Interpretation**: The probability of no cars passing in an hour is extremely low, suggesting that it’s highly likely your friend was at the wrong traffic light.
+\textbf{Interpretation}: The probability of no cars passing in an hour is extremely low, suggesting that it’s highly likely your friend was at the wrong traffic light.
 
 \newpage
 
@@ -71,7 +71,7 @@ P(\text{all squares}) = \frac{\binom{7}{6}}{\binom{49}{6}} = \frac{7}{\binom{49}
 \binom{49}{6} = 13,983,816 \quad \text{(calculated)}
 \]
 \[
-P(\text{all squares}) = \frac{7}{13,983,816} \approx 5 \times 10^{-7}
+P(\text{all squares}) = \frac{7}{13,983,816} = 5.006 \times 10^{-7}
 \]
 
 \subsection{Probability that All Numbers are Composite}
@@ -85,7 +85,7 @@ P(\text{all composite}) = \frac{\binom{34}{6}}{\binom{49}{6}}
 \binom{34}{6} = 1,344,904 \quad \text{(calculated)}
 \]
 \[
-P(\text{all composite}) = \frac{1,344,904}{13,983,816} \approx 0.0962
+P(\text{all composite}) = \frac{1,344,904}{13,983,816} = 9.618 \times 10^{-2}
 \]
 
 \newpage
@@ -112,7 +112,7 @@ Variance \( \text{Var}(X) \):
 \]
 Calculations yield:
 \[
-\text{Var}(X) \approx 78734.84
+\text{Var}(X) = 116849.609
 \]
 
 \subsection{Lower Cost Variance}
@@ -128,7 +128,7 @@ Let \( B \) be the event that a car is speeding.
 
 \subsection{Probability Any Car is Not Speeding}
 \[
-P(\text{Not Speeding}) = P(A) \times P(\text{Not Speeding} \mid A) + P(\neg A) \times P(\text{Not Speeding} \mid \neg A)
+P(\neg B) = P(A) \times P(\neg B \mid A) + P(\neg A) \times P(\neg B \mid \neg A)
 \]
 \[
 = 0.01 \times 0.96 + 0.99 \times 0.72 = 0.0096 + 0.7128 = 0.7224
@@ -137,10 +137,10 @@ P(\text{Not Speeding}) = P(A) \times P(\text{Not Speeding} \mid A) + P(\neg A) \
 \subsection{Probability Car has Flame Paint Given It is Not Speeding}
 Using Bayes’ theorem:
 \[
-P(A \mid \text{Not Speeding}) = \frac{P(A) \times P(\text{Not Speeding} \mid A)}{P(\text{Not Speeding})}
+P(A \mid \neg B) = \frac{P(A) \times P(\neg B \mid A)}{P(\neg B)}
 \]
 \[
-= \frac{0.01 \times 0.96}{0.7224} \approx 0.0133
+= \frac{0.01 \times 0.96}{0.7224} = 0.0133
 \]
 
 \newpage
@@ -172,6 +172,6 @@ P(X \geq 1) \approx 1 - 0.0003 = 0.9997
 The model assumes each student’s decision to bring an umbrella is independent. In reality, students may communicate with each other or react to the same weather forecast, making the decisions dependent.
 
 \subsection{Overestimation or Underestimation}
-The model likely **underestimates** the probability that no umbrellas are brought, because if students communicate, they may coordinate to bring fewer umbrellas.
+The model likely \textbf{underestimates} the probability that no umbrellas are brought, because if students communicate, they may coordinate to bring fewer umbrellas.
 
 \end{document}
