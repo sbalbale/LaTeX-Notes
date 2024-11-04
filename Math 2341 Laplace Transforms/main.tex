@@ -27,7 +27,8 @@
     L[t \cos(kt)] &= \frac{s^2 - k^2}{(s^2 + k^2)^2}\\
     L[t \sin(kt+a)] &= \frac{s\sin(a) + k \cos(a)}{s^2 + k^2} \\
     L[t \cos(kt + a)] &= \frac{s \cos(a) - k \sin(a)}{s^2 + k^2} \\
-    L[u(t-a)] &= \frac{e^{-as}}{s}, a \geq 0
+    L[u(t-a)] &= \frac{e^{-as}}{s}, a \geq 0 \\
+    L[\delta(t-a)] &= e^{-as}, a \geq 0 
 \end{align}
 
 \textbf{Differentiation Properties}
@@ -63,15 +64,19 @@ Suppose \( f(t) \) is a piecewise-defined function:
 f(t) = \begin{cases} 
       f_1(t) & 0 \leq t < a_1 \\
       f_2(t) & a_1 \leq t < a_2 \\
-      f_2(t) & a_2 \leq t < a_3 \\
+      f_3(t) & a_2 \leq t < a_3 \\
         ... & ... \\ 
       f_n(t) & a_{n-1} \leq t < a_n \\
    \end{cases}
 \]
 
 f(t) can be wrtten in termss of step functions as:
+% \begin{align*}
+% f(t) = f_1(t) &+ (f_2(t) - f_1(t)) \cdot u(t - a_1) + (f_3(t) - f_2(t)) \\
+%     & \cdot u(t - a_2) + ... + (f_n(t) - f_{n-1}(t)) \cdot u(t - a_{n-1})
+% \end{align*}
 \[
-f(t) = f_1(t) + (f_2(t) - f_1(t)) u(t - a) + (f_3(t) - f_2(t)) u(t - a_2) + ... + (f_n(t) - f_{n-1}(t)) u(t - a_{n-1})
+f(t) = f_1(t) + (f_2(t) - f_1(t)) \cdot u(t - a_1) + (f_3(t) - f_2(t)) \cdot u(t - a_2) + ... + (f_n(t) - f_{n-1}(t)) \cdot u(t - a_{n-1})
 \]
 
 
