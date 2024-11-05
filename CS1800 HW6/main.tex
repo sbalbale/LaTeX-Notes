@@ -2,6 +2,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{fancyhdr}
+\usepackage{nicematrix}
 \usepackage{tikz}  % Use tikz package for node-based graphs
 \usetikzlibrary{positioning}  % Add positioning library for 'of' syntax
 
@@ -179,23 +180,22 @@ The adjacency list of \( G_{undirected} \) is:
 \[
 \begin{aligned}
     1 & : 2, 3 \\
-    2 & : 1, 3, 4 \\
+    2 & : 1, 3 \\
     3 & : 1, 2, 4 \\
-    4 & : 2, 3, 5 \\
-    5 & : 4
+    4 & : 3 \\
 \end{aligned}
 \]
 
 \subsection{Adjacency Matrix Representation of \( G_{undirected} \)}
 The adjacency matrix for \( G_{undirected} \) is:
 \[
-\begin{bmatrix}
-    0 & 1 & 1 & 0 & 0 \\
-    1 & 0 & 1 & 1 & 0 \\ 
-    1 & 1 & 0 & 1 & 0 \\ 
-    0 & 1 & 1 & 0 & 1 \\ 
-    0 & 0 & 0 & 1 & 0
-\end{bmatrix}
+  \begin{bNiceMatrix}[first-row,first-col]
+        & 1   & 2   & 3   & 4 \\
+    1   & 0   & 1   & 1   & 0 \\
+    2   & 1   & 0   & 1   & 0 \\
+    3   & 1   & 1   & 0   & 1 \\
+    4   & 0   & 0   & 1   & 0 \\
+  \end{bNiceMatrix}
 \]
 
 \subsection{Adjacency List Representation of \( G_{directed} \)}
@@ -203,67 +203,146 @@ The adjacency list for \( G_{directed} \) is:
 \[
 \begin{aligned}
     1 & : 2, 3 \\ 
-    2 & : 3, 4 \\ 
-    3 & : 4 \\ 
-    4 & : 5 \\ 
-    5 & : \text{(none)}
+    2 & : \text{(none)} \\ 
+    3 & : 2, 4 \\ 
+    4 & : 3 \\ 
 \end{aligned}
 \]
 
 \subsection{Adjacency Matrix Representation of \( G_{directed} \)}
 The adjacency matrix for \( G_{directed} \) is:
 \[
-\begin{bmatrix}
-    0 & 1 & 1 & 0 & 0 \\ 
-    0 & 0 & 1 & 1 & 0 \\ 
-    0 & 0 & 0 & 1 & 0 \\ 
-    0 & 0 & 0 & 0 & 1 \\ 
-    0 & 0 & 0 & 0 & 0
-\end{bmatrix}
+  \begin{bNiceMatrix}[first-row,first-col]
+      & 1 & 2 & 3 & 4 \\
+    1 & 0 & 1 & 1 & 0 \\
+    2 & 0 & 0 & 0 & 0 \\
+    3 & 0 & 1 & 0 & 1 \\
+    4 & 0 & 0 & 1 & 0 \\
+  \end{bNiceMatrix}
 \]
 
 \newpage
 
 \section{BFS / DFS Traversals}
+Redrawing the graph to better visualize the nodes and their connections:
+\begin{center}
+  \begin{tikzpicture}[
+    every node/.style={circle, draw, minimum size=1cm, inner sep=0pt},
+    level 1/.style={sibling distance=3cm},
+    level 2/.style={sibling distance=1.5cm}
+  ]
 
-\subsection{Breadth-First Search Starting at \( A \)}
-The BFS order starting at node \( A \) is \( A, B, C, D, E \).
+  % Root node
+  \node {A}
+      % Level 1
+      child {node {B}
+          % Level 2 under B
+          child {node {D}}
+          child {node {C}}
+      }
+      child {node {E}}
+      child {node {F}
+        % Level 2 under F
+        child {node {H}
+          % Level 3 under H
+          child {node {G}}
+          child {node {I}}
+          }
+      };
 
-\subsection{Depth-First Search Starting at \( A \)}
-The DFS order starting at node \( A \) is \( A, B, D, E, C \).
+  \end{tikzpicture}
+\end{center}
 
-\subsection{Breadth-First Search Starting at \( F \)}
-The BFS order starting at node \( F \) is \( F, B, D, G, H, I, J \).
+\subsection{Breadth First Search (BFS) starting at Node A}
 
-\subsection{Depth-First Search Starting at \( F \)}
-The DFS order starting at node \( F \) is \( F, B, D, G, H, I, J \).
+In Breadth First Search, we explore nodes level by level from the starting node.
 
+\begin{enumerate}
+    \item Start at node \( A \).
+    \item Visit the children of \( A \): \( B \), \( E \), \( F \).
+    \item Visit the children of \( B \): \( D \), \( C \).
+    \item Visit the children of \( F \): \( H \).
+    \item Visit the children of \( H \): \( G \), \( I \).
+\end{enumerate}
+
+\textbf{Order:} \( A, B, E, F, D, C, H, G, I \)
+
+\subsection{Depth First Search (DFS) starting at Node A}
+
+In Depth First Search, we explore as far down each branch as possible before backtracking.
+
+\begin{enumerate}
+    \item Start at node \( A \).
+    \item Move to \( B \).
+    \item Move to \( D \).
+    \item Backtrack to \( B \), then move to \( C \).
+    \item Backtrack to \( A \), then move to \( E \).
+    \item Backtrack to \( A \), then move to \( F \).
+    \item Move to \( H \).
+    \item Move to \( G \).
+    \item Backtrack to \( H \), then move to \( I \).
+\end{enumerate}
+
+\textbf{Order:} \( A, B, D, C, E, F, H, G, I \)
+
+\subsection{Breadth First Search (BFS) starting at Node F}
+
+Starting from \( F \) and using BFS:
+
+\begin{enumerate}
+    \item Start at node \( F \).
+    \item Visit the children of \( F \): \( H \).
+    \item Visit the children of \( H \): \( G \), \( I \).
+\end{enumerate}
+
+\textbf{Order:} \( F, H, G, I \)
+
+\subsection{Depth First Search (DFS) starting at Node F}
+
+Starting from \( F \) and using DFS:
+
+\begin{enumerate}
+    \item Start at node \( F \).
+    \item Move to \( H \).
+    \item Move to \( G \).
+    \item Backtrack to \( H \), then move to \( I \).
+\end{enumerate}
+
+\textbf{Order:} \( F, H, G, I \)
 \newpage
 
 \section{Shortest Path (Dijkstra's Algorithm)}
 
 Using Dijkstra's algorithm, we compute the shortest path from \( A \) to \( G \). Below is the table showing the path weights and predecessors for each node.
 
+\begin{table}[h]
+  \centering
+  \label{}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+  \hline
+  iteration & node visited & A & B & C & D & E & F & G\\ \hline
+  0 & A & start:0 & A:5 & A:5 & none & none & none & none\\ \hline
+  1 & B & start:0 & A:5 & A:5 & B:14 & B:7 & none & none\\ \hline
+  2 & C & start:0 & A:5 & A:5 & C:6 & B:7 & C:14 & none\\ \hline
+  3 & D & start:0 & A:5 & A:5 & C:6 & B:7 & D:9 & none\\ \hline
+  4 & E & start:0 & A:5 & A:5 & C:6 & B:7 & D:9 & E:15\\ \hline
+  5 & F & start:0 & A:5 & A:5 & C:6 & B:7 & D:9 & F:13\\ \hline
+  \end{tabular}
+\end{table}
+Now by backtracking from G to A. 
 \[
-\begin{array}{|c|c|c|}
-    \hline
-    \text{Node} & \text{Path Weight} & \text{Predecessor} \\
-    \hline
-    A & 0 & - \\ 
-    B & 4 & A \\ 
-    C & 2 & A \\ 
-    D & 5 & B \\ 
-    E & 7 & C \\ 
-    F & 9 & E \\ 
-    G & 12 & F \\ 
-    \hline
-\end{array}
+G \rightarrow F \rightarrow D \rightarrow C \rightarrow A
 \]
+Thus, shortest path from \( A \) to \( G \) is:
+\[A \rightarrow C \rightarrow D \rightarrow F \rightarrow G \text{, with a total weight of 13.}\]
 
 \newpage
 
 \section{Extra Credit: Airline Connectivity}
 
 Given a graph representing flights among cities, if every pair of cities is connected by exactly one airline, there exists at least one airline that can connect any two cities via a sequence of flights, thus forming a connected graph for that airline.
+
+\end{document}
+
 
 \end{document}
