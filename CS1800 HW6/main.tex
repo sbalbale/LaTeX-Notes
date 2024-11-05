@@ -1,0 +1,269 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}  % Use tikz package for node-based graphs
+\usetikzlibrary{positioning}  % Add positioning library for 'of' syntax
+
+\title{CS1800 Homework 6 Solutions}
+\author{}
+\date{}
+
+% Header for every page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Name: Sean Balbale}
+\fancyhead[R]{HW Group: None}
+
+\setlength\parindent{0pt}
+
+% Use Roman numerals for subsections
+\renewcommand{\thesubsection}{\Roman{subsection}}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\section{Build-a-Graph}
+
+\subsection{Acyclic Graph Where Every Pair of Nodes Has an Edge}
+This graph does not exist. An acyclic graph cannot have an edge between every pair of nodes, as this would necessarily create cycles among the nodes.
+
+\subsection{Rooted Tree Where \( B \) is the Root}
+\begin{center}
+\begin{tikzpicture}
+  [every node/.style={circle, draw, minimum size=1cm, inner sep=2pt}]
+  \node (B) {$B_{root}$};
+  \node (A) [below left=of B] {A};
+  \node (C) [below=of B] {C};
+  \node (D) [below right=of B] {D};
+  \node (E) [right=of D] {E};
+  
+  \draw (B) -- (A);
+  \draw (B) -- (C);
+  \draw (B) -- (D);
+  \draw (B) -- (E);
+\end{tikzpicture}
+\end{center}
+This structure satisfies the acyclic and tree properties, with \( B \) designated as the root node.
+
+\subsection{Graph with No Cycles That is Not a Tree}
+A forest (a set of disjoint trees) meets this criterion. For example, with nodes \( A, B, C, D, \) and \( E \), we could have two disjoint trees, such as \( A - B \), \( C - D \), and \(E\), which is a graph without cycles and that is not a single tree.
+
+\begin{center}
+\begin{tikzpicture}
+  [every node/.style={circle, draw, minimum size=1cm, inner sep=2pt}]
+  \node (A) {A};
+  \node (B) [right=of A] {B};
+  \node (C) [right=1.5cm of B] {C};
+  \node (D) [right=of C] {D};
+
+  \node (E) [right= 1.5cm of D] {E};
+  
+  \draw (A) -- (B);
+  \draw (C) -- (D);
+  \draw (E);
+\end{tikzpicture}
+\end{center}
+
+Alternatively we could use a directed graph with nodes \( A, B, C, D, \) and \( E \) and edges \( A \rightarrow B \), \( B \rightarrow C \), \( C \rightarrow D \), and \( D \rightarrow E \), which is acyclic but not a tree.
+\begin{center}
+    \begin{tikzpicture}[->, >=stealth, node distance=1.5cm, 
+                        every node/.style={circle, draw, minimum size=1cm, inner sep=2pt}]
+      
+      % Nodes
+      \node (A) {A};
+      \node (B) [right=of A] {B};
+      \node (C) [right=of B] {C};
+      \node (D) [right=of C] {D};
+      \node (E) [right=of D] {E};
+      
+      % Directed Edges
+      \draw (A) -> (B);
+      \draw (B) -> (C);
+      \draw (C) -> (D);
+      \draw (D) -> (E);
+    
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Weighted Graph Where Every Path from \( A \) to \( E \) Has Weight 2}
+Consider a graph with paths \( A - B - E \), \( A - D - E \), and \( A - C - E \), where each edge has a weight of 1. Both paths from \( A \) to \( E \) thus have a total weight of 2, satisfying the condition.
+
+\begin{center}
+    \begin{tikzpicture}
+      % Set up nodes
+      [every node/.style={circle,draw, minimum size=1cm, inner sep=2pt}]
+      
+      \node (A) at (0,2) {A};
+      \node (B) at (3,4) {B};
+      \node (C) at (3,2) {C};
+      \node (D) at (3,0) {D};
+      \node (E) at (6,2) {E};
+      
+      % Draw edges with weights
+      \draw (A) -- node[draw=none, above] {1} (B);
+      \draw (A) -- node[draw=none, above] {1} (C);
+      \draw (A) -- node[draw=none, above] {1} (D);
+      \draw (B) -- node[draw=none, above] {1} (E);
+      \draw (C) -- node[draw=none, above] {1} (E);
+      \draw (D) -- node[draw=none, above] {1} (E);
+
+    \end{tikzpicture}
+    \end{center}
+
+\subsection{Rooted Tree with Minimal Number of Leafs}
+To minimize the number of leaf nodes in a rooted tree of 5 nodes, we arrange the nodes in a straight line where each node connects to exactly one other, except the root. For example:
+\begin{center}
+\begin{tikzpicture}
+  [every node/.style={circle, draw, minimum size=1cm, inner sep=2pt}]
+  \node (B) {B};
+  \node (C) [below=of B] {C};
+  \node (D) [below=of C] {D};
+  \node (E) [below=of D] {E};
+  \node (F) [below=of E] {F};
+  
+  \draw (B) -- (C) -- (D) -- (E) -- (F);
+\end{tikzpicture}
+\end{center}
+This structure has only one leaf node \( F \), which minimizes the number of leaves.
+
+\subsection{Strongly Connected Directed Graph with 5 Nodes with Minimal Edges}
+To form a strongly connected directed graph with 5 nodes and the minimum number of edges, we create a directed cycle among the nodes: \( A \rightarrow B \rightarrow C \rightarrow D \rightarrow E \rightarrow A \). This configuration has exactly 5 edges, ensuring strong connectivity.
+
+\begin{center}
+\begin{tikzpicture}[->, >=stealth, auto, node distance=2cm, every node/.style={circle, draw}]
+  \node (A) {A};
+  \node (B) [right=of A] {B};
+  \node (C) [right=of B] {C};
+  \node (D) [below=of C] {D};
+  \node (E) [below=of B] {E};
+
+  \draw (A) -- (B);
+  \draw (B) -- (C);
+  \draw (C) -- (D);
+  \draw (D) -- (E);
+  \draw (E) -- (A);
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+\section{Family Tree}
+
+\subsection{Child of \( D \)}
+The children of \( D \) is \( C \) and $E$.
+
+\subsection{Parent of \( I \)}
+The parent of \( I \) is \( H \).
+
+\subsection{Sibling of \( D \)}
+The sibling of \( D \) is \( A \).
+
+\subsection{Ancestor of \( H \)}
+The ancestors of \( H \) are \( I \), \( G \), and $F$, as are on the path from \( H \) to the root node \( F \).
+
+\subsection{Descendent of \( B \)}
+The descendents of \( B \) are all nodes below it in the tree: \( A, D, C, \) and \( E \).
+
+\subsection{Neighbors of \( D \) or \( G \) Not Also Neighbors of \( B \)}
+The neighbors of \( D \) are \( B \), $F$ and \( E \), and the neighbors of \( G \) are \( D \), $I$ and \( F \). Excluding neighbors of \( B \), which are $A$ and $D$, the nodes satisfying this condition are $E$, \( F \) and $I$.
+
+\newpage
+
+\section{Graph Representation}
+
+\subsection{Adjacency List Representation of \( G_{undirected} \)}
+The adjacency list of \( G_{undirected} \) is:
+\[
+\begin{aligned}
+    1 & : 2, 3 \\
+    2 & : 1, 3, 4 \\
+    3 & : 1, 2, 4 \\
+    4 & : 2, 3, 5 \\
+    5 & : 4
+\end{aligned}
+\]
+
+\subsection{Adjacency Matrix Representation of \( G_{undirected} \)}
+The adjacency matrix for \( G_{undirected} \) is:
+\[
+\begin{bmatrix}
+    0 & 1 & 1 & 0 & 0 \\
+    1 & 0 & 1 & 1 & 0 \\ 
+    1 & 1 & 0 & 1 & 0 \\ 
+    0 & 1 & 1 & 0 & 1 \\ 
+    0 & 0 & 0 & 1 & 0
+\end{bmatrix}
+\]
+
+\subsection{Adjacency List Representation of \( G_{directed} \)}
+The adjacency list for \( G_{directed} \) is:
+\[
+\begin{aligned}
+    1 & : 2, 3 \\ 
+    2 & : 3, 4 \\ 
+    3 & : 4 \\ 
+    4 & : 5 \\ 
+    5 & : \text{(none)}
+\end{aligned}
+\]
+
+\subsection{Adjacency Matrix Representation of \( G_{directed} \)}
+The adjacency matrix for \( G_{directed} \) is:
+\[
+\begin{bmatrix}
+    0 & 1 & 1 & 0 & 0 \\ 
+    0 & 0 & 1 & 1 & 0 \\ 
+    0 & 0 & 0 & 1 & 0 \\ 
+    0 & 0 & 0 & 0 & 1 \\ 
+    0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+\]
+
+\newpage
+
+\section{BFS / DFS Traversals}
+
+\subsection{Breadth-First Search Starting at \( A \)}
+The BFS order starting at node \( A \) is \( A, B, C, D, E \).
+
+\subsection{Depth-First Search Starting at \( A \)}
+The DFS order starting at node \( A \) is \( A, B, D, E, C \).
+
+\subsection{Breadth-First Search Starting at \( F \)}
+The BFS order starting at node \( F \) is \( F, B, D, G, H, I, J \).
+
+\subsection{Depth-First Search Starting at \( F \)}
+The DFS order starting at node \( F \) is \( F, B, D, G, H, I, J \).
+
+\newpage
+
+\section{Shortest Path (Dijkstra's Algorithm)}
+
+Using Dijkstra's algorithm, we compute the shortest path from \( A \) to \( G \). Below is the table showing the path weights and predecessors for each node.
+
+\[
+\begin{array}{|c|c|c|}
+    \hline
+    \text{Node} & \text{Path Weight} & \text{Predecessor} \\
+    \hline
+    A & 0 & - \\ 
+    B & 4 & A \\ 
+    C & 2 & A \\ 
+    D & 5 & B \\ 
+    E & 7 & C \\ 
+    F & 9 & E \\ 
+    G & 12 & F \\ 
+    \hline
+\end{array}
+\]
+
+\newpage
+
+\section{Extra Credit: Airline Connectivity}
+
+Given a graph representing flights among cities, if every pair of cities is connected by exactly one airline, there exists at least one airline that can connect any two cities via a sequence of flights, thus forming a connected graph for that airline.
+
+\end{document}
