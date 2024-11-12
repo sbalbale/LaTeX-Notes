@@ -1,8 +1,16 @@
 # Fdb version 4
-["pdflatex"] 1731427168.20291 "c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 10/main.tex" "main.pdf" "main" 1731427169.8114 0
+["pdflatex"] 1731430010.71242 "c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 10/main.tex" "main.pdf" "main" 1731430012.43756 0
   "Lab 10 Shared/1.2 simulation results.PNG" 1730395382 10656 62b9d10acc38165995b44483b3a77e8f ""
   "Lab 10 Shared/1.2 simulation.PNG" 1730395342 15865 64f761ca6b0afc239426550f4f13dfae ""
-  "c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 10/main.tex" 1731427167 4271 9079430ab3f236a0e17a34a44e3e65be ""
+  "Lab 10 Shared/1.3 simulation results.PNG" 1730396096 11202 9059b366d3dc516ee3cc1e60d05a489d ""
+  "Lab 10 Shared/1.3 simulation.PNG" 1730396078 15794 ea4fd0cebe93a35a6e486e950d92fde8 ""
+  "Lab 10 Shared/1.4 circuit.PNG" 1730397164 9263 8312e4a539293659f26ee107c588fd65 ""
+  "Lab 10 Shared/1.4 input simulation.PNG" 1730397332 27173 a35655ed5f4ec5cc73f3147c9f3e94ce ""
+  "Lab 10 Shared/1.4 output simulation.PNG" 1730397028 26088 d594d99ef0b20effb507004c706d63f4 ""
+  "Lab 10 Shared/1.5 circuit.PNG" 1730739678 8865 e066e0e1bd4f518ae87007aaeb654d04 ""
+  "Lab 10 Shared/1.5 simulation results.PNG" 1730739842 10816 455cf395ebe9a3707db1853aac969f87 ""
+  "Lab 10 Shared/1.5 simulation.PNG" 1730739818 17258 acf7018487818bb1139be21a82ab31f1 ""
+  "c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 10/main.tex" 1731430009 9625 81f6971edb5c75312ea19b58e2e3709b ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1709490429 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1709489347 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1709489347 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -71,8 +79,9 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1709493702 5518052 de2a91c664d75f3971de4662dc6b5a65 ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1709493775 8221429 1cc0e148646d06aec61d4f80f1872ccd ""
   "c:/texlive/2023/texmf.cnf" 1709493685 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1731427169 1095 576d8fb54898bcaf65621a75f1e2a325 "pdflatex"
-  "main.tex" 1731427167 4271 9079430ab3f236a0e17a34a44e3e65be ""
+  "main.aux" 1731430012 2710 ba743df5c90353f75a6a7e8c1607f7c3 "pdflatex"
+  "main.tex" 1731430009 9625 81f6971edb5c75312ea19b58e2e3709b ""
+  "photos/First Order Active High Pass Filter.png" 1731429054 21618 d53102c345891aa701f946c99c925281 ""
   "photos/First Order Active Low Pass Filter.png" 1731362364 60071 e5bb2707135ec484c882aa0ff23da2f9 ""
   (generated)
   "main.aux"

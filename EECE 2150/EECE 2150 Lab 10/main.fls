@@ -98,6 +98,7 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT ./photos/First Order Active Low Pass Filter.png
 INPUT ./photos/First Order Active Low Pass Filter.png
 INPUT ./photos/First Order Active Low Pass Filter.png
@@ -136,6 +137,51 @@ INPUT ./Lab 10 Shared/1.2 simulation.PNG
 INPUT ./Lab 10 Shared/1.2 simulation.PNG
 INPUT ./Lab 10 Shared/1.2 simulation.PNG
 INPUT ./Lab 10 Shared/1.2 simulation.PNG
+INPUT ./Lab 10 Shared/1.3 simulation results.PNG
+INPUT ./Lab 10 Shared/1.3 simulation results.PNG
+INPUT ./Lab 10 Shared/1.3 simulation results.PNG
+INPUT ./Lab 10 Shared/1.3 simulation results.PNG
+INPUT ./Lab 10 Shared/1.3 simulation results.PNG
+INPUT ./Lab 10 Shared/1.3 simulation.PNG
+INPUT ./Lab 10 Shared/1.3 simulation.PNG
+INPUT ./Lab 10 Shared/1.3 simulation.PNG
+INPUT ./Lab 10 Shared/1.3 simulation.PNG
+INPUT ./Lab 10 Shared/1.3 simulation.PNG
+INPUT ./Lab 10 Shared/1.4 circuit.PNG
+INPUT ./Lab 10 Shared/1.4 circuit.PNG
+INPUT ./Lab 10 Shared/1.4 circuit.PNG
+INPUT ./Lab 10 Shared/1.4 circuit.PNG
+INPUT ./Lab 10 Shared/1.4 circuit.PNG
+INPUT ./Lab 10 Shared/1.4 input simulation.PNG
+INPUT ./Lab 10 Shared/1.4 input simulation.PNG
+INPUT ./Lab 10 Shared/1.4 input simulation.PNG
+INPUT ./Lab 10 Shared/1.4 input simulation.PNG
+INPUT ./Lab 10 Shared/1.4 input simulation.PNG
+INPUT ./Lab 10 Shared/1.4 output simulation.PNG
+INPUT ./Lab 10 Shared/1.4 output simulation.PNG
+INPUT ./Lab 10 Shared/1.4 output simulation.PNG
+INPUT ./Lab 10 Shared/1.4 output simulation.PNG
+INPUT ./Lab 10 Shared/1.4 output simulation.PNG
+INPUT ./photos/First Order Active High Pass Filter.png
+INPUT ./photos/First Order Active High Pass Filter.png
+INPUT ./photos/First Order Active High Pass Filter.png
+INPUT ./photos/First Order Active High Pass Filter.png
+INPUT ./photos/First Order Active High Pass Filter.png
+INPUT ./Lab 10 Shared/1.5 circuit.PNG
+INPUT ./Lab 10 Shared/1.5 circuit.PNG
+INPUT ./Lab 10 Shared/1.5 circuit.PNG
+INPUT ./Lab 10 Shared/1.5 circuit.PNG
+INPUT ./Lab 10 Shared/1.5 circuit.PNG
+INPUT ./Lab 10 Shared/1.5 simulation results.PNG
+INPUT ./Lab 10 Shared/1.5 simulation results.PNG
+INPUT ./Lab 10 Shared/1.5 simulation results.PNG
+INPUT ./Lab 10 Shared/1.5 simulation results.PNG
+INPUT ./Lab 10 Shared/1.5 simulation results.PNG
+INPUT ./Lab 10 Shared/1.5 simulation.PNG
+INPUT ./Lab 10 Shared/1.5 simulation.PNG
+INPUT ./Lab 10 Shared/1.5 simulation.PNG
+INPUT ./Lab 10 Shared/1.5 simulation.PNG
+INPUT ./Lab 10 Shared/1.5 simulation.PNG
 INPUT main.aux
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb

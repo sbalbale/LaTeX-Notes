@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.3)  12 NOV 2024 10:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.3)  12 NOV 2024 11:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -214,7 +214,7 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 16.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 15.
  (c:/texlive/2023/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
  (c:/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -228,20 +228,20 @@ File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -298,24 +298,24 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) (c:/texlive/2023/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 16.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 15.
  [1
 
 {c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 <photos/First Order Active Low Pass Filter.png, id=8, 389.95688pt x 228.10219pt>
 File: photos/First Order Active Low Pass Filter.png Graphic file (type png)
 <use photos/First Order Active Low Pass Filter.png>
-Package pdftex.def Info: photos/First Order Active Low Pass Filter.png  used on input line 72.
+Package pdftex.def Info: photos/First Order Active Low Pass Filter.png  used on input line 69.
 (pdftex.def)             Requested size: 234.8775pt x 137.38791pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 75.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 75.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 77--85
+Underfull \hbox (badness 10000) in paragraph at lines 74--82
 
  []
 
@@ -323,32 +323,91 @@ Underfull \hbox (badness 10000) in paragraph at lines 77--85
 <Lab 10 Shared/1.2 simulation results.PNG, id=20, 220.57407pt x 225.84375pt>
 File: Lab 10 Shared/1.2 simulation results.PNG Graphic file (type png)
 <use Lab 10 Shared/1.2 simulation results.PNG>
-Package pdftex.def Info: Lab 10 Shared/1.2 simulation results.PNG  used on input line 109.
+Package pdftex.def Info: Lab 10 Shared/1.2 simulation results.PNG  used on input line 106.
 (pdftex.def)             Requested size: 234.8775pt x 240.49942pt.
 <Lab 10 Shared/1.2 simulation.PNG, id=21, 1428.83812pt x 342.5297pt>
 File: Lab 10 Shared/1.2 simulation.PNG Graphic file (type png)
 <use Lab 10 Shared/1.2 simulation.PNG>
-Package pdftex.def Info: Lab 10 Shared/1.2 simulation.PNG  used on input line 116.
+Package pdftex.def Info: Lab 10 Shared/1.2 simulation.PNG  used on input line 113.
 (pdftex.def)             Requested size: 469.75502pt x 112.61179pt.
- [2 <./Lab 10 Shared/1.2 simulation results.PNG> <./Lab 10 Shared/1.2 simulation.PNG>] [3] (./main.aux)
+<Lab 10 Shared/1.3 simulation results.PNG, id=22, 221.32687pt x 231.86626pt>
+File: Lab 10 Shared/1.3 simulation results.PNG Graphic file (type png)
+<use Lab 10 Shared/1.3 simulation results.PNG>
+Package pdftex.def Info: Lab 10 Shared/1.3 simulation results.PNG  used on input line 123.
+(pdftex.def)             Requested size: 234.8775pt x 246.07423pt.
+ [2 <./Lab 10 Shared/1.2 simulation results.PNG> <./Lab 10 Shared/1.2 simulation.PNG>]
+<Lab 10 Shared/1.3 simulation.PNG, id=28, 1434.86063pt x 344.03531pt>
+File: Lab 10 Shared/1.3 simulation.PNG Graphic file (type png)
+<use Lab 10 Shared/1.3 simulation.PNG>
+Package pdftex.def Info: Lab 10 Shared/1.3 simulation.PNG  used on input line 130.
+(pdftex.def)             Requested size: 469.75502pt x 112.62907pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--141
+
+ []
+
+<Lab 10 Shared/1.4 circuit.PNG, id=29, 492.33937pt x 306.39468pt>
+File: Lab 10 Shared/1.4 circuit.PNG Graphic file (type png)
+<use Lab 10 Shared/1.4 circuit.PNG>
+Package pdftex.def Info: Lab 10 Shared/1.4 circuit.PNG  used on input line 144.
+(pdftex.def)             Requested size: 234.8775pt x 146.17014pt.
+[3 <./Lab 10 Shared/1.3 simulation results.PNG> <./Lab 10 Shared/1.3 simulation.PNG>]
+<Lab 10 Shared/1.4 input simulation.PNG, id=35, 1436.36626pt x 340.27126pt>
+File: Lab 10 Shared/1.4 input simulation.PNG Graphic file (type png)
+<use Lab 10 Shared/1.4 input simulation.PNG>
+Package pdftex.def Info: Lab 10 Shared/1.4 input simulation.PNG  used on input line 154.
+(pdftex.def)             Requested size: 469.75502pt x 111.28258pt.
+<Lab 10 Shared/1.4 output simulation.PNG, id=36, 1433.355pt x 343.2825pt>
+File: Lab 10 Shared/1.4 output simulation.PNG Graphic file (type png)
+<use Lab 10 Shared/1.4 output simulation.PNG>
+Package pdftex.def Info: Lab 10 Shared/1.4 output simulation.PNG  used on input line 155.
+(pdftex.def)             Requested size: 469.75502pt x 112.5031pt.
+<photos/First Order Active High Pass Filter.png, id=37, 328.97906pt x 173.89969pt>
+File: photos/First Order Active High Pass Filter.png Graphic file (type png)
+<use photos/First Order Active High Pass Filter.png>
+Package pdftex.def Info: photos/First Order Active High Pass Filter.png  used on input line 169.
+(pdftex.def)             Requested size: 234.8775pt x 124.15953pt.
+ [4 <./Lab 10 Shared/1.4 circuit.PNG> <./Lab 10 Shared/1.4 input simulation.PNG> <./Lab 10 Shared/1.4 output simulation.PNG>]
+<Lab 10 Shared/1.5 circuit.PNG, id=44, 485.56406pt x 289.08pt>
+File: Lab 10 Shared/1.5 circuit.PNG Graphic file (type png)
+<use Lab 10 Shared/1.5 circuit.PNG>
+Package pdftex.def Info: Lab 10 Shared/1.5 circuit.PNG  used on input line 181.
+(pdftex.def)             Requested size: 234.8775pt x 139.8331pt.
+<Lab 10 Shared/1.5 simulation results.PNG, id=45, 220.57407pt x 229.60782pt>
+File: Lab 10 Shared/1.5 simulation results.PNG Graphic file (type png)
+<use Lab 10 Shared/1.5 simulation results.PNG>
+Package pdftex.def Info: Lab 10 Shared/1.5 simulation results.PNG  used on input line 209.
+(pdftex.def)             Requested size: 234.8775pt x 244.50775pt.
+ [5 <./photos/First Order Active High Pass Filter.png> <./Lab 10 Shared/1.5 circuit.PNG>]
+<Lab 10 Shared/1.5 simulation.PNG, id=51, 1413.02907pt x 339.51843pt>
+File: Lab 10 Shared/1.5 simulation.PNG Graphic file (type png)
+<use Lab 10 Shared/1.5 simulation.PNG>
+Package pdftex.def Info: Lab 10 Shared/1.5 simulation.PNG  used on input line 216.
+(pdftex.def)             Requested size: 469.75502pt x 112.87032pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--238
+
+ []
+
+[6 <./Lab 10 Shared/1.5 simulation results.PNG> <./Lab 10 Shared/1.5 simulation.PNG>] [7] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7654 strings out of 474115
- 175290 string characters out of 5747697
- 1934190 words of memory out of 5000000
- 29960 multiletter control sequences out of 15000+600000
- 565137 words of font info for 62 fonts, out of 8000000 for 9000
+ 7726 strings out of 474115
+ 178166 string characters out of 5747697
+ 1933190 words of memory out of 5000000
+ 30032 multiletter control sequences out of 15000+600000
+ 565444 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,8n,80p,287b,619s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (4 pages, 150583 bytes).
+Output written on main.pdf (8 pages, 270543 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
+ 96 PDF objects out of 1000 (max. 8388607)
+ 45 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
