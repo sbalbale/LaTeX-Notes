@@ -40,7 +40,7 @@
 
 \newpage
 
-\section{Introduction} 
+\section{Introduction}
 Operational amplifiers (op-amps) have served as essential components in
 electronic circuit design, particularly in sensing and signal processing
 applications. This lab focused on constructing active filters with op-amps,
@@ -66,6 +66,58 @@ biomedical and other electronic systems.
 % 	\label{fig:fig3}
 % % \end{figure}
 
+\subsection{LTSpice Modeling of Op Amp Circuits}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{photos/First Order Active Low Pass Filter.png}
+	\caption{First Order Active Low Pass Filter}
+	\label{fig:FirstOrderActiveLowPassFilter}
+\end{figure}
+
+A first order low pass filter was constructed using an op-amp, resistors
+($R_f$, $R_s$, $R_L$), and capacitor ($C_f$). Following the circuit design
+(Figure \ref{fig:FirstOrderActiveLowPassFilter}), the circuit was simulated in LTSpice
+with $\pm \SI{10}{\volt} \; DC$ power supplies, $R_f = \SI{100}{\kilo\ohm}$, $R_s = \SI{20}{\kilo\ohm}$,
+$R_L = \SI{1}{\kilo\ohm}$, and $C_f = \SI{10}{\nano\farad}$. The voltage input was a
+AC input with a $\SI{0.1}{\volt}$ amplitude and a frequency sweep from $\SI{1}{\hertz}$
+to $\SI{1}{\mega\hertz}$.
+\newline
+
+The frequency cutoff can be calculated using the formula:
+\[
+	\begin{aligned}
+		f_c & = \frac{1}{2\pi R_f C_f}                                         \\
+		    & = \frac{1}{2\pi \times 100 \times 10^3 \times 10 \times 10^{-9}} \\
+			& = \SI{159.1}{\hertz}
+	\end{aligned}
+\]
+
+This results in a cutoff frequency of $\SI{159.1}{\hertz}$.
+
+This value is what is expected to be seen since there is a time constant of
+$\SI{1}{\milli\second}$. Which was calculated using the formula:
+\[
+	\begin{aligned}
+		\tau & = R_f \times C_f \\
+		     & = 100 \times 10^3 \times 10 \times 10^{-9} \\
+		     & = \SI{1}{\milli\second}
+	\end{aligned}
+\]
+These theoretical values are confirmed by the LTSpice simulation results shown in Figure \ref{fig:1.2Results}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Lab 10 Shared/1.2 simulation results.PNG}
+	\caption{LTSpice Simulation Results}
+	\label{fig:1.2Results}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Lab 10 Shared/1.2 simulation.PNG}
+	\caption{LTSpice Simulation}
+	\label{fig:1.2Simulation}
+\end{figure}
+These results can also be calculated by hand from Figure \ref{fig:1.2Simulation}.
 
 
 

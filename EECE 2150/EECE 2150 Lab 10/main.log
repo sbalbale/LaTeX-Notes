@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.3)  11 NOV 2024 16:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.3)  12 NOV 2024 10:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -301,25 +301,54 @@ File: translations-basic-dictionary-english.trsl (english translation file `tran
 Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 16.
  [1
 
-{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] (./main.aux)
+{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<photos/First Order Active Low Pass Filter.png, id=8, 389.95688pt x 228.10219pt>
+File: photos/First Order Active Low Pass Filter.png Graphic file (type png)
+<use photos/First Order Active Low Pass Filter.png>
+Package pdftex.def Info: photos/First Order Active Low Pass Filter.png  used on input line 72.
+(pdftex.def)             Requested size: 234.8775pt x 137.38791pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
+ (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
+ (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Underfull \hbox (badness 10000) in paragraph at lines 77--85
+
+ []
+
+[1 <./photos/First Order Active Low Pass Filter.png>]
+<Lab 10 Shared/1.2 simulation results.PNG, id=20, 220.57407pt x 225.84375pt>
+File: Lab 10 Shared/1.2 simulation results.PNG Graphic file (type png)
+<use Lab 10 Shared/1.2 simulation results.PNG>
+Package pdftex.def Info: Lab 10 Shared/1.2 simulation results.PNG  used on input line 109.
+(pdftex.def)             Requested size: 234.8775pt x 240.49942pt.
+<Lab 10 Shared/1.2 simulation.PNG, id=21, 1428.83812pt x 342.5297pt>
+File: Lab 10 Shared/1.2 simulation.PNG Graphic file (type png)
+<use Lab 10 Shared/1.2 simulation.PNG>
+Package pdftex.def Info: Lab 10 Shared/1.2 simulation.PNG  used on input line 116.
+(pdftex.def)             Requested size: 469.75502pt x 112.61179pt.
+ [2 <./Lab 10 Shared/1.2 simulation results.PNG> <./Lab 10 Shared/1.2 simulation.PNG>] [3] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7572 strings out of 474115
- 173332 string characters out of 5747697
- 1929190 words of memory out of 5000000
- 29897 multiletter control sequences out of 15000+600000
- 560185 words of font info for 43 fonts, out of 8000000 for 9000
+ 7654 strings out of 474115
+ 175290 string characters out of 5747697
+ 1934190 words of memory out of 5000000
+ 29960 multiletter control sequences out of 15000+600000
+ 565137 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,5n,80p,287b,531s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on main.pdf (2 pages, 47805 bytes).
+ 73i,8n,80p,287b,619s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on main.pdf (4 pages, 150583 bytes).
 PDF statistics:
- 26 PDF objects out of 1000 (max. 8388607)
- 15 compressed objects within 1 object stream
+ 64 PDF objects out of 1000 (max. 8388607)
+ 35 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
