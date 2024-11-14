@@ -1,6 +1,8 @@
 # Fdb version 4
-["pdflatex"] 1730738200.88037 "c:/Users/seanb/Documents/LaTeX-Notes/Math 2341 Laplace Transforms/main.tex" "main.pdf" "main" 1730738202.19714 0
-  "c:/Users/seanb/Documents/LaTeX-Notes/Math 2341 Laplace Transforms/main.tex" 1730738199 2363 2b57b13c8e56735ee42dcf4be4fabc96 ""
+["pdflatex"] 1731546345.55166 "c:/Users/seanb/Documents/LaTeX-Notes/MATH 2341/Math 2341 Laplace Transforms/Table of Laplace Transforms.tex" "Table of Laplace Transforms.pdf" "Table of Laplace Transforms" 1731546347.04363 0
+  "Table of Laplace Transforms.aux" 1731546346 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "Table of Laplace Transforms.tex" 1731546344 2633 ca1aeb61c0b66ff89371ce2079f366a1 ""
+  "c:/Users/seanb/Documents/LaTeX-Notes/MATH 2341/Math 2341 Laplace Transforms/Table of Laplace Transforms.tex" 1731546344 2633 ca1aeb61c0b66ff89371ce2079f366a1 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1709490429 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1709489347 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1709489347 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -39,10 +41,8 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1709493702 5518052 de2a91c664d75f3971de4662dc6b5a65 ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1709493775 8221429 1cc0e148646d06aec61d4f80f1872ccd ""
   "c:/texlive/2023/texmf.cnf" 1709493685 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1730738202 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "main.tex" 1730738199 2363 2b57b13c8e56735ee42dcf4be4fabc96 ""
   (generated)
-  "main.aux"
-  "main.log"
-  "main.pdf"
+  "Table of Laplace Transforms.aux"
+  "Table of Laplace Transforms.log"
+  "Table of Laplace Transforms.pdf"
   (rewritten before read)

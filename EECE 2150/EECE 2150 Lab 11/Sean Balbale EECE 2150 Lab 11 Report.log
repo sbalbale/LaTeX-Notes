@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.3)  13 NOV 2024 13:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.3.3)  13 NOV 2024 19:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 11/main.tex"
-(c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 11/main.tex
+**"c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 11/Sean Balbale EECE 2150 Lab 11 Report.tex"
+(c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 11/Sean Balbale EECE 2150 Lab 11 Report.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 (c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
@@ -225,8 +225,8 @@ Package color Info: Driver file: pdftex.def on input line 149.
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count297
 \l__pdf_internal_box=\box65
-) (./main.aux)
-\openout1 = `main.aux'.
+) (./Sean Balbale EECE 2150 Lab 11 Report.aux)
+\openout1 = `"Sean Balbale EECE 2150 Lab 11 Report.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
@@ -301,22 +301,22 @@ File: translations-basic-dictionary-english.trsl (english translation file `tran
 Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 15.
  [1
 
-{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] (./main.aux)
+{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] (./Sean Balbale EECE 2150 Lab 11 Report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7572 strings out of 474115
- 173332 string characters out of 5747697
- 1927190 words of memory out of 5000000
- 29897 multiletter control sequences out of 15000+600000
+ 7573 strings out of 474115
+ 173772 string characters out of 5747697
+ 1929190 words of memory out of 5000000
+ 29898 multiletter control sequences out of 15000+600000
  560185 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,5n,80p,287b,531s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,5n,80p,319b,531s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on main.pdf (2 pages, 43724 bytes).
+Output written on "Sean Balbale EECE 2150 Lab 11 Report.pdf" (2 pages, 47674 bytes).
 PDF statistics:
  26 PDF objects out of 1000 (max. 8388607)
  15 compressed objects within 1 object stream

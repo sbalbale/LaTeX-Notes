@@ -1,6 +1,8 @@
 # Fdb version 4
-["pdflatex"] 1731521357.34785 "c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 11/main.tex" "main.pdf" "main" 1731521358.74153 0
-  "c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 11/main.tex" 1731521353 1355 1b436cfa431c2c2bdc2be2fb5ad640bb ""
+["pdflatex"] 1731542614.07017 "c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 11/Sean Balbale EECE 2150 Lab 11 Report.tex" "Sean Balbale EECE 2150 Lab 11 Report.pdf" "Sean Balbale EECE 2150 Lab 11 Report" 1731542615.42108 0
+  "Sean Balbale EECE 2150 Lab 11 Report.aux" 1731542615 438 74cc6ac4cad46332c2a3eceac731b309 "pdflatex"
+  "Sean Balbale EECE 2150 Lab 11 Report.tex" 1731526993 2350 fe8394ba6c4486feb0c81be63c0a0db3 ""
+  "c:/Users/seanb/Documents/LaTeX-Notes/EECE 2150/EECE 2150 Lab 11/Sean Balbale EECE 2150 Lab 11 Report.tex" 1731526993 2350 fe8394ba6c4486feb0c81be63c0a0db3 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1709490429 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1709489828 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1709489828 1288 655e228510b4c2a1abe905c368440826 ""
@@ -47,10 +49,8 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1709493702 5518052 de2a91c664d75f3971de4662dc6b5a65 ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1709493775 8221429 1cc0e148646d06aec61d4f80f1872ccd ""
   "c:/texlive/2023/texmf.cnf" 1709493685 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1731521358 438 74cc6ac4cad46332c2a3eceac731b309 "pdflatex"
-  "main.tex" 1731521353 1355 1b436cfa431c2c2bdc2be2fb5ad640bb ""
   (generated)
-  "main.aux"
-  "main.log"
-  "main.pdf"
+  "Sean Balbale EECE 2150 Lab 11 Report.aux"
+  "Sean Balbale EECE 2150 Lab 11 Report.log"
+  "Sean Balbale EECE 2150 Lab 11 Report.pdf"
   (rewritten before read)
