@@ -1,0 +1,142 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{nicematrix}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\title{HW8: Function Growth, Sequences \& Series}
+\author{}
+\date{Due: Nov 26, 2024 @ 11:59 PM}
+
+% Header
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Name: Sean Balbale}
+\fancyhead[R]{HW Group: None}
+
+\setlength\parindent{0pt}
+
+% Roman numerals for subsections
+\renewcommand{\thesubsection}{\Roman{subsection}}
+\renewcommand{\thesubsubsection}{\Roman{subsection}.\Roman{subsubsection}}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Problem 1 [36 pts]: Sequences \& Series}
+
+\subsection*{(i) Sequence: \( 18, 72, 288, 1152, 4608, 18432, \dots \)}
+
+\textbf{Type:} Geometric sequence (constant ratio \( r = 4 \)).
+
+\textbf{Expression for \( a_k \):}
+\[
+a_k = 18 \cdot 4^k
+\]
+
+\textbf{Sum of the first 11 terms:}
+\[
+S_{11} = 18 (\frac{1 - 4^{11}}{1 - 4}) = 25165818
+\]
+
+\subsection*{(ii) Sequence: \( -1, 1, 7, 17, 31, 49, \dots \)}
+
+\textbf{Type:} Quadratic sequence (constant second difference \( \Delta^2 = 4 \)).
+
+\textbf{Expression for \( a_k \):}
+\[
+a_k = 2k^2 - 4k + 1
+\]
+\textbf{Sum of the first 11 terms:}
+\[
+S_{11}=\sum_{k=1}^{11} (2k^2 - 4k + 1) = 759
+\]
+
+\subsection*{(iii) Sequence: \( 0, -1, -2, -3, -4, -5, \dots \)}
+
+\textbf{Type:} Arithmetic sequence (constant difference \( d = -1 \)).
+
+\textbf{Expression for \( a_k \):}
+\[
+a_k = -k
+\]
+
+\textbf{Sum of the first 11 terms:}
+\[
+S_{11} = \sum_{k=1}^{11} (-k) = -66
+\]
+
+\newpage
+
+\section*{Problem 2 [18 pts (3 each)]: Function Growth True/False}
+
+\begin{enumerate}
+    \item \( 5n^3 + 2n = O(n^4) \): \textbf{False} \\
+    The growth of \( 5n^3 + 2n \) is \( O(n^3) \), not \( O(n^4) \).
+
+    \item \( n^5 = O(7n + 1) \): \textbf{False} \\
+    \( n^5 \) grows faster than \( O(7n + 1) \).
+
+    \item If \( 2n^3 + 6n = O(h(n)) \), then \( 2n^3 + 6n > h(n) \): \textbf{False} \\
+    The statement misinterprets Big-O; \( O(h(n)) \) does not imply \( f(n) > h(n) \) for all \( n \).
+
+    \item \( 4n + 1 = \Omega(n^2) \): \textbf{False} \\
+    The growth of \( 4n + 1 \) is \( O(n) \), so it cannot be \( \Omega(n^2) \).
+
+    \item \( 6n^2 + 4 = O(6n^2 + 4) \): \textbf{True} \\
+    A function is always \( O \) of itself.
+
+    \item \( 5 \log_2 n = \Theta(7 \log_{10} n + 1)^2 \): \textbf{False} \\
+    The growth of \( \log n \) is much slower than \( (\log n)^2 \), so this cannot hold.
+\end{enumerate}
+
+
+\newpage
+
+\section*{Problem 3 [22 pts (14, 8 pts)]: Function Growth}
+
+\subsection*{(i) Function Columns}
+Group the following functions based on asymptotic growth rates (\( O \)):
+
+\begin{align*}
+\text{Column 1:} & \quad 10000 \\
+\text{Column 2:} & \quad \log_2 n, \; 3^{\log_3 n} \\
+\text{Column 3:} & \quad n \\
+\text{Column 4:} & \quad n \log_2 n, \; n \log_3 n \\
+\text{Column 5:} & \quad n^2, \; 100n \\
+\text{Column 6:} & \quad 2^n, \; 3^n \\
+\text{Column 7:} & \quad n! \\
+\end{align*}
+
+\subsection*{(ii) Simplest \( f(n) \) for \( 3n + 4n^2 + 3n! = O(f(n)) \):}
+\[
+f(n) = n!
+\]
+
+\newpage
+
+\section*{Problem 4 [24 pts (6 each)]: Demonstrating Function Growth}
+
+For each statement, find \( c, x_0 \) such that \( 0 \leq f(x) \leq c g(x) \) for \( x \geq x_0 \), or provide a justification if the statement is false.
+
+\begin{enumerate}
+    \item \( 2^x = O(3^x) \): \textbf{True}. \\
+    Exponential functions \( 2^x \) and \( 3^x \) satisfy \( 2^x \leq c \cdot 3^x \) for \( c = 1 \) and \( x_0 = 1 \).
+
+    \item \( 5x^3 + x = O(x^3) \): \textbf{True}. \\
+    The cubic term dominates, so \( 5x^3 + x \leq 6x^3 \) for \( c = 6 \) and \( x_0 = 1 \).
+
+    \item \( x^4 = O(\ln x) \): \textbf{False}. \\
+    Polynomial growth \( x^4 \) is faster than logarithmic growth \( \ln x \), so no constants \( c, x_0 \) can satisfy the inequality.
+
+    \item \( 4x + 7 = O(x^2) \): \textbf{True}. \\
+    For \( x \geq 8 \), \( 4x + 7 \leq x^2 \) can be satisfied with \( c = 1 \) and \( x_0 = 8 \).
+\end{enumerate}
+
+
+\end{document}
