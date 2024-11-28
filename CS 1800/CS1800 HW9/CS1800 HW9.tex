@@ -1,0 +1,170 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{nicematrix}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\title{HW9: Algorithms}
+\author{}
+\date{Due: Dec 3, 2024 @ 11:59 PM}
+
+% Header
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Name: Sean Balbale}
+\fancyhead[R]{HW Group: None}
+
+\setlength\parindent{0pt}
+
+% Roman numerals for subsections
+\renewcommand{\thesubsection}{\Roman{subsection}}
+\renewcommand{\thesubsubsection}{\Roman{subsection}.\Roman{subsubsection}}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Problem 1 [10 pts]: Log Practice}
+
+\begin{enumerate}
+    \item \( x = \log_2 64 \):
+    \begin{align*}
+    \log_2{64} &= x \\
+    2^x &= 64.
+    \end{align*}
+    Since \( 2^6 = 64 \), \( x = 6 \).
+
+    \item \( 5 = \log_2 x \):
+    \begin{align*}
+    \log_2{x} &= 5 \\
+    2^5 &= x.
+    \end{align*}
+    Therefore, \( x = 32 \).
+
+    \item \( 3 = \log_x 8 \):
+    \begin{align*}
+    \log_x 8 &= 3 \\
+    x^3 &= 8.
+    \end{align*}
+    Since \( 2^3 = 8 \), \( x = 2 \).
+
+    \item \( x = \log_2 \left(\frac{1024}{17}\right) + \log_2 17 \):
+    \begin{align*}
+    x &= \log_2 \left(\frac{1024}{17}\right) + \log_2 17 \\
+    &= \log_2 1024 - \log_2 17 + \log_2 17 \\
+    &= \log_2 1024.
+    \end{align*}
+    Since \( 1024 = 2^{10} \), \( x = 10 \).
+
+    \item \( x = \log_2 1024^{17} \):
+    \begin{align*}
+    x &= 17 \cdot \log_2 1024 \\
+    &= 17 \cdot 10 \\
+    &= 170.
+    \end{align*}
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 2 [20 pts]: Sorting Steps}
+
+\textbf{Given List:} \( 18, 45, 23, 2, -5, 10, 99, 0 \)
+
+\subsection*{(i) Insertion Sort}
+\[
+  \begin{aligned}
+    &\text{Start: } \quad \Box \, 18, 45, 23, 2, -5, 10, 99, 0 \\
+    &\text{Step 1: } \quad 18 \Box \, 45, 23, 2, -5, 10, 99, 0 \\
+    &\text{Step 2: } \quad 18, 45 \Box \, 23, 2, -5, 10, 99, 0 \\
+    &\text{Step 3: } \quad 18, 23, 45 \Box \, 2, -5, 10, 99, 0 \\
+    &\text{Step 4: } \quad 2, 18, 23, 45 \Box \, -5, 10, 99, 0 \\
+    &\text{Step 5: } \quad -5, 2, 18, 23, 45 \Box \, 10, 99, 0 \\
+    &\text{Step 6: } \quad -5, 2, 10, 18, 23, 45 \Box \, 99, 0 \\
+    &\text{Step 7: } \quad -5, 2, 10, 18, 23, 45, 99 \Box \, 0 \\
+    &\text{Final: } \quad -5, 0, 2, 10, 18, 23, 45, 99.
+  \end{aligned}
+\]
+
+\subsection*{(ii) Merge Sort}
+\[
+  \begin{aligned}
+    &\text{Step 1: } [18, 45, 23, 2] \quad \text{and} \quad [-5, 10, 99, 0] \\
+    &\text{Step 2: } [18, 45], [23, 2] \quad \text{and} \quad [-5, 10], [99, 0] \\
+    &\text{Step 3: } [18], [45], [23], [2], [-5], [10], [99], [0] \\
+    &\text{Merge: } [18, 45], [2, 23], [-5, 10], [0, 99] \\
+    &\text{Merge: } [2, 18, 23, 45], [-5, 0, 10, 99] \\
+    &\text{Final: } [-5, 0, 2, 10, 18, 23, 45, 99].
+  \end{aligned}
+\]
+
+\newpage
+
+\section*{Problem 3 [24 pts]: Three Stooges}
+
+\begin{enumerate}
+  \item Larry faster than Moe:
+    \[
+      T_L(n) = 2\sqrt{n}, \quad T_M(n) = n \implies 2\sqrt{n} < n \implies n > 4.
+    \]
+
+  \item Curly faster than Moe:
+    \[
+      T_C(n) = \log_2{n}, \quad T_M(n) = n \implies \log_2{n} < n \implies n > 2.
+    \]
+
+  \item Curly faster than Larry:
+    \[
+      T_C(n) = \log_2{n}, \quad T_L(n) = 2\sqrt{n} \implies \log_2{n} < 2\sqrt{n}.
+    \]
+    Solve numerically, \( n > 16 \).
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 4 [24 pts]: Recurrence}
+
+Solve \( T(n) = T(n-2) \cdot 7 \):
+\[
+  T(n) = T(n-2) \cdot 7 = T(n-4) \cdot 7^2 = \dots = T(1) \cdot 7^{n/2}.
+\]
+Base case \( T(1) = 1 \):
+\[
+  T(n) = 7^{n/2}.
+\]
+
+\newpage
+
+\section*{Problem 5 [2 extra credit pts]: Bubble Sort Extra Credit}
+
+\subsection*{(i) Bubble Sort's Advantage}
+
+Bubble Sort has an advantage over other sorting methods for nearly-\( d \)-sorted lists because it performs localized swaps, ensuring that each element moves closer to its sorted position in every pass. Unlike other sorting methods, Bubble Sort avoids unnecessary comparisons and shifts for elements already near their correct positions. This localized behavior minimizes unnecessary operations, making Bubble Sort particularly efficient for nearly-sorted lists.
+
+\subsection*{(ii) Why Bubble Sort Needs Only \( d \) Passes}
+
+Bubble Sort works by repeatedly passing through the list, swapping adjacent elements that are out of order. For a nearly-\( d \)-sorted list:
+\begin{enumerate}
+  \item Each element is at most \( d \) positions away from its sorted position.
+  \item During a single pass, any element can move at most one position closer to its correct position because Bubble Sort swaps adjacent elements.
+  \item Therefore, in the worst case, it takes at most \( d \) passes to move every element into its correct position.
+\end{enumerate}
+
+\textbf{Explanation:} An element \( x \) that is \( d \) positions away from its correct position will require at most \( d \) swaps to "bubble" to its correct position. The algorithm terminates early when no swaps are needed, optimizing its performance for nearly-sorted lists.
+
+\subsection*{Example}
+
+Consider the nearly-\( d \)-sorted list \( A = [1, 5, 10, 15, 9, 20, 34, 57, 91, 66] \) (\( d = 2 \)):
+
+\begin{itemize}
+  \item In the first pass, the out-of-order element \( 9 \) moves from index \( 4 \) to its correct position at index \( 2 \), and \( 66 \) moves from index \( 9 \) closer to index \( 8 \).
+  \item In the second pass, \( 66 \) reaches its correct position at index \( 8 \).
+  \item After \( d = 2 \) passes, the list is fully sorted.
+\end{itemize}
+
+Thus, Bubble Sort takes at most \( d \) passes to sort a nearly-\( d \)-sorted list.
+
+\end{document}
