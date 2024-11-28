@@ -31,40 +31,40 @@
 \section*{Problem 1 [10 pts]: Log Practice}
 
 \begin{enumerate}
-    \item \( x = \log_2 64 \):
+  \item \( x = \log_2 64 \):
     \begin{align*}
-    \log_2{64} &= x \\
-    2^x &= 64.
+      \log_2{64} &= x \\
+      2^x &= 64.
     \end{align*}
     Since \( 2^6 = 64 \), \( x = 6 \).
 
-    \item \( 5 = \log_2 x \):
+  \item \( 5 = \log_2 x \):
     \begin{align*}
-    \log_2{x} &= 5 \\
-    2^5 &= x.
+      \log_2{x} &= 5 \\
+      2^5 &= x.
     \end{align*}
     Therefore, \( x = 32 \).
 
-    \item \( 3 = \log_x 8 \):
+  \item \( 3 = \log_x 8 \):
     \begin{align*}
-    \log_x 8 &= 3 \\
-    x^3 &= 8.
+      \log_x 8 &= 3 \\
+      x^3 &= 8.
     \end{align*}
     Since \( 2^3 = 8 \), \( x = 2 \).
 
-    \item \( x = \log_2 \left(\frac{1024}{17}\right) + \log_2 17 \):
+  \item \( x = \log_2 \left(\frac{1024}{17}\right) + \log_2 17 \):
     \begin{align*}
-    x &= \log_2 \left(\frac{1024}{17}\right) + \log_2 17 \\
-    &= \log_2 1024 - \log_2 17 + \log_2 17 \\
-    &= \log_2 1024.
+      x &= \log_2 \left(\frac{1024}{17}\right) + \log_2 17 \\
+      &= \log_2 1024 - \log_2 17 + \log_2 17 \\
+      &= \log_2 1024.
     \end{align*}
     Since \( 1024 = 2^{10} \), \( x = 10 \).
 
-    \item \( x = \log_2 1024^{17} \):
+  \item \( x = \log_2 1024^{17} \):
     \begin{align*}
-    x &= 17 \cdot \log_2 1024 \\
-    &= 17 \cdot 10 \\
-    &= 170.
+      x &= 17 \cdot \log_2 1024 \\
+      &= 17 \cdot 10 \\
+      &= 170.
     \end{align*}
 \end{enumerate}
 
@@ -105,35 +105,141 @@
 
 \section*{Problem 3 [24 pts]: Three Stooges}
 
+We determine the smallest \( n \) (whole number) that ensures faster sorting for each case.
+
 \begin{enumerate}
-  \item Larry faster than Moe:
+  \item \textbf{Larry's computer sorts faster than Moe's:}
+
+    Larry’s sorting time:
     \[
-      T_L(n) = 2\sqrt{n}, \quad T_M(n) = n \implies 2\sqrt{n} < n \implies n > 4.
+      T_L(n) = 2\sqrt{n},
+    \]
+    Moe’s sorting time:
+    \[
+      T_M(n) = n.
     \]
 
-  \item Curly faster than Moe:
+    For Larry's computer to sort faster than Moe's:
+    \begin{align*}
+      T_L(n) &< T_M(n), \\
+      2\sqrt{n} &< n.
+    \end{align*}
+
+    Dividing through by \( \sqrt{n} \) (valid for \( n > 0 \)):
     \[
-      T_C(n) = \log_2{n}, \quad T_M(n) = n \implies \log_2{n} < n \implies n > 2.
+      2 < \sqrt{n}.
     \]
 
-  \item Curly faster than Larry:
+    Squaring both sides:
     \[
-      T_C(n) = \log_2{n}, \quad T_L(n) = 2\sqrt{n} \implies \log_2{n} < 2\sqrt{n}.
+      n > 4.
     \]
-    Solve numerically, \( n > 16 \).
+
+    \textbf{Answer:} The smallest \( n \) such that Larry’s computer sorts faster than Moe’s is:
+    \[
+      n = 4.
+    \]
+    \newline
+
+  \item \textbf{Curly's computer always sorts faster than Moe's:}
+
+    Curly’s sorting time:
+    \[
+      T_C(n) = \log_2 n,
+    \]
+    Moe’s sorting time:
+    \[
+      T_M(n) = n.
+    \]
+
+    \textbf{Explanation:} For all \( n > 0 \), \( \log_2 n \) grows slower than \( n \). Therefore:
+    \[
+      T_C(n) < T_M(n) \quad \text{for all } n > 0.
+    \]
+
+    \textbf{Answer:} Curly’s computer always sorts faster than Moe's for \( n > 0 \).
+    \newline
+
+  \item \textbf{Curly's computer always sorts faster than Larry's:}
+
+    Curly’s sorting time:
+    \[
+      T_C(n) = \log_2 n,
+    \]
+    Larry’s sorting time:
+    \[
+      T_L(n) = 2\sqrt{n}.
+    \]
+
+    \textbf{Explanation:} For all \( n > 0 \), \( \log_2 n \) grows slower than \( 2\sqrt{n} \). Therefore:
+    \[
+      T_C(n) < T_L(n) \quad \text{for all } n > 0.
+    \]
+
+    \textbf{Answer:} Curly’s computer always sorts faster than Larry’s for \( n > 0 \).
 \end{enumerate}
 
 \newpage
 
 \section*{Problem 4 [24 pts]: Recurrence}
 
-Solve \( T(n) = T(n-2) \cdot 7 \):
+We are solving the recurrence relation:
 \[
-  T(n) = T(n-2) \cdot 7 = T(n-4) \cdot 7^2 = \dots = T(1) \cdot 7^{n/2}.
+  T(n) = T(n-2) \cdot 7,
 \]
-Base case \( T(1) = 1 \):
+with the base case \( T(1) = 1 \).
+
+\subsection*{Solution}
+
+\textbf{Step 1: Unroll the recurrence relation}
+
+Starting from \( T(n) = T(n-2) \cdot 7 \):
+\begin{align*}
+  T(n) &= T(n-2) \cdot 7 \\
+  &= \big(T(n-4) \cdot 7\big) \cdot 7 \\
+  &= T(n-4) \cdot 7^2.
+\end{align*}
+
+Substituting \( T(n-4) \):
+\begin{align*}
+  T(n) &= \big(T(n-6) \cdot 7^2\big) \cdot 7 \\
+  &= T(n-6) \cdot 7^3.
+\end{align*}
+
+Generalizing for \( k \) steps:
 \[
-  T(n) = 7^{n/2}.
+  T(n) = T(n-2k) \cdot 7^k.
+\]
+
+---
+
+\textbf{Step 2: Determine the stopping condition}
+
+The recurrence stops when \( n - 2k = 1 \) because \( T(1) \) is the base case. Solving for \( k \):
+\begin{align*}
+  n - 2k &= 1 \\
+  k &= \frac{n-1}{2}.
+\end{align*}
+
+---
+
+\textbf{Step 3: Plug \( k = \frac{n-1}{2} \) into the general form}
+
+Substitute \( k = \frac{n-1}{2} \) into \( T(n) = T(n-2k) \cdot 7^k \):
+\begin{align*}
+  T(n) &= T(1) \cdot 7^{\frac{n-1}{2}}.
+\end{align*}
+
+Since \( T(1) = 1 \), this simplifies to:
+\[
+  T(n) = 7^{\frac{n-1}{2}}.
+\]
+
+---
+
+\subsection*{Final Answer}
+\[
+  T(n) = 7^{\frac{n-1}{2}}
 \]
 
 \newpage
