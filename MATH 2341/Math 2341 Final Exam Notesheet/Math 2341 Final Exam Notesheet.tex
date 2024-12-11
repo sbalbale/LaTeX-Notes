@@ -1,0 +1,124 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{multicol}
+\usepackage{nicematrix}
+\setlength{\columnsep}{0.7cm} 
+\setlength{\parindent}{0in}
+\title{\raggedright \large Math 2341 Final Exam Notesheet \hfill Sean Balbale \hfill December 2024 \vspace{-3em}}
+\date{}
+
+\begin{document}
+% \maketitle
+\textbf{Math 2341 Final Exam Notesheet \hfill Sean Balbale \hfill December 2024}
+\begin{multicols}{2}
+
+\section*{Key Topics}
+The exam covers sections from Chapters 1-7.
+
+\subsection*{Always Included Questions}
+\begin{itemize}
+    \item Mixing Problems (1.4)
+    \item Exact Equations (1.5)
+    \item Solving Equations with Laplace Transform (3.2-3.4)
+    \item Undetermined Coefficients (2.5)
+    \item Spring Problems (2.4, 2.6)
+    \item Eigenvalues and Eigenvectors (6.1)
+    \item Solving Systems of Differential Equations (7.3)
+\end{itemize}
+
+\section*{Mixing Problems (1.4)}
+\textbf{Differential Equation Form:}
+\[
+\frac{dA}{dt} = \text{rate in} - \text{rate out}
+\]
+\textbf{Example 1:}  
+Tank with 200 gallons, 50 lbs of salt initially. Brine with \(1\) lb/gal flows in at \(5\) gal/min, same outflow rate.
+\[
+\frac{dA}{dt} = 5(1) - \frac{5A}{200}, \quad A(t) = 200 - 150e^{-t/40}
+\]
+
+\textbf{Example 2:}  
+Tank starts with 500 L water and 5 kg salt. Brine with \(0.5\) kg/L enters at \(10\) L/min, \(5\) L/min outflow.
+\[
+\frac{dA}{dt} = 10(0.5) - \frac{5A}{500+t}
+\]
+
+\section*{Exact Equations (1.5)}
+\textbf{Form:} \( M(x, y) + N(x, y)y' = 0 \)  
+\textbf{Test for Exactness:}  
+\[
+\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}
+\]
+\textbf{Example:}  
+\[
+(2x + y^2) + (2y + xy)y' = 0
+\]
+Integrate \( M(x, y) \):  
+\[
+\phi(x, y) = x^2 + xy^2 + g(y)
+\]
+Substitute and solve: \( g(y) = C \).
+
+\section*{Laplace Transform (3.2-3.4)}
+\textbf{Laplace Transform of Derivatives:}
+\[
+\mathcal{L}\{f'(t)\} = sF(s) - f(0), \quad \mathcal{L}\{f''(t)\} = s^2F(s) - sf(0) - f'(0)
+\]
+\textbf{Example: Solve \( y'' + 2y' + y = e^{-t} \), \( y(0) = 0, y'(0) = 1 \).}  
+\[
+s^2Y(s) + 2sY(s) + Y(s) = \frac{1}{s+1}
+\]
+Solution:
+\[
+Y(s) = \frac{1}{(s+1)^2(s+1)}
+\]
+
+\section*{Undetermined Coefficients (2.5)}
+\textbf{Example: Solve \( y'' + 3y' + 2y = e^x \).}  
+\[
+\text{Characteristic roots: } r_1 = -1, r_2 = -2
+\]
+Guess \( y_p = Ae^x \), substitute to find \( A \).
+
+\section*{Spring Problems (2.4, 2.6)}
+\textbf{Form:} \( mx'' + cx' + kx = F(t) \)  
+Cases:
+\begin{itemize}
+    \item Free Oscillation: \( c = 0, F(t) = 0 \)
+    \[
+    x(t) = C_1\cos(\omega t) + C_2\sin(\omega t)
+    \]
+    \item Damped Oscillation (\( c > 0 \)): Analyze overdamped, underdamped, or critically damped cases.
+\end{itemize}
+
+\section*{Eigenvalues and Eigenvectors (6.1)}
+\textbf{Characteristic Polynomial:}
+\[
+\text{det}(A - \lambda I) = 0
+\]
+\textbf{Example:}
+\[
+A = \begin{bNiceMatrix}
+4 & 2 \\ 
+1 & 3
+\end{bNiceMatrix}, \quad \text{det}(A - \lambda I) = (\lambda - 5)(\lambda - 2)
+\]
+Eigenvalues: \( \lambda = 5, 2 \).
+
+\section*{Solving Systems of Equations (7.3)}
+\textbf{Example:}
+\[
+\vec{x}' = \begin{bNiceMatrix}
+2 & -1 \\ 
+1 & 2
+\end{bNiceMatrix} \vec{x}
+\]
+Eigenvalues: \( \lambda = 3, 1 \).  
+Solutions:
+\[
+\vec{x}(t) = c_1e^{3t}\vec{v_1} + c_2e^{t}\vec{v_2}
+\]
+
+\end{multicols}
+\end{document}
