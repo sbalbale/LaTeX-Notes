@@ -12,21 +12,6 @@
 % \maketitle
 \textbf{Math 2341 Final Exam Notesheet \hfill Sean Balbale \hfill December 2024}
 \begin{multicols}{2}
-
-\section*{Key Topics}
-The exam covers sections from Chapters 1-7.
-
-\subsection*{Always Included Questions}
-\begin{itemize}
-    \item Mixing Problems (1.4)
-    \item Exact Equations (1.5)
-    \item Solving Equations with Laplace Transform (3.2-3.4)
-    \item Undetermined Coefficients (2.5)
-    \item Spring Problems (2.4, 2.6)
-    \item Eigenvalues and Eigenvectors (6.1)
-    \item Solving Systems of Differential Equations (7.3)
-\end{itemize}
-
 \section*{Mixing Problems (1.4)}
 \textbf{Differential Equation Form:}
 \[
@@ -75,11 +60,33 @@ Y(s) = \frac{1}{(s+1)^2(s+1)}
 \]
 
 \section*{Undetermined Coefficients (2.5)}
-\textbf{Example: Solve \( y'' + 3y' + 2y = e^x \).}  
+\textbf{Form:} \( y'' + ay' + by = f(t) \)
+where
+\begin{enumerate}
+    \item f(x) = a polynomial in x
+    \item f(x) = \( e^{ax} \) (a polynomial in x)
+    \item f(x) = \( e^{ax} \) (cos(bx) or sin(bx)) (a polynomial in x)
+\end{enumerate}
+then the particular solution $y_p$ is:
+\begin{enumerate}
+    \item $y_p = x^k$ (a general polynomial of the same degree) \\
+    where $k$ is the number of times that 0 is a root of the characteristic equation.
+    \item $y_p = x^k e^{ax}$ (a general polynomial of the same degree) \\
+    where $k$ is the number of times that $a$ is a root of the characteristic equation.
+    \item $y_p = x^k e^{ax}$ [(a general polynomial of the same degree) cos(bx) + (a general polynomial of the same degree) sin(bx)] \\
+    where $k$ is the number of times that $a + bi$ is a root of the characteristic equation.
+\end{enumerate}
+
+\textbf{Example 1: Solve \( y'' + 3y' + 2y = 4e^{-3x} \).}  
 \[
-\text{Characteristic roots: } r_1 = -1, r_2 = -2
+\text{Characteristic roots: } r = -1, -2
 \]
-Guess \( y_p = Ae^x \), substitute to find \( A \).
+Guess \( y_p = x^0 e^{-3x}(A)\), substitute to find \( A \). \\
+\textbf{Example 2: Solve \( y'' + 4y = 2cos(3x) \).}
+\[
+\text{Characteristic roots: } r= 0 \pm 2i
+\]
+Guess \( y_p = x^0 e^{0t} (A\cos(3t) + B\sin(3t)) \), substitute to find \( A, B \).
 
 \section*{Spring Problems (2.4, 2.6)}
 \textbf{Form:} \( mx'' + cx' + kx = F(t) \)  
