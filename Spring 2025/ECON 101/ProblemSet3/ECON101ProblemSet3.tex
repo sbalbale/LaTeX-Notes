@@ -1,0 +1,247 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+
+\title{Economics 101: Basic Economic Principles\\Problem Set \#3 Solutions}
+\author{Sean Balbale}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Part I: Multiple Choice}
+
+\subsection*{Problem 1: Framing Effects}
+\textbf{Problem:} Which of the following questions best illustrates the framing effects studied by behavioral economists?
+\begin{enumerate}[label=(\Alph*)]
+  \item Which would you rather have after lunch today: an apple or an orange?
+  \item How much would you rather receive: \$100 while everyone else gets \$110, or \$80 like everyone else?
+  \item Where would you rather invest your funds: stocks or gold certificates?
+  \item What would you rather do: go to college and postpone having a full-time job, or forgo college and take a full-time job immediately?
+\end{enumerate}
+\textbf{Solution:} Framing effects occur when the way in which choices are presented influences decisions. Option (B) sets up a comparison that highlights differences based on reference points.
+\medskip
+
+\textbf{Answer:} \textbf{(B)}
+
+\subsection*{Problem 2: Marginal Cost}
+\textbf{Problem:} If a firm wanted to know how much it would save by producing one less unit of output, which cost measure should it use?
+\begin{enumerate}[label=(\Alph*)]
+  \item Marginal Cost (MC)
+  \item Average Total Cost (ATC)
+  \item Average Variable Cost (AVC)
+  \item Average Fixed Cost (AFC)
+\end{enumerate}
+\textbf{Solution:} The marginal cost (MC) is defined as the change in total cost when production is increased or decreased by one unit. Thus, to know the savings from reducing output by one unit, the firm examines the marginal cost.
+\medskip
+
+\textbf{Answer:} \textbf{(A)}
+
+\section*{Part II: Production Costs in the Short and Long Run}
+
+\subsection*{Problem 1: Jane's Commuter Service}
+\textbf{Problem Statement:} \\
+Jane quit her job at IBM (earning \$50,000 per year) and cashed in \$50,000 in corporate bonds (earning 10\% annually) to buy a mini-bus. She establishes a commuter service between Lincoln and Omaha with 1,000 customers who each pay \$400 per year. Out of each payment, \$280 goes toward gas, maintenance, insurance, and depreciation. In addition, Jane’s entrepreneurial ability would have yielded a normal profit of \$5,000 per year in an alternative venture.
+\medskip
+
+\textbf{(a) Total Revenues and Accounting Profit:} \\
+\[
+  \text{Total Revenue} = 1{,}000 \times \$400 = \$400{,}000.
+\]
+Explicit costs per year are:
+\[
+  \text{Total Explicit Costs} = 1{,}000 \times \$280 = \$280{,}000.
+\]
+Thus,
+\[
+  \text{Accounting Profit} = \$400{,}000 - \$280{,}000 = \$120{,}000.
+\]
+\medskip
+
+\textbf{(b) Implicit Costs:} \\
+\begin{itemize}[noitemsep]
+  \item Foregone IBM salary: \$50,000.
+  \item Foregone interest on bonds: \$50,000 $\times$ 10\% = \$5,000.
+  \item Foregone alternative entrepreneurial profit: \$5,000.
+\end{itemize}
+Total implicit cost = \$50,000 + \$5,000 + \$5,000 = \$60,000.
+\medskip
+
+\textbf{(c) Economic (Pure) Profit:} \\
+\[
+  \text{Economic Profit} = \text{Accounting Profit} - \text{Implicit Costs} = \$120{,}000 - \$60{,}000 = \$60{,}000.
+\]
+Since the economic profit is positive, Jane should remain in business.
+
+\bigskip
+\subsection*{Problem 2: Labor Productivity}
+\textbf{Problem Statement:} \\
+A firm’s production function is summarized in the table below. The quantity of labor is increased while all other inputs remain constant.
+\[
+  \begin{array}{|c|c|c|c|}
+    \hline
+    \text{Labor} & \text{Total Product} & \text{Marginal Product} & \text{Average Product} \\
+    \hline
+    0 & 0   & --- & --- \\
+    \hline
+    1 & 40  & ?   & ? \\
+    \hline
+    2 & 100 & ?   & ? \\
+    \hline
+    3 & 165 & ?   & ? \\
+    \hline
+    4 & 200 & ?   & ? \\
+    \hline
+    5 & 225 & ?   & ? \\
+    \hline
+    6 & 240 & ?   & ? \\
+    \hline
+    7 & 245 & ?   & ? \\
+    \hline
+    8 & 240 & ?   & ? \\
+    \hline
+  \end{array}
+\]
+\medskip
+
+\textbf{Solution:} \\
+\underline{\textbf{Marginal Product (MP):}}
+\begin{align*}
+  \text{MP}_1 &= 40 - 0 = 40,\\[1mm]
+  \text{MP}_2 &= 100 - 40 = 60,\\[1mm]
+  \text{MP}_3 &= 165 - 100 = 65,\\[1mm]
+  \text{MP}_4 &= 200 - 165 = 35,\\[1mm]
+  \text{MP}_5 &= 225 - 200 = 25,\\[1mm]
+  \text{MP}_6 &= 240 - 225 = 15,\\[1mm]
+  \text{MP}_7 &= 245 - 240 = 5,\\[1mm]
+  \text{MP}_8 &= 240 - 245 = -5.
+\end{align*}
+
+\underline{\textbf{Average Product (AP):}}
+\begin{align*}
+  \text{AP}_1 &= \frac{40}{1} = 40,\\[1mm]
+  \text{AP}_2 &= \frac{100}{2} = 50,\\[1mm]
+  \text{AP}_3 &= \frac{165}{3} \approx 55,\\[1mm]
+  \text{AP}_4 &= \frac{200}{4} = 50,\\[1mm]
+  \text{AP}_5 &= \frac{225}{5} = 45,\\[1mm]
+  \text{AP}_6 &= \frac{240}{6} = 40,\\[1mm]
+  \text{AP}_7 &= \frac{245}{7} \approx 35,\\[1mm]
+  \text{AP}_8 &= \frac{240}{8} = 30.
+\end{align*}
+\medskip
+
+\textbf{Interpretation:} The average product increases from 40 to about 55 as labor increases from 1 to 3 workers, then declines. This indicates increasing average returns to labor up to 3 workers and decreasing average returns beyond that. Likewise, marginal product peaks at 65 (with the 3rd worker) and declines afterward.
+
+\bigskip
+\subsection*{Problem 3: Textbook Problems \#2 and \#6}
+
+\subsubsection*{Textbook Problem 2: Short-Run vs. Long-Run Adjustments}
+\textbf{Problem:} Determine whether each of the following adjustments is a short-run or a long-run adjustment.
+\begin{enumerate}[label=(\alph*)]
+  \item Wendy’s builds a new restaurant.
+  \item Harley-Davidson Corporation hires 200 more production workers.
+  \item A farmer increases the amount of fertilizer used on his corn crop.
+  \item An Alcoa aluminum plant adds a third shift of workers.
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{itemize}[noitemsep]
+  \item \textbf{(a)} Building a new restaurant requires a change in the firm's capital (a fixed input), so it is a \textbf{long-run adjustment}.
+  \item \textbf{(b)} Hiring additional workers uses a variable input without changing the plant's size; this is a \textbf{short-run adjustment}.
+  \item \textbf{(c)} Increasing the amount of fertilizer is a change in a variable input and is a \textbf{short-run adjustment}.
+  \item \textbf{(d)} Adding a third shift uses the existing capital more intensively (without building new capacity) and is a \textbf{short-run adjustment}.
+\end{itemize}
+
+\textbf{Answer:}
+\begin{enumerate}[label=(\alph*)]
+  \item Long-run adjustment.
+  \item Short-run adjustment.
+  \item Short-run adjustment.
+  \item Short-run adjustment.
+\end{enumerate}
+
+\subsubsection*{Textbook Problem 6: Plant-Size Choices and the Long-Run Average Cost Curve}
+\textbf{Problem Statement:} \\
+A firm has exactly three plant-size options, each represented by its own ATC curve (labeled \(\text{ATC}_1\), \(\text{ATC}_2\), and \(\text{ATC}_3\)). The figure shows vertical lines at outputs 80, 150, and 240, indicating where one plant size ceases to be the most cost-efficient and another becomes more efficient. Answer the following:
+\begin{enumerate}[label=(\alph*)]
+  \item Which plant size will the firm choose in producing 50 units of output?
+  \item Which plant size will the firm choose in producing 130 units of output?
+  \item Which plant size will the firm choose in producing 160 units of output?
+  \item Which plant size will the firm choose in producing 250 units of output?
+\end{enumerate}
+Also, draw the firm’s long-run average-cost curve on the diagram and describe its shape.
+
+\subsection*{Solution}
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{50 units:} Because 50 units is below 80, \(\text{ATC}_1\) (the smallest plant size) gives the lowest average total cost. The firm chooses plant size 1.
+  \item \textbf{130 units:} Between 80 and 150, \(\text{ATC}_2\) (the medium plant) is the most efficient. The firm chooses plant size 2.
+  \item \textbf{160 units:} Between 150 and 240, \(\text{ATC}_2\) (the medium plant) stays the lowest-cost option. The firm chooses plant size 2 again.
+  \item \textbf{250 units:} Beyond 240 units, \(\text{ATC}_3\) remains the relevant (and only) plant size among the three that can efficiently handle that scale of output. The firm chooses plant size 3.
+\end{enumerate}
+
+\subsection*{Long-Run Average-Cost Curve}
+The firm’s long-run average-cost curve (LRAC) is formed by taking the \emph{lowest} average total cost from among the three plant sizes at each level of output. Graphically, you:
+\begin{itemize}[noitemsep]
+  \item Draw each of the three ATC curves (\(\text{ATC}_1\), \(\text{ATC}_2\), \(\text{ATC}_3\)).
+  \item At each quantity of output, identify which ATC curve lies \emph{lowest}.
+  \item ``Trace'' along those minimum points to create a piecewise curve.
+\end{itemize}
+This piecewise envelope curve is the LRAC. It typically has a \emph{U shape} overall (reflecting economies of scale at lower output levels and diseconomies of scale at higher levels), but in this simplified example it has \emph{kinks} at outputs 80 and 240, where the optimal plant size changes.
+
+\bigskip
+\begin{center}
+  \begin{tikzpicture}[scale=1.0]
+
+    %%% Axes %%%
+    \draw[->] (0,0) -- (10,0) node[right]{\small $Q$};
+    \draw[->] (0,0) -- (0,5) node[above]{\small ATC};
+
+    %%% ATC1 (small plant) %%%
+    % Domain from x=0 to x=3.7 (approx.), minimum near x=2.7
+    \draw[thick,red,domain=0:2.7,smooth,variable=\x]
+    plot (\x,{2 + 0.05*(\x-2.7)^2});
+    \node[red] at (1.4,2.3) {\small ATC$_1$};
+
+    %%% ATC2 (medium plant) %%%
+    % Domain from x=3.2 to x=6.5, minimum near x=5
+    \draw[thick,blue,domain=2.7:7.5,smooth,variable=\x]
+    % plot (\x,{1.8 + 0.04*(\x-5)^2});
+    plot (\x,{1.8 + 0.04*(\x-5)^2});
+    \node[blue] at (5.8,2.2) {\small ATC$_2$};
+
+    %%% ATC3 (large plant) %%%
+    % Domain from x=6.2 to x=10, minimum near x=8
+    \draw[thick,green!70!black,domain=7.5:10,smooth,variable=\x]
+    plot (\x,{2 + 0.03*(\x-8)^2});
+    \node[green!70!black] at (8.8,2.6) {\small ATC$_3$};
+
+    %%% Vertical lines at Q=80, 150, 240 (scaled) %%%
+    % Approximate mapping: 80 ~ 2.7, 150 ~ 5, 240 ~ 8
+    \draw[dashed] (2.7,0) -- (2.7,5) node[above] {\small 80};
+    \draw[dashed] (5,0)   -- (5,5)   node[above] {\small 150};
+    \draw[dashed] (7.5,0)   -- (7.5,5)   node[above] {\small 240};
+
+  \end{tikzpicture}
+\end{center}
+
+
+
+
+
+\medskip
+\textbf{Summary:}
+\begin{itemize}[noitemsep]
+  \item \textbf{(a)} 50 units: \(\text{ATC}_1\).
+  \item \textbf{(b)} 130 units: \(\text{ATC}_2\).
+  \item \textbf{(c)} 160 units: \(\text{ATC}_2\).
+  \item \textbf{(d)} 250 units: \(\text{ATC}_3\).
+\end{itemize}
+The long-run average-cost curve is the piecewise ``envelope'' of these three short-run ATC curves, forming a kinked curve that shows the lowest attainable average cost at each output level.
+
+\end{document}
