@@ -1,0 +1,193 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+
+\title{Economics 101: Basic Economic Principles\\Problem Set \#4 Solutions}
+\author{Sean Balbale}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Part I: Multiple Choice}
+
+\subsection*{Problem 1}
+\textbf{Problem:} Price is constant or “given” to the individual firm selling in a purely competitive market because:
+\begin{enumerate}[label=(\Alph*)]
+  \item The firm's demand curve is downward-sloping.
+  \item There are no good substitutes for the firm's product.
+  \item Product differentiation is reinforced by extensive advertising.
+  \item Each seller supplies a negligible fraction of total supply.
+\end{enumerate}
+
+\textbf{Solution:} In a purely competitive market each firm is a price taker because its output is too small relative to the entire market to affect the market price. Thus, the correct answer is \textbf{(D)}.
+
+\subsection*{Problem 2}
+\textbf{Problem:} Consider the table below. At what point would a purely competitive firm cover all of its costs and earn only normal profits (i.e., zero economic profits)?
+\[
+\begin{array}{cccc}
+\text{Price} & \text{Quantity} & \text{TFC} & \text{TVC} \\
+\$5 & 5 & \$25 & \$10 \\
+\$5 & 10 & \$25 & \$20 \\
+\$5 & 15 & \$25 & \$50 \\
+\$5 & 20 & \$25 & \$60 \\
+\end{array}
+\]
+At output level:
+\begin{enumerate}[label=(\Alph*)]
+  \item 15.
+  \item 10.
+  \item 20.
+  \item 5.
+\end{enumerate}
+
+\textbf{Solution:} At an output of 15, total revenue is \$5 $\times$ 15 = \$75 and total cost is TFC + TVC = \$25 + \$50 = \$75. This means the firm earns zero economic profit. Therefore, the answer is \textbf{(A)}.
+
+\bigskip
+\section*{Part II: Perfect Competition in the Short Run (Problem \#4)}
+This problem (with parts a--f) is taken from the textbook. The firm’s cost data are given in the table below. In the table the columns represent:
+\begin{itemize}[noitemsep]
+  \item \textbf{AFC:} Average Fixed Cost,
+  \item \textbf{AVC:} Average Variable Cost,
+  \item \textbf{ATC:} Average Total Cost, and
+  \item \textbf{MC:} Marginal Cost.
+\end{itemize}
+The fixed cost is \$60 for all output levels.
+\[
+\begin{array}{c|cccc}
+Q & \text{AFC} & \text{AVC} & \text{ATC} & \text{MC} \\
+\hline
+1  & 60.00 & 45.00  & 105.00 & 45 \\
+2  & 30.00 & 42.50  & 72.50  & 40 \\
+3  & 20.00 & 40.00  & 60.00  & 35 \\
+4  & 15.00 & 37.50  & 52.50  & 30 \\
+5  & 12.00 & 37.00  & 49.00  & 35 \\
+6  & 10.00 & 37.50  & 47.50  & 40 \\
+7  & 8.57  & 38.57  & 47.14  & 45 \\
+8  & 7.50  & 40.63  & 48.13  & 55 \\
+9  & 6.67  & 43.33  & 50.00  & 65 \\
+10 & 6.00  & 46.50  & 52.50  & 75 \\
+\end{array}
+\]
+
+\subsection*{(a) Analysis at Product Price \$56}
+\textbf{Question:} At a product price of \$56, will the firm produce in the short run? If so, what is the profit-maximizing (or loss-minimizing) output? What is the economic profit per unit?
+
+\textbf{Solution:}
+\begin{itemize}[noitemsep]
+  \item In perfect competition, the firm produces where \(P = MC\) as long as \(P \geq AVC\).
+  \item Here, \(P = \$56\). Checking the MC schedule, we note that:
+    \begin{itemize}[noitemsep]
+      \item \(MC(8) = 55\) (just below 56) and
+      \item \(MC(9) = 65\) (above 56).
+    \end{itemize}
+  \item Thus, the firm produces \(Q=8\) units.
+  \item At \(Q=8\), \(ATC = 48.13\); therefore, profit per unit \(= 56 - 48.13 \approx 7.87\).
+  \item Total economic profit \( \approx 8 \times 7.87 \approx 63\) dollars.
+\end{itemize}
+
+\subsection*{(b) Analysis at Product Price \$41}
+\textbf{Question:} Answer part (a) assuming product price is \$41.
+
+\textbf{Solution:}
+\begin{itemize}[noitemsep]
+  \item With \(P = \$41\), we compare with the MC schedule. Notice:
+    \begin{itemize}[noitemsep]
+      \item \(MC(6) = 40\) (below 41) and
+      \item \(MC(7) = 45\) (above 41).
+    \end{itemize}
+  \item Thus, the profit-maximizing output is \(Q=6\).
+  \item At \(Q=6\), \(ATC = 47.50\); the per-unit loss is \(41 - 47.50 = -6.50\).
+  \item Total loss \(= 6 \times (-6.50) = -39\) dollars.
+  \item Since \(P\) exceeds \(AVC\) (with \(AVC(6) = 37.50\)), the firm produces despite the loss.
+\end{itemize}
+
+\subsection*{(c) Analysis at Product Price \$32}
+\textbf{Question:} Answer part (a) assuming product price is \$32.
+
+\textbf{Solution:}
+\begin{itemize}[noitemsep]
+  \item At \(P = \$32\), observe that the lowest \(AVC\) in the table is approximately \$37 (at \(Q=5\)).
+  \item Since \(32 < 37\), \(P < AVC\) at every output.
+  \item Therefore, the firm should shut down in the short run and produce \(Q=0\).
+  \item The loss incurred is the fixed cost, which is \$60.
+\end{itemize}
+
+\subsection*{(d) Short-Run Supply Schedule for the Single Firm}
+We now complete the supply schedule for the firm at various product prices and compute the profit or loss.
+
+\textbf{Method:} Total cost (\(TC\)) at any \(Q\) is computed by
+\[
+TC = \text{ATC} \times Q,
+\]
+knowing that fixed cost (TFC) is \$60. (Alternatively, \(TC = TFC + (\text{AVC} \times Q)\).)
+
+Using the results from parts (a)–(c) and the following optimal outputs:
+\[
+\begin{array}{c|c|c}
+\textbf{Price} & Q_{\text{supply}} & \textbf{Profit per Firm} \\
+\hline
+\$26 & 0 & -\$60 \quad (\text{shut down}) \\
+\$32 & 0 & -\$60 \quad (\text{shut down}) \\
+\$38 & 5 & 5(38) - 245 = 190 - 245 = -\$55 \\
+\$41 & 6 & 6(41) - 285 = 246 - 285 = -\$39 \\
+\$46 & 7 & 7(46) - 330 \approx 322 - 330 = -\$8 \\
+\$56 & 8 & 8(56) - 385 \approx 448 - 385 = +\$63 \\
+\$66 & 9 & 9(66) - 450 = 594 - 450 = +\$144 \\
+\end{array}
+\]
+Thus, the firm’s short-run supply schedule is as shown above.
+
+\subsection*{(e) Industry Supply Schedule (1,500 Firms)}
+If there are 1,500 identical firms, the industry supply is simply 1,500 times the output of the individual firm:
+\[
+\begin{array}{c|c}
+\textbf{Price} & \text{Industry Quantity Supplied} \\
+\hline
+\$26 & 1,500 \times 0 = 0 \\
+\$32 & 0 \\
+\$38 & 1,500 \times 5 = 7,500 \\
+\$41 & 1,500 \times 6 = 9,000 \\
+\$46 & 1,500 \times 7 = 10,500 \\
+\$56 & 1,500 \times 8 = 12,000 \\
+\$66 & 1,500 \times 9 = 13,500 \\
+\end{array}
+\]
+
+\subsection*{(f) Determination of Market Equilibrium}
+The market demand schedule is given by:
+\[
+\begin{array}{c|c}
+\textbf{Price} & \text{Total Quantity Demanded} \\
+\hline
+\$26 & 17,000 \\
+\$32 & 15,000 \\
+\$38 & 13,500 \\
+\$41 & 12,000 \\
+\$46 & 10,500 \\
+\$56 & 9,500 \\
+\$66 & 8,000 \\
+\end{array}
+\]
+Comparing with the industry supply schedule:
+\begin{itemize}[noitemsep]
+  \item At \$38: Supply = 7,500; Demand = 13,500 (excess demand).
+  \item At \$41: Supply = 9,000; Demand = 12,000 (excess demand).
+  \item At \$46: Supply = 10,500; Demand = 10,500 (equilibrium).
+  \item At higher prices, supply exceeds demand.
+\end{itemize}
+Thus, the equilibrium price is \$46, with total industry output of 10,500 units. Each firm produces 7 units.
+
+At \(Q=7\) for a single firm, the average total cost is approximately \$47.14. Hence, the per-unit profit is:
+\[
+46 - 47.14 \approx -\$1.14,
+\]
+implying a small loss of about \$8 per firm. In the long run, if firms make losses, some will exit, causing the industry supply to contract and the equilibrium price to rise until only normal profits remain.
+
+\end{document}
