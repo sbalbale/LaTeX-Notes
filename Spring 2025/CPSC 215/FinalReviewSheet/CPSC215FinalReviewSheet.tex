@@ -1,0 +1,330 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{parskip} % Adds space between paragraphs
+\usepackage{enumitem} % For customizing lists
+
+\title{CPSC 215: Data Structures and Algorithms \\ Final Exam Review Sheet}
+\author{Based on Lectures by Chandranil Chakraborttii (Spring 2025)}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Foundational Concepts (Lectures 1-4)}
+
+\subsection{Object-Oriented Programming (OOP)}
+\begin{itemize}
+    \item \textbf{Goals:} Robustness, Adaptability, Reusability.
+    \item \textbf{Principles:} Abstraction (hiding complexity), Encapsulation (bundling data/methods, data hiding), Modularity (separation of concerns).
+    \item \textbf{Class vs. Object:} Class is a blueprint; Object is an instance.
+    \item \textbf{Java Basics:}
+          \begin{itemize}
+              \item \textbf{Class Structure:} Fields (attributes), Methods (behaviors), Constructors (object creation)[cite: 3695].
+              \item \textbf{Access Modifiers:} \texttt{public} (accessible anywhere), \texttt{protected} (class, package, subclass), \texttt{private} (class only). Encapsulation typically uses \texttt{private} fields and \texttt{public} methods (getters/setters).
+              \item \textbf{Constructors:} Special methods to initialize objects. Name matches class name, no return type. Called with \texttt{new}[cite: 3729].
+              \item \textbf{Reference Variables:} Store memory addresses (references) to objects, not the objects themselves. Assignment (\texttt{=}) copies the reference.
+              \item \textbf{\texttt{static}:} Members belong to the class, not instances[cite: 3757]. Static methods called via class name[cite: 3758].
+              \item \textbf{\texttt{extends} vs. \texttt{implements}:} \texttt{extends} for class inheritance (single), \texttt{implements} for interfaces (multiple)[cite: 6].
+          \end{itemize}
+    \item \textbf{Inheritance:} Subclass inherits fields/methods from a superclass. Use \texttt{extends}. \texttt{super()} calls superclass constructor. Method Overriding (Refinement/Replacement).
+    \item \textbf{Abstraction Mechanisms:}
+          \begin{itemize}
+              \item \textbf{Abstract Classes:} Cannot be instantiated. Mix of implemented and abstract (unimplemented) methods. Subclasses must implement abstract methods.
+              \item \textbf{Interfaces:} Contract of method signatures only. No fields (except constants), no implementation. Class \texttt{implements} interface(s). Allows multiple "inheritance" of type.
+          \end{itemize}
+    \item \textbf{Polymorphism:} "Many forms." Treating objects of different classes through a common interface or superclass reference[cite: 3456]. Example: \texttt{Mammal baby = new Dog();}[cite: 3458]. In Java, often achieved via interfaces (\texttt{Comparable}) or inheritance.
+    \item \textbf{Generics:} Using type parameters (\texttt{<E>}) for type safety and code reusability. Define class/method once for multiple types. Example: \texttt{List<E>}.
+    \item \textbf{Exceptions:} Handling runtime errors[cite: 3503]. Hierarchy: \texttt{Throwable} -> \texttt{Error}, \texttt{Exception}. \texttt{Exception} -> \texttt{RuntimeException} (unchecked), others (checked)[cite: 3515]. Use \texttt{try-catch-finally}. \texttt{throw}, \texttt{throws}[cite: 3522].
+    \item \textbf{Casting:} Converting types. Widening (subclass to superclass/interface, implicit) vs. Narrowing (superclass/interface to subclass, explicit \texttt{(Type)}, requires runtime check).
+\end{itemize}
+
+\subsection{Algorithm Analysis & Complexity}
+\begin{itemize}
+    \item \textbf{Goal:} Measure algorithm efficiency in terms of time and space resources relative to input size $n$.
+    \item \textbf{Asymptotic Analysis:} Focus on growth rate for large $n$, ignoring constant factors and lower-order terms.
+    \item \textbf{Cases:} Worst, Average, Best[cite: 3430].
+    \item \textbf{Asymptotic Notations:} [cite: 3433]
+          \begin{itemize}
+              \item \textbf{Big-O ($O$):} Asymptotic Upper Bound. $f(n) = O(g(n))$ if $\exists c > 0, n_0 > 0$ such that $|f(n)| \le c|g(n)|$ for all $n \ge n_0$[cite: 3434]. $f(n)$ grows no faster than $g(n)$. Often used for worst-case analysis.
+              \item \textbf{Big-Omega ($\Omega$):} Asymptotic Lower Bound. $f(n) = \Omega(g(n))$ if $\exists c > 0, n_0 > 0$ such that $|f(n)| \ge c|g(n)|$ for all $n \ge n_0$[cite: 3438]. $f(n)$ grows no slower than $g(n)$. Often used for best-case or lower bound proofs.
+              \item \textbf{Big-Theta ($\Theta$):} Asymptotic Tight Bound. $f(n) = \Theta(g(n))$ if $f(n) = O(g(n))$ and $f(n) = \Omega(g(n))$. ($ \exists c_1, c_2 > 0, n_0 > 0$ such that $c_1|g(n)| \le |f(n)| \le c_2|g(n)|$ for all $n \ge n_0$)[cite: 3441]. $f(n)$ grows at the same rate as $g(n)$. Most precise characterization.
+              \item \textbf{Analysis Example:} For $T(n) = 3n^3 + 210n^2 + 2^n + 54$, the dominant term is $2^n$, so $T(n) = \Theta(2^n)$ (and also $O(2^n)$ and $\Omega(2^n)$)[cite: 2].
+          \end{itemize}
+    \item \textbf{Common Growth Rates:} [cite: 3304, 3391] $O(1)$ (constant) < $O(\log n)$ (logarithmic) < $O(n)$ (linear) < $O(n \log n)$ (log-linear) < $O(n^2)$ (quadratic) < $O(n^3)$ (cubic) < $O(2^n)$ (exponential).
+    \item \textbf{Analyzing Code:} Count operations within loops. Nested loops often multiply complexities. Recursive calls lead to recurrence relations. E.g., simple nested loop `for(i=0..n) for(j=0..i)` is $O(n^2)$[cite: 3].
+\end{itemize}
+
+\section{Linear Data Structures (Lectures 7-13)}
+
+\subsection{Lists}
+\begin{itemize}
+    \item \textbf{ADT:} Ordered sequence of elements. Operations: insert, append, remove, getValue, moveToPos, etc..
+    \item \textbf{Array-Based Lists (`AList<E>`):} [cite: 3365]
+          \begin{itemize}
+              \item \textbf{Storage:} Contiguous memory block[cite: 3350].
+              \item \textbf{Access (`getValue` at `curr`):} $O(n)$ requires moving `curr`. Direct indexed access (if modifying ADT) is $O(1)$[cite: 7].
+              \item \textbf{Insert/Delete:} $O(n)$ average/worst case due to element shifting[cite: 3373, 3377].
+              \item \textbf{Space:} Fixed size (resizing is expensive). Memory overhead depends on fullness[cite: 3298].
+              \item \textbf{Use Case:} Good when size is known, random access needed, few insertions/deletions.
+          \end{itemize}
+    \item \textbf{Linked Lists (`LList<E>` - Singly Linked):} [cite: 3271]
+          \begin{itemize}
+              \item \textbf{Storage:} Nodes with data and `next` pointer[cite: 3256]. Non-contiguous memory.
+              \item \textbf{Access/Search (`getValue`, `moveToPos`):} $O(n)$[cite: 3296].
+              \item \textbf{Insert/Delete (at `curr`):} $O(1)$ (need pointer to previous node for singly linked)[cite: 3296]. `append` is $O(1)$ if `tail` pointer is maintained[cite: 3274].
+              \item \textbf{Space:} Dynamic size[cite: 8, 3298]. Overhead per node (pointer).
+              \item \textbf{Use Case:} Frequent insertions/deletions, unknown size. Polynomial representation[cite: 56].
+          \end{itemize}
+    \item \textbf{Doubly Linked Lists:} Nodes have `next` and `prev` pointers[cite: 3163]. Allows $O(1)$ `prev` operation and bidirectional traversal[cite: 3171]. Easier deletion[cite: 3172]. More memory overhead[cite: 3185]. Use case: LRU Cache[cite: 97].
+    \item \textbf{Circular Linked Lists:} Last node points to head[cite: 3194]. Use case: Round-robin scheduling.
+\end{itemize}
+
+\subsection{Stacks}
+\begin{itemize}
+    \item \textbf{ADT:} Linear structure following Last-In, First-Out (LIFO)[cite: 2934].
+    \item \textbf{Operations:} `push` (add to top), `pop` (remove from top), `peek`/`topValue` (view top)[cite: 2936]. All ideally $O(1)$[cite: 9].
+    \item \textbf{Implementations:}
+          \begin{itemize}
+              \item \textbf{Array-Based (`AStack<E>`):} Fixed size (potential overflow). Simple index (`top`) management. $O(1)$ operations.
+              \item \textbf{Linked (`LStack<E>`):} Dynamic size. `top` pointer to head node. $O(1)$ operations.
+          \end{itemize}
+    \item \textbf{Applications:} Function call stack, expression evaluation/conversion (Infix/Postfix/Prefix), backtracking, undo mechanisms, parsing, checking balanced parentheses[cite: 2941, 52].
+    \item \textbf{Expression Conversion/Evaluation:} Key application demonstrating stack use for managing operators and operands according to precedence[cite: 2942].
+          \begin{itemize}
+              \item \textbf{Infix to Postfix:} Operands appended, operators pushed/popped based on precedence, parentheses manage stack[cite: 2949].
+              \item \textbf{Postfix Evaluation:} Operands pushed, operator pops operands, computes, pushes result[cite: 2976].
+          \end{itemize}
+\end{itemize}
+
+\subsection{Queues}
+\begin{itemize}
+    \item \textbf{ADT:} Linear structure following First-In, First-Out (FIFO)[cite: 2766].
+    \item \textbf{Operations:} `enqueue` (add to rear), `dequeue` (remove from front), `frontValue` (view front). All ideally $O(1)$.
+    \item \textbf{Implementations:} [cite: 2776, 22]
+          \begin{itemize}
+              \item \textbf{Array-Based (Circular Queue `AQueue<E>`):} Uses array with `front`, `rear` indices. Modulo arithmetic handles wrap-around[cite: 2787]. Need strategy (extra slot or counter) to distinguish full from empty. $O(1)$ operations.
+              \item \textbf{Linked (`LQueue<E>`):} Uses nodes with `front` and `rear` pointers. $O(1)$ operations.
+          \end{itemize}
+    \item \textbf{Applications:} Resource scheduling (CPU, printers), simulations, breadth-first search (BFS), handling asynchronous data transfer, order processing systems[cite: 41].
+\end{itemize}
+
+\section{Recursion and Backtracking (Lectures 13-14)}
+
+\subsection{Recursion}
+\begin{itemize}
+    \item \textbf{Definition:} A function calling itself to solve smaller, self-similar subproblems[cite: 2838].
+    \item \textbf{Components:} Base Case(s) (stopping condition) and Recursive Step(s) (calls itself with modified input)[cite: 2838].
+    \item \textbf{Process:} Problem broken down until base case reached, then results combined back up[cite: 2860]. Uses call stack implicitly[cite: 2874].
+    \item \textbf{Examples:} Factorial[cite: 2865], Fibonacci [cite: 2875] (note inefficiency of simple recursive Fibonacci due to recomputation), Towers of Hanoi[cite: 2588].
+    \item \textbf{Recursion vs. Iteration:} Recursion often yields simpler, more elegant code for problems with recursive structure, but can have higher memory overhead (call stack) and potentially slower performance if not optimized (e.g., tail recursion).
+    \item \textbf{Tower of Hanoi:} Classic recursion example. Move $n-1$ disks from source to auxiliary, move $n^{th}$ disk from source to destination, move $n-1$ disks from auxiliary to destination[cite: 2593, 135]. Complexity $O(2^n)$[cite: 2597].
+\end{itemize}
+
+\subsection{Backtracking}
+\begin{itemize}
+    \item \textbf{Definition:} Algorithmic technique for solving problems recursively by trying to build a solution incrementally, abandoning paths ("backtracking") that fail to satisfy constraints[cite: 2602, 2604].
+    \item \textbf{Approach:} Explore potential solutions systematically. If a partial solution cannot lead to a valid complete solution, undo the last step and try a different path[cite: 2607].
+    \item \textbf{Applications:} Constraint satisfaction problems, finding all/best solutions. Examples: N-Queens problem[cite: 2620], finding permutations[cite: 2608], Sudoku solvers, maze solving[cite: 23].
+    \item \textbf{N-Queens Problem:} Place N queens on N$\times$N board without attacking. Backtracking explores placing queens column by column, backtracking if a placement leads to conflict.
+\end{itemize}
+
+\section{Trees (Lectures 14-19, 26-28, 32-34)}
+
+\subsection{General Tree Concepts}
+\begin{itemize}
+    \item \textbf{Definition:} Hierarchical structure with nodes connected by edges. Unique root (except for empty tree), parent-child relationships[cite: 2369].
+    \item \textbf{Terminology:} Root, Node, Edge, Parent, Child, Siblings, Leaf (External Node), Internal Node, Path, Depth, Height, Subtree. Height is length of longest path from root to leaf[cite: 2547, 2730].
+    \item \textbf{Traversals:} Visiting each node once. Preorder (Root-Children), Postorder (Children-Root)[cite: 2576].
+\end{itemize}
+
+\subsection{Binary Trees}
+\begin{itemize}
+    \item \textbf{Definition:} Tree where each node has at most two children (left and right)[cite: 2554].
+    \item \textbf{Types:}
+          \begin{itemize}
+              \item \textbf{Full:} Every node has 0 or 2 children[cite: 2558].
+              \item \textbf{Complete:} All levels full except possibly the last, which is filled left-to-right. Used for heaps.
+              \item \textbf{Balanced:} Heights of left/right subtrees of any node differ by at most 1[cite: 2565].
+          \end{itemize}
+    \item \textbf{Properties:} Max nodes in tree of height $h$ is $2^{h+1}-1$. Max leaves is $2^h$[cite: 2567]. Min nodes $h+1$.
+    \item \textbf{Traversals:} Preorder (RootLR)[cite: 2469], Inorder (LRootR)[cite: 2574], Postorder (LRRoot)[cite: 2575].
+    \item \textbf{Expression Trees:} Inorder -> Infix, Preorder -> Prefix, Postorder -> Postfix. Evaluation often uses postorder traversal[cite: 2531].
+\end{itemize}
+
+\subsection{Binary Search Trees (BST)}
+\begin{itemize}
+    \item \textbf{Property:} For any node K, all keys in left subtree < K $\le$ all keys in right subtree[cite: 2161].
+    \item \textbf{Operations:}
+          \begin{itemize}
+              \item \textbf{Search:} Compare with node, go left if smaller, go right if larger/equal. $O(h)$[cite: 2231].
+              \item \textbf{Insert:} Search for key, insert at null pointer position. $O(h)$[cite: 2227]. Order matters for tree shape[cite: 2163].
+              \item \textbf{Delete:} Leaf (simple remove); 1 child (replace with child); 2 children (replace with inorder successor/predecessor, recursively delete that node). $O(h)$.
+          \end{itemize}
+    \item \textbf{Complexity:} Operations are $O(h)$. Best/Average $h = O(\log n)$. Worst $h = O(n)$ (skewed tree).
+    \item \textbf{Use Case:} Efficient search, insertion, deletion on average. Foundation for balanced trees[cite: 54].
+\end{itemize}
+
+\subsection{Heaps (Binary)}
+\begin{itemize}
+    \item \textbf{Definition:} Complete binary tree satisfying Heap Property[cite: 1874].
+          \begin{itemize}
+              \item \textbf{Max-Heap:} Parent key $\ge$ Children keys[cite: 1880]. Max element at root.
+              \item \textbf{Min-Heap:} Parent key $\le$ Children keys[cite: 1878]. Min element at root.
+          \end{itemize}
+    \item \textbf{Array Representation:} Store level-by-level in array (index 1 common)[cite: 1876]. Parent($i$) = $\lfloor i/2 \rfloor$, Left($i$) = $2i$, Right($i$) = $2i+1$.
+    \item \textbf{Operations:}
+          \begin{itemize}
+              \item \textbf{Insert:} Add element at end, percolate up (swap with parent if heap property violated). $O(\log n)$[cite: 1881, 1941].
+              \item \textbf{deleteMax / deleteMin:} Remove root, replace with last element, percolate down (swap with larger/smaller child). $O(\log n)$.
+              \item \textbf{getMax / getMin:} $O(1)$[cite: 1892].
+              \item \textbf{BuildHeap (Heapify):} Convert array to heap. Bottom-up: call Max/MinHeapify on nodes from $\lfloor n/2 \rfloor$ down to 1. $O(n)$. MaxHeapify procedure ensures heap property at a node, assuming children are heaps[cite: 1401].
+          \end{itemize}
+    \item \textbf{Use Case:} Priority Queues[cite: 16], Heapsort. Finding Top-K elements efficiently[cite: 51, 55, 99].
+\end{itemize}
+
+\subsection{AVL Trees}
+\begin{itemize}
+    \item \textbf{Definition:} Self-balancing BST where for every node, heights of left/right subtrees differ by at most 1[cite: 946]. Balance Factor (BF) = height(left) - height(right) $\in \{-1, 0, 1\}$.
+    \item \textbf{Goal:} Maintain $O(\log n)$ height and operation complexity in worst case[cite: 1066].
+    \item \textbf{Rotations:} Used to restore balance after insertions/deletions.
+          \begin{itemize}
+              \item \textbf{Single (LL, RR):} Fix "outside" imbalance. One rotation[cite: 1072]. LL needs Right Rotation, RR needs Left Rotation.
+              \item \textbf{Double (LR, RL):} Fix "inside" imbalance. Two rotations (rotate child first, then parent)[cite: 1093]. LR needs Left-Right rotation, RL needs Right-Left rotation.
+          \end{itemize}
+    \item \textbf{Insertion:} Insert as BST, trace path up, check BF. If imbalance found at node Z, identify case (LL, RR, LR, RL) based on path taken below Z, perform appropriate rotation. Only one rotation needed[cite: 790, 109].
+    \item \textbf{Deletion:} Delete as BST, trace path up, check BF. If imbalance found, perform rotation. *Unlike insertion, may require multiple rotations* up the tree ($O(\log n)$ rotations worst case). Cases depend on BF of unbalanced node AND BF of its taller child.
+    \item \textbf{Complexity:} Search, Insert, Delete are all $O(\log n)$ worst-case[cite: 948].
+\end{itemize}
+
+\subsection{Splay Trees}
+\begin{itemize}
+    \item \textbf{Definition:} Self-adjusting BST (not strictly balanced by height)[cite: 830]. Moves recently accessed nodes towards the root via \textit{splaying} rotations.
+    \item \textbf{Splaying:} A sequence of rotations bringing an accessed node (or last node on search path) to the root[cite: 833]. Improves performance for accesses with locality.
+    \item \textbf{Rotation Types:}
+          \begin{itemize}
+              \item \textbf{Zig:} Node X is child of root. 1 rotation.
+              \item \textbf{Zig-Zig:} X and Parent P are same-side children (LL or RR). 2 rotations (P around G, then X around P).
+              \item \textbf{Zig-Zag:} X and Parent P are opposite-side children (LR or RL). 2 rotations (X around P, then X around G).
+          \end{itemize}
+    \item \textbf{Operations:} Find, Insert, Delete perform standard BST operation, then splay the relevant node (accessed, inserted, parent of deleted, etc.) to the root[cite: 837]. Remove involves splaying, splitting, finding max in left, splaying that, then joining.
+    \item \textbf{Complexity:} Amortized $O(\log n)$ per operation. Single operation can be $O(n)$ worst case, but sequence of M operations takes $O(M \log n)$. No extra height/balance info needed.
+\end{itemize}
+
+\subsection{B-Trees \& B+ Trees}
+\begin{itemize}
+    \item \textbf{Motivation:} Minimize disk I/O for very large datasets stored externally. Nodes correspond to disk blocks/pages[cite: 173, 57].
+    \item \textbf{M-way Search Trees:} Generalization of BSTs where nodes can have many children.
+    \item \textbf{B-Tree (Order m):} Balanced m-way tree.
+          \begin{itemize}
+              \item \textbf{Properties:} All leaves at same depth. Internal nodes (non-root) have $\lceil m/2 \rceil$ to $m$ children. Root has 2 to $m$ children. Nodes store keys *and* data references. Keys in node guide search to appropriate child subtree. Example: 2-3 Tree (m=3)[cite: 172], 2-3-4 Tree (m=4)[cite: 304].
+              \item \textbf{Insertion:} Find leaf, insert. If node overflows (m keys), split node, promote middle key to parent. Split may propagate up. Example.
+              \item \textbf{Deletion:} Find key. If in leaf, delete; handle underflow ($\lceil m/2 \rceil - 1$ keys) by borrowing from sibling or merging with sibling. If in internal node, replace with predecessor/successor, delete recursively. Merge/borrow may propagate up. Example.
+              \item \textbf{Complexity:} Search, Insert, Delete are $O(\log_m n)$ node accesses (disk I/Os). Height is very small due to large branching factor $m$.
+          \end{itemize}
+    \item \textbf{B+ Tree:} Variation optimized for database indexing[cite: 194].
+          \begin{itemize}
+              \item \textbf{Structure:} Internal nodes store *only keys* (guides)[cite: 195]. All data records/pointers stored *exclusively* in leaf nodes[cite: 196]. Leaf nodes linked sequentially[cite: 197].
+              \item \textbf{Properties:} Keys in internal nodes duplicated in leaves[cite: 200]. Searches always reach leaves[cite: 201]. Efficient range queries via leaf links[cite: 206]. Often shallower than B-Tree due to smaller internal nodes[cite: 204].
+              \item \textbf{Operations:} Similar logic to B-Trees but adapted for leaf-only data. Insertion may copy key up, split promotes key. Deletion from leaf may require updating parent index key if smallest element changes, handle underflow via borrow/merge.
+              \item \textbf{Use Case:} Database indexing (primary, secondary), file systems[cite: 94, 206].
+          \end{itemize}
+\end{itemize}
+
+\section{Hashing (Lectures 19-22)}
+\begin{itemize}
+    \item \textbf{Goal:} $O(1)$ average time for insert, delete, search[cite: 2, 27].
+    \item \textbf{Mechanism:} Hash function $h(k)$ maps key $k$ to an index (bucket) in a hash table (array)[cite: 1599].
+    \item \textbf{Hash Function Properties:} Uniform distribution, fast computation, deterministic. Examples: Modulo division, string folding/summing.
+    \item \textbf{Collisions:} Occur when $h(k_1) = h(k_2)$ for $k_1 \ne k_2$[cite: 1601]. Inevitable due to finite table size.
+    \item \textbf{Load Factor ($\lambda$):} Number of items / Table size ($N/M$). Performance degrades as $\lambda$ increases[cite: 1813].
+    \item \textbf{Collision Resolution:**
+          \begin{itemize}
+              \item \textbf{Separate Chaining:} Each bucket stores a linked list (or other structure) of keys hashing to that index[cite: 1790]. Easy deletion[cite: 27]. Performance depends on list length, related to $\lambda$. $\lambda$ can exceed 1. Complexity: Avg $O(1+\lambda)$. Favored when high load factors anticipated or deletions are frequent[cite: 116].
+              \item \textbf{Open Addressing:} Store colliding keys in other empty slots in the table itself. Probing sequence determines where to look next. $\lambda$ must be $\le 1$.
+                    \begin{itemize}
+                        \item \textbf{Linear Probing:} Check $h(k)+1, h(k)+2, ... (\pmod M)$[cite: 1886]. Suffers from \textit{primary clustering}[cite: 1991]. Performance degrades quickly above $\lambda=0.5$[cite: 1510].
+                        \item \textbf{Quadratic Probing:} Check $h(k)+1^2, h(k)+2^2, ... (\pmod M)$[cite: 1995]. Reduces primary clustering, but suffers from \textit{secondary clustering} (keys hashing to same initial slot follow same probe sequence)[cite: 2002]. Requires prime table size and $\lambda < 0.5$ for guaranteed insertion.
+                        \item \textbf{Double Hashing:} Use a second hash function $h_2(k)$ for step size: check $h_1(k)+i \times h_2(k) (\pmod M)$[cite: 1773]. Reduces both primary and secondary clustering. $h_2(k)$ should not be 0, often $p - (k \pmod p)$ for prime $p < M$.
+                    \end{itemize}
+              \item \textbf{Deletion in Open Addressing:} Cannot simply empty the slot. Use "lazy deletion" (mark slot as deleted/tombstone) or implement complex re-insertion of subsequent elements[cite: 1787, 1623]. Lazy deletion requires periodic rehashing.
+          \end{itemize}
+    \item \textbf{Rehashing:} Create a larger table (e.g., double size, next prime) and re-insert all items when load factor exceeds threshold (e.g., 0.5 for probing, 0.75 for chaining)[cite: 1820].
+    \item \textbf{Use Case:} Compilers (symbol tables), databases (indexing), caches. Expected $O(1)$ operations make it very fast on average[cite: 53].
+\end{itemize}
+
+\section{Sorting Algorithms (Lectures 23-25)}
+\begin{itemize}
+    \item \textbf{Goal:} Arrange elements in non-decreasing order.
+    \item \textbf{$O(n^2)$ Algorithms:}
+          \begin{itemize}
+              \item \textbf{Selection Sort:} Find minimum, swap to correct position. $O(n^2)$ comparisons always. $O(n)$ swaps (minimal swaps)[cite: 1506, 30]. In-place.
+              \item \textbf{Bubble Sort:} Repeatedly compare/swap adjacent elements. $O(n^2)$ average/worst. $O(n)$ best (if optimized with flag). In-place. Stable.
+              \item \textbf{Insertion Sort:} Insert element into sorted portion. $O(n^2)$ average/worst. $O(n)$ best (if nearly sorted). Good for small or nearly sorted data. In-place. Stable.
+          \end{itemize}
+    \item \textbf{Shell Sort:} Insertion sort on interleaved subsequences with decreasing gap sizes. Improves on Insertion Sort. Complexity depends on gap sequence, $O(n^{1.5})$ or better average. In-place. Not stable.
+    \item \textbf{$O(n \log n)$ Algorithms (Comparison-based):} Theoretical lower bound for comparison sorts is $\Omega(n \log n)$.
+          \begin{itemize}
+              \item \textbf{Merge Sort:} Divide and conquer. Recursively sort halves, merge sorted halves[cite: 1355]. Requires $O(n)$ extra space for merging[cite: 1380]. Stable. Always $O(n \log n)$[cite: 1379]. Pseudocode provided[cite: 131].
+              \item \textbf{Heap Sort:} Use Max-Heap. Build heap ($O(n)$), then extract max $n$ times by swapping root with last element, reduce heap size, heapify($O(\log n)$ per extraction). Total $O(n \log n)$. In-place[cite: 1398]. Not stable. Pseudocode provided[cite: 147, 81].
+              \item \textbf{Quick Sort:} Divide and conquer. Partition array around a pivot element; recursively sort partitions[cite: 1164]. In-place (typically). $O(n \log n)$ average case, fastest in practice[cite: 1149]. $O(n^2)$ worst case (bad pivots, e.g., on sorted data)[cite: 22, 1316]. Not stable. Pivot selection crucial (median-of-three common).
+          \end{itemize}
+    \item \textbf{Radix Sort:} Non-comparison sort. Sorts based on digits/characters using buckets (stable sort like Counting Sort needed internally). $O(d \times (n+k))$ where $d$ is number of digits, $k$ is radix (e.g., 10 for decimal). Linear if $d, k$ are constant or small relative to $n$. Requires numbers or fixed-length strings. Stable[cite: 1328].
+    \item \textbf{Counting Sort:} Stable sort for integers in a small range $[0..k]$. Counts occurrences, calculates cumulative counts, places elements in output array. $O(n+k)$ time. Used as subroutine in Radix Sort[cite: 82, 148]. Pseudocode provided[cite: 149].
+\end{itemize}
+
+\section{Graph Algorithms (Lectures 28-32)}
+\begin{itemize}
+    \item \textbf{Graphs $G=(V, E)$:} Vertices and Edges connecting pairs of vertices[cite: 684]. Applications ubiquitous[cite: 685, 885].
+    \item \textbf{Terminology:} Vertex (Node), Edge (Arc), Directed/Undirected, Weighted/Unweighted, Degree (In/Out), Path, Cycle, Connected (Undirected), Strongly/Weakly Connected (Directed), Complete Graph, Tree, Forest.
+    \item \textbf{Representations:}
+          \begin{itemize}
+              \item \textbf{Adjacency Matrix:} $|V| \times |V|$ matrix. $O(|V|^2)$ space. $O(1)$ edge check. Good for dense graphs.
+              \item \textbf{Adjacency List:} Array of lists. $O(|V|+|E|)$ space. $O(\text{degree})$ edge check. Good for sparse graphs (common case).
+          \end{itemize}
+    \item \textbf{Traversals ($O(|V|+|E|)$):} [cite: 692]
+          \begin{itemize}
+              \item \textbf{Breadth-First Search (BFS):} Uses Queue. Explores level by level. Finds shortest path in unweighted graphs[cite: 693, 370]. Pseudocode provided[cite: 145].
+              \item \textbf{Depth-First Search (DFS):} Uses Stack (often recursion). Explores as deep as possible before backtracking[cite: 706]. Useful for cycle detection, topological sort[cite: 23].
+          \end{itemize}
+    \item \textbf{Topological Sort (DAGs Only):} Linear ordering of vertices respecting dependencies (if edge $u \to v$, $u$ comes before $v$). Algorithm: Use queue, start with in-degree 0 nodes, process node, decrement neighbors' in-degrees, enqueue new 0-degree nodes[cite: 613]. $O(|V|+|E|)$.
+    \item \textbf{Minimum Spanning Tree (MST) (Weighted, Undirected, Connected):} Spanning tree with minimum total edge weight. Applications: network design.
+          \begin{itemize}
+              \item \textbf{Prim's Algorithm:} Greedy. Grows tree from start node, always adding cheapest edge connecting tree vertex to non-tree vertex[cite: 653]. Use Priority Queue for efficiency. $O(|E| \log |V|)$[cite: 373].
+              \item \textbf{Kruskal's Algorithm:} Greedy. Sort edges by weight. Add edge if it doesn't form a cycle (use DSU). $O(|E| \log |E|)$ or $O(|E| \log |V|)$[cite: 475, 376].
+          \end{itemize}
+    \item \textbf{Single-Source Shortest Paths (Non-negative weights):}
+          \begin{itemize}
+              \item \textbf{Dijkstra's Algorithm:} Finds shortest paths from source $s$ to all other vertices[cite: 504]. Similar to Prim's but uses path distance. Initialize distances ($D[s]=0$, others $\infty$), use Priority Queue of vertices keyed by distance. Repeatedly extract min-distance unvisited vertex $u$, relax its outgoing edges $(u, v)$ (i.e., update $D[v]$ if $D[u] + w(u,v) < D[v]$)[cite: 349, 512]. Complexity $O((|V|+|E|) \log |V|)$ with binary heap PQ[cite: 560]. Generates shortest-path tree[cite: 555].
+          \end{itemize}
+\end{itemize}
+
+\section{Data Compression (Lectures 22-23)}
+\begin{itemize}
+    \item \textbf{Goal:} Reduce file size for storage/transmission[cite: 1673]. Lossless vs. Lossy.
+    \item \textbf{Run-Length Encoding (RLE):} Encode sequences of repeating characters/bits by count[cite: 1701]. Example: `0000011` -> `(0,5), (1,2)`.
+    \item \textbf{Huffman Coding:} Variable-length, prefix-free coding based on character frequency[cite: 1444]. More frequent chars get shorter codes[cite: 1452].
+          \begin{itemize}
+              \item \textbf{Algorithm:} [cite: 1453, 1715]
+                    \begin{enumerate}
+                        \item Calculate character frequencies.
+                        \item Create leaf node for each char with its frequency.
+                        \item Use Min-Priority Queue (Min-Heap) based on frequency[cite: 1459].
+                        \item While queue size > 1:
+                              \begin{itemize}
+                                  \item Extract two minimum frequency nodes (L, R).
+                                  \item Create new internal node with frequency = freq(L) + freq(R).
+                                  \item Make L and R children of new node.
+                                  \item Insert new node back into queue.
+                              \end{itemize}
+                        \item The single remaining node is the root of the Huffman Tree.
+                    \end{enumerate}
+              \item \textbf{Code Generation:} Traverse tree from root. Left branch = '0', Right branch = '1'. Code for char is path from root to leaf[cite: 1466].
+              \item \textbf{Decoding:} Use tree. Read bits, traverse tree (0=left, 1=right) until leaf reached, output char, return to root.
+              \item \textbf{Complexity:} Building tree is $O(n \log n)$ if $n$ unique chars (due to heap)[cite: 26]. Encoding/Decoding depends on implementation.
+          \end{itemize}
+\end{itemize}
+
+
+\end{document}
