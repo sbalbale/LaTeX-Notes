@@ -151,8 +151,25 @@
           Since $\|{\bf 0}\| = 0$ and $\|-{\bf j}\| = 1$, it follows that $0 = 1$. \qed\\
 
           Where did I go wrong? Explain.
+          \newline
 
-          \vspace{2.5 in}
+          \noindent\fbox{%
+              \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+                The mistake was made during step 3, where the vector triple product identity was not applied correctly. The correct identity states that for any vectors $\vec{a}$, $\vec{b}$, and $\vec{c}$,
+                \[
+                    \vec{a} \times (\vec{b} \times \vec{c}) = (\vec{a} \cdot \vec{c})\vec{b} - (\vec{a} \cdot \vec{b})\vec{c}.
+                \]
+                In this case, applying the identity correctly gives:
+                \[
+                    \vec{i} \times (\vec{i} \times \vec{j}) = (\vec{i} \cdot \vec{j})\vec{i} - (\vec{i} \cdot \vec{i})\vec{j} = 0 \cdot \vec{i} - 1 \cdot \vec{j} = -\vec{j}.
+                \]
+                Thus, the step is valid, but the conclusion that $\vec{0} = -\vec{j}$ is incorrect because it contradicts the properties of vectors. The zero vector cannot equal a non-zero vector. Therefore, the error lies in the logical conclusion drawn from the calculations, not in the calculations themselves.
+
+
+              }%
+          }
+          \vspace{0.5 in}
+
     \item[6.] Let $L_1$ be the line with vector equation
           \begin{align*}
               \langle x,y,z\rangle = \langle 1,0,1\rangle + t\langle 2,-1,0\rangle.
