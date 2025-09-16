@@ -39,7 +39,7 @@
 
           \noindent\fbox{%
               \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
-                  Let $\vec{AB} = B - A = <0,3,0>$ and $\vec{AC} = C - A = <-3,1,3>$. Then the area of the triangle is given by
+                  Let $\vec{AB} = B - A = \langle 0,3,0 \rangle$ and $\vec{AC} = C - A = \langle -3,1,3 \rangle$. Then the area of the triangle is given by
                   \[
                       \text{Area} = \frac{1}{2} \| \vec{AB} \times \vec{AC} \|.
                   \]
@@ -51,7 +51,7 @@
                                                      -3      & 1       & 3
                                                  \end{vmatrix} & = (3 \cdot 3 - 0 \cdot 1)\vec{i} - (0 \cdot 3 - 0 \cdot -3)\vec{j} + (0 \cdot 1 - 3 \cdot -3)\vec{k} \\
                                                                  & = (9\vec{i} + 0\vec{j} + 9\vec{k})                                                                 \\
-                                                                 & = <9,0,9>.
+                                                                 & = \langle 9,0,9 \rangle.
                   \end{align*}
 
                   Thus,
@@ -185,7 +185,7 @@
               }%
           }
           \vspace{0.5 in}
-
+                  
     \item[6.] Let $L_1$ be the line with vector equation
           \begin{align*}
               \langle x,y,z\rangle = \langle 1,0,1\rangle + t\langle 2,-1,0\rangle.
@@ -200,7 +200,7 @@
 
                     \noindent\fbox{%
                         \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
-                                To find the intersection of $L_1$ and $L_2$, first express $L_2$ in parametric form. Letting the common ratio be $s$,
+                            To find the intersection of $L_1$ and $L_2$, first express $L_2$ in parametric form. Letting the common ratio be $s$,
                             \[
                                 x = 3s - 1, \quad y = 1 - 2s, \quad z = s + 1.
                             \]
@@ -229,7 +229,7 @@
 
                     \noindent\fbox{%
                         \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
-                                To find the equation of the plane containing $L_1$ and $L_2$, a point on the plane and a normal vector to the plane are needed. The point of intersection is $P = (-1, 1, 1)$.
+                            To find the equation of the plane containing $L_1$ and $L_2$, a point on the plane and a normal vector to the plane are needed. The point of intersection is $P = (-1, 1, 1)$.
 
                             Next, find direction vectors for both lines. The direction vector for $L_1$ is $\vec{d_1} = \langle 2, -1, 0 \rangle$. For $L_2$, use the parametric form to find its direction vector $\vec{d_2} = \langle 3, -2, 1 \rangle$.
 
@@ -244,18 +244,19 @@
                             Calculating this determinant:
                             \begin{align*}
                                 \vec{n} & = (-1)(1) - (0)(-2)\vec{i} - (2)(1) - (0)(3)\vec{j} + (2)(-2) - (-1)(3)\vec{k} \\
-                                        & = (-1)\vec{i} - (2)\vec{j} + (-4 + 3)\vec{k} \\
-                                        & = <-1, -2, -1>.
+                                        & = (-1)\vec{i} - (2)\vec{j} + (-4 + 3)\vec{k}                                   \\
+                                        & = \langle -1, -2, -1 \rangle.
                             \end{align*}
 
-                            With a normal vector $\vec{n} = <-1, -2, -1>$ and a point $P = (-1, 1, 1)$, the equation of the plane can be written as:
+                            With a normal vector $\vec{n} = \langle -1, -2, -1 \rangle$ and a point $P = (-1, 1, 1)$, the equation of the plane can be written as:
                             \[
                                 -1(x + 1) - 2(y - 1) - 1(z - 1) = 0.
                             \]
                             After simplifying:
                             \[
-                                -x - 1 - 2y + 2 - z + 1 = 0 \implies -x - 2y - z + 2 = 0 \implies x + 2y + z = 2.
+                                -x - 1 - 2y + 2 - z + 1 = 0 \implies x + 2y + z = 2.
                             \]
+
                         }%
                     }
                     \vspace{0.5 in}
@@ -263,13 +264,69 @@
 
           \vspace{4 in}
     \item[7.] Find an equation for the line that contains the point $P = (2,0,1)$ and is parallel to to the planes given by the equations $x+2y+3z = 6$ and $2x-y+z = 4$.
+          \newline
 
+          \noindent\fbox{%
+              \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+                  To find the equation of the line that contains the point $P = (2,0,1)$ and is parallel to the planes given by the equations $x + 2y + 3z = 6$ and $2x - y + z = 4$, we first need to determine the normal vectors of these planes.
+
+                  The normal vector of the first plane $x + 2y + 3z = 6$ is $\vec{n_1} = \langle 1, 2, 3 \rangle$. The normal vector of the second plane $2x - y + z = 4$ is $\vec{n_2} = \langle 2, -1, 1 \rangle$.
+
+                  The direction vector $\vec{d}$ of the line we are looking for can be found by taking the cross product of the two normal vectors:
+                  \[
+                      \vec{d} = \vec{n_1} \times \vec{n_2} = \begin{vmatrix}
+                          \vec{i} & \vec{j} & \vec{k} \\
+                          1       & 2       & 3       \\
+                          2       & -1      & 1
+                      \end{vmatrix}.
+                  \]
+                  Calculating this determinant:
+                  \begin{align*}
+                      \vec{d} & = (2)(1) - (3)(-1)\vec{i} - (1)(1) - (3)(2)\vec{j} + (1)(-1) - (2)(2)\vec{k} \\
+                              & = (2 + 3)\vec{i} - (1 - 6)\vec{j} + (-1 - 4)\vec{k}                          \\
+                              & = \langle 5, 5, -5 \rangle.
+                  \end{align*}
+
+                  Now that we have the direction vector $\vec{d} = \langle 5, 5, -5 \rangle$ and a point $P = (2,0,1)$ on the line, we can write the parametric equations of the line:
+                  \[
+                      x = 2 + 5t, \quad y = 0 + 5t, \quad z = 1 - 5t.
+                  \]
+                  Therefore, the vector equation of the line is
+                  \[
+                      \vec{r}(t) = \langle 2, 0, 1 \rangle + t \langle 5, 5, -5 \rangle.
+                  \]
+              }%
+          }
+          \vspace{0.5 in}
           \newpage
     \item[8.] Let $A = (-1,0,2)$ and $B = (0,3,0)$. The collection of all points $P = (x,y,z)$ with equal distance to $A$ and $B$ forms a plane. Find an equation of the form
           \begin{align*}
               a(x-x_0)+b(y-y_0) + c(z-z_0) = 0
           \end{align*}
           that represents this plane.
+          \newline
+
+          \noindent\fbox{%
+              \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+                  To find the equation of the plane that is equidistant from points $A$ and $B$, we can use the fact that the set of points equidistant from two points is the perpendicular bisector of the segment connecting the two points.
+
+                  The midpoint $M$ of the segment $AB$ is given by:
+                  \[
+                      M = \left( \frac{-1 + 0}{2}, \frac{0 + 3}{2}, \frac{2 + 0}{2} \right) = \left( -\frac{1}{2}, \frac{3}{2}, 1 \right).
+                  \]
+
+                  The direction vector $\vec{d}$ from $A$ to $B$ is:
+                  \[
+                      \vec{d} = B - A = (0 - (-1), 3 - 0, 0 - 2) = \langle 1, 3, -2 \rangle.
+                  \]
+
+                  A normal vector to the plane is given by the direction vector $\vec{d}$. Therefore, the equation of the plane can be written as:
+                  \[
+                      1\left(x + \frac{1}{2}\right) + 3\left(y - \frac{3}{2}\right) - 2(z - 1) = 0.
+                  \]
+              }%
+          }
+
 
 \end{itemize}
 
