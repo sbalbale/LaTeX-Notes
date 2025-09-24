@@ -4,20 +4,34 @@
 \usepackage[margin=1 in]{geometry}
 \usepackage[mathscr]{euscript}
 \usepackage[urlcolor=blue,colorlinks=true]{hyperref}
+\usepackage{mdframed}
 \setlist[itemize]{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt}
 \allowdisplaybreaks
 
 \newcommand{\R}{\mathbb R}
 \newcommand{\proj}{\operatorname{proj}}
 
-\pagestyle{plain}  
+\newmdenv[
+  linewidth=1pt,
+  linecolor=black,
+  topline=true,
+  bottomline=true,
+  leftline=true,
+  rightline=true,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+]{answerbox}
+
+\pagestyle{plain}
 
 
 \begin{document}
 
 \begin{center}
-{\bf MATH 231-01: Homework Assignment 3}\\~\\
-22 September 2025\\~\\~\\~\\~\\~\\
+  {\bf MATH 231-01: Homework Assignment 3}\\~\\
+  22 September 2025\\~\\~\\~\\~\\~\\
 \end{center}
 
 {\bf Due:} 29 September 2025 by 10:00pm Eastern time, submitted on Moodle as a single PDF.~\\
@@ -33,53 +47,182 @@
 
 \newpage
 \begin{itemize}
-\item[1.] The angle between two curves at a point of intersection is defined to be the smallest angle between their tangent lines at that point. Let $C_1$ and $C_2$ be the curves parametrized by ${\bf r_1}(t) = \langle \cos(t),\sin(2t),t\rangle$ and ${\bf r_2}(t) = \langle \sin(2t), \cos(t), t\rangle$ for $t \in [0,\pi]$.
+  \item[1.] The angle between two curves at a point of intersection is defined to be the smallest angle between their tangent lines at that point. Let $C_1$ and $C_2$ be the curves parametrized by ${\bf r_1}(t) = \langle \cos(t),\sin(2t),t\rangle$ and ${\bf r_2}(t) = \langle \sin(2t), \cos(t), t\rangle$ for $t \in [0,\pi]$.
+    \newline
 
-\medskip
-\begin{itemize}
-\item[(a)] Find all points of intersection between $C_1$ and $C_2$. (The double-angle formula $\sin(2t) = 2\sin(t)\cos(t)$ may be helpful.)
+    \begin{itemize}
+      \item[(a)] Find all points of intersection between $C_1$ and $C_2$. (The double-angle formula $\sin(2t) = 2\sin(t)\cos(t)$ may be helpful.)
+        \newline
 
-\vspace{4 in}
-\item[(b)] Find the angle between $C_1$ and $C_2$ at each point of intersection. If you can't write down the exact value, round your answer to the nearest hundredth of a radian.
-\end{itemize}
+        \begin{answerbox}
+          The double angle formula is as follows:
+          \[
+            \sin(2t) = 2\sin(t)\cos(t)
+          \]
+          To find the points of intersection between \( C_1 \) and \( C_2
+          \), we set their parametric equations equal to each other:
+          \[
+            \begin{aligned}
+              \cos(t) &= \sin(2t) \\
+              \sin(2t) &= \cos(t) \\
+              t &= t
+            \end{aligned}
+          \]
+          From the third equation, we see that \( t \) is the same for both curves
+          at the points of intersection. Now, we can use the double-angle formula to rewrite the first equation:
+          \[
+            \cos(t) = 2\sin(t)\cos(t)
+          \]
+          Rearranging this gives:
+          \[
+            \cos(t) - 2\sin(t)\cos(t) = 0 \
+            \cos(t)(1 - 2\sin(t)) = 0
+          \]
+          This equation holds true if either \( \cos(t) = 0 \) or \( 1 - 2\sin(t) = 0 \).
+          \begin{itemize}
+            \item If \( \cos(t) = 0 \), then \( t = \frac{\pi}{2} \) (within the interval \( [0, \pi] \)).
+            \item If \( 1 - 2\sin(t) = 0 \),
+            \item then \( \sin(t) = \frac{1}{2} \), which gives \( t = \frac{\pi}{6} \) or \( t = \frac{5\pi}{6} \) (within the interval \( [0, \pi] \)).
+            \item Thus, the points of intersection occur at \( t = \frac{\pi}{6}, \frac{\pi}{2}, \frac{5\pi}{6} \).
+          \end{itemize}
+          Now, we can find the corresponding points on the curves:
+          \begin{itemize}
+            \item For \( t = \frac{\pi}{6} \):
+              \[
+                C_1\left(\frac{\pi}{6}\right) = \left\langle\cos\left(\frac{\pi}{6}\right), \sin\left(\frac{\pi}{3}\right), \frac{\pi}{6}\right\rangle = \left\langle\frac{\sqrt{3}}{2}, \frac{\sqrt{3}}{2}, \frac{\pi}{6}\right\rangle
+              \]
+            \item For \( t = \frac{\pi}{2} \):
+              \[
+                C_1\left(\frac{\pi}{2}\right) = \left\langle\cos\left(\frac{\pi}{2}\right), \sin(\pi), \frac{\pi}{2}\right\rangle = \left\langle 0, 0, \frac{\pi}{2}\right\rangle
+              \]
+            \item For \( t = \frac{5\pi}{6} \):
+              \[
+                C_1\left(\frac{5\pi}{6}\right) = \left\langle\cos\left(\frac{5\pi}{6}\right), \sin\left(\frac{5\pi}{3}\right), \frac{5\pi}{6}\right\rangle = \left\langle-\frac{\sqrt{3}}{2}, -\frac{\sqrt{3}}{2}, \frac{5\pi}{6}\right\rangle
+              \]
+          \end{itemize}
+          Therefore, the points of intersection between \( C_1 \) and \( C_2 \) are:
+          \[
+            \left\langle\frac{\sqrt{3}}{2}, \frac{\sqrt{3}}{2}, \frac{\pi}{6}\right\rangle, \quad \left\langle 0, 0, \frac{\pi}{2}\right\rangle, \quad \left\langle-\frac{\sqrt{3}}{2}, -\frac{\sqrt{3}}{2}, \frac{5\pi}{6}\right\rangle
+          \]
 
-\newpage
-\item[2.] Prove the derivative rule for the dot product. In other words, given arbitrary vector functions ${\bf r_1}(t) = \langle x_1(t), y_1(t), z_1(t)\rangle$ and ${\bf r_2}(t) = \langle x_2(t), y_2(t), z_2(t)\rangle$, show that
-\begin{align*}
-({\bf r_1}(t)\cdot{\bf r_2}(t))' = {\bf r_1}'(t)\cdot{\bf r_2}(t) + {\bf r_1}(t)\cdot{\bf r_2}'(t).
-\end{align*}
 
-\newpage
-\item[3.] Let ${\bf r_1}(t) = \langle e^{2t}, t^2, \sin(3t)\rangle$ and ${\bf r_2}(t) = \langle \ln(1+t^2), \cos(2t), t^3\rangle$. Let $C$ be the curve parametrized by ${\bf r}(t) = {\bf r_1}(t) \times {\bf r_2}(t)$. Find an equation for the line tangent to $C$ at the point ${\bf r}(0)$.
+        \end{answerbox}
+        \vspace{0.5 in}
+      \item[(b)] Find the angle between $C_1$ and $C_2$ at each point of intersection. If you can't write down the exact value, round your answer to the nearest hundredth of a radian.
+        \newline
 
-\newpage
-\item[4.] The acceleration, initial velocity, and initial position of an object traveling through space are given by 
-\begin{align*}
-{\bf r}''(t) = \langle -6,2,4\rangle, \quad\quad {\bf r}'(0) = \langle -5,1,3\rangle, \quad\quad\text{and}\quad\quad {\bf r}(0) = \langle 6,-2,1\rangle,
-\end{align*}
-respectively. Find the object's position function ${\bf r}(t)$.
+        \begin{answerbox}
+          To find the angle between the curves \( C_1 \) and \( C_2 \) at their points of intersection, we first need to compute the tangent vectors of each curve at those points. The tangent vector is given by the derivative of the position vector with respect to \( t \).
 
-\newpage
-\item[5.] Find the arc length of the curve parametrized by ${\bf r}(t) = \langle t-\sin(t), \cos(t)\rangle$ for $t \in [0,2\pi]$. (The half-angle formula $\sqrt{2}\sin(t/2) = \sqrt{1-\cos(t)}$ for $t \in [0,2\pi]$ may be helpful.)
+          The derivatives of the position vectors are:
+          \[
+            C_1'(t) = \langle -\sin(t), 2\cos(2t), 1 \rangle
+          \]
+          \[
+            C_2'(t) = \langle 2\cos(2t), -\sin(t), 1 \rangle
+          \]
 
-\newpage
-\item[6.] Let $C$ be the \emph{moment curve}, parametrized by ${\bf r}(t) = \langle t, t^2, t^3 \rangle$.
+          We will evaluate these derivatives at each point of intersection found in part (a).
+          \begin{enumerate}
+            \item At \( t = \frac{\pi}{6} \)
+              \[
+                C_1'\left(\frac{\pi}{6}\right) = \left\langle -\sin\left(\frac{\pi}{6}\right), 2\cos\left(\frac{\pi}{3}\right), 1 \right\rangle = \left\langle -\frac{1}{2}, 1, 1 \right\rangle
+              \]
+              \[
+                C_2'\left(\frac{\pi}{6}\right) = \left\langle 2\cos\left(\frac{\pi}{3}\right), -\sin\left(\frac{\pi}{6}\right), 1 \right\rangle = \left\langle 1, -\frac{1}{2}, 1 \right\rangle
+              \]
+              The angle \( \theta \) between the two tangent vectors can be found using the dot product formula:
+              \[
+                \cos(\theta) = \frac{C_1'\left(\frac{\pi}{6}\right) \cdot C_2'\left(\frac{\pi}{6}\right)}{\|C_1'\left(\frac{\pi}{6}\right)\| \|C_2'\left(\frac{\pi}{6}\right)\|}
+              \]
+              Calculating the dot product:
+              \[
+                C_1'\left(\frac{\pi}{6}\right) \cdot C_2'\left(\frac{\pi}{6}\right) = \left(-\frac{1}{2}\right)(1) + (1)\left(-\frac{1}{2}\right) + (1)(1) = -\frac{1}{2} - \frac{1}{2} + 1 = 0
+              \]
+              The magnitudes of the tangent vectors are:
+              \[
+                \|C_1'\left(\frac{\pi}{6}\right)\| = \sqrt{\left(-\frac{1}{2}\right)^2 + 1^2 + 1^2} = \sqrt{\frac{1}{4} + 1 +   1} = \sqrt{\frac{9}{4}} = \frac{3}{2}
+              \]
+              \[
+                \|C_2'\left(\frac{\pi}{6}\right)\| = \sqrt{1^2 + \left(-\frac{1}{2}\right)^2 + 1^2} = \sqrt{1 + \frac{1}{4} + 1} = \sqrt{\frac{9}{4}} = \frac{3}{2}
+              \]
+              Therefore,
+              \[
+                \cos(\theta) = \frac{0}{\left(\frac{3}{2}\right)\left(\frac{3}{2}\right)} = 0
+              \]
+              Thus, \( \theta = \frac{\pi}{2} \) radians.
+            \item At \( t = \frac{\pi}{2} \)
+              \[
+                C_1'\left(\frac{\pi}{2}\right) = \left\langle -\sin\left(\frac{\pi}{2}\right), 2\cos\left(\pi\right), 1 \right\rangle = \left\langle -1, -2, 1 \right\rangle
+              \]
+              \[
+                C_2'\left(\frac{\pi}{2}\right) = \left\langle 2\cos\left(\pi\right), -\sin\left(\frac{\pi}{2}\right), 1 \right\rangle = \left\langle -2, -1, 1 \right\rangle
+              \]
+              The dot product is:
+              \[
+                C_1'\left(\frac{\pi}{2}\right) \cdot C_2'\left(\frac{\pi}{2}\right) = (-1)(-2) + (-2)(-1) + (1)(1) = 2 + 2 + 1 = 5
+              \]
+              The magnitudes are:
+              \[
+                \|C_1'\left(\frac{\pi}{2}\right)\| = \sqrt{(-1)^2 + (-2)^2 + 1^2} = \sqrt{1 + 4 + 1} = \sqrt{6}
+              \]
+              \[
+                \|C_2'\left(\frac{\pi}{2}\right)\| = \sqrt{(-2)^2 + (-1)^2 + 1^2} = \sqrt{4 + 1 + 1} = \sqrt{6}
+              \]
+              Therefore,
+              \[
+                \cos(\theta) = \frac{5}{\sqrt{6} \cdot \sqrt{6}} = \frac{5}{6}
+              \]
+              Thus, \( \theta = \cos^{-1}\left(\frac{5}{6}\right) \approx 0.59 \) radians.
 
-\smallskip
-\begin{itemize}
-\item[(a)] Find the curvature of $C$.
+            \item At \( t = \frac{5\pi}{6} \)
+              \[
+                C_1'\left(\frac{5\pi}{6}\right) = \left\langle -\sin\left(\frac{5\pi}{6}\right), 2\cos\left(\frac{5\pi}{3}\right), 1 \right\rangle = \left\langle -\frac{1}{2}, 1, 1 \right\rangle
+              \]
+              \[
+                C_2'\left(\frac{5\pi}{6}\right) = \left\langle 2\cos\left(\frac{5\pi}{3}\right), -\sin\left(\frac{5\pi}{6}\right), 1 \right\rangle = \left\langle 1, -\frac{1}{2}, 1 \right\rangle
+              \]
+              Since this is the same as the case for \( t = \frac{\pi}{6} \), we have:
+              \[
+                \cos(\theta) = 0
+              \]
+              Thus, \( \theta = \frac{\pi}{2} \) radians.
+          \end{enumerate}
+        \end{answerbox}
+        \vspace{0.5 in}
+    \end{itemize}
 
-\vspace{4 in}
-\item[(b)] Does the curvature increase or decrease as $t \rightarrow \infty$? (No need to be rigorous here; an educated guess is fine!)
-\end{itemize}
+  \item[2.] Prove the derivative rule for the dot product. In other words, given arbitrary vector functions ${\bf r_1}(t) = \langle x_1(t), y_1(t), z_1(t)\rangle$ and ${\bf r_2}(t) = \langle x_2(t), y_2(t), z_2(t)\rangle$, show that
+    \begin{align*}
+      ({\bf r_1}(t)\cdot{\bf r_2}(t))' = {\bf r_1}'(t)\cdot{\bf r_2}(t) + {\bf r_1}(t)\cdot{\bf r_2}'(t).
+    \end{align*}
 
-\newpage
-\item[7.] Complete Problem 10 on p.~889 of the textbook (Section 11.4)\footnote{The names in this problem are purely coincidental and do not refer to individuals in our class!}
+    \newpage
+  \item[3.] Let ${\bf r_1}(t) = \langle e^{2t}, t^2, \sin(3t)\rangle$ and ${\bf r_2}(t) = \langle \ln(1+t^2), \cos(2t), t^3\rangle$. Let $C$ be the curve parametrized by ${\bf r}(t) = {\bf r_1}(t) \times {\bf r_2}(t)$. Find an equation for the line tangent to $C$ at the point ${\bf r}(0)$.
+
+    \newpage
+  \item[4.] The acceleration, initial velocity, and initial position of an object traveling through space are given by
+    \begin{align*}
+      {\bf r}''(t) = \langle -6,2,4\rangle, \quad\quad {\bf r}'(0) = \langle -5,1,3\rangle, \quad\quad\text{and}\quad\quad {\bf r}(0) = \langle 6,-2,1\rangle,
+    \end{align*}
+    respectively. Find the object's position function ${\bf r}(t)$.
+
+    \newpage
+  \item[5.] Find the arc length of the curve parametrized by ${\bf r}(t) = \langle t-\sin(t), \cos(t)\rangle$ for $t \in [0,2\pi]$. (The half-angle formula $\sqrt{2}\sin(t/2) = \sqrt{1-\cos(t)}$ for $t \in [0,2\pi]$ may be helpful.)
+
+    \newpage
+  \item[6.] Let $C$ be the \emph{moment curve}, parametrized by ${\bf r}(t) = \langle t, t^2, t^3 \rangle$.
+
+    \smallskip
+    \begin{itemize}
+      \item[(a)] Find the curvature of $C$.
+
+        \vspace{4 in}
+      \item[(b)] Does the curvature increase or decrease as $t \rightarrow \infty$? (No need to be rigorous here; an educated guess is fine!)
+    \end{itemize}
+
+    \newpage
+  \item[7.] Complete Problem 10 on p.~889 of the textbook (Section 11.4)\footnote{The names in this problem are purely coincidental and do not refer to individuals in our class!}
 
 \end{itemize}
 \end{document}
-
-
-
-
-
