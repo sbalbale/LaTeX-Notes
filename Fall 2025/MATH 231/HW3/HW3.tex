@@ -196,33 +196,273 @@
     \begin{align*}
       ({\bf r_1}(t)\cdot{\bf r_2}(t))' = {\bf r_1}'(t)\cdot{\bf r_2}(t) + {\bf r_1}(t)\cdot{\bf r_2}'(t).
     \end{align*}
+    \newline
 
-    \newpage
+    \begin{answerbox}
+      \begin{enumerate}
+        \item Lets begin with the definition of the dot product:
+          \[
+            {\bf r_1}(t) \cdot {\bf r_2}(t) = x_1(t)x_2(t) + y_1(t)y_2(t) + z_1(t)z_2(t)
+          \]
+        \item Now, we will differentiate both sides with respect to \( t \):
+          \[
+            \frac{d}{dt}({\bf r_1}(t) \cdot {\bf r_2}(t)) = \frac{d}{dt}(x_1(t)x_2(t) + y_1(t)y_2(t) + z_1(t)z_2(t))
+          \]
+        \item Applying the product rule to each term on the right-hand side, we get:
+          \begin{align*}
+            \frac{d}{dt}({\bf r_1}(t) \cdot {\bf r_2}(t)) &= x_1'(t)x_2(t) + x_1(t)x_2'(t) + y_1'(t)y_2(t) \\
+            &\quad + y_1(t)y_2'(t) + z_1'(t)z_2(t) + z_1(t)z_2'(t)
+          \end{align*}
+        \item We can group the terms to see that this is equivalent to:
+          \begin{align*}
+            \frac{d}{dt}({\bf r_1}(t) \cdot {\bf r_2}(t)) &= (x_1'(t), y_1'(t), z_1'(t)) \cdot (x_2(t), y_2(t), z_2(t)) \\
+            &\quad + (x_1(t), y_1(t), z_1(t)) \cdot (x_2'(t), y_2'(t), z_2'(t))
+          \end{align*}
+        \item Recognizing the derivatives as the vectors \( {\bf r_1}'(t) \) and \( {\bf r_2}'(t) \), we can rewrite this as:
+          \begin{align*}
+            \frac{d}{dt}({\bf r_1}(t) \cdot {\bf r_2}(t)) &= {\bf r_1}'(t) \cdot {\bf r_2}(t) + {\bf r_1}(t) \cdot {\bf r_2}'(t)
+          \end{align*}
+        \item Thus, we have shown that:
+          \[
+            ({\bf r_1}(t) \cdot {\bf r_2}(t))' = {\bf r_1}'(t) \cdot {\bf r_2}(t) + {\bf r_1}(t) \cdot {\bf r_2}'(t)
+          \]
+      \end{enumerate}
+    \end{answerbox}
+    \vspace{0.5 in}
+
   \item[3.] Let ${\bf r_1}(t) = \langle e^{2t}, t^2, \sin(3t)\rangle$ and ${\bf r_2}(t) = \langle \ln(1+t^2), \cos(2t), t^3\rangle$. Let $C$ be the curve parametrized by ${\bf r}(t) = {\bf r_1}(t) \times {\bf r_2}(t)$. Find an equation for the line tangent to $C$ at the point ${\bf r}(0)$.
+    \newline
 
-    \newpage
+    \begin{answerbox}
+      A tangent line needs a point and a direction vector. Calculating the point \( {\bf r}(0) \):
+      \[
+        {\bf r_1}(0) = \langle e^{0}, 0^2, \sin(0) \rangle = \langle 1, 0, 0 \rangle
+      \]
+      \[
+        {\bf r_2}(0) = \langle \ln(1+0^2), \cos(0), 0^3 \rangle = \langle 0, 1, 0 \rangle
+      \]
+      Now, we compute the cross product \( {\bf r}(0) = {\bf r_1}(0) \times {\bf r_2}(0) \):
+      \[
+        {\bf r}(0) =
+        \begin{vmatrix}
+          \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+          1 & 0 & 0 \\
+          0 & 1 & 0
+        \end{vmatrix} = \mathbf{i}(0 - 0) - \mathbf{j}(0 - 0) + \mathbf{k}(1 - 0) = \langle 0, 0, 1 \rangle
+      \]
+      Next, we need to find the derivative \( {\bf r}'(t) \) to get the direction vector of the tangent line. Using the product rule for cross products:
+      \[
+        {\bf r}'(t) = {\bf r_1}'(t) \times {\bf r_2}(t) + {\bf r_1}(t) \times {\bf r_2}'(t)
+      \]
+      First, we compute the derivatives:
+      \[
+        {\bf r_1}'(t) = \langle 2e^{2t}, 2t, 3\cos(3t) \rangle
+      \]
+      \[
+        {\bf r_2}'(t) = \langle \frac{2t}{1+t^2}, -2\sin(2t), 3t^2 \rangle
+      \]
+      Now, we evaluate these at \( t = 0 \):
+      \[
+        {\bf r_1}'(0) = \langle 2, 0, 3 \rangle
+      \]
+      \[
+        {\bf r_2}'(0) = \langle 0, 0, 0 \rangle
+      \]
+      Now, we compute the cross products:
+      \[
+        {\bf r_1}'(0) \times {\bf r_2}(0) =
+        \begin{vmatrix}
+          \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+          2 & 0 & 3 \\
+          0 & 1 & 0
+        \end{vmatrix} = \mathbf{i}(0 - 3) - \mathbf{j}(0 - 0) + \mathbf{k}(2 - 0) = \langle -3, 0, 2 \rangle
+      \]
+      \[
+        {\bf r_1}(0) \times {\bf r_2}'(0) =
+        \begin{vmatrix}
+          \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+          1 & 0 & 0 \\
+          0 & 0 & 0
+        \end{vmatrix} = \mathbf{i}(0 - 0) - \mathbf{j}(0 - 0) + \mathbf{k}(0 - 0) = \langle 0, 0, 0 \rangle
+      \]
+      Therefore,
+      \[
+        {\bf r}'(0) = \langle -3, 0, 2 \rangle + \langle 0, 0, 0 \rangle = \langle -3, 0, 2 \rangle
+      \]
+      The tangent line at the point \( {\bf r}(0) = \langle 0, 0, 1 \rangle \) with direction vector \( {\bf r}'(0) = \langle -3, 0, 2 \rangle \) can be parametrized as:
+      \[
+        {\bf L}(t) = \langle 0, 0, 1 \rangle + t \langle -3, 0, 2 \rangle = \langle -3t, 0, 1 + 2t \rangle
+      \]
+
+    \end{answerbox}
+    \vspace{0.5 in}
+
   \item[4.] The acceleration, initial velocity, and initial position of an object traveling through space are given by
     \begin{align*}
       {\bf r}''(t) = \langle -6,2,4\rangle, \quad\quad {\bf r}'(0) = \langle -5,1,3\rangle, \quad\quad\text{and}\quad\quad {\bf r}(0) = \langle 6,-2,1\rangle,
     \end{align*}
     respectively. Find the object's position function ${\bf r}(t)$.
+    \newline
 
-    \newpage
+    \begin{answerbox}
+      To find the position function \( {\bf r}(t) \), we need to integrate the acceleration function \( {\bf r}''(t) \) twice and use the initial conditions.
+
+      First, we integrate the acceleration to find the velocity:
+      \[
+        {\bf r}'(t) = \int {\bf r}''(t) \, dt = \int \langle -6, 2, 4 \rangle \, dt = \langle -6t + C_1, 2t + C_2, 4t + C_3 \rangle
+      \]
+      Using the initial condition \( {\bf r}'(0) = \langle -5, 1, 3 \rangle \), we find:
+      \[
+        {\bf r}'(0) = \langle C_1, C_2, C_3 \rangle = \langle -5, 1, 3 \rangle \implies C_1 = -5, C_2 = 1, C_3 = 3
+      \]
+      Thus,
+      \[
+        {\bf r}'(t) = \langle -6t - 5, 2t + 1, 4t + 3 \rangle
+      \]
+
+      Next, we integrate the velocity to find the position:
+      \begin{align*}
+        {\bf r}'(t) &= \langle -6t - 5, 2t + 1, 4t + 3 \rangle \\
+        {\bf r}(t) &= \int {\bf r}'(t) \, dt = \int \langle -6t - 5, 2t + 1, 4t + 3 \rangle \, dt \\
+        &= \langle -3t^2 - 5t + D_1, t^2 + t + D_2, 2t^2 + 3t + D_3 \rangle
+      \end{align*}
+      Using the initial condition \( {\bf r}(0) = \langle 6, -2, 1 \rangle \), we find:
+      \[
+        {\bf r}(0) = \langle D_1, D_2, D_3 \rangle = \langle 6, -2, 1 \rangle \implies D_1 = 6, D_2 = -2, D_3 = 1
+      \]
+      Thus,
+      \[
+        {\bf r}(t) = \langle -3t^2 - 5t + 6, t^2 + t - 2, 2t^2 + 3t + 1 \rangle
+      \]
+    \end{answerbox}
+    \vspace{0.5 in}
+
   \item[5.] Find the arc length of the curve parametrized by ${\bf r}(t) = \langle t-\sin(t), \cos(t)\rangle$ for $t \in [0,2\pi]$. (The half-angle formula $\sqrt{2}\sin(t/2) = \sqrt{1-\cos(t)}$ for $t \in [0,2\pi]$ may be helpful.)
+    \newline
 
-    \newpage
+    \begin{answerbox}
+      To find the arc length, we need to compute the integral of the magnitude of the derivative of the position vector \( {\bf r}(t) \) over the interval \( [0, 2\pi] \).
+      First, we compute the derivative \( {\bf r}'(t) \):
+      \[
+        {\bf r}'(t) = \langle 1 - \cos(t), -\sin(t) \rangle
+      \]
+      Next, we find the magnitude of \( {\bf r}'(t) \):
+      \[
+        \|{\bf r}'(t)\| = \sqrt{(1 - \cos(t))^2 + (-\sin(t))^2} = \sqrt{1 - 2\cos(t) + \cos^2(t) + \sin^2(t)}
+      \]
+      Since \( \cos^2(t) + \sin^2(t) = 1 \), we have:
+      \[
+        \|{\bf r}'(t)\| = \sqrt{2 - 2\cos(t)} = \sqrt{2(1 - \cos(t))} = \sqrt{2} \sqrt{1 - \cos(t)}
+      \]
+      Using the half-angle formula \( \sqrt{2}\sin(t/2) = \sqrt{1 - \cos(t)} \), we get:
+      \[
+        \|{\bf r}'(t)\| = \sqrt{2} \cdot \sqrt{2} \sin(t/2) = 2\sin(t/2)
+      \]
+      Now, we can set up the arc length integral:
+      \[
+        L = \int_0^{2\pi} \|{\bf r}'(t)\| \, dt = \int_0^{2\pi} 2\sin(t/2) \, dt
+      \]
+      Using the substitution \( u = t/2 \), which gives \( dt = 2du \). The limits of integration change accordingly: when \( t = 0 \), \( u = 0 \); and when \( t = 2\pi \), \( u = \pi \). Thus, the integral becomes:
+      \[
+        L = \int_0^{\pi} 2\sin(u) \cdot 2 \, du = 4 \int_0^{\pi} \sin(u) \, du
+      \]
+      Evaluating the integral:
+      \[
+        4 \left[-\cos(u)\right]_0^{\pi} = 4 \left[-\cos(\pi) + \cos(0)\right] = 4 \left[-(-1) + 1\right] = 4 \cdot 2 = 8
+      \]
+      Therefore, the arc length of the curve is:
+      \[
+        L = 8
+      \]
+    \end{answerbox}
+    \vspace{0.5 in}
+
   \item[6.] Let $C$ be the \emph{moment curve}, parametrized by ${\bf r}(t) = \langle t, t^2, t^3 \rangle$.
+    \newline
 
-    \smallskip
     \begin{itemize}
       \item[(a)] Find the curvature of $C$.
+        \newline
+        \begin{answerbox}
+          To find the curvature \( \kappa(t) \) of the curve \( C \) parametrized by \( {\bf r}(t) = \langle t, t^2, t^3 \rangle \), we use the formula:
+          \[
+            \kappa(t) = \frac{\|{\bf r}'(t) \times {\bf r}''(t)\|}{\|{\bf r}'(t)\|^3}
+          \]
+          First, we compute the first and second derivatives of \( {\bf r}(t) \):
+          \[
+            {\bf r}'(t) = \langle 1, 2t, 3t^2 \rangle
+          \]
+          \[
+            {\bf r}''(t) = \langle 0, 2, 6t \rangle
+          \]
+          Next, we compute the cross product \( {\bf r}'(t) \times {\bf r}''(t) \):
+          \[
+            {\bf r}'(t) \times {\bf r}''(t) =
+            \begin{vmatrix}
+              \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+              1 & 2t & 3t^2 \\
+              0 & 2 & 6t
+            \end{vmatrix} = \mathbf{i}(2t \cdot 6t - 3t^2 \cdot 2) - \mathbf{j}(1 \cdot 6t - 3t^2 \cdot 0) + \mathbf{k}(1 \cdot 2 - 2t \cdot 0)
+          \]
+          Simplifying this, we get:
+          \[
+            {\bf r}'(t) \times {\bf r}''(t) = \langle 12t^2 - 6t^2, -6t, 2 \rangle = \langle 6t^2, -6t, 2 \rangle
+          \]
+          Now, we find the magnitude of this cross product:
+          \[
+            \|{\bf r}'(t) \times {\bf r}''(t)\| = \sqrt{(6t^2)^2 + (-6t)^2 + 2^2} = \sqrt{36t^4 + 36t^2 + 4}
+          \]
+          Next, we compute the magnitude of \( {\bf r}'(t) \):
+          \[
+            \|{\bf r}'(t)\| = \sqrt{1^2 + (2t)^2 + (3t^2)^2} = \sqrt{1 + 4t^2 + 9t^4} = \sqrt{9t^4 + 4t^2 + 1}
+          \]
+          Now, we can substitute these into the curvature formula:
+          \[
+            \kappa(t) = \frac{\sqrt{36t^4 + 36t^2 + 4}}{(9t^4 + 4t^2 + 1)^{3/2}}
+          \]
+          Therefore, the curvature of the moment curve \( C \) is:
+          \[
+            \kappa(t) = \frac{\sqrt{36t^4 + 36t^2 + 4}}{(9t^4 + 4t^2 + 1)^{3/2}}
+          \]
 
-        \vspace{4 in}
+        \end{answerbox}
+
+        \vspace{0.5 in}
       \item[(b)] Does the curvature increase or decrease as $t \rightarrow \infty$? (No need to be rigorous here; an educated guess is fine!)
-    \end{itemize}
+        \newline
 
+        \begin{answerbox}
+          As \( t \rightarrow \infty \), the terms \( 36t^4 \) in the numerator and \( 9t^4 \) in the denominator dominate the behavior of the curvature formula. Simplifying the expression for large \( t \):
+          \[
+            \kappa(t) \approx \frac{\sqrt{36t^4}}{(9t^4)^{3/2}} = \frac{6t^2}{(9t^6)^{1/2}} = \frac{6t^2}{3t^3} = \frac{2}{t}
+          \]
+          As \( t \) increases, \( \frac{2}{t} \) decreases. Therefore, the curvature \( \kappa(t) \) decreases to zero as \( t \rightarrow \infty \).
+        \end{answerbox}
+        \vspace{0.5 in}
+    \end{itemize}
+    \vspace{0.5 in}
     \newpage
   \item[7.] Complete Problem 10 on p.~889 of the textbook (Section 11.4)\footnote{The names in this problem are purely coincidental and do not refer to individuals in our class!}
+    Sam and Ben are arguing about the curvature of a function $y=f(x)$. Sam claims that the maximum curvature of every such function occurs at a relative extremum. Ben disagrees. Who is right? If Sam is right, prove the result. If Ben is right, provide a counterexample that disproves Sam's claim.
+    \newline
 
+    \begin{answerbox}
+      Ben is right. A counterexample can be provided by considering the function \( f(x) = x^3 \). The curvature \( \kappa \) of a function \( y = f(x) \) is given by:
+      \[
+        \kappa = \frac{f''(x)}{(1 + (f'(x))^2)^{3/2}}
+      \]
+      For \( f(x) = x^3 \), we have:
+      \[
+        f'(x) = 3x^2, \quad f''(x) = 6x
+      \]
+      The curvature becomes:
+      \[
+        \kappa = \frac{6x}{(1 + (3x^2)^2)^{3/2}} = \frac{6x}{(1 + 9x^4)^{3/2}}
+      \]
+      The maximum curvature occurs at \( x = 0 \), which is a relative extremum. However, if we consider the function \( f(x) = \sin(x) \), the curvature can be shown to have maximum values at points that are not relative extrema (e.g., at \( x = \frac{\pi}{2} \)).
+      Therefore, Sam's claim is disproven by this counterexample.
+
+
+    \end{answerbox}
 \end{itemize}
 \end{document}
