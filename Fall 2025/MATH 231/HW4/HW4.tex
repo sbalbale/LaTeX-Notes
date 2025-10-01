@@ -1,0 +1,121 @@
+\documentclass[reqno, 12pt]{amsart}
+
+\usepackage{amssymb, amsmath, amsthm, enumerate, mathtools, graphicx, enumitem, tikz, color, soul, bbm, verbatim, parskip, multicol}
+\usepackage[margin=1 in]{geometry}
+\usepackage[mathscr]{euscript}
+\usepackage[urlcolor=blue,colorlinks=true]{hyperref}
+\setlist[itemize]{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt}
+\allowdisplaybreaks
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\proj}{\operatorname{proj}}
+
+
+\usepackage{mdframed}
+\newmdenv[
+  linewidth=1pt,
+  linecolor=black,
+  topline=true,
+  bottomline=true,
+  leftline=true,
+  rightline=true,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+]{answerbox}
+
+\pagestyle{plain}
+
+
+\begin{document}
+
+\begin{center}
+  {\bf MATH 231-01: Homework Assignment 4}\\~\\
+  29 September 2025\\~\\~\\~\\~\\~\\
+\end{center}
+
+{\bf Due:} 6 October 2025 by 10:00pm Eastern time, submitted on Moodle as a single PDF.~\\
+
+
+{\bf Instructions:} Write your solutions on the following pages. If you need more space, you may add pages, but make sure they are in order and label the problem number(s) clearly. You should attempt each problem on scrap paper first, before writing your solution here. Excessively messy or illegible work will not be graded. You must show your work/reasoning to receive credit. You do not need to include every minute detail; however the process by which you reached your answer should be evident. You may work with other students, but please write your solutions in your own words.
+
+~\\~\\~\\~\\~\\
+{\bf Name:} Sean Balbale
+
+~\\
+{\bf Score:}
+
+\newpage
+\begin{itemize}
+  \item[1.] For each function below, find its domain and determine whether the domain is open, closed, neither, or both. (If you can't tell, you may want to sketch the domain.)
+    \medskip
+
+    \begin{itemize}
+      \item[(a)] $f(x,y) = \ln(x^2-y)$
+        \newline
+
+        \begin{answerbox}
+            \textbf{Domain:} $\{(x,y) \in \mathbb{R}^2 \mid x^2 - y > 0\}$
+    
+            \textbf{Open/Closed/Neither/Both:} The domain is open. The boundary of the domain is the parabola $y = x^2$, which is not included in the domain since $f(x,y)$ is undefined when $y = x^2$. For any point $(x_0, y_0)$ in the domain, we can find a small enough radius $r$ such that the open ball $B_r(x_0, y_0)$ lies entirely within the domain. Thus, every point in the domain is an interior point, confirming that the domain is open.
+        \end{answerbox}
+        \vspace{0.5 in}
+
+      \item[(b)] $f(x,y,z) = \sqrt{36-(x-1)^2-(y+3)^2}$
+      \newline
+
+        \begin{answerbox}
+            \textbf{Domain:} $\{(x,y,z) \in \mathbb{R}^3 \mid (x-1)^2 + (y+3)^2 \leq 36\}$
+    
+            \textbf{Open/Closed/Neither/Both:} The domain is closed. The boundary of the domain is the cylinder defined by $(x-1)^2 + (y+3)^2 = 36$, which is included in the domain since $f(x,y,z)$ is defined and equals zero when $(x-1)^2 + (y+3)^2 = 36$. For any point $(x_0, y_0)$ in the interior of the domain, we can find a small enough radius $r$ such that the open ball $B_r(x_0, y_0)$ lies entirely within the domain. However, points on the boundary do not have this property. Since the boundary is included in the domain, it is closed.
+        \end{answerbox}
+        \vspace{0.5 in}
+    \end{itemize}
+
+    \newpage
+  \item[2.] Evaluate the limit along the given path.
+
+    \medskip
+    \begin{itemize}
+      \item[(a)] $\displaystyle\lim_{(x,y)\rightarrow (1,1)}\frac{1-xy^2}{1-xy}$ along the line $x=1$
+
+        \vspace{2.5 in}
+      \item[(b)] $\displaystyle\lim_{(x,y)\rightarrow(3,3)}\frac{x^2y^2}{x^3+y^3}$ along the line $y = x$
+
+        \vspace{2.5 in}
+      \item[(c)] $\displaystyle\lim_{(x,y)\rightarrow(0,0)}\frac{x^2y}{x^4+y^2}$ along the parabola $y = x^2$
+    \end{itemize}
+
+    \newpage
+  \item[3.] Evaluate the limit, or show that the limit does not exist.
+
+    \medskip
+    \begin{itemize}
+      \item[(a)] $\displaystyle\lim_{(x,y)\rightarrow(1,1)}\frac{1-x^2y^2}{1-xy}$
+
+        \vspace{2.4 in}
+      \item[(b)] $\displaystyle\lim_{(x,y)\rightarrow(0,0)}\frac{\sin(y)^2}{x^2+y^2}$ (Hint: $\displaystyle\lim_{t\rightarrow 0}\frac{\sin(t)}{t}=1$)
+
+        \vspace{2.4 in}
+      \item[(c)] $\displaystyle\lim_{(x,y)\rightarrow(1,2)}\frac{1-\ln|x-y|}{x^2y}$
+    \end{itemize}
+
+    \newpage
+  \item[4.] Find all points of intersection between the graph of $f(x,y) = x^2-y^2$ and the line  given by $\langle x,y,z \rangle = \langle 4,2,2\rangle + t\langle 3,2,1\rangle$.
+
+    \newpage
+  \item[5.] Recall that the equation
+    \begin{align}\label{hyperbolic paraboloid}
+      x^2-y^2 - z = 0
+    \end{align}
+    defines a hyperbolic paraboloid. An interesting feature of this surface is that it's doubly ruled: Each point on the surface belongs to two lines that are contained entirely within the surface. Verify this property by showing that if $(x_0,y_0,z_0)$ solves equation \eqref{hyperbolic paraboloid}, then so do all points on the lines
+    \begin{align*}
+      \langle x,y,z\rangle &= \langle x_0,y_0,z_0\rangle + t\langle 1, 1, 2(x_0 - y_0)\rangle
+      \intertext{and}
+      \langle x,y,z\rangle &= \langle x_0,y_0,z_0\rangle + t\langle 1, -1, 2(x_0 +y_0)\rangle.
+    \end{align*}
+
+
+\end{itemize}
+\end{document}
