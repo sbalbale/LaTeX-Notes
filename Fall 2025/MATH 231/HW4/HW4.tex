@@ -56,55 +56,216 @@
         \newline
 
         \begin{answerbox}
-            \textbf{Domain:} $\{(x,y) \in \mathbb{R}^2 \mid x^2 - y > 0\}$
-    
-            \textbf{Open/Closed/Neither/Both:} The domain is open. The boundary of the domain is the parabola $y = x^2$, which is not included in the domain since $f(x,y)$ is undefined when $y = x^2$. For any point $(x_0, y_0)$ in the domain, we can find a small enough radius $r$ such that the open ball $B_r(x_0, y_0)$ lies entirely within the domain. Thus, every point in the domain is an interior point, confirming that the domain is open.
+          \textbf{Domain:} $\{(x,y) \in \mathbb{R}^2 \mid x^2 - y > 0\}$
+
+          \textbf{Open/Closed/Neither/Both:} The domain is open. The boundary of the domain is the parabola $y = x^2$, which is not included in the domain since $f(x,y)$ is undefined when $y = x^2$. For any point $(x_0, y_0)$ in the domain, we can find a small enough radius $r$ such that the open ball $B_r(x_0, y_0)$ lies entirely within the domain. Thus, every point in the domain is an interior point, confirming that the domain is open.
         \end{answerbox}
         \vspace{0.5 in}
 
       \item[(b)] $f(x,y,z) = \sqrt{36-(x-1)^2-(y+3)^2}$
-      \newline
+        \newline
 
         \begin{answerbox}
-            \textbf{Domain:} $\{(x,y,z) \in \mathbb{R}^3 \mid (x-1)^2 + (y+3)^2 \leq 36\}$
-    
-            \textbf{Open/Closed/Neither/Both:} The domain is closed. The boundary of the domain is the cylinder defined by $(x-1)^2 + (y+3)^2 = 36$, which is included in the domain since $f(x,y,z)$ is defined and equals zero when $(x-1)^2 + (y+3)^2 = 36$. For any point $(x_0, y_0)$ in the interior of the domain, we can find a small enough radius $r$ such that the open ball $B_r(x_0, y_0)$ lies entirely within the domain. However, points on the boundary do not have this property. Since the boundary is included in the domain, it is closed.
+          \textbf{Domain:} $\{(x,y,z) \in \mathbb{R}^3 \mid (x-1)^2 + (y+3)^2 \leq 36\}$
+
+          \textbf{Open/Closed/Neither/Both:} The domain is closed. The boundary of the domain is the cylinder defined by $(x-1)^2 + (y+3)^2 = 36$, which is included in the domain since $f(x,y,z)$ is defined and equals zero when $(x-1)^2 + (y+3)^2 = 36$. For any point $(x_0, y_0)$ in the interior of the domain, we can find a small enough radius $r$ such that the open ball $B_r(x_0, y_0)$ lies entirely within the domain. However, points on the boundary do not have this property. Since the boundary is included in the domain, it is closed.
         \end{answerbox}
         \vspace{0.5 in}
     \end{itemize}
 
-    \newpage
   \item[2.] Evaluate the limit along the given path.
 
     \medskip
     \begin{itemize}
       \item[(a)] $\displaystyle\lim_{(x,y)\rightarrow (1,1)}\frac{1-xy^2}{1-xy}$ along the line $x=1$
+        \newline
 
-        \vspace{2.5 in}
+        \begin{answerbox}
+          \textbf{Solution:} Along the line $x=1$, we substitute $x$ with $1$ in the limit expression:
+          \[
+            \lim_{(1,y) \to (1,1)} \frac{1 - (1)y^2}{1 - (1)y} = \lim_{y \to 1} \frac{1 - y^2}{1 - y}.
+          \]
+          We can factor the numerator:
+          \[
+            1 - y^2 = (1 - y)(1 + y).
+          \]
+          Thus, the limit becomes:
+          \[
+            \lim_{y \to 1} \frac{(1 - y)(1 + y)}{1 - y}.
+          \]
+          We can cancel the $(1 - y)$ terms (for $y \neq 1$):
+          \[
+            \lim_{y \to 1} (1 + y) = 1 + 1 = 2.
+          \]
+          Therefore, the limit is:
+          \[
+            2
+          \]
+        \end{answerbox}
+        \vspace{0.5 in}
+
       \item[(b)] $\displaystyle\lim_{(x,y)\rightarrow(3,3)}\frac{x^2y^2}{x^3+y^3}$ along the line $y = x$
+        \newline
 
-        \vspace{2.5 in}
+        \begin{answerbox}
+          \textbf{Solution:} Along the line $y = x$, we substitute $y$ with $x$ in the limit expression:
+          \[
+            \lim_{(x,x) \to (3,3)} \frac{x^2x^2}{x^3+x^3} = \lim_{x \to 3} \frac{x^4}{2x^3} = \lim_{x \to 3} \frac{x}{2} = \frac{3}{2}.
+          \]
+          Therefore, the limit is:
+          \[
+            \frac{3}{2}
+          \]
+        \end{answerbox}
+        \vspace{0.5 in}
+
       \item[(c)] $\displaystyle\lim_{(x,y)\rightarrow(0,0)}\frac{x^2y}{x^4+y^2}$ along the parabola $y = x^2$
+        \newline
+
+        \begin{answerbox}
+          \textbf{Solution:} Along the parabola $y = x^2$, we substitute $y$ with $x^2$ in the limit expression:
+          \[
+            \lim_{(x,x^2) \to (0,0)} \frac{x^2(x^2)}{x^4+(x^2)^2} = \lim_{x \to 0} \frac{x^4}{x^4+x^4} = \lim_{x \to 0} \frac{x^4}{2x^4} = \lim_{x \to 0} \frac{1}{2} = \frac{1}{2}.
+          \]
+          Therefore, the limit is:
+          \[
+            \frac{1}{2}
+          \]
+        \end{answerbox}
+        \vspace{0.5 in}
+
     \end{itemize}
 
-    \newpage
   \item[3.] Evaluate the limit, or show that the limit does not exist.
 
     \medskip
     \begin{itemize}
       \item[(a)] $\displaystyle\lim_{(x,y)\rightarrow(1,1)}\frac{1-x^2y^2}{1-xy}$
+        \newline
 
-        \vspace{2.4 in}
+        \begin{answerbox}
+          \textbf{Solution:} We can factor the numerator:
+          \[
+            1 - x^2y^2 = (1 - xy)(1 + xy).
+          \]
+          Thus, the limit becomes:
+          \[
+            \lim_{(x,y) \to (1,1)} \frac{(1 - xy)(1 + xy)}{1 - xy}.
+          \]
+          We can cancel the $(1 - xy)$ terms (for $xy \neq 1$):
+          \[
+            \lim_{(x,y) \to (1,1)} (1 + xy) = 1 + 1 = 2.
+          \]
+          Therefore, the limit is:
+          \[
+            2
+          \]
+        \end{answerbox}
+        \vspace{0.5 in}
+
       \item[(b)] $\displaystyle\lim_{(x,y)\rightarrow(0,0)}\frac{\sin(y)^2}{x^2+y^2}$ (Hint: $\displaystyle\lim_{t\rightarrow 0}\frac{\sin(t)}{t}=1$)
+        \newline
 
-        \vspace{2.4 in}
+        \begin{answerbox}
+          \textbf{Solution:} We will test two different paths to the orgin.
+          \begin{itemize}
+            \item Along the line $y = 0$:
+              \[
+                \lim_{(x,0) \to (0,0)} \frac{\sin(0)^2}{x^2 + 0^2} = \lim_{x \to 0} \frac{0}{x^2} = 0.
+              \]
+            \item Along the line $x=0$:
+              \[
+                \lim_{(0,y) \to (0,0)} \frac{\sin(y)^2}{0^2 + y^2} = \lim_{y \to 0} \frac{\sin(y)^2}{y^2}.
+              \]
+              Using the hint, we know that $\lim_{y \to 0} \frac{\sin(y)}{y} = 1$, so $\sin(y) \approx y$ near $0$. Thus,
+              \[
+                \lim_{y \to 0} \frac{\sin(y)^2}{y^2} = \lim_{y \to 0} \frac{y^2}{y^2} = 1.
+              \]
+          \end{itemize}
+          Since the limits along different paths yield different results (0 and 1), the overall limit does not exist.
+          \[
+            \text{Therefore, the limit does not exist.}
+          \]
+        \end{answerbox}
+        \vspace{0.5 in}
+
       \item[(c)] $\displaystyle\lim_{(x,y)\rightarrow(1,2)}\frac{1-\ln|x-y|}{x^2y}$
+        \newline
+
+        \begin{answerbox}
+          \textbf{Solution:} As $(x,y) \to (1,2)$, we have $x - y \to 1 - 2 = -1$. Thus, $|x - y| \to 1$. Therefore,
+          \[
+            \lim_{(x,y) \to (1,2)} \frac{1 - \ln|x - y|}{x^2y} = \frac{1 - \ln(1)}{1^2 \cdot 2} = \frac{1 - 0}{2} = \frac{1}{2}.
+          \]
+          Therefore, the limit is:
+          \[
+            \frac{1}{2}
+          \]
+        \end{answerbox}
+        \vspace{0.5 in}
+
     \end{itemize}
 
     \newpage
   \item[4.] Find all points of intersection between the graph of $f(x,y) = x^2-y^2$ and the line  given by $\langle x,y,z \rangle = \langle 4,2,2\rangle + t\langle 3,2,1\rangle$.
+    \newline
 
-    \newpage
+    \begin{answerbox}
+      \textbf{Solution:} To find the points of intersection, we need to substitute the parametric equations of the line into the equation of the surface. The line can be expressed as:
+      \[
+        \begin{aligned}
+          x &= 4 + 3t, \\
+          y &= 2 + 2t, \\
+          z &= 2 + t.
+        \end{aligned}
+      \]
+      Substituting these into the equation of the surface:
+      \[
+        (4 + 3t)^2 - (2 + 2t)^2 - (2 + t) = 0.
+      \]
+      Expanding and simplifying:
+      \[
+        (16 + 24t + 9t^2) - (4 + 8t + 4t^2) - (2 + t) = 0,
+      \]
+      \[
+        16 + 24t + 9t^2 - 4 - 8t - 4t^2 - 2 - t = 0,
+      \]
+      \[
+        5t^2 + 15t + 10 = 0.
+      \]
+      Dividing by 5:
+      \[
+        t^2 + 3t + 2 = 0.
+      \]
+      Factoring:
+      \[
+        (t + 1)(t + 2) = 0.
+      \]
+      Thus, \(t = -1\) or \(t = -2\).
+
+      For \(t = -1\):
+      \[
+        \begin{aligned}
+          x &= 4 + 3(-1) = 1, \\
+          y &= 2 + 2(-1) = 0, \\
+          z &= 2 + (-1) = 1.
+        \end{aligned}
+      \]
+      For \(t = -2\):
+      \[
+        \begin{aligned}
+          x &= 4 + 3(-2) = -2, \\
+          y &= 2 + 2(-2) = -2, \\
+          z &= 2 + (-2) = 0.
+        \end{aligned}
+      \]
+      Therefore, the points of intersection are:
+      \[
+        (1, 0, 1) \quad \text{and} \quad (-2, -2, 0).
+      \]
+    \end{answerbox}
+    \vspace{0.5 in}
+
   \item[5.] Recall that the equation
     \begin{align}\label{hyperbolic paraboloid}
       x^2-y^2 - z = 0
@@ -115,6 +276,65 @@
       \intertext{and}
       \langle x,y,z\rangle &= \langle x_0,y_0,z_0\rangle + t\langle 1, -1, 2(x_0 +y_0)\rangle.
     \end{align*}
+    \newline
+
+    \begin{answerbox}
+      \textbf{Solution:} Let $(x_0, y_0, z_0)$ be a point on the hyperbolic paraboloid, so it satisfies the equation:
+      \[
+        x_0^2 - y_0^2 - z_0 = 0.
+      \]
+      We will show that all points on the two given lines also satisfy this equation.
+
+      \textbf{First Line:}
+      The parametric equations for the first line are:
+      \[
+        \begin{aligned}
+          x &= x_0 + t, \\
+          y &= y_0 + t, \\
+          z &= z_0 + 2(x_0 - y_0)t.
+        \end{aligned}
+      \]
+      Substituting these into the hyperbolic paraboloid equation:
+      \[
+        (x_0 + t)^2 - (y_0 + t)^2 - (z_0 + 2(x_0 - y_0)t) = 0.
+      \]
+      Expanding and simplifying:
+      \[
+        (x_0^2 + 2x_0t + t^2) - (y_0^2 + 2y_0t + t^2) - z_0 - 2(x_0 - y_0)t = 0,
+      \]
+      \[
+        x_0^2 - y_0^2 + 2x_0t - 2y_0t - z_0 - 2x_0t + 2y_0t = 0,
+      \]
+      \[
+        x_0^2 - y_0^2 - z_0 = 0.
+      \]
+      Since $(x_0, y_0, z_0)$ satisfies the original equation, this holds true for all $t$. Thus, all points on the first line lie on the hyperbolic paraboloid.
+
+      \textbf{Second Line:}
+      The parametric equations for the second line are:
+      \[
+        \begin{aligned}
+          x &= x_0 + t, \\
+          y &= y_0 - t, \\
+          z &= z_0 + 2(x_0 + y_0)t.
+        \end{aligned}
+      \]
+      Substituting these into the hyperbolic paraboloid equation:
+      \[
+        (x_0 + t)^2 - (y_0 - t)^2 - (z_0 + 2(x_0 + y_0)t) = 0.
+      \]
+      Expanding and simplifying:
+      \[
+        (x_0^2 + 2x_0t + t^2) - (y_0^2 - 2y_0t + t^2) - (z_0 + 2(x_0 + y_0)t) = 0,
+      \]
+      \[
+        x_0^2 - y_0^2 - z_0 + 2x_0t + 2y_0t - 2(x_0 + y_0)t = 0,
+      \]
+      \[
+        x_0^2 - y_0^2 - z_0 = 0.
+      \]
+      Since $(x_0, y_0, z_0)$ satisfies the original equation, this holds true for all $t$. Thus, all points on the second line lie on the hyperbolic paraboloid.
+    \end{answerbox}
 
 
 \end{itemize}
