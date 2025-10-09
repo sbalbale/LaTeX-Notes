@@ -1,0 +1,255 @@
+\documentclass[reqno, 12pt]{amsart}
+
+\usepackage{amssymb, amsmath, amsthm, enumerate, mathtools, graphicx, enumitem, tikz, color, soul, bbm, verbatim, parskip, multicol}
+\usepackage[margin=1 in]{geometry}
+\usepackage[mathscr]{euscript}
+\usepackage[urlcolor=blue,colorlinks=true]{hyperref}
+\setlist[itemize]{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt}
+\allowdisplaybreaks
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\proj}{\operatorname{proj}}
+
+\usepackage{mdframed}
+\newmdenv[
+  linewidth=1pt,
+  linecolor=black,
+  topline=true,
+  bottomline=true,
+  leftline=true,
+  rightline=true,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+]{answerbox}
+
+\pagestyle{plain}
+
+
+\begin{document}
+
+\begin{center}
+  {\bf MATH 231-01: Homework Assignment 5}\\~\\
+  6 October 2025\\~\\~\\~\\~\\~\\
+\end{center}
+
+{\bf Due:} 15 October 2025 by 10:00pm Eastern time, submitted on Moodle as a single PDF.~\\
+
+
+{\bf Instructions:} Write your solutions on the following pages. If you need more space, you may add pages, but make sure they are in order and label the problem number(s) clearly. You should attempt each problem on scrap paper first, before writing your solution here. Excessively messy or illegible work will not be graded. You must show your work/reasoning to receive credit. You do not need to include every minute detail; however the process by which you reached your answer should be evident. You may work with other students, but please write your solutions in your own words.
+
+~\\~\\~\\~\\~\\
+{\bf Name:} Sean Balbale
+
+~\\
+{\bf Score:}
+
+\newpage
+\begin{itemize}
+  \item[1.] Find all second partial derivatives of the function $\displaystyle f(x,y) = e^{x/y}$.
+    \newline
+
+    \begin{answerbox}
+      \begin{itemize}
+        \item First partial derivatives:
+          \[
+            \frac{\partial f}{\partial x} = \frac{1}{y}e^{x/y}, \quad \frac{\partial f}{\partial y} = -\frac{x}{y^2}e^{x/y}
+          \]
+        \item Second partial derivatives:
+          \begin{align*}
+            \frac{\partial^2 f}{\partial x^2} &= \frac{1}{y^2}e^{x/y} \\
+            \frac{\partial^2 f}{\partial x \partial y} &= -\frac{1}{y^2}e^{x/y} + \frac{x}{y^3}e^{x/y} \\
+            \frac{\partial^2 f}{\partial y \partial x} &= -\frac{1}{y^2}e^{x/y} + \frac{x}{y^3}e^{x/y} \\
+            \frac{\partial^2 f}{\partial y^2} &= \frac{2x}{y^3}e^{x/y} + \frac{x^2}{y^4}e^{x/y}
+          \end{align*}
+        \item Note that $\frac{\partial^2 f}{\partial x \partial y} = \frac{\partial^2 f}{\partial y \partial x}$, as expected by Clairaut's theorem.
+      \end{itemize}
+    \end{answerbox}
+    \vspace{0.5 in}
+
+  \item[2.] Find an equation for the plane tangent to the graph of $\displaystyle f(x,y) = \ln(xy^2)$ at the point $(1,-3,\ln9)$.
+    \newline
+
+    \begin{answerbox}
+      The equation of the tangent plane at a point $(x_0, y_0, z_0)$ is given by:
+      \[
+        z - z_0 = f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0)
+      \]
+      First, we need to compute the partial derivatives of $f(x,y)$:
+      \[
+        f_x(x,y) = \frac{1}{x}, \quad f_y(x,y) = \frac{2}{y}
+      \]
+      Now, we evaluate these at the point $(1,-3)$:
+      \[
+        f_x(1,-3) = 1, \quad f_y(1,-3) = -\frac{2}{3}
+      \]
+      The point on the surface is $(1, -3, \ln(9))$. Plugging these values into the tangent plane equation:
+      \[
+        z - \ln(9) = 1(x - 1) - \frac{2}{3}(y + 3)
+      \]
+      Simplifying this gives:
+      \[
+        z = x - 1 - \frac{2}{3}y - 2 + \ln(9)
+      \]
+      Therefore, the equation of the tangent plane is:
+      \[
+        z = x - \frac{2}{3}y - 3 + \ln(9)
+      \]
+    \end{answerbox}
+
+    \newpage
+  \item[3.] Let $\displaystyle P(x,y) = y\cos(xy)+2x$ and $\displaystyle Q(x,y) = x\cos(xy)+3y^2$. Find a function $f$ such that $f_x = P$ and $f_y = Q$.
+    \newline
+
+    \begin{answerbox}
+      To find a function $f(x,y)$ such that $f_x = P$ and $f_y = Q$, we can integrate $P$ with respect to $x$ and $Q$ with respect to $y$.
+
+      First, we integrate $P(x,y)$ with respect to $x$:
+      \[
+        f(x,y) = \int P(x,y) \, dx = \int (y\cos(xy) + 2x) \, dx
+      \]
+      Using integration by parts for the first term:
+      \[
+        f(x,y) = y \int \cos(xy) \, dx + x^2 + C(y)
+      \]
+      where $C(y)$ is an arbitrary function of $y$. The integral can be computed as:
+      \[
+        \int \cos(xy) \, dx = \frac{1}{y} \sin(xy)
+      \]
+      Thus,
+      \[
+        f(x,y) = y \left( \frac{1}{y} \sin(xy) \right) + x^2 + C(y) = \sin(xy) + x^2 + C(y)
+      \]
+
+      Next, we differentiate this with respect to $y$:
+      \[
+        f_y(x,y) = x \cos(xy) + C'(y)
+      \]
+      Setting this equal to $Q(x,y)$:
+      \[
+        x \cos(xy) + C'(y) = x \cos(xy) + 3y^2
+      \]
+      This implies:
+      \[
+        C'(y) = 3y^2 \implies C(y) = y^3 + C_0
+      \]
+      where $C_0$ is a constant. Therefore, the function $f(x,y)$ is:
+      \[
+        f(x,y) = \sin(xy) + x^2 + y^3 + C_0
+      \]
+
+    \end{answerbox}
+    \vspace{0.5 in}
+    \newpage
+  \item[4.] Let $g(s,t) = f(s+2t, s^2)$, and suppose that $f_x(4,4) = 3$ and $f_y(4,4) = -1$. Find $g_s(2,1)$ and $g_t(2,1)$.
+    \newline
+
+    \begin{answerbox}
+        To find $g_s$ and $g_t$, we use the chain rule for multivariable functions.
+    
+        First, we compute $g_s(s,t)$:
+        \[
+            g_s(s,t) = f_x(s+2t, s^2) \cdot \frac{\partial}{\partial s}(s+2t) + f_y(s+2t, s^2) \cdot \frac{\partial}{\partial s}(s^2)
+        \]
+        This simplifies to:
+        \[
+            g_s(s,t) = f_x(s+2t, s^2) \cdot 1 + f_y(s+2t, s^2) \cdot 2s
+        \]
+    
+        Next, we compute $g_t(s,t)$:
+        \[
+            g_t(s,t) = f_x(s+2t, s^2) \cdot \frac{\partial}{\partial t}(s+2t) + f_y(s+2t, s^2) \cdot \frac{\partial}{\partial t}(s^2)
+        \]
+        This simplifies to:
+        \[
+            g_t(s,t) = f_x(s+2t, s^2) \cdot 2 + f_y(s+2t, s^2) \cdot 0 = 2f_x(s+2t, s^2)
+        \]
+    
+        Now we evaluate these at the point $(s,t) = (2,1)$: \\
+        - For $g_s(2,1)$:
+            \[
+            g_s(2,1) = f_x(4,4) + 2(2)f_y(4,4) = 3 + 4(-1) = 3 - 4 = -1
+            \]
+        - For $g_t(2,1)$:
+            \[
+            g_t(2,1) = 2f_x(4,4) = 2(3) = 6
+            \]
+    
+        Therefore, the results are:
+        \[
+            g_s(2,1) = -1, \quad g_t(2,1) = 6
+        \]
+    \end{answerbox}
+
+    \newpage
+  \item[5.] Let $g(s,t) = f(s-t,s+t)$, where $f(x,y)$ is a function such that $f_{xx}+f_{yy} = 0$. Show that $g_{ss}+g_{tt} = 0$.
+    \newline
+
+    \begin{answerbox}
+        To show that $g_{ss} + g_{tt} = 0$, we will use the chain rule to compute the second partial derivatives of $g(s,t)$.
+    
+        First, we compute the first partial derivatives of $g(s,t)$:
+        \[
+            g_s(s,t) = f_x(s-t, s+t) \cdot \frac{\partial}{\partial s}(s-t) + f_y(s-t, s+t) \cdot \frac{\partial}{\partial s}(s+t)
+        \]
+        This simplifies to:
+        \[
+            g_s(s,t) = f_x(s-t, s+t) \cdot 1 + f_y(s-t, s+t) \cdot 1 = f_x(s-t, s+t) + f_y(s-t, s+t)
+        \]
+    
+        Next, we compute $g_t(s,t)$:
+        \[
+            g_t(s,t) = f_x(s-t, s+t) \cdot \frac{\partial}{\partial t}(s-t) + f_y(s-t, s+t) \cdot \frac{\partial}{\partial t}(s+t)
+        \]
+        This simplifies to:
+        \[
+            g_t(s,t) = f_x(s-t, s+t) \cdot (-1) + f_y(s-t, s+t) \cdot 1 = -f_x(s-t, s+t) + f_y(s-t, s+t)
+        \]
+    
+        Now we compute the second partial derivatives:
+        
+        - For $g_{ss}(s,t)$:
+            \[
+            g_{ss}(s,t) = \frac{\partial}{\partial s} (g_s(s,t)) = \frac{\partial}{\partial s} (f_x + f_y)
+            \]
+            Applying the chain rule again:
+            \[
+            g_{ss}(s,t) = f_{xx}(s-t, s+t) + f_{xy}(s-t, s+t) + f_{yx}(s-t, s+t) + f_{yy}(s-t, s+t)
+            \]
+            Since $f_{xy} = f_{yx}$, this simplifies to:
+            \[
+            g_{ss}(s,t) = f_{xx}(s-t, s+t) + 2f_{xy}(s-t, s+t) + f_{yy}(s-t, s+t)
+            \]
+        - For $g_{tt}(s,t)$:
+            \[
+            g_{tt}(s,t) = \frac{\partial}{\partial t} (g_t(s,t)) = \frac{\partial}{\partial t} (-f_x + f_y)
+            \]
+            Applying the chain rule again:
+            \[
+            g_{tt}(s,t) = f_{xx}(s-t, s+t) - f_{xy}(s-t, s+t) - f_{yx}(s-t, s+t) + f_{yy}(s-t, s+t)
+            \]
+            Since $f_{xy} = f_{yx}$, this simplifies to:
+            \[
+            g_{tt}(s,t) = f_{xx}(s-t, s+t) - 2f_{xy}(s-t, s+t) + f_{yy}(s-t, s+t)
+            \]
+        Now, we add $g_{ss}(s,t)$ and $g_{tt}(s,t)$:
+        \[
+            g_{ss}(s,t) + g_{tt}(s,t) = (f_{xx} + 2f_{xy} + f_{yy}) + (f_{xx} - 2f_{xy} + f_{yy}) = 2f_{xx} + 2f_{yy}
+        \]
+        \[
+            g_{ss}(s,t) + g_{tt}(s,t) = 2(f_{xx} + f_{yy})
+        \]
+        Since $f$ satisfies the equation $f_{xx} + f_{yy} = 0$, we have:
+        \[
+            f_{xx} + f_{yy} = 0 \implies f_{xy} = 0
+        \]
+        Therefore,
+        \[
+            g_{ss}(s,t) + g_{tt}(s,t) = 2(0) = 0
+        \]
+        Thus, we have shown that $g_{ss} + g_{tt} = 0$.
+        \end{answerbox}
+
+\end{itemize}
+\end{document}
