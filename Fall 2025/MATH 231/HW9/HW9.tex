@@ -1,0 +1,297 @@
+\documentclass[reqno, 12pt]{amsart}
+
+\usepackage{amssymb, amsmath, amsthm, enumerate, mathtools, graphicx, enumitem, tikz, color, soul, bbm, verbatim, parskip, multicol}
+\usepackage[margin=1 in]{geometry}
+\usepackage[mathscr]{euscript}
+\usepackage[urlcolor=blue,colorlinks=true]{hyperref}
+\setlist[itemize]{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt}
+\allowdisplaybreaks
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\proj}{\operatorname{proj}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{mdframed}
+\newmdenv[
+  linewidth=1pt,
+  linecolor=black,
+  topline=true,
+  bottomline=true,
+  leftline=true,
+  rightline=true,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+]{answerbox}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{plain}
+
+
+\begin{document}
+
+\begin{center}
+  {\bf MATH 231-01: Homework Assignment 9}\\~\\
+  10 November 2025\\~\\~\\~\\~\\~\\
+\end{center}
+
+{\bf Due:} 17 November 2025 by 10:00pm Eastern time, submitted on Moodle as a single PDF.~\\
+
+
+{\bf Instructions:} Write your solutions on the following pages. If you need more space, you may add pages, but make sure they are in order and label the problem number(s) clearly. You should attempt each problem on scrap paper first, before writing your solution here. Excessively messy or illegible work will not be graded. You must show your work/reasoning to receive credit. You do not need to include every minute detail; however the process by which you reached your answer should be evident. You may work with other students, but please write your solutions in your own words.
+
+~\\~\\~\\~\\~\\
+{\bf Name:} Sean Balbale
+
+~\\
+{\bf Score:}
+
+\newpage
+\begin{itemize}
+
+  \item[1.] Determine whether the vector field ${\bf F}(x,y,z) = \langle e^{y^2}, 2xye^{y^2}+\sin(z), y\cos(z)\rangle$ is conservative. If it is, find a function $f$ such that ${\bf F} = \nabla f$.
+    \newline
+
+    \begin{answerbox}
+      \begin{enumerate}
+        \item To determine if the vector field is conservative, we need to check Clairaut's theorem. We have:
+          \begin{align*}
+            P(x,y,z) &= e^{y^2} \\
+            Q(x,y,z) &= 2xye^{y^2}+\sin(z) \\
+            R(x,y,z) &= y\cos(z)
+          \end{align*}
+          We compute the partial derivatives:
+          \begin{align*}
+            \frac{\partial P}{\partial y} &= 2ye^{y^2}, \quad
+            \frac{\partial Q}{\partial x} = 2ye^{y^2} \\
+            \frac{\partial Q}{\partial z} &= \cos(z), \quad
+            \frac{\partial R}{\partial y} = \cos(z) \\
+            \frac{\partial R}{\partial x} &= 0, \quad
+            \frac{\partial P}{\partial z} = 0
+          \end{align*}
+          Since $\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$, $\frac{\partial Q}{\partial z} = \frac{\partial R}{\partial y}$, and $\frac{\partial R}{\partial x} = \frac{\partial P}{\partial z}$, the vector field is conservative.
+        \item To find the potential function $f$, we integrate $P$ with respect to $x$:
+          \begin{align*}
+            f(x,y,z) &= \int e^{y^2} \, dx = xe^{y^2} + g(y,z)
+          \end{align*}
+          Next, we differentiate $f$ with respect to $y$ and set it equal to $Q$:
+          \begin{align*}
+            \frac{\partial f}{\partial y} &= x \cdot 2ye^{y^2} + \frac{\partial g}{\partial y} = 2xye^{y^2} + \sin(z)
+          \end{align*}
+          This gives us:
+          \begin{align*}
+            \frac{\partial g}{\partial y} = \sin(z)
+          \end{align*}
+          Integrating with respect to $y$, we get:
+          \begin{align*}
+            g(y,z) = y\sin(z) + h(z)
+          \end{align*}
+          Now, we differentiate $f$ with respect to $z$ and set it equal to $R$:
+          \begin{align*}
+            \frac{\partial f}{\partial z} &= y\cos(z) + \frac{dh}{dz} = y\cos(z)
+          \end{align*}
+          This implies that:
+          \begin{align*}
+            \frac{dh}{dz} = 0
+          \end{align*}
+          Thus, $h(z)$ is a constant. Therefore, the potential function is:
+          \begin{align*}
+            f(x,y,z) = xe^{y^2} + y\sin(z) + C
+          \end{align*}
+      \end{enumerate}
+
+
+    \end{answerbox}
+    \newpage
+  \item[2.] Determine whether the vector field ${\bf F}(x,y,z) = \langle \sin(x)+y^2z, 2xyz+\sin(z), xy^2\rangle$ is conservative. If it is, find a function $f$ such that ${\bf F} = \nabla f$.
+    \newline
+
+    \begin{answerbox}
+      \begin{enumerate}
+        \item To determine if the vector field is conservative, we need to check Clairaut's theorem. We have:
+          \[
+            P(x,y,z) = \sin(x)+y^2z, \quad
+            Q(x,y,z) = 2xyz+\sin(z), \quad
+            R(x,y,z) = xy^2
+          \]
+          We compute the partial derivatives:
+          \begin{align*}
+            \frac{\partial P}{\partial y} &= 2yz, \quad
+            \frac{\partial Q}{\partial x} = 2yz \\
+            \frac{\partial Q}{\partial z} &= 2xy+\cos(z), \quad
+            \frac{\partial R}{\partial y} = 2xy \\
+            \frac{\partial R}{\partial x} &= y^2, \quad
+            \frac{\partial P}{\partial z} = y^2
+          \end{align*}
+          Since $\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$ and $\frac{\partial R}{\partial x} = \frac{\partial P}{\partial z}$, but $\frac{\partial Q}{\partial z} \neq \frac{\partial R}{\partial y}$, the vector field is not conservative.
+      \end{enumerate}
+    \end{answerbox}
+    \vspace{0.5in}
+  \item[3.] Let $C$ be the helix parametrized by ${\bf r}(t) = \langle 3\cos(t),3\sin(t), 4t\rangle$ for $t \in [0,4\pi]$. Find the mass of $C$, assuming its density is given by $\rho(x,y,z) = z$.
+    \newline
+
+    \begin{answerbox}
+      \begin{enumerate}
+        \item To find the mass of the curve $C$, we need to compute the line integral of the density function along the curve. The mass $M$ is given by:
+          \begin{align*}
+            M = \int_C \rho \, ds
+          \end{align*}
+          First, we compute the derivative of the parametrization:
+          \begin{align*}
+            {\bf r}'(t) = \langle -3\sin(t), 3\cos(t), 4 \rangle
+          \end{align*}
+          Next, we find the magnitude of ${\bf r}'(t)$:
+          \begin{align*}
+            |{\bf r}'(t)| = \sqrt{(-3\sin(t))^2 + (3\cos(t))^2 + 4^2} = \sqrt{9\sin^2(t) + 9\cos^2(t) + 16} = \sqrt{25} = 5
+          \end{align*}
+          The density function along the curve is:
+          \begin{align*}
+            \rho({\bf r}(t)) = 4t
+          \end{align*}
+          Therefore, the mass integral becomes:
+          \begin{align*}
+            M = \int_0^{4\pi} 4t \cdot 5 \, dt = 20 \int_0^{4\pi} t \, dt
+          \end{align*}
+          Evaluating the integral:
+          \begin{align*}
+            M = 20 \left[ \frac{t^2}{2} \right]_0^{4\pi} = 20 \cdot \frac{(4\pi)^2}{2} = 20 \cdot \frac{16\pi^2}{2} = 160\pi^2
+          \end{align*}
+      \end{enumerate}
+    \end{answerbox}
+    \newpage
+  \item[4.] Let ${\bf F}$ be a conservative vector field, and let $C$ be an oriented closed curve (i.e.~a loop). Prove that
+    \begin{align*}
+      \int_C {\bf F}\cdot d{\bf r} = 0.
+    \end{align*}
+    \newline
+
+    \begin{answerbox}
+      Since ${\bf F}$ is a conservative vector field, there exists a scalar potential function $f$ such that ${\bf F} = \nabla f$. The line integral of a conservative vector field along a curve $C$ can be expressed as:
+      \begin{align*}
+        \int_C {\bf F} \cdot d{\bf r} = \int_C \nabla f \cdot d{\bf r}
+      \end{align*}
+      By the Fundamental Theorem of Line Integrals, we have:
+      \begin{align*}
+        \int_C \nabla f \cdot d{\bf r} = f({\bf r}(b)) - f({\bf r}(a))
+      \end{align*}
+      where ${\bf r}(a)$ and ${\bf r}(b)$ are the endpoints of the curve $C$. However, since $C$ is a closed curve, the starting point and ending point are the same, i.e., ${\bf r}(a) = {\bf r}(b)$. Therefore:
+      \begin{align*}
+        f({\bf r}(b)) - f({\bf r}(a)) = f({\bf r}(a)) - f({\bf r}(a)) = 0
+      \end{align*}
+      Thus, we conclude that:
+      \begin{align*}
+        \int_C {\bf F} \cdot d{\bf r} = 0
+      \end{align*}
+    \end{answerbox}
+    \newpage
+  \item[5.] Let ${\bf F}(x,y,z) = \langle 2x+z^2, 4y^3z, 2xz+y^4 \rangle$, and let $C$ be the following oriented curve:
+    \medskip
+    \begin{center}
+      \includegraphics[scale=0.75]{Problem5Curve.png}
+    \end{center}
+    \medskip
+    Evaluate
+    \begin{align*}
+      \int_C {\bf F}\cdot d{\bf r}.
+    \end{align*}
+    \newline
+
+    \begin{answerbox}
+      \begin{enumerate}
+        \item To evaluate the line integral of the vector field ${\bf F}$ along the curve $C$, we first need to check if ${\bf F}$ is conservative. Using Clairaut's Theorem:
+          \begin{align*}
+            P(x,y,z) &= 2x+z^2, \quad Q(x,y,z) = 4y^3z, \quad R(x,y,z) = 2xz+y^4 \\
+            \frac{\partial P}{\partial y} &= 0, \quad \frac{\partial Q}{\partial x} = 0 \\
+            \frac{\partial Q}{\partial z} &= 4y^3, \quad \frac{\partial R}{\partial y} = 4y^3 \\
+            \frac{\partial R}{\partial x} &= 2z, \quad \frac{\partial P}{\partial z} = 2z
+          \end{align*}
+        \item Since all the mixed partial derivatives are equal, ${\bf F}$ is conservative. Next, we find a potential function $f$ such that ${\bf F} = \nabla f$:
+          \begin{align*}
+            f(x,y,z) &= \int (2x+z^2) \, dx = x^2 + xz^2 + g(y,z) \\
+            \frac{\partial f}{\partial y} &= \frac{\partial g}{\partial y} = 4y^3z \implies g(y,z) = y^4z + h(z) \\
+            \frac{\partial f}{\partial z} &= 2xz + y^4 + h'(z) = 2xz + y^4 \implies h'(z) = 0
+          \end{align*}
+        \item Thus, the potential function is:
+          \begin{align*}
+            f(x,y,z) = x^2 + xz^2 + y^4z + C
+          \end{align*}
+        \item Now, we evaluate the line integral using the Fundamental Theorem of Line Integrals. The curve $C$ starts at point $A(0,0,0)$ and ends at point $B(1,0,0)$:
+          \begin{align*}
+            \int_C {\bf F} \cdot d{\bf r} = f(1,0,0) - f(0,0,0) = (1^2 + 1\cdot0^2 + 0) - (0 + 0 + 0) = 1
+          \end{align*}
+      \end{enumerate}
+    \end{answerbox}
+    \newpage
+  \item[6.]Let $C$ be the curve of intersection of the cylinder $x^2+y^2=1$ and the hyperbolic paraboloid $z =x^2-y^2$, with counterclockwise orientation when viewed from above.  Let ${\bf F}(x,y,z) = \langle -y,x,z\rangle$. Evaluate
+    \begin{align*}
+      \int_C {\bf F} \cdot d{\bf r}.
+    \end{align*}
+    \newline
+
+    \begin{answerbox}
+      We must first parametrize the curve $C$.
+      \begin{enumerate}
+        \item Parametrize the curve ${\bf r}(t)$.
+
+          The curve lies on the cylinder $x^2+y^2=1$. A counterclockwise parametrization for this is:
+          \begin{align*}
+            x(t) &= \cos(t) \\
+            y(t) &= \sin(t)
+          \end{align*}
+          Since the curve is a closed loop, $t \in [0, 2\pi]$.
+
+          The $z$-coordinate is determined by the paraboloid $z = x^2 - y^2$. We substitute our $x(t)$ and $y(t)$:
+          \begin{align*}
+            z(t) = (\cos(t))^2 - (\sin(t))^2 = \cos^2(t) - \sin^2(t)
+          \end{align*}
+          Using the double-angle trigonometric identity, $z(t) = \cos(2t)$.
+
+          So, the parametrization of the curve $C$ is:
+          \begin{align*}
+            {\bf r}(t) = \langle \cos(t), \sin(t), \cos(2t) \rangle \quad \text{for } t \in [0, 2\pi].
+          \end{align*}
+
+        \item Find ${\bf r}'(t)$.
+          \begin{align*}
+            {\bf r}'(t) = \langle -\sin(t), \cos(t), -2\sin(2t) \rangle
+          \end{align*}
+          So, $d{\bf r} = \langle -\sin(t), \cos(t), -2\sin(2t) \rangle \,dt$.
+
+        \item Express ${\bf F}$ in terms of $t$.
+          \begin{align*}
+            {\bf F}(x,y,z) &= \langle -y, x, z \rangle \\
+            {\bf F}({\bf r}(t)) &= \langle -\sin(t), \cos(t), \cos(2t) \rangle
+          \end{align*}
+
+        \item Calculate the dot product ${\bf F}({\bf r}(t)) \cdot {\bf r}'(t)$.
+          \begin{align*}
+            {\bf F}({\bf r}(t)) \cdot {\bf r}'(t) &= \langle -\sin(t), \cos(t), \cos(2t) \rangle \cdot \langle -\sin(t), \cos(t), -2\sin(2t) \rangle \\
+            &= (-\sin(t))(-\sin(t)) + (\cos(t))(\cos(t)) + (\cos(2t))(-2\sin(2t)) \\
+            &= \sin^2(t) + \cos^2(t) - 2\sin(2t)\cos(2t) \\
+            &= 1 - 2\sin(2t)\cos(2t)
+          \end{align*}
+          Using the double-angle identity $\sin(2\alpha) = 2\sin(\alpha)\cos(\alpha)$, let $\alpha = 2t$:
+          \begin{align*}
+            {\bf F} \cdot {\bf r}' = 1 - \sin(4t)
+          \end{align*}
+
+        \item Set up and evaluate the integral.
+          \begin{align*}
+            \int_C {\bf F} \cdot d{\bf r} &= \int_0^{2\pi} ({\bf F}({\bf r}(t)) \cdot {\bf r}'(t)) \,dt \\
+            &= \int_0^{2\pi} (1 - \sin(4t)) \,dt \\
+            &= \left[ t + \frac{\cos(4t)}{4} \right]_0^{2\pi} \\
+            &= \left( 2\pi + \frac{\cos(8\pi)}{4} \right) - \left( 0 + \frac{\cos(0)}{4} \right) \\
+            &= \left( 2\pi + \frac{1}{4} \right) - \left( 0 + \frac{1}{4} \right) \\
+            &= 2\pi
+          \end{align*}
+
+          Final Answer: The value of the integral is $\boxed{2\pi}$.
+      \end{enumerate}
+    \end{answerbox}
+
+
+\end{itemize}
+\end{document}
