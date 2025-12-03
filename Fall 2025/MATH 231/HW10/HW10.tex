@@ -1,0 +1,93 @@
+\documentclass[reqno, 12pt]{amsart}
+
+\usepackage{amssymb, amsmath, amsthm, enumerate, mathtools, graphicx, enumitem, tikz, color, soul, bbm, verbatim, parskip, multicol}
+\usepackage[margin=1 in]{geometry}
+\usepackage[mathscr]{euscript}
+\usepackage[urlcolor=blue,colorlinks=true]{hyperref}
+\setlist[itemize]{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt}
+\allowdisplaybreaks
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\proj}{\operatorname{proj}}
+
+\pagestyle{plain}  
+
+
+\begin{document}
+
+\begin{center}
+{\bf MATH 231-01: Homework Assignment 10}\\~\\
+2 December 2025\\~\\~\\~\\~\\~\\
+\end{center}
+
+{\bf Due:} 9 December 2025 by 10:00pm Eastern time, submitted on Moodle as a single PDF.~\\
+
+
+{\bf Instructions:} Write your solutions on the following pages. If you need more space, you may add pages, but make sure they are in order and label the problem number(s) clearly. You should attempt each problem on scrap paper first, before writing your solution here. Excessively messy or illegible work will not be graded. You must show your work/reasoning to receive credit. You do not need to include every minute detail; however the process by which you reached your answer should be evident. You may work with other students, but please write your solutions in your own words.
+
+~\\~\\~\\~\\~\\
+{\bf Name:}
+
+~\\
+{\bf Score:}
+
+\newpage
+\begin{itemize}
+
+\item[1.] Let $\Sigma$ be the surface parametrized by
+\begin{align*}
+{\bf r}(s,t) = \langle (2+\cos t)\cos s, (2+\cos t)\sin s, \sin t\rangle, \quad\quad s,t \in [0,2\pi].
+\end{align*}
+Use GeoGebra (or another online tool) to visualize $\Sigma$, then find its surface area. (Hint: If ${\bf u},{\bf v} \in \R^3$ and ${\bf u} \cdot {\bf v} = 0$, then $\|{\bf u}\times{\bf v}\| = \|{\bf u}\|\|{\bf v}\|$.)
+
+\newpage
+\item[2.] Let $\Sigma$ be the surface parametrized by
+\begin{align*}
+{\bf r}(s,t) = \langle s\cos t, s \sin t, t\rangle, \quad\quad s \in [-1,1],~ t \in [0,2\pi].
+\end{align*}
+Use GeoGebra (or another online tool) to visualize $\Sigma$, then write down an iterated integral whose value is the surface area of $\Sigma$. (You do not need to evaluate the integral, but you can try to do so as a challenge, or look it up.)
+
+\newpage
+\item[3.] Let $\Sigma$ be the part of the cone $z = \sqrt{x^2+y^2}$ that lies between the planes $z=1$ and $z=2$, oriented with upward/inward unit normal vector. Calculate the flux of ${\bf F}(x,y,z) = \langle x,y,z\rangle$ through $\Sigma$.
+
+\newpage
+\item[4.] Let $C$ be the curve parametrized by
+\begin{align*}
+{\bf r}(t) = \langle \cos(t)^3, \sin(t)^3\rangle, \quad\quad t \in [0,2\pi],
+\end{align*}
+and let $R$ be the region enclosed by $C$. Use GeoGebra (or another online tool) to visualize $R$, then find the area of $R$ by applying Green's theorem. (Hint: Use the vector field ${\bf F}(x,y) = \frac{1}{2}\langle-y,x\rangle$. The identity $\sin(t)^2\cos(t)^2 = \frac{1}{8}(1-\cos(4t))$ will be helpful.)
+
+
+\newpage
+\item[5.] Let $C$ be the curve within the surface $z = 2+\cos x + \sin y$ that lies directly above the square with vertices $(0,0),(0,\pi),(\pi,0),(\pi,\pi)$ and is oriented counterclockwise when viewed from above. Let ${\bf F}(x,y,z) = \langle z-3y,x+z,2y\rangle$. Evaluate
+\begin{align*}
+\int_C {\bf F}\cdot d{\bf r}.
+\end{align*}
+
+
+\newpage
+\item[6.] Let $\Sigma$ be the surface of the solid tetrahedron bounded by the planes
+\begin{align*}
+x=0, \quad y=0, \quad z=0, \quad x+y+z=1
+\end{align*}
+in the first octant, with outward unit normal vector ${\bf n}$. Let
+\begin{align*}
+{\bf F}(x,y,z) = \langle x^2+y, xy, -2xz-y\rangle.
+\end{align*}
+Evaluate
+\begin{align*}
+\int_\Sigma {\bf F}\cdot {\bf n}dS.
+\end{align*}
+
+\newpage
+\item[7.] Let $\Sigma$ be the surface of the solid region bounded by the cylinder $x^2+y^2=4$ and the planes $z=0$ and $z=3$, with outward unit normal vector ${\bf n}$. Let
+\begin{align*}
+{\bf F}(x,y,z) = \langle x^3,y^3,z^3\rangle.
+\end{align*}
+Evaluate
+\begin{align*}
+\int_\Sigma {\bf F}\cdot {\bf n}dS.
+\end{align*}
+
+\end{itemize}
+\end{document}
