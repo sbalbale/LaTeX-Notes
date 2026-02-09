@@ -7,6 +7,7 @@
 \usepackage{siunitx}  % For consistent unit formatting
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{multirow} % For grouping rows in the big table
 
 % Document Info
 \title{\textbf{ENGR 212: Laboratory Experiment 2}\\Answer Guide \& TA Notes}
@@ -29,19 +30,19 @@ Students must calculate $v_{out}$, $i$, and $P_{R_2}$ for the circuit in Figure 
 The circuit is a standard unloaded voltage divider.
 
 \begin{enumerate}
-  \item \textbf{Current ($i$):}
+    \item \textbf{Current ($i$):}
     \begin{equation*}
-      i = \frac{V_{source}}{R_{eq}} = \frac{10\text{V}}{R_1 + R_2}
+        i = \frac{V_{source}}{R_{eq}} = \frac{10\text{V}}{R_1 + R_2}
     \end{equation*}
-
-  \item \textbf{Output Voltage ($v_{out}$):}
+    
+    \item \textbf{Output Voltage ($v_{out}$):}
     \begin{equation*}
-      v_{out} = i \times R_2 = 10\text{V} \times \left( \frac{R_2}{R_1 + R_2} \right)
+        v_{out} = i \times R_2 = 10\text{V} \times \left( \frac{R_2}{R_1 + R_2} \right)
     \end{equation*}
-
-  \item \textbf{Power Dissipated by $R_2$ ($P_{R_2}$):}
+    
+    \item \textbf{Power Dissipated by $R_2$ ($P_{R_2}$):}
     \begin{equation*}
-      P_{R_2} = i^2 \times R_2 = \frac{(v_{out})^2}{R_2}
+        P_{R_2} = i^2 \times R_2 = \frac{(v_{out})^2}{R_2}
     \end{equation*}
 \end{enumerate}
 
@@ -49,64 +50,86 @@ The circuit is a standard unloaded voltage divider.
 Use the table below to check the ``Calculation'' columns in student reports. Note that power is calculated in milliwatts (mW).
 
 \begin{table}[H]
-  \centering
-  \renewcommand{\arraystretch}{1.3}
-  \begin{tabular}{@{}c c c c c@{}}
-    \toprule
-    \textbf{$\mathbf{R_2}$ Value} & \textbf{Total R ($\mathbf{R_1 + R_2}$)} & \textbf{Current $\mathbf{i}$} & \textbf{Voltage $\mathbf{v_{out}}$} & \textbf{Power $\mathbf{P_{R_2}}$} \\
-    \midrule
-    $2.2\,\text{k}\Omega$ & $12.2\,\text{k}\Omega$ & \textbf{0.820 mA} & \textbf{1.80 V} & \textbf{1.48 mW} \\
-    $4.7\,\text{k}\Omega$ & $14.7\,\text{k}\Omega$ & \textbf{0.680 mA} & \textbf{3.20 V} & \textbf{2.18 mW} \\
-    $10\,\text{k}\Omega$  & $20.0\,\text{k}\Omega$ & \textbf{0.500 mA} & \textbf{5.00 V} & \textbf{2.50 mW} \\
-    $20\,\text{k}\Omega$  & $30.0\,\text{k}\Omega$ & \textbf{0.333 mA} & \textbf{6.67 V} & \textbf{2.22 mW} \\
-    $33\,\text{k}\Omega$  & $43.0\,\text{k}\Omega$ & \textbf{0.233 mA} & \textbf{7.67 V} & \textbf{1.78 mW} \\
-    \bottomrule
-  \end{tabular}
-  \caption{Theoretical values for Table 1. Measured values should be within resistor tolerance ($\approx 5\%$).}
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{@{}c c c c c@{}}
+        \toprule
+        \textbf{$\mathbf{R_2}$ Value} & \textbf{Total R ($\mathbf{R_1 + R_2}$)} & \textbf{Current $\mathbf{i}$} & \textbf{Voltage $\mathbf{v_{out}}$} & \textbf{Power $\mathbf{P_{R_2}}$} \\
+        \midrule
+        $2.2\,\text{k}\Omega$ & $12.2\,\text{k}\Omega$ & \textbf{0.820 mA} & \textbf{1.80 V} & \textbf{1.48 mW} \\
+        $4.7\,\text{k}\Omega$ & $14.7\,\text{k}\Omega$ & \textbf{0.680 mA} & \textbf{3.20 V} & \textbf{2.18 mW} \\
+        $10\,\text{k}\Omega$  & $20.0\,\text{k}\Omega$ & \textbf{0.500 mA} & \textbf{5.00 V} & \textbf{2.50 mW} \\
+        $20\,\text{k}\Omega$  & $30.0\,\text{k}\Omega$ & \textbf{0.333 mA} & \textbf{6.67 V} & \textbf{2.22 mW} \\
+        $33\,\text{k}\Omega$  & $43.0\,\text{k}\Omega$ & \textbf{0.233 mA} & \textbf{7.67 V} & \textbf{1.78 mW} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Theoretical values for Table 1. Measured values should be within resistor tolerance ($\approx 5\%$).}
 \end{table}
 
 \section{Part 2: LED Circuit Analysis}
 
 \subsection*{Theoretical Expectations}
 
-\subsubsection*{1. Forward Bias Behavior (Steps a--c)}
+\subsubsection*{1. Forward Bias Behavior}
 \begin{itemize}
-  \item \textbf{Threshold:} An LED is a non-linear device. Current will remain near zero until the voltage across the LED reaches its \textbf{turn-on voltage} ($V_{turn-on}$).
-  \item \textbf{Typical $V_{turn-on}$:} For a standard red LED, this is typically \textbf{1.8V -- 2.0V}.
-  \item \textbf{Behavior:}
+    \item \textbf{Threshold:} An LED is a non-linear device. Current will remain near zero until the voltage across the LED reaches its \textbf{turn-on voltage} ($V_{turn-on}$).
+    \item \textbf{Typical $V_{turn-on}$:} For a standard red LED, this is typically \textbf{1.8V -- 2.0V}.
+    \item \textbf{Behavior:}
     \begin{itemize}
-      \item \textbf{Input 1V:} Source $<$ Turn-on. LED is OFF. $I \approx 0\text{mA}$. $V_{LED} \approx 1\text{V}$ (Open circuit behavior).
-      \item \textbf{Input 2V $\sim$ 5V:} Source $>$ Turn-on. LED turns ON. $V_{LED}$ clamps near the forward voltage ($\approx 2\text{V}$) and rises very slowly. Current increases linearly with the remaining voltage drop across the resistors.
+        \item \textbf{Input 1V:} Source $<$ Turn-on. LED is OFF. $I \approx 0\text{mA}$. $V_{LED} \approx 1\text{V}$ (Open circuit behavior).
+        \item \textbf{Input 2V $\sim$ 5V:} Source $>$ Turn-on. LED turns ON. $V_{LED}$ clamps near the forward voltage ($\approx 2\text{V}$) and rises very slowly.
     \end{itemize}
 \end{itemize}
 
-\subsubsection*{2. Effect of Varying $R_1$ (Step d)}
-Increasing $R_1$ increases the total series resistance ($R_{total} = R_1 + R_2$).
+\subsection*{Master Reference Table: Part 2 Measurements}
+The table below provides theoretical data for all permutations of $R_1$ and Input Voltage ($V_{in}$).
+\textbf{Note:} Calculations assume a generic Red LED with $V_f \approx 1.8\text{V} - 2.0\text{V}$.
+
+\begin{table}[H]
+    \centering
+    \small % Slightly smaller font to fit the large table
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}c c c c c c@{}}
+        \toprule
+        \textbf{$\mathbf{R_1}$ Value} & \textbf{Input ($V_{in}$)} & \textbf{LED State} & \textbf{$V_{LED}$ (approx)} & \textbf{$V_{R1}$ (calc)} & \textbf{Current $i$ (mA)} \\
+        \midrule
+        \multirow{5}{*}{$\mathbf{0\,\Omega}$} 
+          & 1.0 V & OFF & 1.00 V & 0.00 V & 0.00 \\
+          & 2.0 V & Dim ON & 1.80 V & 0.00 V & 0.05 \\
+          & 3.0 V & ON & 1.88 V & 0.00 V & 0.29 \\
+          & 4.0 V & Bright & 1.95 V & 0.00 V & 0.53 \\
+          & 5.0 V & Brightest & 2.00 V & 0.00 V & 0.77 \\
+        \midrule
+        \multirow{5}{*}{$\mathbf{100\,\Omega}$} 
+          & 1.0 V & OFF & 1.00 V & 0.00 V & 0.00 \\
+          & 2.0 V & Dim ON & 1.80 V & 0.01 V & 0.05 \\
+          & 3.0 V & ON & 1.88 V & 0.03 V & 0.28 \\
+          & 4.0 V & Bright & 1.95 V & 0.05 V & 0.51 \\
+          & 5.0 V & Brightest & 2.00 V & 0.08 V & 0.75 \\
+        \midrule
+        \multirow{5}{*}{$\mathbf{1\,\text{k}\Omega}$} 
+          & 1.0 V & OFF & 1.00 V & 0.00 V & 0.00 \\
+          & 2.0 V & Faint & 1.78 V & 0.05 V & 0.04 \\
+          & 3.0 V & ON & 1.85 V & 0.23 V & 0.23 \\
+          & 4.0 V & ON & 1.90 V & 0.43 V & 0.43 \\
+          & 5.0 V & Bright & 1.95 V & 0.62 V & 0.62 \\
+        \midrule
+        \multirow{5}{*}{$\mathbf{100\,\text{k}\Omega}$} 
+          & 1.0 V & OFF & 1.00 V & 0.00 V & 0.00 \\
+          & 2.0 V & OFF/Dim & 1.60 V & 0.38 V & 0.004 \\
+          & 3.0 V & Very Dim & 1.65 V & 1.30 V & 0.013 \\
+          & 4.0 V & Dim & 1.70 V & 2.21 V & 0.022 \\
+          & 5.0 V & Dim & 1.75 V & 3.12 V & 0.031 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Theoretical Measurements for LED Circuit (Figure 3).}
+\end{table}
+
+\subsection*{TA Grading Notes}
 \begin{itemize}
-  \item \textbf{Impact:} For the same input voltage, a higher $R_1$ results in \textbf{lower current} flowing through the LED, making it dimmer.
-  \item The voltage across the LED ($V_{LED}$) will remain relatively stable (characteristic of a diode), but the voltage drop across the resistors will change significantly.
-\end{itemize}
-
-\subsubsection*{3. Estimating Turn-on Voltage (Step f)}
-When students plot $I$ ($y$-axis) vs $V_{LED}$ ($x$-axis), they should observe a ``knee'' in the graph.
-\begin{itemize}
-  \item The curve should be flat (at $I=0$) until roughly \textbf{1.8V} (for Red LED), after which current shoots up steeply.
-\end{itemize}
-
-\subsection*{Sample Calculation}
-\textit{Assuming a Red LED ($V_{turn-on} \approx 1.9\text{V}$), Input = 5V, and $R_1 = 0\Omega$:}
-
-\begin{align*}
-  V_{R} &= 5\text{V} - 1.9\text{V} = 3.1\text{V} \\
-  R_{tot} &= 3.9\text{k}\Omega \\
-  I &= \frac{3.1\text{V}}{3.9\text{k}\Omega} \approx 0.79\text{mA}
-\end{align*}
-
-\section*{Supplementary Note: Loading Effect}
-Although ``loading effect'' is listed in the objectives, it is not explicitly calculated in the numbered steps.
-\begin{itemize}
-  \item \textbf{Concept:} The loading effect occurs when a load resistor $R_L$ is attached in parallel to $R_2$ (Figure 1b). This reduces the effective resistance of the bottom branch to $R_{eq} = R_2 \parallel R_L$.
-  \item \textbf{Result:} The measured $v_{out}$ will be \textbf{lower} than the calculated unloaded $v_{out}$ from Table 1.
+    \item \textbf{$\mathbf{100\,\text{k}\Omega}$ Behavior:} At this high resistance, current drops to $\approx 30\,\mu\text{A}$. The LED may appear OFF or extremely faint. Most of the voltage drop occurs across $R_1$, not the LED.
+    \item \textbf{Low Voltage ($<1.8\text{V}$):} If $V_{in}$ is below the turn-on threshold, the circuit is open. $V_{LED} = V_{in}$ and $I = 0$.
+    \item \textbf{Measurement Tolerance:} Student DMMs may not be sensitive enough to capture $\mu\text{A}$ changes. Zero current readings at 100k$\Omega$ are acceptable for grading purposes.
 \end{itemize}
 
 \end{document}
