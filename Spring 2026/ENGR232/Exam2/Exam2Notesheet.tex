@@ -1,0 +1,165 @@
+\documentclass[8pt]{article}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{booktabs}
+
+\setlength{\columnsep}{0.7cm}
+\setlength{\parindent}{0in}
+
+% --- Squeezing Space ---
+\linespread{0.65}
+\titlespacing*{\section}{0pt}{2pt}{1pt}
+\titlespacing*{\subsection}{0pt}{2pt}{1pt}
+% -----------------------
+
+\date{}
+
+\begin{document}
+\large ENGR 232 Exam 2 Notesheet \hfill Sean Balbale \hfill Spring 2026 \vspace{0.1cm}
+\hrule
+\vspace{0.1cm}
+
+\begin{multicols*}{2}
+
+  \section*{Chapter 5: Diffusion}
+  \subsection*{Key Equations}
+  \textbf{Fick's First Law (Steady-State):} \( J = -D \frac{\Delta C}{\Delta x} \) \\
+  (\( J \): diffusion flux, \( D \): diffusion coefficient, \( C \): concentration, \( x \): distance) \\
+
+  \textbf{Mass Diffused:} \( M = JAt = -DAt\frac{\Delta C}{\Delta x} \) \\
+  (\( M \): mass, \( A \): area, \( t \): time) \\
+
+  \textbf{Fick's Second Law (Differential):} \( \frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} \) \\
+
+  \textbf{Fick's Second Law (Non-Steady-State):} \\
+  \( \frac{C_x - C_0}{C_s - C_0} = 1 - \text{erf}\left(\frac{x}{2\sqrt{Dt}}\right) \) \\
+  (\( C_x \): conc. at depth \( x \), \( C_0 \): initial conc., \( C_s \): surface conc.) \\
+
+  \textbf{Diffusion Coefficient (Temp Dependence):} \\
+  \( D = D_0 \exp\left(-\frac{Q_d}{RT}\right) \) \\
+  (\( D_0 \): preexponential, \( Q_d \): activation energy, \( T \): temp in K) \\
+
+  \textbf{Solving for Activation Energy (Two Temps):} \\
+  \( Q_d = -R \frac{\ln D_1 - \ln D_2}{\frac{1}{T_1} - \frac{1}{T_2}} \) \\
+  Constants: \( R = 8.31 \text{ J/mol-K} \) (gas constant)
+
+  \subsection*{Concepts}
+  \textbf{Fick's Second Law Conditions:} Valid for diffusion into a semi-infinite solid when the surface concentration of the diffusing species is held constant.
+
+  \subsection*{Error Function Table \& Interpolation}
+  \textbf{Linear Interpolation Formula:} \( \frac{y - y_1}{y_2 - y_1} = \frac{x - x_1}{x_2 - x_1} \) \\
+
+  \begin{center}
+    \scriptsize
+    \begin{tabular}{ll|ll}
+      \toprule
+      \( z \) & \( \text{erf}(z) \) & \( z \) & \( \text{erf}(z) \) \\
+      \midrule
+      0.00 & 0.0000 & 0.85 & 0.7707 \\
+      0.05 & 0.0564 & 0.90 & 0.7970 \\
+      0.10 & 0.1125 & 0.95 & 0.8209 \\
+      0.15 & 0.1680 & 1.00 & 0.8427 \\
+      0.20 & 0.2227 & 1.10 & 0.8802 \\
+      0.25 & 0.2763 & 1.20 & 0.9103 \\
+      0.30 & 0.3286 & 1.30 & 0.9340 \\
+      0.35 & 0.3794 & 1.40 & 0.9523 \\
+      0.40 & 0.4284 & 1.50 & 0.9661 \\
+      0.45 & 0.4755 & 1.60 & 0.9763 \\
+      0.50 & 0.5205 & 1.70 & 0.9838 \\
+      0.55 & 0.5633 & 1.80 & 0.9891 \\
+      0.60 & 0.6039 & 1.90 & 0.9928 \\
+      0.65 & 0.6420 & 2.00 & 0.9953 \\
+      0.70 & 0.6778 & 2.20 & 0.9981 \\
+      0.75 & 0.7112 & 2.40 & 0.9993 \\
+      0.80 & 0.7421 & 2.60 & 0.9998 \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \subsection*{Example: Steady-State Diffusion}
+  Hydrogen through Pd sheet, \( A = 0.20 \text{ m}^2 \), \( D = 1.0\times 10^{-8} \text{ m}^2\text{/s} \), \( \Delta x = 5\times 10^{-3} \text{ m} \). Find mass per hour.\\
+  \( M = -(1.0\times 10^{-8})(0.20)(3600)\left[\frac{0.6 - 2.4}{5\times 10^{-3}}\right] \) \\
+  \( M = 2.6\times 10^{-3} \text{ kg/h} \).
+
+  \section*{Chapter 6: Mechanical Properties}
+  \subsection*{Key Equations}
+  \textbf{Eng. Stress:} \( \sigma = \frac{F}{A_0} \) \ \ \textbf{Shear Stress:} \( \tau = \frac{F}{A_0} \) \\
+  (\( \sigma \): stress, \( F \): applied force, \( A_0 \): orig. area) \\
+
+  \textbf{Eng. Strain:} \( \epsilon = \frac{\Delta l}{l_0} \) \ \ \textbf{Shear Strain:} \( \gamma = \tan \theta \) \\
+  (\( \epsilon \): strain, \( \Delta l \): change in length, \( l_0 \): orig. length) \\
+
+  \textbf{Hooke's Law:} \( \sigma = E\epsilon \) \ \ \textbf{Shear:} \( \tau = G\gamma \) \\
+  (\( E \): modulus of elasticity, \( G \): shear modulus) \\
+
+  \textbf{Poisson's Ratio:} \( \nu = -\frac{\epsilon_x}{\epsilon_z} = -\frac{\epsilon_y}{\epsilon_z} \) \\
+
+  \textbf{True Stress:} \( \sigma_T = \sigma(1+\epsilon) \) \\
+  \textbf{True Strain:} \( \epsilon_T = \ln(1+\epsilon) \) \\
+
+  \textbf{Plastic Strain Hardening:} \( \sigma_T = K \epsilon_T^n \) \\
+  (\( K \): strength index, \( n \): strain-hardening exp.) \\
+
+  \textbf{Modulus of Resilience:} \( U_r \approx \frac{1}{2}\sigma_y\epsilon_y = \frac{\sigma_y^2}{2E} \) \\
+
+  \textbf{Elongation (Elastic):} \( \Delta l = \frac{l_0 F}{A_0 E} \)
+
+  \subsection*{Concepts}
+  \textbf{Hooke's Law Validity:} Valid only under conditions where deformation is totally elastic. \\
+  \textbf{Yield Strength:} Determined using a 0.002 strain offset on the stress-strain diagram. \\
+  \textbf{Deformation After Release:} If a material is strained only elastically, there will be no deformation after the load is released.
+
+  \subsection*{Example: Elastic Strain}
+  Al specimen \( 10 \text{ mm} \times 12.7 \text{ mm} \) pulled with \( 35,500 \text{ N} \) force. \( E = 69\times 10^9 \text{ N/m}^2 \). \\
+  \( \epsilon = \frac{F}{A_0 E} = \frac{35,500}{(1.27\times 10^{-4})(69\times 10^9)} = 4.1\times 10^{-3} \)
+
+  \section*{Chapter 7: Dislocations \& Strengthening}
+  \subsection*{Key Equations}
+  \textbf{Critical Resolved Shear Stress:} \( \tau_R = \sigma \cos\phi \cos\lambda \) \\
+  (\( \tau_R \): resolved shear stress, \( \phi \): angle to slip plane normal, \( \lambda \): angle to slip direction) \\
+
+  \textbf{Yield Strength (Slip):} \( \sigma_y = \frac{\tau_{\text{CRSS}}}{(\cos\phi \cos\lambda)_{\max}} \) \\
+
+  \textbf{Hall-Petch Eq:} \( \sigma_y = \sigma_0 + k_y d^{-1/2} \) \\
+  (\( \sigma_0, k_y \): constants, \( d \): avg grain diameter) \\
+
+  \textbf{Percent Cold Work:} \( \%CW = \left(\frac{A_0 - A_d}{A_0}\right) \times 100 \) \\
+  (\( A_d \): deformed cross-sectional area)
+
+  \subsection*{Concepts}
+  \textbf{Plastic Deformation:} Occurs via the motion of edge and screw dislocations responding to applied shear stresses. \\
+  \textbf{Slip System:} The specific combination of a slip plane and slip direction. \\
+  \textbf{Strain Hardening (Cold Working):} A ductile metal becomes harder and stronger as it is plastically deformed.
+
+  \section*{Chapter 8: Failure}
+  \subsection*{Key Equations}
+  \textbf{Stress Concentration:} \( \sigma_m = 2\sigma_0 \sqrt{\frac{a}{\rho_t}} = K_t \sigma_0 \) \\
+  (\( a \): half internal flaw length, \( \rho_t \): crack tip radius) \\
+
+  \textbf{Critical Stress for Crack Propagation:} \\
+  \( \sigma_c = \sqrt{\frac{2E\gamma_s}{\pi a}} \) \\
+  (\( \sigma_c \): critical stress, \( \gamma_s \): specific surface energy, \( a \): half internal crack length) \\
+
+  \textbf{Fracture Toughness:} \( K_c = Y \sigma_c \sqrt{\pi a} \) \\
+
+  \textbf{Cyclic Stress Parameters:} \\
+  Range: \( \Delta\sigma = \sigma_{\max} - \sigma_{\min} \) \ \ Mean: \( \sigma_m = \frac{\sigma_{\max} + \sigma_{\min}}{2} \) \\
+  Stress Ratio: \( R = \frac{\sigma_{\min}}{\sigma_{\max}} \) \\
+
+  \textbf{Steady-State Creep Rate:} \( \dot{\epsilon}_s = K_2 \sigma^n \exp\left(-\frac{Q_c}{RT}\right) \) \\
+
+  \textbf{Larson-Miller Parameter:} \( m = T(C + \log t_r) \) \\
+  (\( T \): temp, \( t_r \): time to rupture, \( C \): constant)
+
+  \subsection*{Concepts}
+  \textbf{Fracture Modes:} Crack propagation mechanisms differ significantly for ductile and brittle materials. \\
+  \textbf{Fatigue:} Structural damage occurring under conditions of cyclic stress. \\
+  \textbf{S-N Curve Interpretation:} \\
+  - \textit{Fatigue Lifetime:} Number of cycles to cause failure at a specified stress level. \\
+  - \textit{Fatigue Strength:} The stress level at which failure will occur for a specified number of cycles.
+
+\end{multicols*}
+\end{document}
