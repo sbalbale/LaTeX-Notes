@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{float}
+
+% Formatting
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.5\baselineskip}
+
+% Title setup
+\title{\vspace{-1in}\textbf{TA Solution \& Reference Guide} \\ \Large ENGR 212 Lab 8 - Difference Amplifier}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{-0.5in}
+\hrule
+\vspace{0.2in}
+
+\section*{Lab Parameters \& Setup}
+\begin{itemize}
+  \item \textbf{Op-Amp:} LM324 Quad Operational Amplifier[cite: 8, 68].
+  \item \textbf{Power Supply:} Split supply to power $V_{CC}$ and $V_{EE}$ with $V_{+} = \SI{15}{\volt}$ and $V_{-} = \SI{-15}{\volt}$[cite: 22, 91].
+  \item \textbf{Resistors:} $R_1 = \SI{1}{\kilo\ohm}$, $R_3 = \SI{1}{\kilo\ohm}$, $R_2 = \SI{10}{\kilo\ohm}$, and $R_4 = \SI{10}{\kilo\ohm}$[cite: 21, 22].
+  \item \textbf{DC Input Sweep:} \SI{0.0}{\volt} to \SI{1.0}{\volt} in \SI{0.1}{\volt} increments[cite: 37, 38].
+  \item \textbf{AC Input:} \SI{1}{\kilo\hertz}, $\SI{50}{\milli\volt}_{pk-pk}$ sine wave[cite: 39, 42].
+\end{itemize}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Part 1: Theoretical Analysis \& Hardware Selection}
+
+To achieve a differential gain ($A_d$) of $10\text{ V/V}$ [cite: 21], we utilize the overarching transfer function of the difference amplifier[cite: 23]:
+\begin{equation}
+  v_o = -\frac{R_2}{R_1}v_{I1} + \frac{1 + R_2/R_1}{1 + R_3/R_4}v_{I2}
+\end{equation}
+
+While the initial equation incorporates common-mode variables, we configure the resistor network to satisfy the balanced constraint: $\frac{R_2}{R_1} = \frac{R_4}{R_3}$[cite: 26]. This mitigates common-mode amplification and simplifies the output voltage to[cite: 27]:
+\begin{equation}
+  v_o = \frac{R_2}{R_1}(v_{I2} - v_{I1})
+\end{equation}
+
+Thus, the circuit acts as a differential amplifier with a gain of $A_d = \frac{R_2}{R_1}$[cite: 28, 29].
+
+\subsection*{Resistor Selection}
+We are constrained to select resistor values such that $R_1 + R_3 = \SI{2}{\kilo\ohm}$[cite: 22]. To maintain symmetric input impedance, we set $R_1 = R_3 = \SI{1}{\kilo\ohm}$.
+Evaluating the gain requirement ($A_d = 10$) yields the remaining specifications:
+\begin{itemize}
+  \item $R_2 = 10 \cdot R_1 = \SI{10}{\kilo\ohm}$
+  \item $R_4 = 10 \cdot R_3 = \SI{10}{\kilo\ohm}$
+\end{itemize}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Part 2: Prototyping and Expected Results}
+
+\subsection*{1. DC Voltage Sweeps}
+Students will record the output voltage ($v_o$) during two isolated DC sweeps[cite: 37, 38].
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ccc}
+    \toprule
+    \textbf{$V_{IN}$ (Sweep)} & \textbf{$v_o$ ($v_{I2}$ Grounded) [cite: 37]} & \textbf{$v_o$ ($v_{I1}$ Grounded) [cite: 38]} \\
+    \midrule
+    \SI{0.0}{\volt} & \SI{0.0}{\volt} & \SI{0.0}{\volt} \\
+    \SI{0.2}{\volt} & \SI{-2.0}{\volt} & \SI{2.0}{\volt} \\
+    \SI{0.4}{\volt} & \SI{-4.0}{\volt} & \SI{4.0}{\volt} \\
+    \SI{0.6}{\volt} & \SI{-6.0}{\volt} & \SI{6.0}{\volt} \\
+    \SI{0.8}{\volt} & \SI{-8.0}{\volt} & \SI{8.0}{\volt} \\
+    \SI{1.0}{\volt} & \SI{-10.0}{\volt} & \SI{10.0}{\volt} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection*{2. AC Waveform Analysis}
+When providing a \SI{1}{\kilo\hertz} $\SI{50}{\milli\volt}_{pk-pk}$ sine wave to $v_{I1}$ (with $v_{I2}$ grounded), the oscilloscope will capture an inverted $\SI{500}{\milli\volt}_{pk-pk}$ output waveform[cite: 39, 40]. Conversely, applying the exact same input to $v_{I2}$ yields an in-phase $\SI{500}{\milli\volt}_{pk-pk}$ output[cite: 42, 43].
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Common Hardware Troubleshooting \& Checks}
+
+\begin{enumerate}
+  \item \textbf{The Function Generator Trap (Impedance Mismatch):} In order to display the waveform correctly on the oscilloscope, the output impedance from the function generator must match the input impedance of the oscilloscope[cite: 49, 50]. If students report a measured AC gain of $5\text{ V/V}$ rather than $10\text{ V/V}$, they failed to set the function generator to ``High Impedance'' (High Z)[cite: 51, 60, 65].
+  \item \textbf{Tolerance Stack-Up:} Standard resistors possess variable tolerances, which will vitiate a perfect theoretical gain. Students must measure all resistors to three significant digits using a digital multimeter prior to assembling the circuit[cite: 34]. Ensure their post-measurement analysis recalculates the theoretical gains utilizing these specific, measured values to explain discrepancies[cite: 45, 46].
+  \item \textbf{Split Supply Instantiation:} While the LM324 series has advantages in single supply applications[cite: 69], achieving the negative voltage swing required when $v_{I2}$ is grounded mandates a split supply configuration. Ensure students have properly connected $V_{EE}$ to the \SI{-15}{\volt} rail at Pin 11[cite: 99], rather than floating it to the circuit ground.
+\end{enumerate}
+
+\end{document}

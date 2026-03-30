@@ -1,0 +1,124 @@
+\documentclass[11pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+% Title Formatting
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% Meta Data
+\title{\textbf{ECON 315: International Economics \\ Problem Set \#2}}
+\author{Sean Balbale \\ Trinity College (Class of '27)}
+\date{February 5, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+
+\textbf{Restatement:} For each of the following examples, explain whether this is a case of external or internal economies of scale.
+
+\subsection*{(a) Most major banks, financial firms, and the stock market are located in New York City.}
+\noindent \textbf{Solution: External Economies of Scale}
+\begin{itemize}
+  \item \textit{Reasoning:} This is a classic example of industry clustering. The concentration of financial firms in one geographic area creates a thick, specialized labor market, specialized support services, and rapid knowledge spillovers. The cost per unit falls as the \textit{entire industry} grows larger in that location, not necessarily because a single firm gets larger.
+\end{itemize}
+
+\subsection*{(b) Hartford, CT, is the insurance capital of the northeast.}
+\noindent \textbf{Solution: External Economies of Scale}
+\begin{itemize}
+  \item \textit{Reasoning:} Similar to the New York financial hub, Hartford benefits from a localized concentration of insurance firms. This clustering provides shared infrastructure, an experienced talent pool, and specialized regulatory/legal services that benefit all competing firms in the region.
+\end{itemize}
+
+\subsection*{(c) Close to half the world's wide body aircraft are assembled in Seattle.}
+\noindent \textbf{Solution: Internal Economies of Scale}
+\begin{itemize}
+  \item \textit{Reasoning:} Assembling wide-body aircraft requires massive upfront fixed costs (R\&D, huge factories, heavy machinery). Because these fixed costs are so large, the average cost of production only falls significantly when an \textit{individual firm} (like Boeing) produces at a massive scale.
+\end{itemize}
+
+\subsection*{(d) Most of the world's aluminum is smelted in Norway or Canada.}
+\noindent \textbf{Solution: Internal Economies of Scale}
+\begin{itemize}
+  \item \textit{Reasoning:} Aluminum smelting requires massive capital investments in enormous smelting plants to reach peak efficiency. While the choice of location is driven by comparative advantage (abundant and cheap hydroelectric power), the scale of the plants themselves represents economies of scale internal to the firm.
+\end{itemize}
+
+\vspace{1em}
+\section*{Problem 2}
+
+\textbf{Restatement:} Using the data provided in class, suppose that the two countries were to integrate their automobile market with a third country with an annual market of 3.6 million cars. Find (a) the number of firms, (b) the output per firm, and (c) the average cost and price per car.
+
+\vspace{0.5em}
+\noindent \textbf{Given Data (from class notes):}
+\begin{itemize}
+  \item Fixed Cost ($F$) = \$750,000,000
+  \item Marginal Cost ($c$) = \$5,000
+  \item Demand parameter ($b$) = $1 / 30,000$
+  \item $b \times F = 25,000$
+  \item Existing Integrated Market (Home + Foreign) = 2,500,000 cars
+\end{itemize}
+
+\noindent \textit{Note on Ambiguity:} The phrasing ``integrate their automobile market with a third country with an annual market of 3.6 million cars'' can be interpreted in two ways. Below are the solutions for both Interpretations. Interpretation B yields perfect integers and is most likely the intended textbook math.
+
+\subsection*{Interpretation A (Literal): The third country adds 3.6 million cars}
+Total New Market ($S$) = 2,500,000 (H+F) + 3,600,000 (Third Country) = \textbf{6,100,000 cars}
+
+\begin{enumerate}[label=\textbf{\alph*.}]
+  \item \textbf{Number of firms ($n$):}
+    $$n = \sqrt{\frac{S}{bF}} = \sqrt{\frac{6,100,000}{25,000}} = \sqrt{244} \approx \textbf{15.62 firms}$$
+
+  \item \textbf{Output per firm ($Q$):}
+    $$Q = \frac{S}{n} = \frac{6,100,000}{15.62} \approx \textbf{390,525 cars per firm}$$
+
+  \item \textbf{Average Cost ($AC$) and Price ($P$):}
+    $$P = AC = c + \frac{1}{b \cdot n} = 5000 + \frac{30,000}{15.62} = 5000 + 1920.61 = \textbf{\$6,920.61}$$
+\end{enumerate}
+
+\subsection*{Interpretation B (Integer-Friendly): The \textit{new total} market is 3.6 million cars}
+Total New Market ($S$) = \textbf{3,600,000 cars}
+
+\begin{enumerate}[label=\textbf{\alph*.}]
+  \item \textbf{Number of firms ($n$):}
+    $$n = \sqrt{\frac{S}{bF}} = \sqrt{\frac{3,600,000}{25,000}} = \sqrt{144} = \textbf{12 firms}$$
+
+  \item \textbf{Output per firm ($Q$):}
+    $$Q = \frac{S}{n} = \frac{3,600,000}{12} = \textbf{300,000 cars per firm}$$
+
+  \item \textbf{Average Cost ($AC$) and Price ($P$):}
+    $$P = AC = c + \frac{1}{b \cdot n} = 5000 + \frac{30,000}{12} = 5000 + 2500 = \textbf{\$7,500}$$
+\end{enumerate}
+
+\vspace{1em}
+\section*{Problem 3}
+
+\textbf{Restatement:} The equation for dynamic external economies---the so-called ``learning curve''---can be expressed as $AC = \alpha Q^\beta$. Explain the economic meaning of the learning curve, and the economic meaning and sign of the parameters $\alpha$ and $\beta$.
+
+\subsection*{(a) Economic Meaning of the Learning Curve}
+\noindent \textbf{Solution:}
+The learning curve illustrates dynamic external economies, showing that a firm's (or industry's) average cost of production declines as its \textit{cumulative} output increases over time. This happens because of ``learning-by-doing''---as producers gain experience, they innovate, reduce waste, and streamline production processes, making them more efficient the longer they produce.
+
+\subsection*{(b) Economic Meaning and Sign of Parameters $\alpha$ and $\beta$}
+\noindent \textbf{Solution:}
+Taking the natural logarithm of the equation yields: $\ln(AC) = \ln(\alpha) + \beta \ln(Q)$.
+\begin{itemize}
+  \item \textbf{Parameter $\alpha$:} This represents the initial average cost of producing the very first unit (when cumulative output $Q = 1$, $AC = \alpha$). Since production costs cannot be negative, the sign of $\alpha$ must be \textbf{positive}.
+  \item \textbf{Parameter $\beta$:} This represents the elasticity of average cost with respect to cumulative output. It measures the percentage change in average cost for a 1\% increase in cumulative output. Because average costs \textit{decline} as experience grows, the sign of $\beta$ must be \textbf{negative}.
+\end{itemize}
+
+\vspace{1em}
+\section*{Extra Credit}
+
+\textbf{Question:} What's the difference between an economist and a confused old man with Alzheimer's?
+
+\noindent \textbf{Answer:}
+The economist is the one with the calculator.
+
+\end{document}
