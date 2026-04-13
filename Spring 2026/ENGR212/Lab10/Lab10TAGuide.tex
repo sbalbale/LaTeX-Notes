@@ -1,0 +1,135 @@
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{float}
+
+% Formatting
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.5\baselineskip}
+
+% Title setup
+\title{\vspace{-1in}\textbf{TA Solution \& Reference Guide} \\ \Large ENGR 212 Lab 10 - LTSpice RC Simulations}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{-0.5in}
+\hrule
+\vspace{0.2in}
+
+\section*{Lab Objectives \& Core Concepts}
+This lab transitions the physical RC circuits from Lab 9 into the LTSpice simulation environment. Students will utilize a \texttt{PULSE} voltage source to simulate a square wave step-input. They must perform a Transient (Time Domain) analysis and use software cursors to empirically measure the charging and discharging Time Constants ($\tau$).
+
+\textbf{Key Mathematical Relationships:}
+\begin{itemize}
+  \item \textbf{Time Constant:} $\tau = R \times C$
+  \item \textbf{Charging Threshold ($1\tau$):} $v_c(\tau) = V_{on}(1 - e^{-1}) \approx \mathbf{63.2\% \text{ of } V_{on}}$
+  \item \textbf{Discharging Threshold ($1\tau$):} $v_c(\tau) = V_{on}(e^{-1}) \approx \mathbf{36.8\% \text{ of } V_{on}}$
+\end{itemize}
+
+Because the lab manual specifies a $V_{on}$ of exactly \SI{1}{\volt}, the voltage targets for the LTSpice cursors are incredibly straightforward:
+\begin{itemize}
+  \item \textbf{Target Charging Voltage:} $\approx \mathbf{\SI{0.632}{\volt}}$
+  \item \textbf{Target Discharging Voltage:} $\approx \mathbf{\SI{0.368}{\volt}}$
+\end{itemize}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Expected Theoretical Calculations (Table 1)}
+
+Students must simulate five different resistors paired with two different capacitors (\SI{0.01}{\micro\farad} and \SI{1}{\micro\farad}). Because this is an ideal software simulation, their cursor measurements should match these theoretical values almost perfectly (within the resolution limits of their cursor placement).
+
+\begin{table}[H]
+  \centering
+  \caption{Theoretical Time Constants ($\tau = R \times C$)}
+  \begin{tabular}{ccc}
+    \toprule
+    \textbf{Resistor ($R$)} & \textbf{Cap = \SI{0.01}{\micro\farad} ($10^{-8}$ F)} & \textbf{Cap = \SI{1}{\micro\farad} ($10^{-6}$ F)} \\
+    \midrule
+    \textbf{\SI{1}{\kilo\ohm}}   & \SI{10}{\micro\second} & \SI{1.0}{\milli\second} \\
+    \textbf{\SI{1.2}{\kilo\ohm}} & \SI{12}{\micro\second} & \SI{1.2}{\milli\second} \\
+    \textbf{\SI{1.5}{\kilo\ohm}} & \SI{15}{\micro\second} & \SI{1.5}{\milli\second} \\
+    \textbf{\SI{1.8}{\kilo\ohm}} & \SI{18}{\micro\second} & \SI{1.8}{\milli\second} \\
+    \textbf{\SI{2}{\kilo\ohm}}   & \SI{20}{\micro\second} & \SI{2.0}{\milli\second} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{LTSpice Simulation Parameters}
+
+The lab manual dictates two different simulation configurations depending on the capacitor being used. TAs should verify that students are using the correct parameters, or their waveforms will not reach steady-state.
+
+\subsection*{Shared \texttt{PULSE} Parameters (Both Cases)}
+\begin{itemize}
+  \item \textbf{$V_{initial}$:} \SI{0}{\volt}
+  \item \textbf{$V_{on}$:} \SI{1}{\volt}
+  \item \textbf{$T_{delay}$:} \SI{0}{\second}
+  \item \textbf{$T_{rise}$:} \SI{1}{\nano\second} \textit{(LTSpice requires non-zero rise/fall times; 1ns simulates ideal)}
+  \item \textbf{$T_{fall}$:} \SI{1}{\nano\second}
+\end{itemize}
+
+\subsection*{Case 1: $C = \SI{0.01}{\micro\farad}$ (\SI{5}{\kilo\hertz} Signal)}
+To allow the capacitor to fully charge (requires $>5\tau$), the lab specifies a \SI{5}{\kilo\hertz} frequency.
+\begin{itemize}
+  \item \textbf{Period ($T_{period}$):} $1 / \SI{5000}{\hertz} = \SI{0.0002}{\second} = \mathbf{\SI{0.2}{\milli\second}}$ (LTSpice: \texttt{0.2m})
+  \item \textbf{Pulse Width ($T_{on}$):} $T_{period} / 2 = \mathbf{\SI{0.1}{\milli\second}}$ (LTSpice: \texttt{0.1m})
+  \item \textbf{Transient Stop Time:} $4 \times T_{period} = \mathbf{\SI{0.8}{\milli\second}}$ (LTSpice: \texttt{0.8m})
+\end{itemize}
+
+\subsection*{Case 2: $C = \SI{1}{\micro\farad}$ (\SI{50}{\hertz} Signal)}
+Because the \SI{1}{\micro\farad} capacitor has a much longer $\tau$ (up to \SI{2}{\milli\second}), the period must be extended to \SI{20}{\milli\second} to ensure the capacitor has \SI{10}{\milli\second} to charge (which is $5 \times \tau_{max}$).
+\begin{itemize}
+  \item \textbf{Period ($T_{period}$):} $\mathbf{\SI{20}{\milli\second}}$ (LTSpice: \texttt{20m})
+  \item \textbf{Pulse Width ($T_{on}$):} $T_{period} / 2 = \mathbf{\SI{10}{\milli\second}}$ (LTSpice: \texttt{10m})
+  \item \textbf{Transient Stop Time:} $4 \times T_{period} = \mathbf{\SI{80}{\milli\second}}$ (LTSpice: \texttt{80m})
+\end{itemize}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{LTSpice Measurement Protocol}
+
+To extract the data, students must plot both $V_{in}$ (the pulse) and $V_c$ (voltage across the capacitor).
+
+\begin{enumerate}
+  \item \textbf{Charging Time Constant:}
+    \begin{itemize}
+      \item Attach \textbf{Cursor 1} to the exact moment the input pulse jumps from \SI{0}{\volt} to \SI{1}{\volt}.
+      \item Attach \textbf{Cursor 2} to the $V_c$ trace and move it along the curve until the Y-value reads exactly \textbf{\SI{0.632}{\volt}}.
+      \item The \texttt{dx} (Difference in X) value in the cursor window is the charging time constant.
+    \end{itemize}
+
+  \item \textbf{Discharging Time Constant:}
+    \begin{itemize}
+      \item Attach \textbf{Cursor 1} to the exact moment the input pulse drops from \SI{1}{\volt} to \SI{0}{\volt}.
+      \item Attach \textbf{Cursor 2} to the $V_c$ trace and move it along the discharge curve until the Y-value reads exactly \textbf{\SI{0.368}{\volt}}.
+      \item The \texttt{dx} (Difference in X) value in the cursor window is the discharging time constant.
+    \end{itemize}
+\end{enumerate}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Common LTSpice Pitfalls \& Troubleshooting}
+
+\begin{enumerate}
+  \item \textbf{The ``m'' vs. ``u'' vs. ``Meg'' Trap (CRITICAL):} LTSpice is not case-sensitive. Typing \texttt{1M} or \texttt{1m} for the capacitor will yield \textbf{1 milliFarad}, which is $1,000\times$ larger than \SI{1}{\micro\farad}.
+    \begin{itemize}
+      \item \textit{Fix:} Students \textbf{must} use \texttt{1u} for micro (e.g., \texttt{1uF} or \texttt{0.01uF}).
+      \item \textit{Note:} If a student needs Mega-ohms for a resistor later, they must type \texttt{Meg} (e.g., \texttt{1Meg}), not \texttt{1M}.
+    \end{itemize}
+  \item \textbf{Missing Ground Node:} LTSpice will refuse to run the transient analysis if there is no ground reference. Ensure the triangle ground symbol is attached to the bottom wire connecting the source and capacitor.
+  \item \textbf{Triangle Waves Instead of Shark Fins:} If the $V_c$ waveform looks like a continuous triangle wave that never flattens out at \SI{1}{\volt} or \SI{0}{\volt}, the frequency is too high. The capacitor is not getting the $5\tau$ time required to fully charge. Have them verify their $T_{period}$ and $T_{on}$ match the cases outlined in Section 3.
+\end{enumerate}
+
+\end{document}
