@@ -1,0 +1,371 @@
+\documentclass[11pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+% Title Formatting
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% Meta Data
+\title{\textbf{ECON 315: International Economics \\ Problem Set \#3}}
+\author{Sean Balbale \\ Trinity College (Class of '27)}
+\date{April 17, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1: Partial Equilibrium Tariff Analysis}
+
+\textbf{Restatement:} Suppose that the domestic demand and supply curve for towels in Guatemala is given by:
+\begin{align*}
+P &= 66 - 2Q \quad \text{(demand)} \\
+P &= 6 + Q \quad \text{(supply)}
+\end{align*}
+where $P$ and $Q$ denote price (in pesos) and quantity (in towels), respectively.
+
+\subsection*{(a) What is the autarky price of towels and the quantity produced?}
+\noindent \textbf{Solution:} \\
+Set Demand equal to Supply to find the domestic equilibrium:
+\begin{align*}
+66 - 2Q &= 6 + Q \\
+60 &= 3Q \\
+\mathbf{Q} &\mathbf{= 20 \text{ towels}}
+\end{align*}
+Substitute $Q$ back into either equation to find $P$:
+\begin{align*}
+P &= 6 + (20) \\
+\mathbf{P} &\mathbf{= 26 \text{ pesos}}
+\end{align*}
+
+\subsection*{(b) What are the levels of domestic production, consumption, and imports if the world price is \$20. (Assume that the exchange rate between the peso and the dollar is one-to-one.)}
+\noindent \textbf{Solution:} \\
+Since the world price (\$20) is lower than the autarky price (\$26), Guatemala will import towels.
+\begin{itemize}
+    \item \textbf{Domestic Production ($Q_s$):} Plug $P = 20$ into the Supply equation.
+    \begin{align*}
+    20 &= 6 + Q_s \\
+    \mathbf{Q_s} &\mathbf{= 14 \text{ towels}}
+    \end{align*}
+    \item \textbf{Domestic Consumption ($Q_d$):} Plug $P = 20$ into the Demand equation.
+    \begin{align*}
+    20 &= 66 - 2Q_d \\
+    2Q_d &= 46 \\
+    \mathbf{Q_d} &\mathbf{= 23 \text{ towels}}
+    \end{align*}
+    \item \textbf{Imports:} $Q_d - Q_s$
+    \begin{align*}
+    23 - 14 &= \mathbf{9 \text{ towels imported}}
+    \end{align*}
+\end{itemize}
+
+\subsection*{(c) How do your answers in part b change if this country were to impose a tariff of 10 percent? Show this graphically.}
+\noindent \textbf{Solution:} \\
+A 10\% tariff on the \$20 world price increases the domestic price by \$2 ($\$20 \times 0.10$).
+\begin{itemize}
+    \item \textbf{New Tariff Price ($P_t$):} $\mathbf{22 \text{ pesos}}$
+    \item \textbf{New Domestic Production ($Q_s$):} Plug $P = 22$ into Supply.
+    \begin{align*}
+    22 &= 6 + Q_s \\
+    \mathbf{Q_s} &\mathbf{= 16 \text{ towels}} \quad \text{(Production increased by 2)}
+    \end{align*}
+    \item \textbf{New Domestic Consumption ($Q_d$):} Plug $P = 22$ into Demand.
+    \begin{align*}
+    22 &= 66 - 2Q_d \\
+    2Q_d &= 44 \\
+    \mathbf{Q_d} &\mathbf{= 22 \text{ towels}} \quad \text{(Consumption fell by 1)}
+    \end{align*}
+    \item \textbf{New Imports:}
+    \begin{align*}
+    22 - 16 &= \mathbf{6 \text{ towels imported}} \quad \text{(Imports fell by 3)}
+    \end{align*}
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=8cm,
+    axis lines=left,
+    xlabel={Quantity (Q)},
+    ylabel={Price (P)},
+    xmin=0, xmax=35,
+    ymin=0, ymax=70,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!30},
+    major grid style={line width=.2pt,draw=gray!50},
+    legend pos=north east,
+]
+% Demand
+\addplot[domain=0:33, color=blue, thick] {66 - 2*x};
+\addlegendentry{Demand: $P = 66 - 2Q$}
+% Supply
+\addplot[domain=0:35, color=red, thick] {6 + x};
+\addlegendentry{Supply: $P = 6 + Q$}
+
+% Autarky
+\node[label={90:Eq (20,26)},circle,fill,inner sep=1.5pt] at (axis cs:20,26) {};
+
+% World Price
+\addplot[domain=0:35, color=black, densely dashed, thick] {20};
+\addlegendentry{$P_w = 20$}
+\node[label={270:$Q_s=14$},circle,fill,inner sep=1.5pt,color=green!70!black] at (axis cs:14,20) {};
+\node[label={270:$Q_d=23$},circle,fill,inner sep=1.5pt,color=green!70!black] at (axis cs:23,20) {};
+
+% Tariff Price
+\addplot[domain=0:35, color=green!70!black, thick] {22};
+\addlegendentry{$P_t = 22$}
+\node[label={90:$Q_s'=16$},circle,fill,inner sep=1.5pt,color=magenta] at (axis cs:16,22) {};
+\node[label={90:$Q_d'=22$},circle,fill,inner sep=1.5pt,color=magenta] at (axis cs:22,22) {};
+
+% Deadweight Loss Triangles
+\fill[gray!30, opacity=0.5] (axis cs:14,20) -- (axis cs:16,22) -- (axis cs:16,20) -- cycle;
+\fill[gray!30, opacity=0.5] (axis cs:22,22) -- (axis cs:23,20) -- (axis cs:22,20) -- cycle;
+
+\end{axis}
+\end{tikzpicture}
+\caption{Partial Equilibrium Analysis of a 10\% Tariff in Guatemala.}
+\end{figure}
+
+\subsection*{(d) In peso terms, what are the deadweight costs of the tariff?}
+\noindent \textbf{Solution:} \\
+Deadweight cost consists of two triangles: the production distortion and the consumption distortion. The formula for a triangle is $\frac{1}{2}bh$. The height of both triangles is the tariff amount (\$2).
+\begin{itemize}
+    \item \textbf{Production Distortion:} $\frac{1}{2} \times (\text{Change in } Q_s) \times (\text{Tariff})$
+    \begin{align*}
+    \frac{1}{2} \times (16 - 14) \times (2) &= \mathbf{2 \text{ pesos}}
+    \end{align*}
+    \item \textbf{Consumption Distortion:} $\frac{1}{2} \times (\text{Change in } Q_d) \times (\text{Tariff})$
+    \begin{align*}
+    \frac{1}{2} \times (23 - 22) \times (2) &= \mathbf{1 \text{ peso}}
+    \end{align*}
+    \item \textbf{Total Deadweight Cost:} $2 + 1 =$ \textbf{3 pesos}
+\end{itemize}
+
+\subsection*{(e) How much revenue does the government raise from the tariff?}
+\noindent \textbf{Solution:} \\
+$\text{Revenue} = (\text{Tariff per unit}) \times (\text{New volume of imports})$
+\begin{align*}
+\text{Revenue} &= 2 \times 6 \\
+\text{Revenue} &= \mathbf{12 \text{ pesos}}
+\end{align*}
+
+\subsection*{(f) Would the deadweight cost of the tariff be greater or smaller if the price elasticity of demand and/or supply is less elastic? Explain.}
+\noindent \textbf{Solution:} \\
+The deadweight cost would be \textbf{smaller}. If supply and demand are less elastic (steeper curves), consumers and producers are less responsive to the \$2 price change. Domestic production would not expand as much, and consumption would not shrink as much. Geometrically, the base of the deadweight loss triangles would be narrower, resulting in a smaller area (less economic waste).
+
+\subsection*{(g) If, instead of Guatemala, this was a large country, what impact would the imposition of a tariff have on the world price for towels? Would the nation's terms of trade improve? Under what conditions? Explain.}
+\noindent \textbf{Solution:} \\
+If a large country imposes a tariff, its resulting drop in import demand is massive enough to create a global supply glut, forcing the \textbf{world price to fall}. Because the country is now buying its imports at a cheaper world price, its \textbf{terms of trade would improve}. The nation's overall welfare improves \textit{only if} the economic gain from these improved terms of trade is mathematically larger than the deadweight costs calculated in part (d).
+
+\vspace{1em}
+\section*{Problem 2: Transportation Costs}
+
+\textbf{Restatement:} Show how transportation costs between two countries can be analyzed using supply and demand diagrams. Assume that the free trade price for the two countries is \$6 per unit of wheat and that the autarchy prices (before trade) are \$4 and \$8 for country A and B, respectively. Explain the relationship between the equilibrium price, supply and demand for the two countries? Now, suppose country A has a more inelastic set of demand and/or supply curves relative to Country B. Where would the burden of the \$1 transportation cost fall more heavily, and why? (Hint: A diagram useful.)
+
+\vspace{0.5em}
+\noindent \textbf{Solution:} \\
+\textbf{The Setup:}
+\begin{itemize}
+    \item Free trade price = \$6
+    \item Country A (Exporter) Autarky = \$4
+    \item Country B (Importer) Autarky = \$8
+    \item New Transport Cost = \$1 per unit.
+\end{itemize}
+
+\textbf{Analysis:} \\
+Transportation costs act exactly like a specific tariff. They drive a wedge between the price the importing consumers pay ($P_B$) and the price the exporting producers receive ($P_A$). \\
+Mathematically: $P_B = P_A + \$1$. \\
+The \$1 cost is split between the two nations, shrinking the volume of trade. For example, $P_B$ might rise to \$6.50, and $P_A$ might fall to \$5.50.
+
+\textbf{Inelasticity and the Burden of Cost:} \\
+If Country A (the exporter) has highly \textbf{inelastic} supply and demand curves relative to Country B, Country A will bear the heavier burden of the \$1 transportation cost. \\
+\textit{Why?} Inelasticity means Country A cannot easily adjust its quantity produced or consumed when prices change. Country B (being highly elastic) will threaten to severely cut its imports if the price rises even slightly. To maintain trade volume, the inflexible Country A must absorb the majority of the cost by drastically lowering the price it accepts ($P_A$), while Country B sees only a tiny increase in $P_B$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+    % Country A
+    \begin{axis}[
+        name=axA,
+        width=5.5cm, height=6cm,
+        title={Country A (Exporter)},
+        xlabel={Quantity}, ylabel={Price},
+        xmin=0, xmax=100, ymin=0, ymax=10,
+        xtick=\empty, ytick={4, 5.5, 6},
+    ]
+    \addplot[domain=0:100, color=blue] {8 - 0.1*x}; % D_A
+    \addplot[domain=0:100, color=red] {0.1*x};     % S_A
+    \addplot[domain=0:100, color=black, loosely dotted] {4};
+    \addplot[domain=0:100, color=black, dashed] {6};
+    \addplot[domain=0:100, color=magenta, thick] {5.5};
+    \end{axis}
+
+    % World Market
+    \begin{axis}[
+        name=axW,
+        at={(axA.outer east)}, anchor=outer west,
+        width=5.5cm, height=6cm,
+        title={World Market},
+        xlabel={Traded Quantity},
+        xmin=0, xmax=60, ymin=0, ymax=10,
+        xtick=\empty, ytick=\empty,
+    ]
+    \addplot[domain=0:60, color=red, thick] {4 + 0.05*x}; % XS_A
+    \addplot[domain=0:60, color=blue, thick] {8 - 0.05*x}; % MD_B
+    \addplot[domain=0:60, color=black, dashed] {6};
+    \node[circle,fill,inner sep=1pt] at (axis cs:40,6) {};
+    
+    \addplot[domain=0:60, color=green!70!black, thick] {6.5};
+    \addplot[domain=0:60, color=magenta, thick] {5.5};
+    \draw[<->, thick] (axis cs:30,5.5) -- (axis cs:30,6.5) node[midway, right] {\$1 Transport};
+    \end{axis}
+
+    % Country B
+    \begin{axis}[
+        name=axB,
+        at={(axW.outer east)}, anchor=outer west,
+        width=5.5cm, height=6cm,
+        title={Country B (Importer)},
+        xlabel={Quantity},
+        xmin=0, xmax=100, ymin=0, ymax=10,
+        xtick=\empty, ytick={6, 6.5, 8},
+    ]
+    \addplot[domain=0:100, color=blue] {10 - 0.1*x}; % D_B
+    \addplot[domain=0:100, color=red] {0.1*x + 6};   % S_B (shifted for autarky=8)
+    \addplot[domain=0:100, color=black, loosely dotted] {8};
+    \addplot[domain=0:100, color=black, dashed] {6};
+    \addplot[domain=0:100, color=green!70!black, thick] {6.5};
+    \end{axis}
+\end{tikzpicture}
+\caption{The effect of transportation costs acting as a specific tariff on the world market.}
+\end{figure}
+
+\vspace{1em}
+\section*{Problem 3: Effective Rate of Protection (ERP)}
+
+\textbf{Restatement:} In class we discussed the difference between nominal and effective protection. Answer the following questions pertaining to the effective rate of protection ($g$).
+The Formula:
+$$g = \frac{t_f - a \cdot t_i}{1 - a}$$
+(Where $g$ is ERP, $t_f$ is the nominal tariff on the final good, $a$ is the ratio of imported inputs to the final good value, and $t_i$ is the nominal tariff on imported inputs).
+
+\subsection*{(a) Show that if no imported inputs go into domestic production of the final good, then the g is equal to the nominal tariff rate on the final good ($t_f$).}
+\noindent \textbf{Solution:} \\
+If there are no imported inputs, then $a = 0$.
+\begin{align*}
+g &= \frac{t_f - (0 \cdot t_i)}{1 - 0} \\
+g &= \frac{t_f}{1} \\
+\mathbf{g} &\mathbf{= t_f}
+\end{align*}
+
+\subsection*{(b) Suppose that the nominal tariff rate on the final good ($t_f$) is 50 percent (0.5), the nominal rate on the imported inputs used in the production of the final good ($t_i$) is 20 percent (0.2), and the ratio of the imported input to the value of the final good (a) is 0.4. Find the g given to the domestic producers of this commodity and interpret in words.}
+\noindent \textbf{Solution:}
+\begin{align*}
+g &= \frac{0.5 - (0.4 \times 0.2)}{1 - 0.4} \\
+g &= \frac{0.5 - 0.08}{0.6} = \frac{0.42}{0.6} \\
+\mathbf{g} &\mathbf{= 0.70 \text{ or } 70\%}
+\end{align*}
+\textbf{Interpretation:} While the nominal tariff tells consumers the price will rise by 50\%, the domestic manufacturer's actual \textit{value-added} process is protected by 70\%, because they are allowed to import raw materials at a cheaper tax rate than the final good.
+
+\subsection*{(c) Given that $a=0.5$ and $t_f=0.4$, find the g when $t_i=0.8$, and $t_i=1.0$. In both cases, explain the nature of your results.}
+\noindent \textbf{Solution:}
+\begin{itemize}
+    \item \textbf{When $t_i = 0.8$:}
+    \begin{align*}
+    g &= \frac{0.4 - (0.5 \times 0.8)}{1 - 0.5} = \frac{0.4 - 0.4}{0.5} = \mathbf{0\%}
+    \end{align*}
+    \textit{Explanation:} The heavy tax on imported inputs perfectly cancels out the protection provided by the tariff on the final good, leaving the domestic producer with zero effective protection.
+    \item \textbf{When $t_i = 1.0$:}
+    \begin{align*}
+    g &= \frac{0.4 - (0.5 \times 1.0)}{0.5} = \frac{0.4 - 0.5}{0.5} = \frac{-0.1}{0.5} = \mathbf{-20\%}
+    \end{align*}
+    \textit{Explanation:} The tariff structure is now actively penalizing the domestic producer. Because inputs are taxed so heavily relative to the final good, the domestic firm is at a severe disadvantage compared to foreign competitors who can import the final good at only a 40\% tax.
+\end{itemize}
+
+\subsection*{(d) What are the main drawbacks (at least two) of the concept of effective protection? Explain fully.}
+\noindent \textbf{Solution:}
+\begin{enumerate}
+    \item \textbf{Fixed Coefficients ($a$):} The formula assumes the ratio of inputs to final goods ($a$) remains perfectly constant. In reality, if the price of imported inputs rises due to tariffs, firms will dynamically substitute domestic inputs for imported ones, changing the ratio and making the formula inaccurate.
+    \item \textbf{Partial Equilibrium Limitation:} The ERP looks at one industry in isolation. It ignores general equilibrium effects, such as how protecting one industry might raise wages or alter exchange rates, which would subsequently affect the competitiveness of all other industries in the economy.
+\end{enumerate}
+
+\vspace{1em}
+\section*{Problem 4: Immiserizing Growth}
+
+\textbf{Restatement:} Carefully identify and discuss the conditions which can lead to Bhagwati's ``immiserizing growth'' concept. Which type of growth is most likely to lead to a decline in the nation's welfare, and why? How is this concept related to Prebisch's argument concerning the deterioration in the net barter terms of trade? A general equilibrium graph is needed to receive full credit.
+
+\vspace{0.5em}
+\noindent \textbf{Solution:} \\
+\textbf{Conditions for Immiserizing Growth:} \\
+Immiserizing growth occurs when a nation's economic expansion paradoxically leaves it worse off than before it grew. Three specific conditions must exist:
+\begin{enumerate}
+    \item The nation's growth must be \textbf{heavily export-biased} (expanding production of the good it already sells to the world).
+    \item The nation must be a \textbf{large country} capable of affecting global prices.
+    \item Foreign demand for the nation's export must be highly \textbf{inelastic} (foreigners won't buy much more even when the price drops).
+\end{enumerate}
+
+\textbf{Why it declines welfare:} \\
+When the large nation massively expands its export sector, it gluts the global market. Because foreign demand is inelastic, the nation must drastically slash prices to sell its new surplus. This causes a catastrophic deterioration in its \textbf{Terms of Trade}. The financial loss from the crashing export prices outweighs the physical gains from the increased production, dropping the nation to a lower trade indifference curve.
+
+\textbf{Relation to Prebisch:} \\
+Raúl Prebisch argued that developing nations (which primarily export raw commodities like agriculture or minerals) suffer from a secular deterioration in their net barter terms of trade. This is because raw commodities face inelastic global demand (people only eat so much food), while manufactured imports face elastic demand. If developing nations experience export-biased growth in agriculture, they inadvertently trigger immiserizing growth---flooding the market and crashing the prices of their own exports relative to the manufactured goods they import.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        width=10cm, height=10cm,
+        axis lines=left,
+        xlabel={Export Good ($X$)}, ylabel={Import Good ($Y$)},
+        xmin=0, xmax=100, ymin=0, ymax=100,
+        xtick=\empty, ytick=\empty,
+    ]
+    
+    % Original PPF
+    \draw[thick] (axis cs: 50, 0) arc (0:90:50 and 40);
+    % New PPF (Export Biased Growth in X)
+    \draw[thick, blue] (axis cs: 90, 0) arc (0:90:90 and 45);
+    
+    % Original Terms of Trade (Pw1)
+    \addplot[domain=0:80, color=black, dashed] {60 - 0.8*x};
+    % New Terms of Trade (Pw2) - Deteriorated, much flatter
+    \addplot[domain=0:100, color=red, dashed] {45 - 0.3*x};
+
+    % Points
+    % Original Production P1
+    \node[circle,fill,inner sep=1.5pt] at (axis cs:35, 28) {};
+    \node[above left] at (axis cs:35, 28) {$P_1$};
+    % Original Consumption C1
+    \node[circle,fill,inner sep=1.5pt] at (axis cs:20, 44) {};
+    \node[above right] at (axis cs:20, 44) {$C_1$};
+
+    % New Production P2
+    \node[circle,fill,inner sep=1.5pt, color=blue] at (axis cs:70, 24) {};
+    \node[below left, color=blue] at (axis cs:70, 24) {$P_2$};
+    % New Consumption C2
+    \node[circle,fill,inner sep=1.5pt, color=red] at (axis cs:40, 33) {};
+    \node[above right, color=red] at (axis cs:40, 33) {$C_2$};
+
+    % Indifference Curves
+    % IC1 through C1
+    \addplot[domain=10:50, color=gray, thick] {44 - 0.8*(x-20) + 0.05*(x-20)^2};
+    \node[right, color=gray] at (axis cs:48, 38) {$IC_1$};
+    % IC2 through C2 (Lower Welfare!)
+    \addplot[domain=25:70, color=magenta, thick] {33 - 0.3*(x-40) + 0.02*(x-40)^2};
+    \node[right, color=magenta] at (axis cs:65, 30) {$IC_2$};
+
+    \end{axis}
+\end{tikzpicture}
+\caption{Immiserizing Growth: Export-biased growth shifts the PPF outward, but the resulting crash in the Terms of Trade ($P_{W1} \to P_{W2}$) drops consumption to a lower indifference curve ($C_1 \to C_2$).}
+\end{figure}
+
+\end{document}
