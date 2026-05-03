@@ -1,0 +1,279 @@
+%==============================================================
+%  Sean Balbale --- Comprehensive Curriculum Vitae
+%  ATS-Optimized | Last updated: April 2026
+%  Compile with: pdflatex SeanBalbale_CV.tex
+%==============================================================
+\documentclass[11pt, letterpaper]{article}
+
+\usepackage[top=0.55in, bottom=0.55in, left=0.65in, right=0.65in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\usepackage[T1]{fontenc}
+
+
+\definecolor{accent}{RGB}{30, 64, 175}
+\definecolor{muted}{RGB}{75, 85, 99}
+
+\hypersetup{colorlinks=true, urlcolor=accent, pdftitle={Sean Balbale CV}, pdfauthor={Sean Balbale}}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}[\color{accent}\titlerule]
+\titlespacing{\section}{0pt}{8pt}{4pt}
+
+\setlist[itemize]{leftmargin=1.25em, itemsep=1pt, topsep=2pt, parsep=0pt}
+
+\newcommand{\role}[4]{%
+  \noindent\textbf{#1} \hfill \textit{\small#2}\\%
+  \noindent\textit{\color{muted}#3} \hfill \textit{\small\color{muted}#4}\vspace{2pt}}
+
+\newcommand{\project}[2]{%
+  \noindent\textbf{#1} \hfill \textit{\small\color{muted}#2}\vspace{2pt}}
+
+\newcommand{\award}[3]{%
+  \noindent\textbf{#1} \hfill \textit{\small#2}\\%
+  \noindent\textit{\color{muted}#3}\vspace{3pt}}
+
+\pagestyle{empty}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+%-- HEADER
+\begin{center}
+  {\Huge\bfseries Sean Balbale}\\[4pt]
+  {\color{muted}
+    Weston, MA 02493 \quad
+    \href{tel:+17812908862}{+1 (781) 290-8862} \quad
+    \href{mailto:sean.balbale@trincoll.edu}{sean.balbale@trincoll.edu}\\[2pt]
+    \href{https://www.linkedin.com/in/seanbalbale/}{linkedin.com/in/seanbalbale} \quad
+    \href{https://github.com/sbalbale}{github.com/sbalbale} \quad
+    \href{https://seanbalbale.com}{seanbalbale.com}
+  }
+\end{center}
+
+\vspace{2pt}
+
+%-- EDUCATION
+\section{Education}
+
+\role{Trinity College}{Hartford, CT}%
+{Bachelor of Science in Electrical \& Computer Engineering \quad $|$ \quad Bachelor of Science in Computer Science}{Expected May 2027}
+
+\noindent\textbf{GPA:} 3.65
+
+\smallskip
+\noindent\textbf{Relevant Coursework:} High-Performance Computing, Embedded Systems Design, Deep Learning, Software Engineering, Microelectronic Circuits, Introduction to Computer Systems, Data Structures \& Algorithms, Calculus 3, Applied Linear Algebra, International Trade
+
+\smallskip
+\noindent\textbf{Extracurriculars:} Varsity Athlete --- Trinity College Men's Rowing (NCAA D-III); Singer \& Technology Chair --- The Trinity College Accidentals
+
+\vspace{4pt}
+
+%-- HONORS & AWARDS
+\section{Honors \& Awards}
+
+\award{Honors Day Prize --- Department of English}{May 2026}%
+{Trinity College \textperiodcentered{} Awarded for outstanding academic achievement in English; recognized at the annual Honors Day Ceremony, Trinity College Chapel, May 1, 2026}
+
+\award{Arctic Code Vault Contributor}{2020}%
+{GitHub \textperiodcentered{} Open-source code archived in the GitHub Arctic Code Vault long-term preservation program}
+
+\vspace{4pt}
+
+%-- PUBLICATIONS
+\section{Publications}
+
+\noindent\textbf{Embodied Harms and Inferred Data: Redefining Privacy in Extended Reality}\\
+\textit{\color{muted}The International Journal of Law, Ethics, and Technology} \hfill \textit{\small In Production --- Expected Late May 2026}
+
+\begin{itemize}
+  \item Argued that existing privacy frameworks (BIPA, GDPR) are structurally obsolete in XR environments where passive behavioral biometrics enable inference of sensitive psychometric traits without user awareness.
+  \item Introduced the ``inference gap'' --- the mechanism by which immersive architectures bypass cognitive defenses to extract health status, political orientation, and sexual orientation without explicit data collection.
+  \item Conducted comparative analysis of the Apple--Meta privacy dichotomy, demonstrating that market-led privacy-by-design functions primarily as an anti-competitive moat (the ``Walled Garden'' paradox).
+  \item Applied legal doctrines of \textit{undue influence} and \textit{defect of consent} to the Proteus Effect, establishing XR's unique capacity to vitiate user autonomy through subliminal behavioral modification.
+  \item Proposed the ``Bodyright'' framework: a rights-based model reclassifying biometric data as an inalienable extension of the human sovereign, replacing the outdated notice-and-choice paradigm.
+\end{itemize}
+
+\vspace{4pt}
+
+%-- WORK EXPERIENCE
+\section{Work Experience}
+
+\role{Sonos}{Boston, MA}{Incoming Cloud/Service Software Engineering Intern}{Summer 2026}
+\begin{itemize}
+  \item Will architect and deploy scalable backend microservices using AWS and Kubernetes to power globally connected Sonos audio hardware products.
+  \item Will design and maintain REST APIs for cloud infrastructure supporting next-generation Sonos platform services, applying distributed systems principles in a high-availability, low-latency environment.
+\end{itemize}
+
+\bigskip
+
+\role{Trinity College --- Department of Engineering}{Hartford, CT}{Teaching Assistant, ENGR 212: Engineering Analysis}{Spring 2026}
+\begin{itemize}
+  \item Instructed undergraduate students in foundational engineering laboratory practices, focusing on systems analysis and hardware implementation.
+  \item Guided students through hardware experimentation and objective data analysis to reinforce core ECE concepts and laboratory methodology.
+\end{itemize}
+
+\bigskip
+
+\role{Bullhorn}{Boston, MA}{Software Engineering Intern --- Shield \& Builders Teams}{Summer 2025}
+\begin{itemize}
+  \item Contributed to production backend services supporting SEARCH\_AI, ATS\_CRM, and MIDDLE\_OFFICE engineering groups for Bullhorn's global enterprise client base.
+  \item Owned a major framework migration (BH Boot 1.0.0): upgraded multiple Java applications from Spring Boot 2 to Spring Boot 3, executing \texttt{javax}-to-\texttt{jakarta} namespace transitions and fully refactoring the proprietary data access layer.
+  \item Led a company-wide security initiative to upgrade core logging infrastructure to Log4j2, eliminating known vulnerabilities across production services.
+  \item Improved test suite coverage and maintainability by refactoring legacy TestNG/JMockit suites to JUnit 5 and Mockito, aligning the codebase with modern enterprise testing standards.
+  \item Participated in the full software development lifecycle: managed feature branches, submitted merge requests, and conducted peer code reviews in a professional engineering team environment.
+\end{itemize}
+
+\bigskip
+
+\role{East Coast Metrology --- A Division of In-Place Machining Company}{Topsfield, MA}{Metrology Intern}{Summer 2024}
+\begin{itemize}
+  \item Conducted in-house and on-site calibrations and precision measurements for a professional metrology firm serving aerospace and defense manufacturing clients.
+  \item Calibrated high-performance measurement systems: portable CMMs, total stations, large-volume laser scanners, and laser trackers.
+  \item Validated manufactured engineering components against client SolidWorks CAD models at micron-level tolerances to certify compliance with design specifications.
+  \item Maintained and updated internal CAD models in SolidWorks to reflect as-measured component geometry.
+\end{itemize}
+
+\bigskip
+
+\role{Titan Advanced Energy Solutions}{Salem, MA}{Engineering Intern}{Summer 2023}
+\begin{itemize}
+  \item Assisted the R\&D lab team in non-destructive evaluation (NDE) of electric vehicle battery cells using ultrasound sensor arrays.
+  \item Architected a Python application to parse JSON sensor output and render real-time waveform visualizations that complemented and validated heat maps used to identify internal battery defects.
+  \item Contributed to an accelerated battery validation pipeline, reducing time-to-analysis for quality control inspections.
+\end{itemize}
+
+\bigskip
+
+\role{Weston Public Schools}{Weston, MA}{Engineering Teaching Assistant --- Weston High School}{October 2022 -- May 2023}
+\begin{itemize}
+  \item Assisted in developing course curriculum and facilitating instruction for high school physics and engineering classes.
+  \item Wrote and graded assessments; provided one-on-one academic support to students.
+  \item Maintained and calibrated precision workshop equipment including FDM 3D printers, laser cutters, band saws, and power tools.
+\end{itemize}
+
+\bigskip
+
+\role{Cherrybrook Networks}{Weston, MA}{Founder \& IT Consultant}{March 2019 -- May 2025}
+\begin{itemize}
+  \item Founded and operated a freelance technical support and software development business serving local companies, students, and families.
+  \item Installed and configured software applications, designed and built custom computers, deployed Wi-Fi systems, and architected automated secure cloud backup infrastructures.
+  \item Developed client-facing software tools and maintained long-term technical relationships with recurring clients.
+\end{itemize}
+
+\vspace{4pt}
+
+%-- PROJECTS
+\section{Project Experience}
+
+\project{HPC Cluster}{Slurm, MPI, Linux, 2025}
+\begin{itemize}
+  \item Networked three Lenovo P340 SFF workstations via Gigabit switch and configured a Slurm workload manager to orchestrate parallel jobs across the cluster.
+  \item Benchmarked parallel workloads using MPI, analyzing scalability and inter-node communication overhead for CPSC 375 (High-Performance Computing).
+\end{itemize}
+
+\bigskip
+
+\project{Project Aletheia --- Interactive Privacy Manifesto}{React, TypeScript, XR Ethics, 2025--2026}
+\begin{itemize}
+  \item Designed and built an interactive React web application demonstrating biometric tracking risks in Extended Reality (XR) technology and advocating for Zero-Knowledge client-side architectures.
+  \item Inspired by and complementary to the published academic paper on XR privacy frameworks and biometric autonomy.
+\end{itemize}
+
+\bigskip
+
+\project{Remote MCP Server}{TypeScript, Docker, Cloudflare Tunnel, Tailscale, 2025--2026}
+\begin{itemize}
+  \item Built a TypeScript MCP (Model Context Protocol) server exposing a personal Obsidian knowledge vault over a secure Cloudflare Tunnel and Tailscale endpoint with Bearer token authentication.
+  \item Deployed via multi-profile Docker Compose configuration; enables AI-assisted knowledge retrieval over a self-hosted, zero-trust network architecture.
+\end{itemize}
+
+\bigskip
+
+\project{Robotic Control via FPGA}{Verilog, Intel Cyclone V FPGA, C++, 2025}
+\begin{itemize}
+  \item Designed digital logic in Verilog on an Intel Cyclone V FPGA to generate real-time control signals for a robotic system.
+  \item Implemented hardware state machine logic with sensor feedback to enable autonomous actuation and precise motor control.
+\end{itemize}
+
+\bigskip
+
+\project{Haptic Horizon --- Wearable Navigation System for the Visually Impaired}{Arduino, C++, 2024}
+\begin{itemize}
+  \item Designed and built a wearable haptic proximity alarm enabling independent navigation for visually impaired users without audio cues.
+  \item Wrote embedded C++ firmware for an Arduino platform integrating HC-SR04 ultrasonic sensors with a haptic motor that encodes distance and direction through programmable vibration patterns with sub-100\,ms latency.
+\end{itemize}
+
+\bigskip
+
+\project{Embedded Heart Rate Monitor}{8051 Assembly, Embedded Hardware, 2024}
+\begin{itemize}
+  \item Designed and wired the complete hardware system for a clinical heart rate monitor and click counter, including analog signal conditioning and display interfacing.
+  \item Wrote 8051 Assembly firmware implementing interrupt-driven I/O, real-time ADC sampling, BCD arithmetic, and seven-segment display output with no OS or software abstractions.
+\end{itemize}
+
+\bigskip
+
+\project{Cherrybrook Networks --- Portfolio \& Business Website}{Next.js, React, TypeScript, Tailwind CSS, 2023--2025}
+\begin{itemize}
+  \item Built a full-stack personal portfolio and business website using Next.js, React, and TypeScript, styled with Tailwind CSS and modern UI libraries.
+  \item Developed a custom backend API route for contact form submissions and transactional email delivery; implemented dark/light mode theming and an embedded PDF resume viewer.
+\end{itemize}
+
+\vspace{4pt}
+
+%-- TECHNICAL SKILLS
+\section{Technical Skills}
+
+\noindent\textbf{Programming Languages:}
+Java, Python, TypeScript, C, C++, Assembly (8051, MIPS), Verilog, MATLAB, SQL
+
+\smallskip\noindent\textbf{Backend \& Enterprise:}
+Spring Boot 3, Jakarta EE, Node.js, REST APIs, JUnit 5, Mockito, TestNG, Log4j2
+
+\smallskip\noindent\textbf{Cloud \& DevOps:}
+AWS, Kubernetes, Docker, Docker Compose, Linux, Git, GitHub, CI/CD, Slurm, MPI
+
+\smallskip\noindent\textbf{Frontend \& Full-Stack:}
+React, Next.js, Tailwind CSS, AngularJS, HTML/CSS
+
+\smallskip\noindent\textbf{Embedded Systems \& Hardware:}
+Arduino, Intel Cyclone V FPGA, 8051 Microcontroller, NI-DAQ, SPI, I\textsuperscript{2}C, ultrasonic sensors, haptic actuators, oscilloscopes, logic analyzers, LTspice, instrumentation amplifiers
+
+\smallskip\noindent\textbf{Mechanical \& CAD:}
+SolidWorks, FDM 3D Printing (Klipper firmware, Ender 3 v2), laser cutters, precision metrology (CMMs, laser trackers, total stations, large-volume scanners)
+
+\smallskip\noindent\textbf{Architecture \& Design:}
+Object-oriented design, microservices architecture, Zero-Knowledge architecture, distributed systems, data access layer design, dependency injection
+
+\smallskip\noindent\textbf{Tools:}
+Docker, Git, LaTeX, Obsidian, Tailscale, Cloudflare Tunnel, Model Context Protocol (MCP)
+
+\vspace{4pt}
+
+%-- RESEARCH INTERESTS
+\section{Research Interests}
+
+\noindent
+Privacy law and biometric autonomy (GDPR, BIPA, XR legislation) \quad$\cdot$\quad
+Surveillance capitalism and the political economy of Extended Reality \quad$\cdot$\quad
+Hardware-constrained software design \quad$\cdot$\quad
+Distributed systems and cloud-native architecture \quad$\cdot$\quad
+High-performance and parallel computing \quad$\cdot$\quad
+Zero-Knowledge and Privacy-by-Design architectures
+
+\vspace{4pt}
+
+%-- ACTIVITIES
+\section{Activities \& Interests}
+
+\noindent\textbf{Varsity Rowing} --- Trinity College Men's Crew (NCAA D-III). Competes as a Heavyweight rower; structured training combining erging, on-water rowing, and strength programming.
+
+\smallskip\noindent\textbf{Trinity College Accidentals} --- Technology Chair for Trinity's premier a cappella group. Manages live sound engineering, recording infrastructure, and audio production for performances.
+
+\smallskip\noindent\textbf{Personal Interests:} Technical ski mountaineering; road cycling (power-meter data analysis, pedal stroke symmetry); FDM 3D printing on a modified Ender 3 v2 running Klipper; cooking (samosas, katsu ramen).
+
+\end{document}
