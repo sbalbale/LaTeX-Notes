@@ -1,0 +1,216 @@
+\documentclass[7.5pt]{article}
+\usepackage[margin=0.22in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{array}
+
+\setlength{\columnsep}{0.6cm}
+\setlength{\parindent}{0in}
+
+% --- Squeezing Space ---
+\linespread{0.63}
+\titlespacing*{\section}{0pt}{2pt}{1pt}
+\titlespacing*{\subsection}{0pt}{1pt}{0pt}
+% -----------------------
+
+\date{}
+
+\begin{document}
+\large ENGR 232 Final Exam Notesheet \hfill Sean Balbale \hfill Spring 2026 \vspace{0.05cm}
+\hrule
+\vspace{0.05cm}
+
+\begin{multicols*}{3}
+
+%============================
+\section*{Ch.~2: Atomic Structure \& Bonding}
+\textbf{Avg.\ Atomic Weight:} $A_{avg} = \sum f_i A_i$ \\
+\textbf{Force of Attraction:} $F_A = \dfrac{|Z_1 Z_2| e^2}{4\pi\epsilon_0 r^2}$ \\
+($e=1.602\times10^{-19}$\,C, $\epsilon_0=8.85\times10^{-12}$\,F/m) \\
+\textbf{\%IC:} $= \!\left(1-e^{-0.25(X_A-X_B)^2}\right)\!\times100$ \\
+\textbf{Bonding:} Ionic (e$^-$ transfer), Covalent (sharing), Metallic (sea of e$^-$) \\
+\textbf{Ex.} $K^+(Z_1{=}1)$ and $I^-(Z_2{=}{-}1)$, $r=0.314$\,nm:\\
+$F_A = \frac{|(1)(-1)|(1.602\!\times\!10^{-19})^2}{4\pi(8.85\!\times\!10^{-12})(0.314\!\times\!10^{-9})^2} = 2.33\!\times\!10^{-9}$\,N
+
+%============================
+\section*{Ch.~3: Crystal Structures}
+\textbf{SC:} $a=2R$, $n=1$ \quad \textbf{BCC:} $a=\tfrac{4R}{\sqrt{3}}$, $n=2$ \\
+\textbf{FCC:} $a=2R\sqrt{2}$, $n=4$ \quad $V_c = a^3$ \\
+\textbf{APF:} SC$=0.52$, BCC$=0.68$, FCC$=0.74$ \\
+\textbf{Theoretical Density:} $\rho = \dfrac{nA}{V_c N_A}$, $N_A=6.022\!\times\!10^{23}$ \\
+\textbf{Miller Indices (Plane):} Find intercepts $\to$ reciprocals $\to$ clear fractions $\to$ enclose $(hkl)$. Negative = bar.\\
+\textbf{Isotropy/Anisotropy:} Isotropic = same all directions; anisotropic = varies.
+
+%============================
+\section*{Ch.~4: Imperfections}
+\textbf{Total Sites:} $N = \tfrac{N_A \rho}{A}$ \\
+\textbf{Equilibrium Vacancies:} $N_v = N\exp\!\left(-\tfrac{Q_v}{kT}\right)$ \\
+($k=8.62\!\times\!10^{-5}$\,eV/atom$\cdot$K) \\
+\textbf{Weight\% to Atom\%:} $C_1' = \dfrac{C_1/A_1}{C_1/A_1+C_2/A_2}\!\times\!100$ \\
+\textbf{Atom\% to Weight\%:} $C_1 = \dfrac{C_1'A_1}{C_1'A_1+C_2'A_2}\!\times\!100$ \\
+\textbf{Vacancy:} atom missing from lattice site. \textbf{Self-interstitial:} atom in normally empty void.
+
+%============================
+\section*{Ch.~5: Diffusion}
+\textbf{Fick's 1st Law:} $J = -D\dfrac{\Delta C}{\Delta x}$ \quad \textbf{Mass:} $M=JAt$ \\
+\textbf{Fick's 2nd (Non-SS):} $\dfrac{C_x-C_0}{C_s-C_0} = 1-\text{erf}\!\left(\dfrac{x}{2\sqrt{Dt}}\right)$ \\
+\textbf{Diffusivity:} $D = D_0\exp\!\left(-\tfrac{Q_d}{RT}\right)$, $R=8.31$\,J/mol$\cdot$K \\
+\textbf{Two-temp:} $Q_d = -R\dfrac{\ln D_1-\ln D_2}{1/T_1-1/T_2}$ \\[-2pt]
+\begin{center}
+\scriptsize
+\begin{tabular}{cc|cc}
+\toprule
+$z$ & erf$(z)$ & $z$ & erf$(z)$\\
+\midrule
+0.00&0.0000&0.80&0.7421\\
+0.10&0.1125&0.90&0.7970\\
+0.20&0.2227&1.00&0.8427\\
+0.30&0.3286&1.10&0.8802\\
+0.40&0.4284&1.20&0.9103\\
+0.50&0.5205&1.30&0.9340\\
+0.60&0.6039&1.50&0.9661\\
+0.70&0.6778&2.00&0.9953\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\textbf{Interp:} $\dfrac{y-y_1}{y_2-y_1}=\dfrac{x-x_1}{x_2-x_1}$
+
+%============================
+\section*{Ch.~6: Mech.\ Properties}
+$\sigma=F/A_0$, $\epsilon=\Delta l/l_0$, $\tau=F/A_0$, $\gamma=\tan\theta$ \\
+\textbf{Hooke's Law:} $\sigma=E\epsilon$ (valid only for elastic deformation) \\
+\textbf{Poisson:} $\nu=-\epsilon_x/\epsilon_z$ \\
+\textbf{True:} $\sigma_T=\sigma(1+\epsilon)$, $\epsilon_T=\ln(1+\epsilon)$ \\
+$\sigma_T=K\epsilon_T^n$; \textbf{Resilience:} $U_r=\sigma_y^2/(2E)$ \\
+\textbf{Elastic $\Delta l$:} $\Delta l = \tfrac{l_0 F}{A_0 E}$; yield strength at 0.002 offset \\
+\textbf{If only elastic strain $\to$ no permanent deformation after unloading.}
+
+%============================
+\section*{Ch.~7: Dislocations \& Strengthening}
+$\tau_R = \sigma\cos\phi\cos\lambda$ \quad $\sigma_y = \tau_{CRSS}/(\cos\phi\cos\lambda)_{max}$ \\
+\textbf{Hall-Petch:} $\sigma_y = \sigma_0 + k_y d^{-1/2}$ \\
+\textbf{\%CW:} $=\left(\dfrac{A_0-A_d}{A_0}\right)\!\times\!100$ \\
+\textbf{Slip System:} combo of slip plane + slip direction. \\
+\textbf{Strain Hardening:} Ductile metal gets harder/stronger when plastically deformed.
+
+%============================
+\section*{Ch.~8: Failure}
+$\sigma_m = 2\sigma_0\sqrt{a/\rho_t}=K_t\sigma_0$ \quad ($a$ = half crack length) \\
+\textbf{Critical Stress:} $\sigma_c=\sqrt{\dfrac{2E\gamma_s}{\pi a}}$ \\
+\textbf{Fracture Toughness:} $K_c = Y\sigma_c\sqrt{\pi a}$ \\
+$\Delta\sigma=\sigma_{max}-\sigma_{min}$, $\sigma_m=(\sigma_{max}+\sigma_{min})/2$, $R=\sigma_{min}/\sigma_{max}$ \\
+\textbf{Creep Rate:} $\dot{\epsilon}_s = K_2\sigma^n\exp\!\left(-\tfrac{Q_c}{RT}\right)$ \\
+\textbf{Larson-Miller:} $m = T(C+\log t_r)$ \\
+\textbf{Fatigue Lifetime:} cycles to failure at given stress. \textbf{Fatigue Strength:} stress for failure at given cycles.
+
+%============================
+\section*{Ch.~9: Phase Diagrams}
+\subsection*{Lever Rule (2-phase region)}
+\textbf{Tie line:} draw horizontal at $T$. Endpoints are phase compositions.\\
+$W_\alpha = \dfrac{C_\beta - C_0}{C_\beta - C_\alpha}$ \quad $W_L = \dfrac{C_0 - C_\alpha}{C_\beta - C_\alpha}$ \\
+\subsection*{Reaction Types}
+\textbf{Eutectic:} $L \rightleftharpoons \alpha + \beta$ (cooling $\to$ two solids) \\
+\textbf{Eutectoid:} $\gamma \rightleftharpoons \alpha + \beta$ (solid$\to$two solids) \\
+\textbf{Peritectic:} $L + \alpha \rightleftharpoons \beta$
+\subsection*{Fe--Fe$_3$C System}
+Eutectoid: 0.76\,wt\%C at 727$^\circ$C: $\gamma \to \alpha + \text{Fe}_3\text{C}$ (pearlite)\\
+Eutectic: 4.30\,wt\%C at 1147$^\circ$C: $L \to \gamma + \text{Fe}_3\text{C}$\\
+$\alpha$-ferrite: 0.022\,wt\%C max; cementite Fe$_3$C: 6.70\,wt\%C \\[1pt]
+\textbf{Hypoeutectoid} ($C_0 < 0.76$\,wt\%C): proeutectoid \textbf{ferrite} ($\alpha'$) \\
+$W_{\alpha'} = \dfrac{0.76-C_0}{0.76-0.022}$ \quad $W_{\text{pearlite}} = \dfrac{C_0-0.022}{0.76-0.022}$ \\[2pt]
+\textbf{Hypereutectoid} ($C_0 > 0.76$\,wt\%C): proeutectoid \textbf{cementite} \\
+$W_{\text{Fe}_3\text{C}'} = \dfrac{C_0-0.76}{6.70-0.76}$ \quad $W_{\text{pearlite}} = \dfrac{6.70-C_0}{6.70-0.76}$ \\[2pt]
+\textbf{HW 8 Ex.} 1.4\,wt\%C steel (hypereutectoid): \\
+$W_{\text{Fe}_3\text{C}'} = (1.4-0.76)/(6.70-0.76) = 0.108$ \\
+$W_{\text{pearlite}} = (6.70-1.4)/(6.70-0.76) = 0.892$
+
+%============================
+\section*{Ch.~10: Phase Transformations}
+\subsection*{Critical Nucleation Radius}
+$r^* = \dfrac{-2\gamma}{\Delta G_v} = \dfrac{2\gamma T_m}{\Delta H_f (T_m - T)}$ \\
+($\gamma$: surface free energy, $\Delta H_f$: latent heat of fusion per vol., $T_m$: melting temp, $T$: nucleation temp) \\
+\textbf{HW 9 Ex.} Cu ($T_m=1085^\circ$C) nucleates at 849$^\circ$C, $\Delta H_f=-1.77\!\times\!10^9$\,J/m$^3$, $\gamma=0.200$\,J/m$^2$:\\
+$r^* = \tfrac{2(0.200)(1358)}{(-1.77\!\times\!10^9)(1085-849)} \cdot \tfrac{(-1)}{1}$\\
+$= \dfrac{2(0.200)(1358)}{(1.77\!\times\!10^9)(236)} = 1.30\!\times\!10^{-9}$\,m = 1.30\,nm
+
+\subsection*{Avrami Equation}
+$y = 1 - \exp(-kt^n)$ \quad \textbf{Rate} $= 1/t_{0.5}$ \\
+Solve for $k$: $k = \dfrac{-\ln(1-y)}{t^n}$ \\
+Then find $t_{0.5}$: $t_{0.5} = \left(\dfrac{\ln 2}{k}\right)^{1/n}$ \\
+\textbf{HW 9 Ex.} $n=2.5$, $y=0.40$ at $t=200$\,min: \\
+$k = -\ln(1-0.40)/(200)^{2.5} = 9.48\!\times\!10^{-7}$\,min$^{-2.5}$ \\
+$t_{0.5} = (\ln2/k)^{1/2.5} = 280$\,min; Rate $= 3.57\!\times\!10^{-3}$\,min$^{-1}$
+
+%============================
+\section*{Ch.~12: Ceramics}
+\subsection*{Theoretical Density}
+$\rho = \dfrac{n'(\Sigma A_C) + n''(\Sigma A_A)}{V_c N_A}$ \\
+($n'$=cations/cell, $n''$=anions/cell, $A_C$=cation wt, $A_A$=anion wt) \\
+\textbf{HW 9 Ex.} MgO (rock salt): $n'=n''=4$, $A_{Mg}=24.31$, $A_O=16.00$, $a=0.4211$\,nm \\
+$\rho = \tfrac{4(24.31)+4(16.00)}{(4.211\!\times\!10^{-8})^3 (6.022\!\times\!10^{23})} = 3.58$\,g/cm$^3$
+\subsection*{Point Defects in Ceramics}
+\textbf{Frenkel defect:} A cation moves from normal lattice site to an interstitial site. Crystal remains charge-neutral but cation vacancy + cation interstitial are created.\\
+\textbf{Schottky defect:} A stoichiometric pair of vacancies (cation + anion) is removed from interior and placed on surface. Crystal stays charge-neutral.
+
+%============================
+\section*{Ch.~14: Polymers}
+\textbf{Number-avg mol.\ wt.:} $\bar{M}_n = \sum x_i M_i$ ($x_i$=number fraction)\\
+\textbf{Weight-avg mol.\ wt.:} $\bar{M}_w = \sum w_i M_i$ ($w_i$=weight fraction)\\
+\textbf{Degree of Polymerization:} $DP = \bar{M}_n / \bar{m}$ \\
+($\bar{m}$ = avg.\ mol.\ wt.\ of repeat unit; for copolymer $\bar{m}=\sum f_j m_j$) \\
+\textbf{HW 10 Ex.} Polypropylene: midpoints of ranges:\\
+$\bar{M}_n=\sum x_i M_i = 0.05(12000)+0.16(20000)+\ldots = 33{,}040$\,g/mol \\
+$\bar{M}_w=\sum w_i M_i = 0.02(12000)+0.10(20000)+\ldots = 37{,}520$\,g/mol \\
+$DP = 33{,}040/42 = 787$ (repeat unit of propylene, $m=42$\,g/mol)
+
+%============================
+\section*{Ch.~18: Electrical Properties}
+\subsection*{Conductivity / Resistivity}
+$\sigma = 1/\rho$, $\rho = RA/l$, $J=\sigma\mathcal{E}$, $\mathcal{E}=V/l$ \\
+\textbf{Metals:} $\sigma = n|e|\mu_e$ \\
+\textbf{Matthiessen's Rule:} $\rho_{total}=\rho_T + \rho_i + \rho_d$ \\
+$\rho_T = \rho_0+aT$ (thermal); $\rho_i = Ac_i(1-c_i)$ (impurity)
+
+\subsection*{Semiconductors}
+\textbf{Intrinsic} (pure): $n=p=n_i$, conductivity is intrinsic property \\
+$\sigma = n_i|e|(\mu_e+\mu_h)$ \\
+$n_i \propto \exp\!\left(-E_g/2kT\right)$ (increases with $T$) \\
+\textbf{Extrinsic} (doped): electrical behavior from impurities \\
+\quad n-type (donor): $n\approx N_d \gg p$; $\sigma \approx n|e|\mu_e$ \\
+\quad p-type (acceptor): $p\approx N_a \gg n$; $\sigma \approx p|e|\mu_h$ \\
+\textbf{General:} $\sigma = n|e|\mu_e + p|e|\mu_h$ \\
+Constants: $|e|=1.602\!\times\!10^{-19}$\,C; $k=8.62\!\times\!10^{-5}$\,eV/K
+
+\subsection*{Capacitance}
+$C = Q/V$ \quad $C = \varepsilon_r\varepsilon_0\, A/d$ \\
+($\varepsilon_0=8.85\!\times\!10^{-12}$\,F/m; $\varepsilon_r$ = dielectric constant) \\
+
+\subsection*{HW 10 Examples}
+\textbf{18.3.} Cu wire, $d=1.5$\,mm, $I=16$\,A, $\rho=1.72\!\times\!10^{-8}$\,$\Omega\cdot$m. Find voltage drop over 4\,m:\\
+$R=\rho l/A=\tfrac{(1.72\!\times\!10^{-8})(4)}{\pi(7.5\!\times\!10^{-4})^2}=39.0\!\times\!10^{-3}$\,$\Omega$; $V=IR=0.624$\,V \\
+\textbf{18.5.} $\sigma=1.0\!\times\!10^{-6}\,(\Omega\cdot\text{m})^{-1}$; $\mu_e=0.38$\,m$^2$/V$\cdot$s; find $n$: \\
+$n=\sigma/(|e|\mu_e)=1.0\!\times\!10^{-6}/[(1.6\!\times\!10^{-19})(0.38)]=1.64\!\times\!10^{13}$\,m$^{-3}$ \\
+\textbf{18.10.} Si, $\sigma=5.93\!\times\!10^{-3}$, $p=7.0\!\times\!10^{17}$\,m$^{-3}$, $\mu_e=0.135$, $\mu_h=0.048$: \\
+$n=({\sigma-p|e|\mu_h})/({|e|\mu_e})$\\
+$=\frac{5.93\!\times\!10^{-3}-(7\!\times\!10^{17})(1.6\!\times\!10^{-19})(0.048)}{(1.6\!\times\!10^{-19})(0.135)}=1.01\!\times\!10^{16}$\,m$^{-3}$\\
+Since $p>n$: \textbf{p-type extrinsic.} \\
+\textbf{18.21.} PbTe, $\sigma=500$, $\mu_e=0.16$, $\mu_h=0.075$:\\
+$n_i=\sigma/[|e|(\mu_e+\mu_h)]=500/[(1.6\!\times\!10^{-19})(0.235)]=1.33\!\times\!10^{22}$\,m$^{-3}$
+
+%============================
+\section*{Ch.~19: Thermal Properties}
+\textbf{Heat Capacity:} $C = dQ/dT$ [J/mol$\cdot$K]\\
+\textbf{Specific Heat:} $c$ (lowercase) = heat capacity per unit mass [J/kg$\cdot$K] \\
+\textbf{Linear Thermal Expansion:} $\Delta l/l_0 = \alpha_l\,\Delta T$ \\
+\textbf{Volume:} $\Delta V/V_0 = \alpha_v\,\Delta T \approx 3\alpha_l\,\Delta T$ \\
+\textbf{Thermal Conductivity (Fourier):} $q = -k\,dT/dx$ \\
+($q$: heat flux [W/m$^2$], $k$: thermal conductivity [W/m$\cdot$K]) \\
+\textbf{Thermal Stress:} $\sigma = E\alpha_l(T_0-T_f)$ \\
+\textbf{Thermal Shock Resistance:} $TSR \approx \sigma_f k / (E\alpha_l)$
+
+\end{multicols*}
+\end{document}
