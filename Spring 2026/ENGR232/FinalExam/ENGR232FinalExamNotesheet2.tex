@@ -1,0 +1,309 @@
+\documentclass[8pt]{extarticle}
+\usepackage[margin=0.12in, top=0.10in, bottom=0.15in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\setlength{\columnsep}{0.26cm}
+\setlength{\parindent}{0in}
+% --- Squeezing Space ---
+\linespread{0.50}
+\titlespacing*{\section}{0pt}{0.9pt}{0.3pt}
+\titlespacing*{\subsection}{0pt}{0.5pt}{0.2pt}
+% -----------------------
+\date{}
+\begin{document}
+\normalsize \textbf{ENGR 232 Final Exam Notesheet} \hfill Sean Balbale \hfill Spring 2026 \vspace{0.03cm}
+\hrule
+\vspace{0.03cm}
+\begin{multicols*}{2}
+
+%==============================================================
+\section*{Chapter 2: Atomic Structure \& Bonding}
+\subsection*{Key Equations}
+\textbf{Average Atomic Weight:} $A_{avg} = \sum f_i A_i$ \\
+($f_i$: fraction of occurrence of isotope $i$; $A_i$: atomic wt of isotope $i$) \\
+\textbf{Force of Attraction:} $F_A = \frac{|Z_1 Z_2| e^2}{4\pi\epsilon_0 r^2}$ \\
+($Z_1,Z_2$: ion valences; $r$: interatomic distance; $e=1.602\times10^{-19}$ C; $\epsilon_0=8.85\times10^{-12}$ F/m) \\
+\textbf{\% Ionic Character:} $\%IC = \left(1-e^{-0.25(X_A-X_B)^2}\right)\times 100$ \\
+($X_A, X_B$: electronegativities of elements A and B)
+\subsection*{Concepts}
+\textbf{Bohr Model:} Electrons orbit nucleus in discrete energy levels ($E=hf$). \\
+\textbf{Bonding:} \textit{Ionic}—electron transfer. \textit{Covalent}—electron sharing. \textit{Metallic}—sea of delocalized electrons.
+
+%==============================================================
+\section*{Chapter 3: Crystal Structures}
+\subsection*{Key Equations \& Geometry}
+\textbf{SC:} $a=2R$, 1 atom/cell. \quad \textbf{BCC:} $a=\frac{4R}{\sqrt{3}}$, 2 atoms/cell. \\
+\textbf{FCC:} $a=2R\sqrt{2}$, 4 atoms/cell. \\
+($a$: unit cell edge length; $R$: atomic radius) \\
+\textbf{APF:} $\frac{\text{Vol. of atoms}}{\text{Vol. of unit cell}} = \frac{n(\frac{4}{3}\pi R^3)}{a^3}$ \quad (SC=0.52, BCC=0.68, FCC=0.74) \\
+($n$: atoms per unit cell) \\
+\textbf{Theoretical Density:} $\rho = \frac{nA}{V_c N_A}$ \\
+($A$: atomic weight; $V_c=a^3$: unit cell volume; $N_A=6.022\times10^{23}$ atoms/mol) \\
+\textbf{Interplanar Spacing (cubic):} $d_{hkl} = \frac{a}{\sqrt{h^2+k^2+l^2}}$ \\
+($h,k,l$: Miller indices of the plane; $a$: lattice parameter) \\
+\textbf{Linear Density:} $LD = \frac{\text{\# atoms centered on direction vector}}{\text{length of direction vector}}$ \\
+\textbf{Planar Density:} $PD = \frac{\text{\# atoms centered on plane}}{\text{area of plane}}$ \\
+\textbf{Miller Indices (Planes):} (1) If plane passes through origin, establish new origin. (2) Find intercepts on $x,y,z$. (3) Take reciprocals. (4) Clear fractions. (5) Enclose in $(hkl)$; negatives get a bar. \\
+\textbf{Hexagonal Direction Conversion} $[A\,B\,C]\to[u\,v\,t\,w]$: \\
+$u=\tfrac{1}{3}(2A-B)$, $v=\tfrac{1}{3}(2B-A)$, $t=-(u+v)$, $w=C$
+\subsection*{Concepts}
+\textbf{Isotropy/Anisotropy:} Isotropic—properties independent of direction; anisotropic—vary with direction.
+
+%==============================================================
+\section*{Chapter 4: Imperfections in Solids}
+\subsection*{Key Equations}
+\textbf{Total Atomic Sites:} $N = \frac{N_A \rho}{A}$ \\
+($N$: atomic sites per unit volume; $\rho$: density; $A$: atomic weight) \\
+\textbf{Equilibrium Vacancies:} $N_v = N\exp\!\left(-\frac{Q_v}{kT}\right)$ \\
+($N_v$: \# vacancies; $Q_v$: activation energy for vacancy formation; $k=8.62\times10^{-5}$ eV/atom·K; $T$: temp in K) \\
+\textbf{Mass to Weight \%:} $C_1 = \frac{m_1}{m_1+m_2}\times100$ \\
+($m_1, m_2$: masses of elements 1 and 2) \\
+\textbf{Weight \% to Atom \%:} $C_1' = \frac{C_1/A_1}{C_1/A_1+C_2/A_2}\times100$ \\
+($C_1'$: atom \% of element 1; $A_1,A_2$: atomic weights) \\
+\textbf{Atom \% to Weight \%:} $C_1 = \frac{C_1'A_1}{C_1'A_1+C_2'A_2}\times100$ \\
+\textbf{Average Density (2-component alloy):} $\rho_{ave} = \frac{100}{\dfrac{C_A}{\rho_A}+\dfrac{C_B}{\rho_B}}$ \\
+($C_A, C_B$: wt\% of components A, B; $\rho_A,\rho_B$: densities of A, B) \\
+\textbf{Average Atomic Weight (2-component alloy):} $A_{ave} = \frac{100}{\dfrac{C_A}{A_A}+\dfrac{C_B}{A_B}}$ \\
+($A_A, A_B$: atomic weights of A, B) \\
+\textbf{Atoms/Volume of Element 1 in Alloy:} $N_1 = \frac{N_A C_1}{\dfrac{C_1 A_1}{\rho_1}+\dfrac{A_1(100-C_1)}{\rho_2}}$ \\
+($N_1$: atoms of element 1 per cm$^3$; $C_1$: wt\% of element 1; $\rho_1,\rho_2$: densities)
+\subsection*{Concepts}
+\textbf{Vacancy:} Atom missing from lattice site. \textbf{Self-Interstitial:} Extra atom in void space.
+
+%==============================================================
+\section*{Chapter 5: Diffusion}
+\subsection*{Key Equations}
+\textbf{Fick's First Law (Steady-State):} $J = -D\frac{\Delta C}{\Delta x}$ \\
+($J$: diffusion flux [kg/m$^2$·s]; $D$: diffusion coefficient [m$^2$/s]; $C$: concentration; $x$: distance) \\
+\textbf{Mass Diffused:} $M = JAt = -DAt\frac{\Delta C}{\Delta x}$ \\
+($M$: mass diffused; $A$: cross-sectional area; $t$: time) \\
+\textbf{Fick's Second Law (Non-Steady-State):} \\
+$\frac{C_x - C_0}{C_s - C_0} = 1 - \mathrm{erf}\!\left(\frac{x}{2\sqrt{Dt}}\right)$ \\
+($C_x$: conc. at depth $x$ and time $t$; $C_0$: initial bulk conc.; $C_s$: surface conc.) \\
+\textbf{Diffusion Coefficient:} $D = D_0\exp\!\left(-\frac{Q_d}{RT}\right)$ \\
+($D_0$: pre-exponential [m$^2$/s]; $Q_d$: activation energy [J/mol]; $R=8.31$ J/mol·K; $T$: temp in K) \\
+\textbf{Activation Energy (Two Temps):} $Q_d = -R\frac{\ln D_1 - \ln D_2}{1/T_1 - 1/T_2}$
+
+\subsection*{erf Table \& Interpolation: $\frac{y-y_1}{y_2-y_1}=\frac{x-x_1}{x_2-x_1}$}
+{\scriptsize
+\begin{tabular}{@{}ll@{\ }ll@{\ }ll@{\ }ll@{}}
+\toprule
+$z$ & erf & $z$ & erf & $z$ & erf & $z$ & erf\\
+\midrule
+0.00&0.000 & 0.30&0.329 & 0.60&0.604 & 1.00&0.843\\
+0.10&0.112 & 0.40&0.428 & 0.70&0.678 & 1.20&0.910\\
+0.20&0.223 & 0.50&0.521 & 0.80&0.742 & 1.50&0.966\\
+0.25&0.276 & 0.55&0.563 & 0.90&0.797 & 2.00&0.995\\
+\bottomrule
+\end{tabular}}
+
+%==============================================================
+\section*{Chapter 6: Mechanical Properties}
+\subsection*{Key Equations}
+\textbf{Eng. Stress:} $\sigma=F/A_0$ \quad \textbf{Eng. Strain:} $\epsilon=\Delta l/l_0$ \\
+($F$: applied force; $A_0$: original cross-sectional area; $\Delta l$: change in length; $l_0$: original length) \\
+\textbf{Shear:} $\tau=F/A_0$, \; $\gamma=\tan\theta$ \quad ($\theta$: shear angle) \\
+\textbf{Hooke's Law:} $\sigma=E\epsilon$ \; (elastic only) \quad $\tau=G\gamma$ \\
+($E$: elastic/Young's modulus; $G$: shear modulus) \\
+\textbf{Elastic Strain from geometry:} $\epsilon_z = \sigma/E = F/(A_0 E)$ \\
+\textbf{Poisson's Ratio:} $\nu=-\epsilon_x/\epsilon_z = -\epsilon_y/\epsilon_z$ \\
+($\epsilon_x,\epsilon_y$: lateral strains; $\epsilon_z$: axial strain) \\
+\textbf{True Stress/Strain:} $\sigma_T=\sigma(1+\epsilon)$; \; $\epsilon_T=\ln(1+\epsilon)$ \\
+\textbf{Strain Hardening:} $\sigma_T=K\epsilon_T^n$ \\
+($K$: strength coefficient; $n$: strain-hardening exponent) \\
+\textbf{Resilience:} $U_r\approx\frac{1}{2}\sigma_y\epsilon_y=\frac{\sigma_y^2}{2E}$ \\
+($\sigma_y$: yield strength; $\epsilon_y$: strain at yield) \\
+\textbf{Elastic Elongation:} $\Delta l = \frac{l_0 F}{A_0 E}$
+\subsection*{Concepts}
+\textbf{Yield Strength:} 0.002 strain offset. \textbf{Tensile Strength:} Max on engineering curve. \textbf{\% Elongation:} $\frac{l_f-l_0}{l_0}\times100$ ($l_f$: final length).
+
+%==============================================================
+\section*{Chapter 7: Dislocations \& Strengthening}
+\subsection*{Key Equations}
+\textbf{Resolved Shear Stress:} $\tau_R = \sigma\cos\phi\cos\lambda$ \\
+($\phi$: angle between stress axis and slip plane normal; $\lambda$: angle between stress axis and slip direction) \\
+\textbf{Yield Strength from CRSS:} $\sigma_y = \frac{\tau_{CRSS}}{(\cos\phi\cos\lambda)_{\max}}$ \\
+($\tau_{CRSS}$: critical resolved shear stress — minimum shear stress to initiate slip) \\
+\textbf{Hall-Petch:} $\sigma_y = \sigma_0 + k_y d^{-1/2}$ \\
+($\sigma_0$: friction stress; $k_y$: strengthening coefficient; $d$: avg grain diameter) \\
+\textbf{\% Cold Work:} $\%CW = \left(\frac{A_0 - A_d}{A_0}\right)\times100$ \\
+($A_0$: original area; $A_d$: deformed cross-sectional area)
+\subsection*{Concepts}
+\textbf{Slip System:} Slip plane + slip direction. \textbf{Strain Hardening:} Ductile metal gets harder/stronger as plastically deformed (more dislocations, which impede each other).
+
+%==============================================================
+\section*{Chapter 8: Failure}
+\subsection*{Key Equations}
+\textbf{Stress Concentration:} $\sigma_m = 2\sigma_0\sqrt{a/\rho_t} = K_t\sigma_0$ \\
+($\sigma_0$: nominal applied stress; $a$: half internal flaw length; $\rho_t$: crack tip radius; $K_t$: stress concentration factor) \\
+\textbf{Critical Stress (Brittle):} $\sigma_c = \sqrt{\frac{2E\gamma_s}{\pi a}}$ \\
+($\gamma_s$: specific surface energy; $a$: half crack length) \\
+\textbf{Fracture Toughness:} $K_c = Y\sigma_c\sqrt{\pi a}$ \\
+($K_c$: fracture toughness [MPa$\sqrt{\text{m}}$]; $Y$: dimensionless geometric factor) \\
+\textbf{Cyclic Parameters:} $\Delta\sigma=\sigma_{\max}-\sigma_{\min}$; \; $\sigma_m=\frac{\sigma_{\max}+\sigma_{\min}}{2}$; \; $R=\frac{\sigma_{\min}}{\sigma_{\max}}$ \\
+($\Delta\sigma$: stress range; $\sigma_m$: mean stress; $R$: stress ratio) \\
+\textbf{Creep Rate:} $\dot{\epsilon}_s = K_2\sigma^n\exp(-Q_c/RT)$ \\
+($\dot{\epsilon}_s$: steady-state creep rate; $K_2,n$: material constants; $Q_c$: creep activation energy) \\
+\textbf{Larson-Miller:} $m=T(C+\log t_r)$ \\
+($T$: temp in K or R; $C$: material constant; $t_r$: time to rupture)
+\subsection*{Concepts}
+\textbf{Fatigue:} Structural damage under cyclic stress. \textbf{S-N Curve:} Fatigue lifetime = cycles to failure at given $\sigma$; fatigue strength = $\sigma$ for given number of cycles.
+
+%==============================================================
+\section*{Chapter 9: Phase Diagrams}
+\subsection*{Key Equations — Lever Rule}
+For a two-phase region with tie line from $C_\alpha$ to $C_\beta$ at overall composition $C_0$: \\
+$W_\alpha = \frac{C_\beta - C_0}{C_\beta - C_\alpha}$ \quad $W_\beta = \frac{C_0 - C_\alpha}{C_\beta - C_\alpha}$ \\
+($W_\alpha, W_\beta$: mass fractions of $\alpha$ and $\beta$ phases) \\
+\textbf{Eutectic Microconstituent:} $W_e = \frac{C_0' - 18.3}{43.6}$ (Pb-Sn) \\
+\textbf{Fe-C Hypoeutectoid} ($C_0' < 0.76$ wt\%C): \\
+$W_p = \frac{C_0' - 0.022}{0.74}$ \quad $W_{\alpha'} = \frac{0.76 - C_0'}{0.74}$ \\
+($W_p$: fraction pearlite; $W_{\alpha'}$: fraction proeutectoid ferrite) \\
+\textbf{Fe-C Hypereutectoid} ($C_0' > 0.76$ wt\%C): \\
+$W_p = \frac{6.70 - C_1'}{5.94}$ \quad $W_{Fe_3C'} = \frac{C_1' - 0.76}{5.94}$ \\
+($W_{Fe_3C'}$: fraction proeutectoid cementite)
+\subsection*{Fe-C Key Points}
+Eutectoid: $\gamma(0.76\%C) \rightarrow \alpha(0.022\%C) + Fe_3C(6.7\%C)$ at 727°C \\
+Eutectic: $L \rightarrow \gamma + Fe_3C$ at 1147°C, 4.30 wt\%C \\
+Phases: $\alpha$-ferrite (BCC, soft); austenite $\gamma$ (FCC); cementite $Fe_3C$ (hard, 6.7\%C) \\
+\textbf{Hypoeutectoid} ($<$0.76\%C): proeutectoid $\alpha$ + pearlite \\
+\textbf{Hypereutectoid} ($>$0.76\%C): proeutectoid $Fe_3C$ + pearlite
+\subsection*{Reactions (Definitions)}
+\textbf{Eutectic:} $L \rightarrow \alpha + \beta$ (liquid $\to$ two solids) \\
+\textbf{Eutectoid:} $\gamma \rightarrow \alpha + Fe_3C$ (solid $\to$ two solids) \\
+\textbf{Peritectic:} $L + \alpha \rightarrow \beta$ (liquid + solid $\to$ solid)
+\subsection*{Example: Fe-C Lever Rule (HW7)}
+0.45 wt\%C alloy (hypoeutectoid) at room temp: \\
+$W_p = \frac{0.45 - 0.022}{0.74} = 0.578$ \quad $W_{\alpha'} = \frac{0.76-0.45}{0.74} = 0.419$
+
+%==============================================================
+\section*{Chapter 10: Phase Transformations}
+\subsection*{Key Equations}
+\textbf{Critical Radius for Nucleation:} \\
+$r^* = -\frac{2\gamma T_m}{\Delta H_f}\cdot\frac{1}{T_m - T} = \frac{-2\gamma}{\Delta G_v}$ \\
+($\gamma$: solid-liquid interfacial energy [J/m$^2$]; $\Delta H_f$: latent heat of fusion [J/m$^3$]; $T_m$: melting temp [K]; $T$: nucleation temp [K]; $\Delta G_v$: free energy change per unit volume) \\
+\textbf{Activation Free Energy:} \\
+$\Delta G^* = \frac{16\pi\gamma^3 T_m^2}{3\Delta H_f^2}\cdot\frac{1}{(T_m-T)^2}$ \\
+\textbf{Avrami Equation:} $y = 1 - \exp(-kt^n)$ \\
+($y$: fraction transformed; $k,n$: material-specific constants; $t$: time) \\
+\textbf{Transformation Rate:} $\mathrm{rate} = 1/t_{0.5}$ \quad ($t_{0.5}$: time for 50\% transformation)
+\subsection*{Example: Critical Radius (HW9, 10.3)}
+Cu: $T_m=1085$°C, nucleates at $849$°C, $\Delta H_f=-1.77\times10^9$ J/m$^3$, $\gamma=0.200$ J/m$^2$: \\
+$r^* = \frac{-2(0.200)(1085+273)}{-1.77\times10^9}\cdot\frac{1}{1085-849} = 1.30\times10^{-9}$ m
+\subsection*{Example: Avrami Rate (HW9, 10.8)}
+$n=2.5$, $y=0.40$ at $t=200$ min. Find $k$: $k = \frac{-\ln(1-y)}{t^n} = \frac{-\ln(0.60)}{200^{2.5}} = 9.0\times10^{-8}$. \\
+Find $t_{0.5}$: $t_{0.5} = \left[\frac{-\ln(0.5)}{k}\right]^{1/n} = \left[\frac{0.693}{9.0\times10^{-8}}\right]^{1/2.5} = 311$ min; rate $= 1/311 = 3.2\times10^{-3}$ min$^{-1}$
+
+%==============================================================
+\section*{Chapter 12: Ceramics}
+\subsection*{Key Equations}
+\textbf{Theoretical Density:} $\rho = \frac{n'(\Sigma A_C + \Sigma A_A)}{V_C N_A}$ \\
+($n'$: formula units/cell; $A_C$: sum of cation atomic weights; $A_A$: sum of anion atomic weights; $V_C$: unit cell volume) \\
+\textbf{Frenkel Defect \#:} $N_{fr} = N\exp\!\left(-\frac{Q_{fr}}{2kT}\right)$ \\
+($N_{fr}$: \# Frenkel defects; $Q_{fr}$: activation energy for Frenkel formation) \\
+\textbf{Schottky Defect \#:} $N_s = N\exp\!\left(-\frac{Q_s}{2kT}\right)$ \\
+($N_s$: \# Schottky defect pairs; $Q_s$: activation energy for Schottky formation)
+\subsection*{Concepts}
+\textbf{Frenkel Defect:} Cation vacancy + cation interstitial pair (cation moves from lattice site to void; charge neutral). \\
+\textbf{Schottky Defect:} Paired cation vacancy + anion vacancy (maintains charge neutrality). \\
+\textbf{Ceramic Structures ($n'$):} \\
+Rock Salt (NaCl, FeO, MgO): $n'=4$ \quad Cesium Chloride (CsCl): $n'=1$ \\
+Zinc Blende (ZnS, SiC): $n'=4$ \quad Fluorite/Antifluorite: $n'=4$ \\
+Perovskite: $n'=1$ \quad Spinel: $n'=8$
+\subsection*{Example: Schottky (HW9, 12.29)}
+NaCl at 801°C ($T=1074$ K), $Q_s=2.3$ eV: \\
+$N_s/N = \exp\!\left(\frac{-2.3}{2(8.62\times10^{-5})(1074)}\right) = \exp(-12.43) = 3.97\times10^{-6}$
+
+%==============================================================
+\section*{Chapter 14: Polymers}
+\subsection*{Key Equations}
+\textbf{Number-Avg Mol. Weight:} $M_n = \sum x_i M_i$ \\
+($x_i$: number fraction of chains in size range $i$; $M_i$: mean mol. wt of range $i$) \\
+\textbf{Weight-Avg Mol. Weight:} $M_w = \sum w_i M_i$ \\
+($w_i$: weight fraction of chains in size range $i$) \\
+\textbf{Degree of Polymerization:} $DP = M_n / m$ \\
+($m$: molecular weight of repeat unit [g/mol]) \\
+\textbf{Repeat Unit MW (copolymer):} $m = \sum f_j m_j$ \\
+($f_j$: mole fraction of monomer $j$; $m_j$: mol. wt of repeat unit $j$)
+\subsection*{Example (HW10)}
+Polypropylene $M_n = 10^6$ g/mol, repeat unit C$_3$H$_6$: \\
+$m = 3(12.01)+6(1.01) = 42.09$ g/mol; $DP = 10^6/42.09 = 23,760$
+
+%==============================================================
+\section*{Chapter 18: Electrical Properties}
+\subsection*{Key Equations}
+\textbf{Ohm's Law:} $V=IR$ \quad \textbf{Resistivity:} $\rho=RA/l$ \quad \textbf{Conductivity:} $\sigma=1/\rho$ \\
+($V$: voltage [V]; $I$: current [A]; $R$: resistance [$\Omega$]; $A$: cross-sectional area; $l$: length) \\
+\textbf{Current Density:} $J=\sigma\mathcal{E}$ \quad \textbf{E-field:} $\mathcal{E}=V/l$ \\
+\textbf{Metal Conductivity:} $\sigma=n|e|\mu_e$ \\
+($n$: electron concentration [m$^{-3}$]; $|e|=1.6\times10^{-19}$ C; $\mu_e$: electron mobility [m$^2$/V·s]) \\
+\textbf{Matthiessen's Rule:} $\rho_{total}=\rho_t+\rho_i+\rho_d$ \\
+($\rho_t$: thermal contribution; $\rho_i$: impurity contribution; $\rho_d$: deformation contribution) \\
+\textbf{Intrinsic Semiconductor:} $n=p=n_i$; \; $\sigma = n_i|e|(\mu_e+\mu_h)$ \\
+($n_i$: intrinsic carrier concentration; $p$: hole concentration; $\mu_h$: hole mobility) \\
+\textbf{n-type extrinsic:} $\sigma \cong n|e|\mu_e$ \quad \textbf{p-type:} $\sigma \cong p|e|\mu_h$ \\
+\textbf{Capacitance (vacuum):} $C = \epsilon_0 A/l$ \quad $\epsilon_0=8.85\times10^{-12}$ F/m \\
+\textbf{Capacitance (dielectric):} $C = \epsilon A/l = \epsilon_r \epsilon_0 A/l$ \\
+($\epsilon_r$: relative permittivity/dielectric constant; $\epsilon=\epsilon_r\epsilon_0$: permittivity) \\
+\textbf{Charge:} $Q=CV$ \quad ($Q$: charge [C]; $C$: capacitance [F])
+\subsection*{Constants}
+Si: $\mu_e=0.14$ m$^2$/V·s, $\mu_h=0.048$ m$^2$/V·s, $n_i=1.1\times10^{16}$ m$^{-3}$ \\
+Ge: $\mu_e=0.38$, $\mu_h=0.18$ m$^2$/V·s, $n_i=2.4\times10^{19}$ m$^{-3}$
+\subsection*{Concepts}
+\textbf{Intrinsic Semiconductor:} Conductivity from pure material; $n=p$ (e.g., pure Si, Ge). \\
+\textbf{Extrinsic Semiconductor:} Conductivity controlled by dopants. \textit{n-type} = donor impurity (Group V, e.g., P in Si), excess electrons. \textit{p-type} = acceptor impurity (Group III, e.g., B in Si), excess holes.
+\subsection*{Example: Intrinsic Carrier Concentration (HW10)}
+GaAs: $\sigma=3\times10^{-7}$ ($\Omega\cdot$m)$^{-1}$, $\mu_e=0.80$, $\mu_h=0.04$ m$^2$/V·s: \\
+$n_i = \frac{\sigma}{|e|(\mu_e+\mu_h)} = \frac{3\times10^{-7}}{(1.6\times10^{-19})(0.84)} = 2.2\times10^{12}$ m$^{-3}$
+\subsection*{Example: Extrinsic Conductivity (HW10)}
+Ge doped with $5\times10^{22}$ m$^{-3}$ Sb (n-type), $\mu_e=0.1$, $\mu_h=0.05$ m$^2$/V·s: \\
+$\sigma \cong n|e|\mu_e = (5\times10^{22})(1.6\times10^{-19})(0.1) = 800$ ($\Omega\cdot$m)$^{-1}$
+\subsection*{Example: Capacitance}
+Parallel plate, $A=2\times10^{-4}$ m$^2$, $l=1\times10^{-3}$ m, $\epsilon_r=6.0$: \\
+$C = (6.0)(8.85\times10^{-12})(2\times10^{-4})/(1\times10^{-3}) = 1.06\times10^{-12}$ F
+
+%==============================================================
+\section*{Chapter 19: Thermal Properties}
+\subsection*{Key Equations}
+\textbf{Heat Capacity:} $C = dQ/dT$ (J/mol·K) \\
+($C$: molar heat capacity; $Q$: heat added; $T$: temperature) \\
+\textbf{Specific Heat:} $c = dQ/(m\,dT)$ (J/kg·K) \\
+($c$: specific heat per unit mass; $m$: mass) \\
+\textbf{Linear Thermal Expansion:} $\Delta l/l_0 = \alpha_l \Delta T$ \\
+($\alpha_l$: linear thermal expansion coefficient [°C$^{-1}$ or K$^{-1}$]; $\Delta T = T_f - T_0$) \\
+\textbf{Volume Expansion:} $\Delta V/V_0 = \alpha_v \Delta T \approx 3\alpha_l\Delta T$ \\
+\textbf{Heat Flux (Fourier's Law):} $q = -k\,dT/dx$ \\
+($q$: heat flux [W/m$^2$]; $k$: thermal conductivity [W/m·K]; $dT/dx$: temperature gradient) \\
+\textbf{Thermal Stress:} $\sigma = E\alpha_l(T_0 - T_f)$ \\
+($\sigma$: thermal stress; $E$: elastic modulus; $T_0$: initial temp; $T_f$: final temp)
+\subsection*{Concepts}
+\textbf{Heat Capacity ($C$):} Energy to raise 1 mol by 1 K. \\
+\textbf{Specific Heat ($c$):} Same but per unit mass. $C_p > C_v$ always. \\
+\textbf{Thermal Conductivity:} Metals highest (free $e^-$), ceramics moderate (phonons), polymers lowest. \\
+\textbf{Thermal Shock Resistance:} $TSR \propto \sigma_f k/(E\alpha_l)$; high $TSR$ = resists fracture from rapid $\Delta T$.
+
+%==============================================================
+\section*{HW Problem Reference}
+\subsection*{Phase Diagram — Compositions at a Temperature (HW7)}
+Locate tie line at temperature. Read $C_\alpha$, $C_\beta$ from phase boundaries; apply lever rule for $W_\alpha$, $W_\beta$.
+\subsection*{Resistivity Calculation (HW10)}
+$\rho = RA/l$. Wire: $A=\pi r^2$. \\
+Ex: $A=\pi(0.001)^2=3.14\times10^{-6}$ m$^2$, $R=0.003\ \Omega$, $l=0.3$ m: $\rho = 3.14\times10^{-8}\ \Omega\cdot$m.
+\subsection*{Ceramic Density (HW9, 12.16)}
+NaCl ($n'=4$, $A_{Na}=22.99$, $A_{Cl}=35.45$, $a=0.562$ nm): \\
+$\rho = \frac{4(22.99+35.45)}{(0.562\times10^{-9})^3(6.022\times10^{23})} = 2.16\times10^3$ kg/m$^3$
+\subsection*{Polymer MW (HW10)}
+$M_n=\sum x_i M_i$; $M_w=\sum w_i M_i$; $DP=M_n/m$. Use midpoint of each range as $M_i$.
+\subsection*{Nucleation (HW9)}
+$k=\frac{-\ln(1-y)}{t^n}$; then $t_{0.5}=\left[\frac{\ln 2}{k}\right]^{1/n}$; rate $= 1/t_{0.5}$.
+\subsection*{Common Constants}
+$R=8.314$ J/mol·K, $k_B=8.62\times10^{-5}$ eV/atom·K, $N_A=6.022\times10^{23}$ mol$^{-1}$, \\
+$|e|=1.6\times10^{-19}$ C, $\epsilon_0=8.85\times10^{-12}$ F/m
+
+\end{multicols*}
+\end{document}
