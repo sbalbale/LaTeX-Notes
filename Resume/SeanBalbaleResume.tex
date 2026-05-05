@@ -1,146 +1,130 @@
 %-------------------------
-% Sean Balbale Resume
+% ATS-Optimized One-Page Resume — Sean Balbale
 %-------------------------
+\documentclass[letterpaper,9.8pt]{article}
 
-\documentclass[letterpaper,11pt]{article}
-
-\usepackage[empty]{fullpage}
-\usepackage{titlesec}
-\usepackage[usenames,dvipsnames]{color}
+\usepackage[left=0.5in,right=0.5in,top=0.4in,bottom=0.4in]{geometry}
 \usepackage{enumitem}
+\usepackage{titlesec}
 \usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr}
-\usepackage[english]{babel}
-\usepackage{tabularx}
-\usepackage{array}
 \usepackage[T1]{fontenc}
+\usepackage{xcolor}
 
-
-\pagestyle{fancy}
-\fancyhf{}
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-
-% Margins
-\usepackage[top=0.5in, bottom=0.5in, left=0.65in, right=0.65in]{geometry}
-
-\urlstyle{same}
+\pagestyle{empty}
 \raggedbottom
 \raggedright
-\setlength{\tabcolsep}{0in}
 
 % Section formatting
-\titleformat{\section}{
-  \vspace{-2pt}\scshape\raggedright\normalsize
-}{}{0em}{}[\color{black}\titlerule\vspace{-4pt}]
+\titleformat{\section}{\small\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{3.5pt}{2.5pt}
 
-\titlespacing*{\section}{0pt}{8pt}{4pt}
+% Tight lists
+\setlist[itemize]{leftmargin=*,topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt}
+\renewcommand{\labelitemi}{$\bullet$}
 
-%-------------------------------------------
+\newcommand{\vsm}{\vspace{1.5pt}}
+
 \begin{document}
 
-%----------HEADING----------
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  {\Large\textsc{Sean Balbale}} & 41 Hillcrest Rd, Weston, MA\quad 02493 \\
-  Email: sean.balbale@trincoll.edu & LinkedIn: www.linkedin.com/in/seanbalbale/ \\
-  Phone: +1 (781) 290-8862 & Portfolio Site: cherrybrooknetworks.dev/ \\
-\end{tabular*}
+%----------HEADER----------
+\begin{center}
+  {\large\bfseries SEAN BALBALE}\\[1.5pt]
+  \footnotesize
+  Weston, MA 02493 \;|\;
+  +1\,(781)\,290-8862 \;|\;
+  \href{mailto:sean.balbale@trincoll.edu}{sean.balbale@trincoll.edu} \;|\;
+  \href{https://linkedin.com/in/seanbalbale}{linkedin.com/in/seanbalbale} \;|\;
+  \href{https://seanbalbale.com}{seanbalbale.com}
+\end{center}
+\vspace{-3pt}
 
-\vspace{2pt}
-
-%-----------EDUCATION-----------
+%----------EDUCATION----------
 \section{Education}
 
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \textsc{Trinity College -- Hartford, CT} & \textsc{Expected May 2027}
-\end{tabular*}\\[2pt]
-Bachelor of Science in Electrical and Computer Engineering \hfill GPA: 3.65\\
-Bachelor of Science in Computer Science\\[3pt]
-\small\textbf{Coursework:} High-Performance Computing, Embedded Systems Design, Deep Learning, Software Engineering, Microelectronic
-Circuits, Intro to Computer Systems, Data Structures \& Algorithms, Calculus 3, Applied Linear Algebra, International Trade.\\[2pt]
-\small\textbf{Extracurriculars:} \textbf{Varsity Athlete} -- Trinity College Men's Rowing, \textbf{Singer \& Technology Chair} -- The Trinity College Accidentals.
+\noindent\textbf{Trinity College} --- Hartford, CT \hfill \textit{Expected May 2027}\\
+\small{B.S.\ Electrical \& Computer Engineering \;|\; B.S.\ Computer Science \;|\; GPA: 3.65 / 4.00}\\
+\footnotesize{Coursework: High-Performance Computing, Deep Learning, Software Engineering, Embedded Systems Design, Microelectronic Circuits, Data Structures \& Algorithms, Intro to Computer Systems, Applied Linear Algebra, Calculus III.}\\
+\footnotesize{Extracurriculars: Varsity Athlete --- Men's Rowing (Div.\ III); Technology Chair \& Singer --- The Trinity College Accidentals.}
 
-\vspace{2pt}
+\vsm
+\noindent\footnotesize{\textbf{Northeastern University} --- Boston, MA \& London, UK \hfill Attended Sept.\ 2023\,--\,Dec.\ 2024; all credits transferred to Trinity}
 
-%-----------SKILLS-----------
-\section{Skills}
+%----------SKILLS----------
+\section{Technical Skills}
 
-\small\textsc{Python} $|$ \textsc{Java} $|$ \textsc{C++} $|$ \textsc{TypeScript} $|$ \textsc{React} $|$ \textsc{Next.JS} $|$ \textsc{MATLAB} $|$ \textsc{Arduino} $|$ \textsc{FPGA} $|$ \textsc{Linux} $|$ \textsc{ASM} $|$ \textsc{Tailwind CSS} $|$ \textsc{SQL} $|$ \textsc{AngularJS} $|$ \textsc{Git} $|$
-\textsc{SolidWorks} $|$ \textsc{3D Printing} $|$ \textsc{Verilog} $|$ \textsc{Systems Engineering}
+\begin{tabular}{@{}l@{\hspace{5pt}}l}
+\footnotesize\textbf{Languages:}      & \footnotesize Java, Python, C, C++, TypeScript, Assembly (8051), Verilog, SQL, MATLAB, LaTeX \\
+\footnotesize\textbf{Backend/Cloud:}  & \footnotesize Spring Boot 3, Jakarta EE, JUnit 5, Mockito, REST APIs, AWS, Kubernetes, Docker, CI/CD, Log4j2 \\
+\footnotesize\textbf{Frontend:}       & \footnotesize React, Next.js, Tailwind CSS, Node.js, AngularJS \\
+\footnotesize\textbf{Embedded/HW:}   & \footnotesize Arduino, 8051 MCU, nRF52840 (Cortex-M4F), Intel Cyclone V FPGA, FreeRTOS, BLE 5, ANT+, LTspice \\
+\footnotesize\textbf{Tools:}          & \footnotesize Git, Linux, SolidWorks, 3D Printing (Klipper), Slurm/MPI, Precision Metrology, Oscilloscopes \\
+\end{tabular}
 
-\vspace{2pt}
-
-%-----------WORK EXPERIENCE-----------
+%----------EXPERIENCE----------
 \section{Work Experience}
 
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \textsc{Bullhorn -- Boston, MA} & \textsc{Summer 2025}
-\end{tabular*}\\[2pt]
-\small\textbf{Software Engineer Intern.} Contributed to backend services across the Shield and Builders teams, supporting projects for the
-SEARCH\_AI, ATS\_CRM, and MIDDLE\_OFFICE engineering groups. Executed a major framework migration (BH Boot 1.0.0) centered
-on upgrading multiple Java applications from Spring Boot 2 to 3, which involved updating javax to jakarta namespaces and
-refactoring the data access layer. Led a critical security initiative to upgrade core logging dependencies to Log4j2. To further
-improve code quality, refactored legacy test suites from TestNG and JMockit to JUnit 5 and Mockito and participated in the full
-software development lifecycle by managing feature branches, submitting merge requests, and conducting code reviews.
+\noindent\textbf{Sonos} --- Boston, MA \hfill \textit{Summer 2026}\\
+\textit{\small Software Engineering Intern --- Cloud Accounts (SW Services)}
+\begin{itemize}
+  \item\footnotesize Architecting and maintaining backend Java microservices powering user-identity, subscription entitlement, player-settings, and API-permission systems across the Sonos platform.
+  \item\footnotesize Working in an AWS and Kubernetes environment; applying containerization, orchestration, and GitHub source-control best practices on cloud services used globally.
+\end{itemize}
 
-\vspace{4pt}
+\vsm
+\noindent\textbf{Bullhorn} --- Boston, MA \hfill \textit{Summer 2025}\\
+\textit{\small Software Engineering Intern}
+\begin{itemize}
+  \item\footnotesize Owned framework migration (BH Boot 1.0.0): upgraded multiple production Java applications from Spring Boot 2 to Spring Boot 3, refactoring all \texttt{javax} namespaces to \texttt{jakarta} and restructuring the proprietary data access layer.
+  \item\footnotesize Led a critical security initiative upgrading core logging infrastructure to Log4j2; migrated legacy test suites from TestNG/JMockit to JUnit 5 and Mockito across affected services.
+  \item\footnotesize Participated in the full SDLC --- managed feature branches, authored merge requests, and conducted peer code reviews (SEARCH\_AI, ATS\_CRM, MIDDLE\_OFFICE teams).
+\end{itemize}
 
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \textsc{East Coast Metrology: A Division of In-Place Machining Company -- Topsfield, MA} & \textsc{Summer 2025}
-\end{tabular*}\\[2pt]
-\small\textbf{Metrology Intern.} Conducted in-house and on-site calibrations and precision measurements for a metrology company. Calibrated
-high-performance measuring equipment, including portable CMMs, total stations, large-volume scanners, and laser trackers.
-Measured engineering parts for clients to make sure they matched CAD tolerances. Updated internal use CAD models in SolidWorks.
+\vsm
+\noindent\textbf{East Coast Metrology --- A Division of In-Place Machining Co.} --- Topsfield, MA \hfill \textit{Summer 2024}\\
+\textit{\small Metrology Intern}
+\begin{itemize}
+  \item\footnotesize Calibrated portable CMMs, laser trackers, total stations, and large-volume scanners; verified manufactured parts against SolidWorks CAD models for dimensional compliance.
+\end{itemize}
 
-\vspace{4pt}
+\vsm
+\noindent\textbf{Titan Advanced Energy Solutions} --- Salem, MA \hfill \textit{Summer 2023}\\
+\textit{\small Engineering Intern}
+\begin{itemize}
+  \item\footnotesize Built Python tooling to parse ultrasound JSON data and render waveform visualizations for non-destructive EV battery defect detection, accelerating QA workflows.
+\end{itemize}
 
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \textsc{Titan Advanced Energy Solutions -- Salem, MA} & \textsc{Summer 2023}
-\end{tabular*}\\[2pt]
-\small\textbf{Intern.} Assisted the lab team in scanning electric vehicle batteries with ultrasound sensors. Wrote software using Python to
-visualize ultrasound JSON data as waveforms to complement generated heat maps. Data is used to look for defects in the batteries.
+\vsm
+\noindent\textbf{Cherrybrook Networks (Founder)} --- Weston, MA \hfill \textit{Mar.\ 2019 -- May 2025}\\
+\textit{\small Freelance Software Developer \& IT Consultant}
+\begin{itemize}
+  \item\footnotesize Operated a six-year freelance business delivering software dev, custom PC builds, Wi-Fi infrastructure, and automated cloud-backup solutions to local clients.
+\end{itemize}
 
-\vspace{4pt}
+%----------PROJECTS----------
+\section{Selected Projects}
 
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \textsc{Cherrybrook Networks -- Weston, MA} & \textsc{March 2019 -- May 2025}
-\end{tabular*}\\[2pt]
-\small\textbf{Freelance Software and Technical Support.} Started technical support and software development business to support local
-companies and nearby students and parents. Installed and configured software applications, designed and built custom computers,
-installed Wi-Fi systems, and automated cloud backups.
+\noindent\textbf{Edge-Compute Pacing \& Feedback Node} \textit{(Senior Capstone --- CPSC 498 / ECE 483)} \hfill \textit{Fall 2026\,--\,Spring 2027}
+\begin{itemize}
+  \item\footnotesize Embedded edge node providing real-time fatigue feedback for rowers/cyclists via the W$'$ balance model in C/C++ on FreeRTOS on a Nordic nRF52840 (Cortex-M4F, 64 MHz); targets $\leq$100 ms sensor-to-LED latency entirely offline via BLE 5 / ANT+.
+\end{itemize}
 
-\vspace{4pt}
+\vsm
+\noindent\textbf{Cherrybrook Networks --- Full-Stack Portfolio} \hfill \textit{2024\,--\,Present}\\
+\footnotesize Production Next.js / React / TypeScript web app (Vercel CI/CD); custom backend API for transactional email; 151+ commits, 95.5\% TypeScript.
 
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \textsc{Weston Public Schools -- Weston, MA} & \textsc{October 2022 -- May 2023}
-\end{tabular*}\\[2pt]
-\small\textbf{Engineering Teaching Assistant.} Assisted the Weston High School engineering teacher in developing course curriculum and
-running classes. Wrote and graded quizzes for physics and high school engineering courses. Maintained workshop tools, including
-laser cutters, 3D printers, band saws, and other woodworking tools.
+\vsm
+\noindent\textbf{Haptic Horizon --- Wearable Navigation Device} \hfill \textit{2025}\\
+\footnotesize Embedded C++ firmware (Arduino): HC-SR04 ultrasonic sensor + haptic motor encodes proximity as vibration patterns for visually impaired users; interrupt-driven real-time event loop.
 
-\vspace{2pt}
+%----------HONORS----------
+\section{Honors \& Research}
 
-%-----------PROJECT EXPERIENCE-----------
-\section{Project Experience -- \normalfont\small More on Portfolio Site}
+\noindent\textbf{Alumni Prize in English Composition} --- Trinity College \hfill \textit{May 2026}\\
+\footnotesize{\textit{``Embodied Harms and Inferred Data: Redefining Privacy in Extended Reality''} --- accepted for publication in \textit{The International Journal of Law, Ethics, and Technology} (Expected Late May 2026). Proposes a ``Bodyright'' framework for biometric data autonomy in immersive XR environments; awarded by the Trinity Department of English at Honors Day.}
 
-\small\textbf{Embedded Heart Rate Monitor.} Designed and wired the complete hardware system for a heart rate monitor and click counter.
-Wrote Assembly language firmware for an 8051 microcontroller to read external inputs, process signals, and display the real-time count.
-
-\vspace{3pt}
-\small\textbf{Haptic Horizon.} Designed and built a wearable haptic alarm system for the visually impaired, writing embedded C++ firmware
-for an Arduino-based platform to integrate ultrasonic sensors and a haptic motor.
-
-\vspace{3pt}
-\small\textbf{Cherrybrook Networks.} Full-stack personal portfolio and business website built with Next.js, React, and TypeScript. Styled
-with Tailwind CSS and modern UI libraries. Developed a custom backend API route to handle contact form submissions and send
-emails. Implemented features like a dark/light mode theme toggle and an embedded PDF resume viewer.
-
-\vspace{2pt}
-
-%-----------PERSONAL-----------
+%----------PERSONAL----------
 \section{Personal}
 
-\small Love to cook. Wrap a mean samosa and can create a killer katsu ramen. Enjoy lifting weights, running, and getting off an Erg after a 2K sprint.
+\footnotesize{Competitive varsity rower (Heavyweight eight/four, 2K erg sprints); avid cook --- samosas and katsu ramen; weightlifting, running, ski mountaineering. Manage live sound and recording for a collegiate a cappella ensemble.}
 
 \end{document}
