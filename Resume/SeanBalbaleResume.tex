@@ -1,130 +1,135 @@
-%-------------------------
-% ATS-Optimized One-Page Resume — Sean Balbale
-%-------------------------
-\documentclass[letterpaper,9.8pt]{article}
+\documentclass{resume}
 
-\usepackage[left=0.5in,right=0.5in,top=0.4in,bottom=0.4in]{geometry}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage[hidelinks]{hyperref}
-\usepackage[T1]{fontenc}
-\usepackage{xcolor}
+\usepackage[left=0.4in,top=0.35in,right=0.4in,bottom=0.35in]{geometry}
+\usepackage{hyperref}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\itemsep}{0pt}
 
-\pagestyle{empty}
-\raggedbottom
-\raggedright
+\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
 
-% Section formatting
-\titleformat{\section}{\small\bfseries\uppercase}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{3.5pt}{2.5pt}
-
-% Tight lists
-\setlist[itemize]{leftmargin=*,topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt}
-\renewcommand{\labelitemi}{$\bullet$}
-
-\newcommand{\vsm}{\vspace{1.5pt}}
+\name{Sean Balbale}
+\address{+1 (781) 290-8862 \\ 41 Hillcrest Rd, Weston, MA 02493}
+\address{
+  \href{mailto:sean.balbale@trincoll.edu}{sean.balbale@trincoll.edu} \\
+  \href{https://linkedin.com/in/seanbalbale}{linkedin.com/in/seanbalbale} \\
+  \href{https://seanbalbale.com}{seanbalbale.com} \\
+  \href{https://github.com/sbalbale}{github.com/sbalbale}
+}
 
 \begin{document}
 
-%----------HEADER----------
-\begin{center}
-  {\large\bfseries SEAN BALBALE}\\[1.5pt]
-  \footnotesize
-  Weston, MA 02493 \;|\;
-  +1\,(781)\,290-8862 \;|\;
-  \href{mailto:sean.balbale@trincoll.edu}{sean.balbale@trincoll.edu} \;|\;
-  \href{https://linkedin.com/in/seanbalbale}{linkedin.com/in/seanbalbale} \;|\;
-  \href{https://seanbalbale.com}{seanbalbale.com}
-\end{center}
-\vspace{-3pt}
+%----------------------------------------------------------------------------------------
+% EDUCATION
+%----------------------------------------------------------------------------------------
 
-%----------EDUCATION----------
-\section{Education}
+\begin{rSection}{Education}
 
-\noindent\textbf{Trinity College} --- Hartford, CT \hfill \textit{Expected May 2027}\\
-\small{B.S.\ Electrical \& Computer Engineering \;|\; B.S.\ Computer Science \;|\; GPA: 3.65 / 4.00}\\
-\footnotesize{Coursework: High-Performance Computing, Deep Learning, Software Engineering, Embedded Systems Design, Microelectronic Circuits, Data Structures \& Algorithms, Intro to Computer Systems, Applied Linear Algebra, Calculus III.}\\
-\footnotesize{Extracurriculars: Varsity Athlete --- Men's Rowing (Div.\ III); Technology Chair \& Singer --- The Trinity College Accidentals.}
+{\bf Bachelor of Science in Electrical \& Computer Engineering} \hfill {Expected May 2027}\\
+{\bf Bachelor of Science in Computer Science}, Trinity College --- Hartford, CT \hfill {GPA: 3.65}\\
+Certificate in Software Development Experience\\
+\textit{Coursework:} High-Performance Computing, Deep Learning, Software Engineering, Embedded Systems Design,\\
+Microelectronic Circuits, Intro to Computer Systems, Data Structures \& Algorithms, Calculus III, Applied Linear Algebra.\\
+\textit{Extracurriculars:} Varsity Athlete --- Trinity College Men's Rowing (Div.\ III); Singer \& Technology Chair --- The Trinity College Accidentals.
 
-\vsm
-\noindent\footnotesize{\textbf{Northeastern University} --- Boston, MA \& London, UK \hfill Attended Sept.\ 2023\,--\,Dec.\ 2024; all credits transferred to Trinity}
+{\bf Northeastern University} --- Boston, MA \& London, UK \hfill {Sep 2023 -- Dec 2024}\\
+Three semesters in Computer Engineering before transferring. \textit{Key coursework:} Embedded Design: Enabling Robotics,
+Circuits/Signals: Biomedical Applications, Fundamentals of CS II, Diff.\ Eqs.\ \& Linear Algebra, Discrete Structures, Calculus I \& II.
 
-%----------SKILLS----------
-\section{Technical Skills}
+\end{rSection}
 
-\begin{tabular}{@{}l@{\hspace{5pt}}l}
-\footnotesize\textbf{Languages:}      & \footnotesize Java, Python, C, C++, TypeScript, Assembly (8051), Verilog, SQL, MATLAB, LaTeX \\
-\footnotesize\textbf{Backend/Cloud:}  & \footnotesize Spring Boot 3, Jakarta EE, JUnit 5, Mockito, REST APIs, AWS, Kubernetes, Docker, CI/CD, Log4j2 \\
-\footnotesize\textbf{Frontend:}       & \footnotesize React, Next.js, Tailwind CSS, Node.js, AngularJS \\
-\footnotesize\textbf{Embedded/HW:}   & \footnotesize Arduino, 8051 MCU, nRF52840 (Cortex-M4F), Intel Cyclone V FPGA, FreeRTOS, BLE 5, ANT+, LTspice \\
-\footnotesize\textbf{Tools:}          & \footnotesize Git, Linux, SolidWorks, 3D Printing (Klipper), Slurm/MPI, Precision Metrology, Oscilloscopes \\
+%----------------------------------------------------------------------------------------
+% SKILLS
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Skills}
+
+\begin{tabular}{ @{} >{\bfseries}l @{\hspace{4ex}} l }
+Languages     & Java, Python, C/C++, TypeScript, JavaScript, Assembly (8051/MIPS), Verilog, SQL, MATLAB, \LaTeX \\
+Backend       & Spring Boot 3, Jakarta EE, JUnit 5, Mockito, Node.js, REST APIs \\
+Frontend      & React, Next.js, Tailwind CSS, AngularJS \\
+Cloud \& DevOps & AWS, Kubernetes, Docker, Linux, Git, CI/CD, Log4j2, Slurm, MPI \\
+Embedded / HW & Arduino, ESP32, 8051, Intel Cyclone V FPGA, Nordic nRF52840, FreeRTOS, BLE 5, ANT+, LTspice \\
+Mechanical    & SolidWorks, FDM 3D Printing, Laser Cutting, Precision Metrology \\
 \end{tabular}
 
-%----------EXPERIENCE----------
-\section{Work Experience}
+\end{rSection}
 
-\noindent\textbf{Sonos} --- Boston, MA \hfill \textit{Summer 2026}\\
-\textit{\small Software Engineering Intern --- Cloud Accounts (SW Services)}
+%----------------------------------------------------------------------------------------
+% WORK EXPERIENCE
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Work Experience}
+
+\textbf{Cloud Software Engineering Intern} \hfill Summer 2026\\
+Sonos \hfill \textit{Boston, MA}
 \begin{itemize}
-  \item\footnotesize Architecting and maintaining backend Java microservices powering user-identity, subscription entitlement, player-settings, and API-permission systems across the Sonos platform.
-  \item\footnotesize Working in an AWS and Kubernetes environment; applying containerization, orchestration, and GitHub source-control best practices on cloud services used globally.
+  \itemsep -3pt{}
+  \item Architecting and maintaining backend Java microservices for the Cloud Accounts team: user identity, subscription
+  entitlements, player settings, and API permissions across Sonos products --- AWS / Kubernetes environment.
 \end{itemize}
 
-\vsm
-\noindent\textbf{Bullhorn} --- Boston, MA \hfill \textit{Summer 2025}\\
-\textit{\small Software Engineering Intern}
+\textbf{Engineering Teaching Assistant --- ENGR 212L (Linear Circuit Theory)} \hfill Spring 2026\\
+Trinity College \hfill \textit{Hartford, CT}
 \begin{itemize}
-  \item\footnotesize Owned framework migration (BH Boot 1.0.0): upgraded multiple production Java applications from Spring Boot 2 to Spring Boot 3, refactoring all \texttt{javax} namespaces to \texttt{jakarta} and restructuring the proprietary data access layer.
-  \item\footnotesize Led a critical security initiative upgrading core logging infrastructure to Log4j2; migrated legacy test suites from TestNG/JMockit to JUnit 5 and Mockito across affected services.
-  \item\footnotesize Participated in the full SDLC --- managed feature branches, authored merge requests, and conducted peer code reviews (SEARCH\_AI, ATS\_CRM, MIDDLE\_OFFICE teams).
+  \itemsep -3pt{}
+  \item Led weekly lab sessions for Linear Circuit Theory covering node/mesh analysis, RLC circuits, op-amps,
+  active filter design, Laplace transforms, and Fourier series with hands-on hardware experimentation.
 \end{itemize}
 
-\vsm
-\noindent\textbf{East Coast Metrology --- A Division of In-Place Machining Co.} --- Topsfield, MA \hfill \textit{Summer 2024}\\
-\textit{\small Metrology Intern}
+\textbf{Software Engineering Intern} \hfill Summer 2025\\
+Bullhorn \hfill \textit{Boston, MA}
 \begin{itemize}
-  \item\footnotesize Calibrated portable CMMs, laser trackers, total stations, and large-volume scanners; verified manufactured parts against SolidWorks CAD models for dimensional compliance.
+  \itemsep -3pt{}
+  \item Owned a major framework migration (BH Boot 1.0.0): upgraded multiple production Java applications from Spring Boot 2
+  to 3, refactoring all \texttt{javax} namespaces to \texttt{jakarta} and restructuring the proprietary data access layer.
+  \item Led a critical security initiative to upgrade core logging infrastructure to Log4j2 across affected services.
+  \item Refactored legacy test suites from TestNG/JMockit to JUnit 5 and Mockito; managed feature branches, merge requests,
+  and peer code reviews throughout the full software development lifecycle.
 \end{itemize}
 
-\vsm
-\noindent\textbf{Titan Advanced Energy Solutions} --- Salem, MA \hfill \textit{Summer 2023}\\
-\textit{\small Engineering Intern}
+\textbf{Metrology Intern} \hfill Summer 2025\\
+East Coast Metrology --- A Division of In-Place Machining Company \hfill \textit{Topsfield, MA}
 \begin{itemize}
-  \item\footnotesize Built Python tooling to parse ultrasound JSON data and render waveform visualizations for non-destructive EV battery defect detection, accelerating QA workflows.
+  \itemsep -3pt{}
+  \item Calibrated high-performance precision measurement equipment including portable CMMs, laser trackers, total stations, and large-volume scanners; verified manufactured parts against SolidWorks CAD tolerances.
 \end{itemize}
 
-\vsm
-\noindent\textbf{Cherrybrook Networks (Founder)} --- Weston, MA \hfill \textit{Mar.\ 2019 -- May 2025}\\
-\textit{\small Freelance Software Developer \& IT Consultant}
-\begin{itemize}
-  \item\footnotesize Operated a six-year freelance business delivering software dev, custom PC builds, Wi-Fi infrastructure, and automated cloud-backup solutions to local clients.
-\end{itemize}
+\end{rSection}
 
-%----------PROJECTS----------
-\section{Selected Projects}
+%----------------------------------------------------------------------------------------
+% PROJECTS
+%----------------------------------------------------------------------------------------
 
-\noindent\textbf{Edge-Compute Pacing \& Feedback Node} \textit{(Senior Capstone --- CPSC 498 / ECE 483)} \hfill \textit{Fall 2026\,--\,Spring 2027}
-\begin{itemize}
-  \item\footnotesize Embedded edge node providing real-time fatigue feedback for rowers/cyclists via the W$'$ balance model in C/C++ on FreeRTOS on a Nordic nRF52840 (Cortex-M4F, 64 MHz); targets $\leq$100 ms sensor-to-LED latency entirely offline via BLE 5 / ANT+.
-\end{itemize}
+\begin{rSection}{Selected Projects}
+\vspace{-1.25em}
 
-\vsm
-\noindent\textbf{Cherrybrook Networks --- Full-Stack Portfolio} \hfill \textit{2024\,--\,Present}\\
-\footnotesize Production Next.js / React / TypeScript web app (Vercel CI/CD); custom backend API for transactional email; 151+ commits, 95.5\% TypeScript.
+\item \textbf{Edge-Compute Pacing \& Feedback Node (Capstone)} CPSC 498 / ECE 483, Fall 2026 -- Spring 2027.
+{Embedded node delivering real-time W$'$ balance fatigue feedback on a Nordic nRF52840 (ARM Cortex-M4F); FreeRTOS, BLE 5 + ANT+, $\leq$100 ms latency. No cloud/smartphone offload.}
 
-\vsm
-\noindent\textbf{Haptic Horizon --- Wearable Navigation Device} \hfill \textit{2025}\\
-\footnotesize Embedded C++ firmware (Arduino): HC-SR04 ultrasonic sensor + haptic motor encodes proximity as vibration patterns for visually impaired users; interrupt-driven real-time event loop.
+\item \textbf{Embedded Heart Rate Monitor (8051 Assembly)} Spring 2025.
+{Interrupt-driven Assembly firmware for 8051 MCU: ADC sampling, signal processing, BCD display --- no C runtime.}
 
-%----------HONORS----------
-\section{Honors \& Research}
+\item \textbf{Haptic Horizon --- Wearable Navigation Device} Spring 2024.
+{Embedded C++ firmware on Arduino integrating ultrasonic ranging and haptic motor for visually impaired navigation.}
 
-\noindent\textbf{Alumni Prize in English Composition} --- Trinity College \hfill \textit{May 2026}\\
-\footnotesize{\textit{``Embodied Harms and Inferred Data: Redefining Privacy in Extended Reality''} --- accepted for publication in \textit{The International Journal of Law, Ethics, and Technology} (Expected Late May 2026). Proposes a ``Bodyright'' framework for biometric data autonomy in immersive XR environments; awarded by the Trinity Department of English at Honors Day.}
+\item \textbf{Personal Portfolio} \href{https://seanbalbale.com}{seanbalbale.com} Spring 2026.
+{Full-stack Next.js / React / TypeScript app with custom email API; deployed via Vercel with CI/CD on each Git push.}
 
-%----------PERSONAL----------
-\section{Personal}
+\end{rSection}
 
-\footnotesize{Competitive varsity rower (Heavyweight eight/four, 2K erg sprints); avid cook --- samosas and katsu ramen; weightlifting, running, ski mountaineering. Manage live sound and recording for a collegiate a cappella ensemble.}
+%----------------------------------------------------------------------------------------
+% HONORS
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Honors \& Research}
+
+\textbf{Alumni Prize in English Composition} --- Trinity College, Department of English \hfill May 2026\\
+Awarded at 2026 Honors Day for best expository writing: \textit{``Embodied Harms and Inferred Data: Redefining Privacy in
+Extended Reality,''} accepted for publication in \textit{The International Journal of Law, Ethics, and Technology}
+(Expected Late May 2026). Proposes a ``Bodyright'' framework reclassifying biometric data as an inalienable extension of the human sovereign.
+
+\end{rSection}
 
 \end{document}
