@@ -1,0 +1,409 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Code listing style for MATLAB
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{matlabstyle}{
+  backgroundcolor=\color{backcolour},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{blue},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  language=Matlab
+}
+\lstset{style=matlabstyle}
+
+\title{\textbf{TA Walk-Through: ENGR 212 Lab 3}\\Nodal \& Mesh Analysis with MATLAB Implementation}
+\author{Sean Balbale}
+\date{February 2026}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+
+\begin{document}
+
+\maketitle
+
+\section*{Overview: Nodal Analysis}
+The objective of the first part of this lab is to utilize Kirchhoff's Current Law (KCL) to derive a system of linear equations for multi-node circuits. Once the nodal equations are algebraically simplified into the standard form ($A \mathbf{x} = B$), we leverage MATLAB's left-division operator (\texttt{\textbackslash}) to solve for the unknown node voltages efficiently.
+
+\hrule
+\vspace{1em}
+
+\section*{Problem 1: Circuit 1}
+
+\textbf{Assumed Topology:}
+\begin{itemize}
+  \item \textbf{Node 1 ($v_1$):} \SI{3}{\ampere} source entering. Connected to ground via an \SI{8}{\ohm} resistor and to Node 2 via a \SI{2}{\ohm} resistor.
+  \item \textbf{Node 2 ($v_2$):} Connected to Node 1 via \SI{2}{\ohm}, to ground via \SI{4}{\ohm}, to Node 3 via \SI{4}{\ohm}. A \SI{5}{\ampere} source enters this node.
+  \item \textbf{Node 3 ($v_3$):} Connected to Node 2 via \SI{4}{\ohm}, to ground via \SI{8}{\ohm}, and to a \SI{12}{\volt} source via a \SI{2}{\ohm} resistor.
+\end{itemize}
+
+\textbf{Nodal Equations (KCL):} \\
+Applying $\sum i_{\text{out}} = \sum i_{\text{in}}$ at each node:
+
+\textit{Node 1:}
+\begin{align*}
+  \frac{v_1}{8} + \frac{v_1 - v_2}{2} &= 3 \\
+  \text{Multiply by 8: } \quad v_1 + 4(v_1 - v_2) &= 24 \\
+  \mathbf{5v_1 - 4v_2} &\mathbf{= 24} \quad \text{--- (Eq. 1)}
+\end{align*}
+
+\textit{Node 2:}
+\begin{align*}
+  \frac{v_2 - v_1}{2} + \frac{v_2}{4} + \frac{v_2 - v_3}{4} &= 5 \\
+  \text{Multiply by 4: } \quad 2(v_2 - v_1) + v_2 + (v_2 - v_3) &= 20 \\
+  \mathbf{-2v_1 + 4v_2 - v_3} &\mathbf{= 20} \quad \text{--- (Eq. 2)}
+\end{align*}
+
+\textit{Node 3:}
+\begin{align*}
+  \frac{v_3 - v_2}{4} + \frac{v_3}{8} + \frac{v_3 - 12}{2} &= 0 \\
+  \text{Multiply by 8: } \quad 2(v_3 - v_2) + v_3 + 4(v_3 - 12) &= 0 \\
+  -2v_2 + 7v_3 - 48 &= 0 \\
+  \mathbf{-2v_2 + 7v_3} &\mathbf{= 48} \quad \text{--- (Eq. 3)}
+\end{align*}
+
+\section*{Problem 2: Circuit 2 (Dependent Source)}
+
+\textbf{Assumed Topology:}
+\begin{itemize}
+  \item \textbf{Node 1 ($v_1$):} \SI{3}{\ampere} source entering. Connected to a \SI{15}{\volt} source via \SI{20}{\ohm} and to Node 2 via \SI{5}{\ohm}.
+  \item \textbf{Node 2 ($v_2$):} Connected to Node 1 via \SI{5}{\ohm}, to ground via \SI{10}{\ohm}, and to Node 3 via \SI{5}{\ohm}. Current $i_a$ flows from $v_1$ to $v_2$.
+  \item \textbf{Node 3 ($v_3$):} Connected to Node 2 via \SI{5}{\ohm}, to a \SI{10}{\volt} source via \SI{15}{\ohm}. A dependent current source $4i_a$ enters Node 3.
+  \item \textbf{Dependent Variable Constraint:} $i_a = \frac{v_1 - v_2}{5}$
+\end{itemize}
+
+\textbf{Nodal Equations (KCL):}
+
+\textit{Node 1:}
+\begin{align*}
+  \frac{v_1 - 15}{20} + \frac{v_1 - v_2}{5} &= 3 \\
+  \text{Multiply by 20: } \quad (v_1 - 15) + 4(v_1 - v_2) &= 60 \\
+  \mathbf{5v_1 - 4v_2} &\mathbf{= 75} \quad \text{--- (Eq. 1)}
+\end{align*}
+
+\textit{Node 2:}
+\begin{align*}
+  \frac{v_2 - v_1}{5} + \frac{v_2}{10} + \frac{v_2 - v_3}{5} &= 0 \\
+  \text{Multiply by 10: } \quad 2(v_2 - v_1) + v_2 + 2(v_2 - v_3) &= 0 \\
+  \mathbf{-2v_1 + 5v_2 - 2v_3} &\mathbf{= 0} \quad \text{--- (Eq. 2)}
+\end{align*}
+
+\textit{Node 3:}
+\begin{align*}
+  \frac{v_3 - v_2}{5} + \frac{v_3 - 10}{15} - 4i_a &= 0 \\
+  \text{Substitute } i_a: \quad \frac{v_3 - v_2}{5} + \frac{v_3 - 10}{15} - 4\left(\frac{v_1 - v_2}{5}\right) &= 0 \\
+  \text{Multiply by 15: } \quad 3(v_3 - v_2) + (v_3 - 10) - 12(v_1 - v_2) &= 0 \\
+  \mathbf{-12v_1 + 9v_2 + 4v_3} &\mathbf{= 10} \quad \text{--- (Eq. 3)}
+\end{align*}
+
+\section*{Problem 3: Circuit 3 (Conductance)}
+
+\textit{Note: This problem utilizes Conductance ($S$), which is the reciprocal of resistance ($G = 1/R$). Ohm's law is expressed as $i = Gv$.}
+
+\textbf{Assumed Topology:}
+\begin{itemize}
+  \item \textbf{Node 1 ($v_1$):} \SI{2}{\ampere} source enters. Conductances: \SI{2}{\siemens} to ground, \SI{1}{\siemens} to Node 2, \SI{1}{\siemens} to Node 3.
+  \item \textbf{Node 2 ($v_2$):} Dependent source $3i_o$ enters. Conductances: \SI{4}{\siemens} to ground, \SI{1}{\siemens} to Node 1, \SI{1}{\siemens} to Node 3. Current $i_o$ is flowing down the \SI{4}{\siemens} resistor ($i_o = 4v_2$).
+  \item \textbf{Node 3 ($v_3$):} \SI{4}{\ampere} source enters. Conductances: \SI{2}{\siemens} to ground, \SI{1}{\siemens} to Node 1, \SI{1}{\siemens} to Node 2.
+\end{itemize}
+
+\textbf{Nodal Equations (KCL):}
+
+\textit{Node 1:}
+\begin{align*}
+  2v_1 + 1(v_1 - v_2) + 1(v_1 - v_3) &= 2 \\
+  \mathbf{4v_1 - v_2 - v_3} &\mathbf{= 2} \quad \text{--- (Eq. 1)}
+\end{align*}
+
+\textit{Node 2:}
+\begin{align*}
+  1(v_2 - v_1) + 4v_2 + 1(v_2 - v_3) &= 3i_o \\
+  \text{Substitute } i_o = 4v_2: \quad -v_1 + 6v_2 - v_3 &= 12v_2 \\
+  \mathbf{-v_1 - 6v_2 - v_3} &\mathbf{= 0} \quad \text{--- (Eq. 2)}
+\end{align*}
+
+\textit{Node 3:}
+\begin{align*}
+  1(v_3 - v_1) + 1(v_3 - v_2) + 2v_3 &= 4 \\
+  \mathbf{-v_1 - v_2 + 4v_3} &\mathbf{= 4} \quad \text{--- (Eq. 3)}
+\end{align*}
+
+\section*{MATLAB Implementation: Nodal Analysis}
+We convert our derived equations into the matrix format $A \mathbf{x} = B$, where $A$ is the coefficient matrix, $\mathbf{x}$ is the column vector of unknown voltages, and $B$ is the constants vector. We then use MATLAB's left division operator (\texttt{\textbackslash}) to solve for $\mathbf{x}$.
+
+\begin{lstlisting}[caption=MATLAB Script for Lab 3 Nodal Analysis (Problems 1-3)]
+% ENGR 212 - Laboratory Experiment 3
+% Solving Nodal Analysis Equations
+clear; clc;
+
+%% Problem 1
+fprintf('--- Problem 1 (Fig. 1) ---\n');
+% Equations:
+%  5*v1 - 4*v2 +  0*v3 = 24
+% -2*v1 + 4*v2 -  1*v3 = 20
+%  0*v1 - 2*v2 +  7*v3 = 48
+
+A1 = [ 5, -4,  0;
+      -2,  4, -1;
+       0, -2,  7];
+
+B1 = [24; 20; 48];
+
+V1 = A1 \ B1; % Solve for V
+fprintf('v1 = %.2f Volts\n', V1(1));
+fprintf('v2 = %.2f Volts\n', V1(2));
+fprintf('v3 = %.2f Volts\n\n', V1(3));
+
+%% Problem 2
+fprintf('--- Problem 2 (Fig. 2) ---\n');
+% Equations:
+%   5*v1 -  4*v2 +  0*v3 = 75
+%  -2*v1 +  5*v2 -  2*v3 = 0
+% -12*v1 +  9*v2 +  4*v3 = 10
+
+A2 = [  5, -4,  0;
+       -2,  5, -2;
+      -12,  9,  4];
+
+B2 = [75; 0; 10];
+
+V2 = A2 \ B2;
+fprintf('v1 = %.2f Volts\n', V2(1));
+fprintf('v2 = %.2f Volts\n', V2(2));
+fprintf('v3 = %.2f Volts\n\n', V2(3));
+
+%% Problem 3
+fprintf('--- Problem 3 (Fig. 3) ---\n');
+% Equations:
+%  4*v1 -  1*v2 -  1*v3 = 2
+% -1*v1 -  6*v2 -  1*v3 = 0
+% -1*v1 -  1*v2 +  4*v3 = 4
+
+A3 = [ 4, -1, -1;
+      -1, -6, -1;
+      -1, -1,  4];
+
+B3 = [2; 0; 4];
+
+V3 = A3 \ B3;
+fprintf('v1 = %.2f Volts\n', V3(1));
+fprintf('v2 = %.2f Volts\n', V3(2));
+fprintf('v3 = %.2f Volts\n', V3(3));
+\end{lstlisting}
+
+\section*{Overview: Mesh Analysis}
+While Problems 1-3 utilized Nodal Analysis (KCL), Problems 4 and 5 require Mesh Analysis. By systematically applying Kirchhoff's Voltage Law (KVL) around each closed loop, we generate a system of equations defining the mesh currents. We assume all mesh currents flow in a \textbf{clockwise} direction.
+
+\hrule
+\vspace{1em}
+
+\section*{Problem 4: Circuit 4}
+
+\textbf{Assumed Topology \& Parameters:}
+\begin{itemize}
+  \item We analyze a 5-mesh planar network. To simplify the algebra, we work in units of \si{\kilo\ohm}, \si{\milli\ampere}, and \si{\volt}.
+  \item \textbf{Mesh 1 ($I_1$, bottom-left):} Contains a \SI{12}{\volt} source on the outer left edge.
+  \item \textbf{Mesh 4 ($I_4$, middle-right):} Contains a \SI{3}{\milli\ampere} independent current source on the outer right edge pointing upwards.
+\end{itemize}
+
+\textbf{Mesh Equations (KVL):}
+
+\textit{Mesh 1:}
+\begin{align*}
+  -12 + 1(I_1 - I_3) + 3(I_1 - I_2) &= 0 \\
+  \mathbf{4I_1 - 3I_2 - I_3} &\mathbf{= 12} \quad \text{--- (Eq. 1)}
+\end{align*}
+
+\textit{Mesh 2:}
+\begin{align*}
+  3(I_2 - I_1) + 4(I_2 - I_4) &= 0 \\
+  \mathbf{-3I_1 + 7I_2 - 4I_4} &\mathbf{= 0} \quad \text{--- (Eq. 2)}
+\end{align*}
+
+\textit{Mesh 3:}
+\begin{align*}
+  6(I_3 - I_5) + 8(I_3 - I_4) + 1(I_3 - I_1) &= 0 \\
+  \mathbf{-I_1 + 15I_3 - 8I_4 - 6I_5} &\mathbf{= 0} \quad \text{--- (Eq. 3)}
+\end{align*}
+
+\textit{Mesh 4 Constraint:} \\
+Because the \SI{3}{\milli\ampere} source dictates the current on the outer branch of Mesh 4, and it points opposite to our assumed clockwise direction:
+\begin{align*}
+  \mathbf{I_4} &\mathbf{= -3} \quad \text{--- (Eq. 4)}
+\end{align*}
+
+\textit{Mesh 5 (Top Loop):}
+\begin{align*}
+  2I_5 + 8(I_5 - I_4) + 6(I_5 - I_3) &= 0 \\
+  \mathbf{-6I_3 - 8I_4 + 16I_5} &\mathbf{= 0} \quad \text{--- (Eq. 5)}
+\end{align*}
+
+\section*{Problem 5: Circuit 5}
+
+\textbf{Assumed Topology:}
+\begin{itemize}
+  \item A heavy 5-mesh network with multiple independent voltage sources.
+  \item We trace KVL clockwise. Voltage sources are treated as drops (positive) if we enter the `$+$` terminal, and rises (negative) if we enter the `$-$` terminal.
+\end{itemize}
+
+\textbf{Mesh Equations (KVL):}
+
+\textit{Mesh 1 ($i_1$, top-left):}
+\begin{align*}
+  8i_1 - 12 + 10i_1 + 4(i_1 - i_2) + 24 + 2(i_1 - i_4) + 6(i_1 - i_3) &= 0 \\
+  \mathbf{30i_1 - 4i_2 - 6i_3 - 2i_4} &\mathbf{= -12} \quad \text{--- (Eq. 1)}
+\end{align*}
+
+\textit{Mesh 2 ($i_2$, top-right):}
+\begin{align*}
+  10i_2 + 8i_2 + 40 + 6(i_2 - i_5) + 2(i_2 - i_4) + 4(i_2 - i_1) - 24 &= 0 \\
+  \mathbf{-4i_1 + 30i_2 - 2i_4 - 6i_5} &\mathbf{= -16} \quad \text{--- (Eq. 2)}
+\end{align*}
+
+\textit{Mesh 3 ($i_3$, bottom-left):}
+\begin{align*}
+  8i_3 - 30 + 6(i_3 - i_1) + 4(i_3 - i_4) &= 0 \\
+  \mathbf{-6i_1 + 18i_3 - 4i_4} &\mathbf{= 30} \quad \text{--- (Eq. 3)}
+\end{align*}
+
+\textit{Mesh 4 ($i_4$, bottom-middle):}
+\begin{align*}
+  2(i_4 - i_1) + 2(i_4 - i_2) + 4(i_4 - i_5) + 4(i_4 - i_3) &= 0 \\
+  \mathbf{-2i_1 - 2i_2 - 4i_3 + 12i_4 - 4i_5} &\mathbf{= 0} \quad \text{--- (Eq. 4)}
+\end{align*}
+
+\textit{Mesh 5 ($i_5$, bottom-right):}
+\begin{align*}
+  6(i_5 - i_2) + 8i_5 + 32 + 4(i_5 - i_4) &= 0 \\
+  \mathbf{-6i_2 - 4i_4 + 18i_5} &\mathbf{= -32} \quad \text{--- (Eq. 5)}
+\end{align*}
+
+\section*{MATLAB Implementation: Mesh Analysis}
+We convert the derived linear equations into the characteristic matrix format $A \mathbf{x} = B$, solving for the mesh currents vector $\mathbf{x}$.
+
+\begin{lstlisting}[caption=MATLAB Script for Lab 3 Mesh Analysis (Problems 4 \& 5)]
+% ENGR 212 - Laboratory Experiment 3
+% Solving Mesh Analysis Equations
+clear; clc;
+
+%% Problem 4 (Fig. 4)
+fprintf('--- Problem 4 (Fig. 4) ---\n');
+% Variables: [I1; I2; I3; I4; I5] (Currents in mA)
+% Equations:
+%  4*I1 - 3*I2 -  1*I3 +  0*I4 +  0*I5 = 12
+% -3*I1 + 7*I2 +  0*I3 -  4*I4 +  0*I5 = 0
+% -1*I1 + 0*I2 + 15*I3 -  8*I4 -  6*I5 = 0
+%  0*I1 + 0*I2 +  0*I3 +  1*I4 +  0*I5 = -3
+%  0*I1 + 0*I2 -  6*I3 -  8*I4 + 16*I5 = 0
+
+A4 = [ 4, -3, -1,  0,  0;
+      -3,  7,  0, -4,  0;
+      -1,  0, 15, -8, -6;
+       0,  0,  0,  1,  0;
+       0,  0, -6, -8, 16];
+
+B4 = [12; 0; 0; -3; 0];
+
+I_mesh4 = A4 \ B4; % Solve for Currents
+fprintf('I1 = %8.3f mA\n', I_mesh4(1));
+fprintf('I2 = %8.3f mA\n', I_mesh4(2));
+fprintf('I3 = %8.3f mA\n', I_mesh4(3));
+fprintf('I4 = %8.3f mA (Source Constraint)\n', I_mesh4(4));
+fprintf('I5 = %8.3f mA\n\n', I_mesh4(5));
+
+%% Problem 5 (Fig. 5)
+fprintf('--- Problem 5 (Fig. 5) ---\n');
+% Variables: [i1; i2; i3; i4; i5] (Currents in A)
+% Equations:
+%  30*i1 -  4*i2 -  6*i3 -  2*i4 +  0*i5 = -12
+%  -4*i1 + 30*i2 +  0*i3 -  2*i4 -  6*i5 = -16
+%  -6*i1 +  0*i2 + 18*i3 -  4*i4 +  0*i5 = 30
+%  -2*i1 -  2*i2 -  4*i3 + 12*i4 -  4*i5 = 0
+%   0*i1 -  6*i2 +  0*i3 -  4*i4 + 18*i5 = -32
+
+A5 = [ 30, -4, -6, -2,  0;
+       -4, 30,  0, -2, -6;
+       -6,  0, 18, -4,  0;
+       -2, -2, -4, 12, -4;
+        0, -6,  0, -4, 18];
+
+B5 = [-12; -16; 30; 0; -32];
+
+I_mesh5 = A5 \ B5; % Solve for Currents
+fprintf('i1 = %8.3f A\n', I_mesh5(1));
+fprintf('i2 = %8.3f A\n', I_mesh5(2));
+fprintf('i3 = %8.3f A\n', I_mesh5(3));
+fprintf('i4 = %8.3f A\n', I_mesh5(4));
+fprintf('i5 = %8.3f A\n', I_mesh5(5));
+\end{lstlisting}
+
+\section*{Numerical Solutions}
+Below are the exact values computed via the MATLAB execution script.
+
+\subsection*{Nodal Analysis Solutions}
+
+\textbf{Problem 1:}
+\begin{itemize}
+  \item $v_1 = \SI{18.59}{\volt}$
+  \item $v_2 = \SI{17.24}{\volt}$
+  \item $v_3 = \SI{11.78}{\volt}$
+\end{itemize}
+
+\textbf{Problem 2:}
+\begin{itemize}
+  \item $v_1 = \SI{47.26}{\volt}$
+  \item $v_2 = \SI{40.32}{\volt}$
+  \item $v_3 = \SI{53.55}{\volt}$
+\end{itemize}
+
+\textbf{Problem 3:}
+\begin{itemize}
+  \item $v_1 = \SI{0.70}{\volt}$
+  \item $v_2 = \SI{-0.30}{\volt}$
+  \item $v_3 = \SI{1.10}{\volt}$
+\end{itemize}
+
+\subsection*{Mesh Analysis Solutions}
+
+\textbf{Problem 4:}
+\begin{itemize}
+  \item $I_1 = \SI{1.620}{\milli\ampere}$
+  \item $I_2 = \SI{-1.020}{\milli\ampere}$
+  \item $I_3 = \SI{-2.461}{\milli\ampere}$
+  \item $I_4 = \SI{-3.000}{\milli\ampere}$ (Constrained by current source)
+  \item $I_5 = \SI{-2.423}{\milli\ampere}$
+\end{itemize}
+
+\textbf{Problem 5:}
+\begin{itemize}
+  \item $i_1 = \SI{-0.278}{\ampere}$
+  \item $i_2 = \SI{-1.049}{\ampere}$
+  \item $i_3 = \SI{1.468}{\ampere}$
+  \item $i_4 = \SI{-0.476}{\ampere}$
+  \item $i_5 = \SI{-2.233}{\ampere}$
+\end{itemize}
+
+\end{document}

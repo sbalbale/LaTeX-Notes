@@ -1,0 +1,161 @@
+%% Sean Balbale — ATS-Optimized One-Page Resume
+%% Compile with: pdflatex SeanBalbaleResume_OnePage.tex
+
+\documentclass[10pt, letterpaper]{article}
+
+\usepackage[top=0.35in, bottom=0.35in, left=0.5in, right=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.1em, itemsep=0pt, parsep=0pt, topsep=0pt}
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\bfseries\uppercase}{}{0em}{}
+[\vspace{-4pt}\rule{\linewidth}{0.4pt}\vspace{2pt}]
+\titlespacing*{\section}{0pt}{3pt}{1pt}
+\pagestyle{empty}
+
+\begin{document}
+
+%% NAME & CONTACT
+\begin{center}
+  {\Large \textbf{Sean Balbale}}\\[1pt]
+  \small
+  +1\,(781)\,290-8862 \;|\;
+  \href{mailto:sean.balbale@trincoll.edu}{sean.balbale@trincoll.edu} \;|\;
+  \href{https://www.linkedin.com/in/seanbalbale/}{linkedin.com/in/seanbalbale} \;|\;
+  \href{https://seanbalbale.com}{seanbalbale.com} \;|\;
+  \href{https://github.com/sbalbale}{github.com/sbalbale}
+\end{center}
+
+% %% HEADLINE
+% \begin{center}
+%   \small\textit{%
+%     ECE \& CS Junior at Trinity College \;\textbullet\;
+%     Full-Stack \& Embedded Systems Engineer \;\textbullet\;
+%     Published Researcher in XR Privacy Law%
+%   }
+% \end{center}
+
+% \vspace{-2pt}
+
+%% EDUCATION
+\section{Education}
+
+\noindent
+\textbf{Trinity College} --- Hartford, CT \hfill \textit{Expected May 2027}\\
+Bachelor of Science in Electrical and Computer Engineering \hfill GPA: 3.65\\
+Bachelor of Science in Computer Science\\
+\textit{Coursework:} High-Performance Computing, Embedded Systems Design, Deep Learning,
+Software Engineering, Microelectronic Circuits, Intro to Computer Systems,
+Data Structures \& Algorithms, Discrete Structures, Circuits \& Signals,
+Differential Equations \& Linear Algebra, Applied Linear Algebra, Calculus III,
+International Trade, Engineering Materials.\\
+\textit{Extracurriculars:} Varsity Athlete --- Trinity College Men's Rowing;\quad
+Singer \& Technology Chair --- The Trinity College Accidentals.
+
+%% SKILLS
+\section{Skills}
+
+\noindent
+\textbf{Languages:} Java, Python, C, C++, TypeScript, JavaScript,
+Assembly (8051/MIPS), Verilog, SQL, MATLAB, LaTeX\\
+\textbf{Backend:} Spring Boot 3, Jakarta EE, JUnit 5, Mockito, REST APIs, Node.js\\
+\textbf{Frontend:} React, Next.js, Tailwind CSS, AngularJS\\
+\textbf{Cloud \& DevOps:} AWS, Kubernetes, Docker, Git, Linux, CI/CD, Log4j2, Slurm, MPI\\
+\textbf{Embedded / Hardware:} Arduino, ARM, 8051, FPGA, BLE 5, ANT+, SPI/I2C, LTspice, Oscilloscopes, Logic Analyzers\\
+\textbf{Other:} SolidWorks, 3D Printing (Klipper), Precision Metrology, Systems Engineering
+
+%% WORK EXPERIENCE
+\section{Work Experience}
+
+\noindent
+\textbf{Cloud/Service Software Engineering Intern} --- Sonos | Boston, MA
+\hfill \textit{Summer 2026}
+\begin{itemize}
+  \item Joining the Cloud Accounts team to architect and maintain backend Java microservices
+    powering user-identity, subscription entitlements, player settings, and
+    API-permission systems across all Sonos hardware products globally.
+  \item Operating within an AWS and Kubernetes environment; applying containerization,
+    orchestration, and GitHub source-control best practices at production scale.
+\end{itemize}
+
+\vspace{1pt}\noindent
+\textbf{Engineering Teaching Assistant} --- ENGR 212L Linear Circuit Theory, Trinity College | Hartford, CT
+\hfill \textit{Spring 2026}
+\begin{itemize}
+  \item Led weekly lab sessions covering RLC circuit analysis, op-amps, Laplace transforms,
+    Fourier series, and active filter design; delivered written feedback on student lab reports.
+\end{itemize}
+
+\vspace{1pt}\noindent
+\textbf{Software Engineering Intern} --- Bullhorn | Boston, MA
+\hfill \textit{Summer 2025}
+\begin{itemize}
+  \item Owned BH Boot 1.0.0 framework migration: upgraded multiple production Java services
+    from Spring Boot 2 to Spring Boot 3, refactoring all \texttt{javax} namespaces to
+    \texttt{jakarta} and restructuring the proprietary data access layer.
+  \item Led Log4j2 security upgrade across SEARCH\_AI, ATS\_CRM, and MIDDLE\_OFFICE groups;
+    refactored legacy TestNG/JMockit test suites to JUnit 5 and Mockito; managed
+    feature branches, merge requests, and peer code reviews.
+\end{itemize}
+
+\vspace{1pt}\noindent
+\textbf{Metrology Intern} --- East Coast Metrology, A Division of In-Place Machining Co. | Topsfield, MA
+\hfill \textit{Summer 2024}
+\begin{itemize}
+  \item Calibrated portable CMMs, total stations, laser trackers, and large-volume scanners;
+    verified manufactured parts against SolidWorks CAD tolerances in-house and on-site.
+\end{itemize}
+
+\vspace{1pt}\noindent
+\textbf{Engineering Intern} --- Titan Advanced Energy Solutions | Salem, MA
+\hfill \textit{Summer 2023}
+\begin{itemize}
+  \item Wrote Python software to parse raw JSON from ultrasound sensors and render waveform
+    visualizations alongside existing heat maps for non-destructive evaluation of EV battery
+    packs, directly accelerating defect detection and classification.
+\end{itemize}
+
+%% RESEARCH, HONORS & SELECTED PROJECTS
+\section{Research, Honors \& Selected Projects --- More on Portfolio Website}
+
+\noindent
+\textbf{``Embodied Harms and Inferred Data: Redefining Privacy in Extended Reality''}
+\hfill \textit{Expected Late May 2026}\\
+\textit{The International Journal of Law, Ethics, and Technology} --- In Production
+\begin{itemize}
+  \item Peer-reviewed paper arguing BIPA and GDPR are structurally inadequate for XR
+    environments that passively extract behavioral biometrics; proposes a ``Bodyright''
+    framework reclassifying biometric data as an inalienable extension of human sovereignty.
+  \item Awarded the \textbf{Alumni Prize in English Composition} ---
+    Trinity College Department of English, Honors Day, May 2026.
+\end{itemize}
+
+\vspace{1pt}\noindent
+\textbf{Edge-Compute Pacing Node} --- Senior Capstone (CPSC 498 / ENGR 483)
+\hfill \textit{Fall 2026 -- Spring 2027}
+\begin{itemize}
+  \item Embedded node on Nordic nRF52840 running W$'$ balance fatigue model in C/C++ on
+    FreeRTOS; $\leq$100\,ms sensor-to-LED latency via BLE\,5/ANT+ ---
+    entirely offline, no cloud or smartphone offload.
+\end{itemize}
+
+\vspace{2pt}\noindent
+\textbf{Personal Portfolio} --- \href{https://seanbalbale.com}{seanbalbale.com}
+\hfill \textit{Spring 2026}
+\begin{itemize}
+  \item Production Next.js/React/TypeScript app on Vercel with CI/CD; custom backend API
+    for transactional email dispatch, dark/light mode theming, and embedded PDF viewer.
+\end{itemize}
+
+\section{Personal}
+
+\noindent
+Serious home cook across a wide range of cuisines --- a proper katsu ramen takes four hours
+and a good samosa crimp takes thirty seconds of muscle memory. Outside the kitchen:
+cycling, ski mountaineering, and an Ender 3 running Klipper firmware.
+
+\end{document}

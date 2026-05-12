@@ -1,0 +1,309 @@
+\documentclass[11pt, letterpaper]{article}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+
+% ── Colour palette ─────────────────────────────────────────────────────────────
+\definecolor{trinityblue}{RGB}{10, 60, 130}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{245, 245, 245}
+\definecolor{accentblue}{RGB}{30, 100, 200}
+
+% ── Hyperref setup ─────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=trinityblue,
+  urlcolor=accentblue,
+  citecolor=trinityblue
+}
+
+% ── Section title formatting ───────────────────────────────────────────────────
+\titleformat{\section}
+{\large\bfseries\color{trinityblue}}
+{}
+{0em}
+{}
+[\vspace{-0.5ex}\rule{\linewidth}{0.8pt}\vspace{0.5ex}]
+
+\titleformat{\subsection}
+{\normalsize\bfseries\color{darkgray}}
+{}
+{0em}
+{}
+
+\titlespacing{\section}{0pt}{1.2em}{0.5em}
+\titlespacing{\subsection}{0pt}{0.8em}{0.3em}
+
+% ── Header / Footer ────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small\color{darkgray} CPSC 498 / ECE Senior Project}
+\fancyfoot[R]{\small\color{darkgray}\thepage}
+
+% ── List style ─────────────────────────────────────────────────────────────────
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=1.4em}
+\setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=1.4em}
+
+% ==============================================================================
+\begin{document}
+
+% ── Title Block ───────────────────────────────────────────────────────────────
+\begin{center}
+  {\LARGE\bfseries\color{trinityblue} Edge-Compute Pacing \& Feedback Node}\\[0.5em]
+  {\large\color{darkgray} CPSC 498 / ECE Senior Project --- Concept Summary}\\[0.8em]
+  \begin{tabular}{rl}
+    \textbf{Students:}         & Sean Balbale \& Zoe Davidow \\
+    \textbf{Program:}          & B.S.\ ECE\,/\,B.S.\ CS, Trinity College (Class of 2027) \\
+    \textbf{Proposed Advisor:} & Prof.\ Kenneth A.\ Kousen \\
+    \textbf{Date:}             & April 28, 2026
+  \end{tabular}
+\end{center}
+
+\vspace{0.3em}
+\noindent\rule{\linewidth}{1.2pt}
+\vspace{0.3em}
+
+% ── Abstract ──────────────────────────────────────────────────────────────────
+\section{Abstract}
+
+This project proposes the development of an embedded edge-compute node designed to provide
+real-time biomechanical and fatigue feedback to endurance athletes --- specifically rowers and
+cyclists. The device interfaces with existing wireless telemetry (BLE\,/\,ANT+) to aggregate
+live sensor data from power meters and heart-rate monitors, executes a physiologically grounded
+fatigue-prediction algorithm ($W'$ balance) directly on a resource-constrained microcontroller,
+and translates the result into an intuitive visual interface via a programmable LED array.
+The core research contribution is architectural: demonstrating rigorous, low-latency numerical
+computation on the edge --- without offloading to a smartphone or cloud --- under strict power
+and memory budgets.
+
+% ── Problem Statement ─────────────────────────────────────────────────────────
+\section{Problem Statement}
+
+Commercial cycling and rowing head units display raw telemetry (watts, cadence, split) but
+perform no predictive computation. Athletes must self-interpret numbers while under physiological
+stress, a cognitively expensive task that degrades pacing decisions.
+
+Smartphones and cloud offload solve this but introduce \textit{connectivity dependency},
+\textit{latency}, and \textit{battery vulnerability} --- unacceptable in competitive race
+settings. The problem this project addresses is therefore:
+
+\begin{center}
+  \colorbox{lightgray}{\parbox{0.88\linewidth}{
+      \vspace{0.4em}
+      \textit{Can a real-time fatigue model be implemented with sub-100\,ms latency on a
+        bare-metal or RTOS microcontroller, with sufficient numerical precision to provide
+      actionable pacing feedback --- entirely offline?}
+      \vspace{0.4em}
+  }}
+\end{center}
+
+% ── The W-Prime Model ─────────────────────────────────────────────────────────
+\section{Core Algorithm: The \texorpdfstring{$W'$}{W-Prime} Balance Model}
+
+\subsection{Physiological Background}
+
+The $W'$ (W-prime) model, formalised by Monod \& Scherrer (1965) and extended by Skiba et al.\
+(2012), describes an athlete's finite anaerobic work capacity above their \textit{Critical Power}
+($CP$) threshold.  Two athlete-specific parameters govern the model:
+
+\begin{itemize}
+  \item $CP$ --- the highest sustainable steady-state power output (watts), analogous to
+    lactate threshold.
+  \item $W'$ --- the total finite energy reservoir (joules) available for supra-threshold
+    efforts.
+\end{itemize}
+
+\subsection{Continuous Depletion (Monod--Scherrer)}
+
+When power output $P(t) > CP$, the reservoir depletes. The instantaneous balance is:
+
+\begin{equation}
+  W'_{\mathrm{bal}}(t)
+  \;=\;
+  W' \;-\; \int_{0}^{t} \bigl[P(\tau) - CP\bigr]^{+} \, d\tau
+  \label{eq:depletion}
+\end{equation}
+
+where $[x]^{+} = \max(x,\,0)$ is the positive-part operator, ensuring only supra-threshold
+power draws from the reservoir.
+
+\subsection{Reconstitution Model (Skiba et al., 2012)}
+
+When $P(t) < CP$, the reservoir recovers exponentially. Skiba's differential formulation
+unifies both phases in a single ODE:
+
+\begin{equation}
+  \frac{dW'_{\mathrm{bal}}}{dt}
+  \;=\;
+  \begin{cases}
+    -\!\bigl(P(t) - CP\bigr)
+    & \text{if } P(t) \geq CP \quad (\text{depletion}) \\[6pt]
+    \dfrac{W' - W'_{\mathrm{bal}}(t)}{\tau_{W'}}
+    & \text{if } P(t) < CP \quad (\text{recovery})
+  \end{cases}
+  \label{eq:skiba}
+\end{equation}
+
+The recovery time constant $\tau_{W'}$ is itself power-dependent:
+
+\begin{equation}
+  \tau_{W'}(t)
+  \;=\;
+  546\,e^{-0.01\,[CP - P(t)]} \;+\; 316
+  \quad [\text{seconds}]
+  \label{eq:tau}
+\end{equation}
+
+This yields fast recovery near $CP$ and slow recovery at very low intensities, consistent
+with observed exercise physiology.
+
+\subsection{Discrete-Time Implementation (On-Device)}
+
+The MCU samples sensors at fixed intervals $\Delta t$ (target: $\Delta t = 1\,\mathrm{s}$
+from the ANT+ broadcast). We replace the continuous integral with a first-order Euler
+update:
+
+\begin{equation}
+  W'_{\mathrm{bal}}[n]
+  \;=\;
+  \begin{cases}
+    W'_{\mathrm{bal}}[n-1]
+    \;-\;\bigl(P[n] - CP\bigr)\,\Delta t
+    & P[n] \geq CP \\[8pt]
+    W'_{\mathrm{bal}}[n-1]
+    \;+\;\dfrac{W' - W'_{\mathrm{bal}}[n-1]}{\tau_{W'}[n]}\,\Delta t
+    & P[n] < CP
+  \end{cases}
+  \label{eq:discrete}
+\end{equation}
+
+with boundary condition $W'_{\mathrm{bal}}[0] = W'$ (athlete fully recovered at start).
+This requires only fixed-point arithmetic per tick --- well within the Cortex-M4F budget
+at 64\,MHz.
+
+\subsection{LED Feedback Mapping}
+
+The scalar output $W'_{\mathrm{bal}}[n] \in [0,\,W']$ is normalised and mapped to an
+$N$-pixel LED strip:
+
+\begin{equation}
+  k_{\mathrm{lit}}[n]
+  \;=\;
+  \left\lfloor N \cdot \frac{W'_{\mathrm{bal}}[n]}{W'} \right\rfloor,
+  \qquad
+  \mathrm{hue}[n] =
+  \begin{cases}
+    \text{green} & k_{\mathrm{lit}}/N > 0.50 \\
+    \text{amber} & 0.20 < k_{\mathrm{lit}}/N \leq 0.50 \\
+    \text{red}   & k_{\mathrm{lit}}/N \leq 0.20
+  \end{cases}
+  \label{eq:led}
+\end{equation}
+
+A haptic / buzzer interrupt fires when $W'_{\mathrm{bal}}[n] < 0.10\cdot W'$.
+
+% ── Technical Architecture ────────────────────────────────────────────────────
+\section{Technical Architecture}
+
+\subsection{Hardware Layer}
+\begin{itemize}
+  \item \textbf{MCU:} Nordic nRF52840 --- native dual-mode BLE\,5 + ANT+ radio,
+    ARM Cortex-M4F @ 64\,MHz, 256\,kB RAM, 1\,MB Flash.
+  \item \textbf{Power:} 18650 Li-Ion cell + BMS; target runtime $\geq 6$\,h.
+  \item \textbf{Output:} WS2812B NeoPixel strip (8--12 LEDs) + piezo buzzer.
+  \item \textbf{Form factor:} Handlebar mount (cycling) or hull-mount (rowing shell).
+\end{itemize}
+
+\subsection{Firmware \& Software Layer}
+\begin{itemize}
+  \item \textbf{RTOS:} FreeRTOS --- sensor task, compute task, output task with
+    defined priorities and circular-buffer IPC.
+  \item \textbf{Protocols:} ANT+ Bicycle Power Profile (PWR) and Heart Rate Profile
+    (HRM); BLE GATT power service as fallback.
+  \item \textbf{Language:} C\,/\,C++; algorithm unit-tested against reference
+    Python implementation before deployment.
+  \item \textbf{Latency target:} sensor-to-LED update $\leq 100\,\mathrm{ms}$
+    end-to-end.
+\end{itemize}
+
+% ── CS Research Framing ───────────────────────────────────────────────────────
+\section{Computer Science Research Framing}
+
+The hardware is a \emph{constraint}, not the contribution.  The open CS research questions are:
+
+\begin{enumerate}
+  \item \textbf{Algorithmic correctness under discretisation.}  How does Euler-step
+    sampling frequency affect $W'_{\mathrm{bal}}$ accuracy relative to the
+    continuous-time ground truth in Eq.\,\eqref{eq:depletion}?
+
+  \item \textbf{Concurrent firmware architecture.}  What FreeRTOS scheduling policy
+    minimises worst-case latency while preventing sensor-buffer overflow on a
+    single-core MCU?
+
+  \item \textbf{Extensibility toward ML.}  Can a lightweight model (e.g., tiny LSTM)
+    trained on historical power traces improve personalisation of $\tau_{W'}$
+    beyond the population-level constants in Eq.\,\eqref{eq:tau}?
+\end{enumerate}
+
+These questions sit at the intersection of \textit{computational methods},
+\textit{concurrent systems design}, and \textit{AI applied to software} ---
+directly aligned with Prof.\ Kousen's published research interests.
+
+% ── Deliverables & Timeline ───────────────────────────────────────────────────
+\section{Deliverables \& Proposed Timeline}
+
+\begin{center}
+  \begin{tabular}{lll}
+    \toprule
+    \textbf{Phase} & \textbf{Milestone} & \textbf{Target} \\
+    \midrule
+    1 & Hardware bring-up; BLE\,/\,ANT+ sensor pairing verified & Sep 2026 \\
+    2 & $W'$ algorithm on MCU; validated against Python reference & Oct 2026 \\
+    3 & RTOS integration; latency and scheduling benchmarks & Nov 2026 \\
+    4 & Full feedback loop; field test with live power meter & Dec 2026 \\
+    5 & Formal write-up, poster, and final public demo & Apr 2027 \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+% ── What We're Asking For ─────────────────────────────────────────────────────
+\section{What We Are Asking of an Advisor}
+
+\begin{itemize}
+  \item \textbf{Check-ins} to review software architecture and algorithmic
+    design decisions.
+  \item \textbf{Feedback on written deliverables} --- proposal, interim report, and
+    final thesis --- well-suited to Prof.\ Kousen's background as a published
+    technical author.
+  \item \textbf{Guidance on CS rigour:} framing the project's contribution to satisfy
+    CPSC 498 standards, particularly on the algorithmic and systems-design components.
+  \item \textbf{Optional:} advising on any ML-based extensions (personalised
+    $\tau_{W'}$ estimation) pursued in Phase 5.
+\end{itemize}
+
+Deep embedded-hardware expertise is \textbf{not} required --- hardware selection is
+settled.  The open problems are software architecture and algorithmic design.
+
+\vspace{1em}
+\noindent\rule{\linewidth}{0.5pt}
+\vspace{0.2em}
+{\small
+  \noindent \textbf{Contact:}\;
+  Sean Balbale ---
+  \href{mailto:sean.balbale@trincoll.edu}{sean.balbale@trincoll.edu}
+  $\;\big|\;$
+  Zoe Davidow ---
+  \href{mailto:zoe.davidow@trincoll.edu}{zoe.davidow@trincoll.edu}
+}
+
+\end{document}

@@ -1,0 +1,511 @@
+%==============================================================================
+% SEAN BALBALE — CURRICULUM VITAE
+%==============================================================================
+\documentclass[10pt, letterpaper]{article}
+\usepackage[top=0.65in,bottom=0.65in,left=0.70in,right=0.70in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{booktabs}
+
+\hypersetup{colorlinks=true,urlcolor=black,linkcolor=black,
+  pdfauthor={Sean Balbale},pdftitle={Sean Balbale --- Curriculum Vitae}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\titleformat{\section}{\normalfont\normalsize\bfseries\uppercase}{}{0em}{}
+  [\vspace{-4pt}\rule{\linewidth}{0.6pt}\vspace{2pt}]
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+
+\setlist[itemize]{leftmargin=1.2em,itemsep=1pt,topsep=2pt,parsep=0pt,partopsep=0pt}
+
+\newcommand{\cventry}[4]{%
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} \textnormal{---} \textit{#2} & \textnormal{#4} \\
+    \multicolumn{2}{@{}l@{}}{\small #3}
+  \end{tabularx}\vspace{1pt}}
+
+\newcommand{\cventryshort}[3]{%
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} \textnormal{---} \textit{#2} & \textnormal{#3}
+  \end{tabularx}\vspace{1pt}}
+
+\newcommand{\cvproject}[2]{\textbf{#1} \hfill \textit{#2}\vspace{1pt}}
+
+\begin{document}
+
+%--- HEADER ---
+\begin{center}
+  {\LARGE \textbf{SEAN BALBALE}} \\[4pt]
+  \small
+  41 Hillcrest Rd, Weston, MA~02493 \quad\textbar\quad
+  +1\,(781)\,290-8862 \quad\textbar\quad
+  \href{mailto:sean.balbale@trincoll.edu}{sean.balbale@trincoll.edu} \\[2pt]
+  \href{https://www.linkedin.com/in/seanbalbale/}{linkedin.com/in/seanbalbale} \quad\textbar\quad
+  \href{https://github.com/sbalbale}{github.com/sbalbale} \quad\textbar\quad
+  \href{https://www.seanbalbale.com}{seanbalbale.com}
+\end{center}
+\vspace{-4pt}
+
+%--- PROFILE ---
+%--- PROFILE ---
+\section{Profile}
+
+I got into engineering because I wanted to understand how things actually work ---
+not just how to use them. That instinct runs through everything I build: bare-metal
+Assembly for an 8051 microcontroller, real-time C++ firmware on an Arduino platform,
+and a senior capstone built around a fatigue-prediction algorithm running entirely on
+a Nordic nRF52840 --- no cloud offload, sub-100\,ms latency. The constraint of the
+edge is something I find genuinely satisfying; it forces precision that higher-level
+abstractions let you avoid. On the other side of the stack, I owned a Spring Boot~2
+to Spring Boot~3 framework migration across multiple production Java services at
+Bullhorn, and this summer I am joining Sonos to build the backend microservices
+powering user identity and subscriptions across the platform. The problems are
+different at each layer --- but the methodology isn't.\\
+
+
+Beyond implementation, I research the systems we are building toward.
+``Embodied Harms and Inferred Data: Redefining Privacy in Extended Reality''
+argues that existing legal frameworks are structurally inadequate for immersive
+environments that passively extract behavioral biometrics, and proposes a
+``Bodyright'' framework that protects human autonomy by design rather than by policy.
+It won the Alumni Prize in English Composition at Trinity's 2026 Honors Day and is
+forthcoming in \textit{The International Journal of Law, Ethics, and Technology}.
+Outside the lab, I compete on Trinity's varsity rowing team and serve as Technology
+Chair for the Accidentals. One is about power and synchronization at 5\,a.m.\ on the
+Connecticut River; the other is about blending twelve voices into something that sounds
+like one. The underlying discipline is identical: precise timing, collective
+execution, and zero tolerance for drift.
+
+%--- EDUCATION ---
+\section{Education}
+
+\begin{tabularx}{\linewidth}{@{}X r@{}}
+  \textbf{Trinity College} \textnormal{---} Hartford, CT & \textit{Expected May 2027}
+\end{tabularx}
+\vspace{1pt}
+\textit{Bachelor of Science in Electrical and Computer Engineering} \\
+\textit{Bachelor of Science in Computer Science} \\
+\textbf{GPA:} 3.65 / 4.00
+
+\vspace{4pt}
+\textbf{Coursework Completed:} Data Structures \& Algorithms, Embedded Systems Design,
+Basic Economic Principles, Age of Augustus, Ancient Greek Philosophy, Microelectronic Circuits,
+Applied Linear Algebra, Calculus III, Intro to Computer Systems, Writing for a Digital World.\\[2pt]
+\textbf{In Progress (Spring 2026):} High-Performance Computing, Deep Learning, Software
+Engineering, International Trade, Measurements, Instrumentation \& Analysis, Engineering
+Materials, Linear Circuit Theory (ENGR~212L).\\[2pt]
+\textbf{Planned (Fall 2026):} Automatic Control Systems, Mechanics I, Computer Science Seminar,
+Capstone Design I --- CPSC\,498 / ECE\,483.\\[2pt]
+\textbf{AP Credit Transferred:} Computer Science A, English Composition \& Literature,
+Physics C: Mechanics, Physics C: Electricity \& Magnetism.
+
+\vspace{4pt}
+\textbf{Extracurriculars:} Varsity Athlete --- Trinity College Men's Rowing (Division III);
+Singer \& Technology Chair --- The Trinity College Accidentals (premier a cappella ensemble).
+
+\vspace{6pt}
+
+\begin{tabularx}{\linewidth}{@{}X r@{}}
+  \textbf{Carnegie Mellon University} \textnormal{---} Pittsburgh, PA (Summer Program) &
+  \textit{June -- August 2022}
+\end{tabularx}
+\vspace{1pt}
+Completed university-level coursework: Fundamentals of Programming \& Computer Science (15-112);
+Reasoning with Data.
+
+\vspace{6pt}
+
+\begin{tabularx}{\linewidth}{@{}X r@{}}
+  \textbf{Northeastern University} \textnormal{---} Boston, MA \& London, UK &
+  \textit{September 2023 -- December 2024}
+\end{tabularx}
+\vspace{1pt}
+Attended Northeastern University for three semesters before transferring to Trinity College
+(Spring 2025). All coursework transferred.
+
+\vspace{2pt}
+\textit{Freshman Fall 2023 --- Boston, MA:}
+General Chemistry I, Cornerstone of Engineering 1, Calculus I for Science \& Engineering,
+Musical Communities of Boston.
+
+\vspace{2pt}
+\textit{Freshman Spring 2024 --- London, UK (Study Abroad):}
+Fundamentals of Computer Science II (with Lab), Cornerstone of Engineering 2,
+Calculus II for Science \& Engineering, British Drama/London Stage.
+
+\vspace{2pt}
+\textit{Sophomore Fall 2024 --- Boston, MA:}
+Discrete Structures (with Seminar), Circuits/Signals: Biomedical Applications,
+Embedded Design: Enabling Robotics, Differential Equations \& Linear Algebra for Engineering,
+First-Year Seminar, Chorus.
+
+\vspace{6pt}
+
+\begin{tabularx}{\linewidth}{@{}X r@{}}
+  \textbf{Weston High School} \textnormal{---} Weston, MA & \textit{September 2019 -- June 2023}
+\end{tabularx}
+\vspace{1pt}
+\textit{High School Diploma} \quad \textbf{GPA:} 3.85 / 4.00
+
+\vspace{2pt}
+\textbf{Activities:} Varsity Captain --- Wayland-Weston Men's Rowing;
+Varsity Ski Team; Concert Choir; Jazz Choir.
+
+%--- SKILLS ---
+\section{Technical Skills}
+
+\begin{tabularx}{\linewidth}{@{} l X @{}}
+  \textbf{Languages} &
+    Java, Python, C, C++, TypeScript, JavaScript (Node.js), Assembly (8051, MIPS), Verilog,
+    SQL, MATLAB, \LaTeX \\[3pt]
+  \textbf{Backend} &
+    Spring Boot 3, Jakarta EE, JUnit 5, Mockito, Node.js, REST APIs \\[3pt]
+  \textbf{Frontend / Full-Stack} &
+    React, Next.js, Tailwind CSS, AngularJS \\[3pt]
+  \textbf{Cloud \& DevOps} &
+    AWS, Kubernetes, Docker, Linux, Git (feature branches, merge requests, code review),
+    CI/CD pipelines, Log4j2, Slurm, MPI \\[3pt]
+  \textbf{Embedded / Hardware} &
+    Arduino, ESP32, 8051 Microcontroller, Intel Cyclone~V FPGA, Nordic nRF52840,
+    SPI/I\textsuperscript{2}C, BLE~5, ANT+, FreeRTOS, NI-DAQ, Oscilloscopes, Logic Analyzers,
+    LTspice \\[3pt]
+  \textbf{Mechanical / CAD} &
+    SolidWorks, FDM 3D Printing (Klipper firmware), Laser Cutters, Precision Metrology
+    Calibration \\[3pt]
+  \textbf{Other} &
+    Systems Engineering, Zero-Knowledge Architectures, Object-Oriented Design,
+    Parallel Computing, MCP (Model Context Protocol) Server Development
+\end{tabularx}
+
+%--- WORK EXPERIENCE ---
+\section{Work Experience}
+
+\cventry{Cloud/Service Software Engineering Intern}{Sonos}{Boston, MA}{Summer 2026}
+\begin{itemize}
+  \item Joining the Software Services Cloud Accounts team to architect and maintain backend Java
+        microservices powering core user-identity, subscription entitlement, player-settings,
+        and API-permission systems across the Sonos platform.
+  \item Working within an AWS and Kubernetes environment on containerized cloud services that
+        underpin the user experience for all Sonos hardware products globally.
+  \item Applying containerization, orchestration, and source-control best practices (GitHub) as
+        specified in team pre-internship preparation guidelines.
+\end{itemize}
+
+\vspace{6pt}
+
+\cventry{Engineering Teaching Assistant --- ENGR\,212L}{Trinity College}{Hartford, CT}{Spring 2026}
+\begin{itemize}
+  \item Instructed students through weekly laboratory sessions for Linear Circuit Theory
+        (ENGR~212L), covering node and mesh analysis, natural and forced responses of first- and
+        second-order RLC circuits, operational amplifiers, and passive and active filter design.
+  \item Guided students through the application of Laplace transforms and Fourier series as
+        analytical tools for solving linear circuit equations, reinforcing lecture content with
+        hands-on hardware experimentation.
+  \item Delivered objective data analysis feedback on student lab write-ups to reinforce core
+        ECE measurement and instrumentation practices.
+\end{itemize}
+
+\vspace{6pt}
+
+\cventry{Software Engineering Intern}{Bullhorn}{Boston, MA}{Summer 2025}
+\begin{itemize}
+  \item Contributed to enterprise-scale backend Java services across the Shield and Builders
+        teams, supporting the SEARCH\_AI, ATS\_CRM, and MIDDLE\_OFFICE engineering groups.
+  \item Owned a major framework migration (BH Boot 1.0.0): upgraded multiple production Java
+        applications from Spring Boot~2 to Spring Boot~3, systematically refactoring all
+        \texttt{javax} namespaces to \texttt{jakarta} and restructuring the proprietary data
+        access layer.
+  \item Led a critical security initiative to upgrade core logging infrastructure to Log4j2,
+        hardening the dependency chain across affected services.
+  \item Refactored legacy test suites from TestNG/JMockit to JUnit~5 and Mockito, increasing
+        test coverage and long-term maintainability.
+  \item Participated in the full software development lifecycle: managed feature branches,
+        authored merge requests, and conducted peer code reviews.
+\end{itemize}
+
+\vspace{6pt}
+
+\cventry{Metrology Intern}{East Coast Metrology --- A Division of In-Place Machining Company}{Topsfield, MA}{Summer 2024}
+\begin{itemize}
+  \item Conducted in-house and on-site calibrations for high-performance precision measurement
+        equipment, including portable CMMs, total stations, large-volume laser scanners, and
+        laser trackers.
+  \item Measured manufactured engineering parts against client SolidWorks CAD models to verify
+        dimensional compliance with specified tolerances.
+  \item Updated and maintained internal-use SolidWorks CAD models to reflect as-calibrated
+        equipment configurations.
+\end{itemize}
+
+\vspace{6pt}
+
+\cventry{Engineering Intern}{Titan Advanced Energy Solutions}{Salem, MA}{Summer 2023}
+\begin{itemize}
+  \item Designed and implemented Python software to parse raw JSON output from ultrasound
+        sensors and render waveform visualizations, providing a complementary view to existing
+        heat-map outputs for non-destructive evaluation of electric vehicle battery packs.
+  \item Visualization tooling directly accelerated the detection and classification of physical
+        defects within battery cells, supporting quality assurance workflows.
+\end{itemize}
+
+\vspace{6pt}
+
+\cventry{Apprentice Optician}{Warby Parker}{Boston, MA}{June 2023 -- January 2024}
+\begin{itemize}
+  \item Validated prescriptions, took optical measurements, and sold eyewear in a high-volume
+        retail environment; worked part-time (5 hours per week) during the academic year and
+        full-time during summer 2023.
+  \item Ranked highest in sales for the Northeast region for three of the eight weeks worked
+        full-time during the summer.
+  \item Resolved customer complaints and maintained a high-quality client experience under
+        pressure; developed skills in sales, customer service, and teamwork.
+\end{itemize}
+
+\vspace{6pt}
+
+\cventry{Founder \& IT Consultant}{Cherrybrook Networks}{Weston, MA}{March 2019 -- May 2025}
+\begin{itemize}
+  \item Founded and operated a freelance software development and technical support business
+        serving local companies, students, and families in the greater Weston, MA area.
+  \item Installed and configured software applications; designed and assembled custom computers
+        tailored to client specifications.
+  \item Deployed residential and small-business Wi-Fi infrastructure; automated secure cloud
+        backup systems for client data protection.
+  \item Maintained long-term client relationships over six years, developing skills in client
+        communication, project scoping, and independent problem-solving.
+\end{itemize}
+
+\vspace{6pt}
+
+\cventry{Engineering Teaching Assistant}{Weston Public Schools}{Weston, MA}{October 2022 -- May 2023}
+\begin{itemize}
+  \item Developed and delivered course curriculum for high school engineering and physics
+        courses; wrote and graded assessments and provided individualized academic support.
+  \item Maintained and calibrated precision workshop equipment, including FDM 3D printers,
+        laser cutters, band saws, and woodworking tools.
+\end{itemize}
+
+\vspace{6pt}
+
+\cventry{Rowing Coach}{Wayland-Weston Rowing Association}{Wayland, MA}{September 2019 -- June 2023}
+\begin{itemize}
+  \item Coached middle school athletes in on-water rowing technique during spring and fall crew
+        seasons, building a foundation in catch timing, blade work, and race-pace conditioning.
+  \item Built team culture and improved athletes' physical and mental fitness across four
+        competitive seasons.
+\end{itemize}
+
+%--- RESEARCH ---
+\section{Research \& Publications}
+
+\textbf{``Embodied Harms and Inferred Data: Redefining Privacy in Extended Reality''} \\
+\textit{The International Journal of Law, Ethics, and Technology}
+\hfill \textit{In Production --- Expected Late May 2026}
+
+\vspace{3pt}
+\begin{itemize}
+  \item Authored a peer-reviewed synthesis paper examining the political economy of Extended
+        Reality (XR) technology and its implications for privacy law and human autonomy.
+  \item Argued that existing legislative frameworks (BIPA, GDPR) are structurally inadequate
+        for immersive environments that passively collect behavioral biometrics --- including
+        physiological signals, gaze patterns, and locomotion data --- without active user
+        consent.
+  \item Deconstructed the ``inference gap'' --- the mechanism by which immersive architectures
+        bypass cognitive defenses to extract sensitive psychometric traits (health status,
+        political orientation, sexual orientation) without user awareness.
+  \item Conducted a comparative analysis of the Apple--Meta dichotomy, demonstrating that
+        market-led ``privacy-by-design'' functions primarily as an anti-competitive moat,
+        producing a ``Walled Garden'' paradox in which privacy becomes a luxury good.
+  \item Applied the legal doctrines of ``undue influence'' and ``defect of consent'' to the
+        ``Proteus Effect'' to establish that XR environments possess a unique capacity to
+        vitiate user autonomy through subliminal behavioral modification.
+  \item Proposed a transition from the ``notice-and-choice'' legal paradigm to a ``Bodyright''
+        framework, reclassifying biometric data as an inalienable extension of the human
+        sovereign rather than an extractable raw material.
+\end{itemize}
+
+%--- HONORS ---
+\section{Honors \& Awards}
+
+\cventryshort{Alumni Prize in English Composition}{Trinity College --- Department of English}{May 2026}
+\begin{itemize}
+  \item Received the Alumni Prize in English Composition at the Trinity College Honors Day
+        Ceremony (May 1, 2026), awarded by the Department of English faculty to recognize the
+        best expository writing produced in the year.
+  \item Prize awarded for ``Embodied Harms and Inferred Data: Redefining Privacy in Extended
+        Reality,'' accepted for publication in \textit{The International Journal of Law,
+        Ethics, and Technology} (Expected Late May 2026).
+\end{itemize}
+
+%--- PROJECTS ---
+\section{Selected Projects}
+
+\cvproject{Edge-Compute Pacing \& Feedback Node (Senior Capstone)}{Fall 2026 -- Spring 2027}
+\begin{itemize}
+  \item An embedded edge-compute node that delivers real-time biomechanical and fatigue
+        feedback to endurance athletes (rowers and cyclists) without cloud or smartphone offload.
+  \item Hardware platform: Nordic nRF52840 (ARM Cortex-M4F @ 64\,MHz, 256\,kB RAM, 1\,MB Flash)
+        with native dual-mode BLE~5 and ANT+ radio; WS2812B NeoPixel LED strip and piezo
+        buzzer as output peripherals; 18650 Li-Ion cell with BMS for $\geq$6\,h runtime.
+  \item Core algorithm: discrete-time W$'$ balance model (Skiba et al., 2012) implemented as a
+        first-order Euler update in C/C++ on FreeRTOS, targeting $\leq$100\,ms end-to-end
+        sensor-to-LED latency on a bare-metal microcontroller.
+  \item Ingests live power and heart-rate data via ANT+ Bicycle Power Profile (PWR) and Heart
+        Rate Profile (HRM); BLE GATT power service as fallback.
+  \item Open research questions: (1) algorithmic correctness under Euler discretisation vs.\
+        continuous ground truth; (2) optimal FreeRTOS scheduling policy for worst-case latency
+        on a single-core MCU; (3) feasibility of a lightweight LSTM for personalised
+        $\tau_{W'}$ estimation beyond population-level constants.
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{Personal Portfolio Website}{Spring 2026}
+\begin{itemize}
+  \item Architected and deployed a production full-stack web application at
+        \href{https://www.seanbalbale.com}{seanbalbale.com}
+        using Next.js, React, and TypeScript; styled with Tailwind CSS and modern UI component
+        libraries.
+  \item Built a custom backend API route to handle contact form submissions and programmatically
+        dispatch transactional emails; implemented dark/light mode theming and an embedded PDF
+        resume viewer with dynamic project routing.
+  \item Deployed via Vercel with CI/CD on each Git push.
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{Remote MCP Server (Obsidian Vault Integration)}{Spring 2026}
+\begin{itemize}
+  \item Built a TypeScript MCP (Model Context Protocol) server that exposes a personal Obsidian
+        knowledge vault over a secure remote endpoint.
+  \item Implemented Bearer token authentication and deployed via a Cloudflare Tunnel / Tailscale
+        network overlay; orchestrated with Docker Compose multi-profile deployment supporting
+        multiple environment configurations.
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{HPC Cluster --- High-Performance Computing Lab}{Fall 2025}
+\begin{itemize}
+  \item Assembled and configured a personal three-node HPC cluster using Lenovo ThinkStation
+        P340~SSF machines interconnected via a dedicated Gigabit Ethernet switch.
+  \item Installed and configured Slurm workload manager for job scheduling; benchmarked parallel
+        workloads using MPI for CPSC\,375 (High-Performance Computing).
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{Project Aletheia --- Interactive XR Privacy Manifesto}{Fall 2025}
+\begin{itemize}
+  \item Built a full-stack React web application serving as an interactive privacy manifesto,
+        demonstrating concrete biometric tracking risks inherent in Extended Reality environments.
+  \item Advocates for Privacy-by-Design principles and client-side Zero-Knowledge architectures
+        as a technical implementation of the ``Bodyright'' framework developed in published
+        research.
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{Embedded Heart Rate Monitor (8051 Assembly)}{Spring 2025}
+\begin{itemize}
+  \item Designed and wired the complete hardware system for a clinical heart rate monitor and
+        mechanical click counter on a custom breadboard.
+  \item Wrote low-level Assembly language firmware for an 8051 microcontroller handling external
+        analog input reading, interrupt-driven signal processing, ADC sampling, and real-time BCD
+        display output --- entirely without a C runtime or operating system.
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{Haptic Horizon --- Wearable Navigation Device for the Visually Impaired}{Spring 2024}
+\begin{itemize}
+  \item Designed and built a wearable haptic alarm system to assist visually impaired users in
+        navigating physical environments.
+  \item Wrote embedded C++ firmware for an Arduino-based platform integrating an HC-SR04
+        ultrasonic ranging sensor and a haptic motor; sensor output encoded distance and direction
+        into distinct vibration patterns without any auditory output.
+  \item Handled interrupt-driven sensor polling, signal conditioning, and real-time actuator
+        control within a single-threaded embedded event loop.
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{Robotic Control via FPGA}{Fall 2024}
+\begin{itemize}
+  \item Implemented a Verilog hardware description on an Intel Cyclone~V FPGA to control a
+        robotic system, demonstrating direct hardware-software co-design principles.
+  \item Designed logic modules for motor control signals, sensor interfacing, and real-time
+        feedback within the timing and resource constraints of the target FPGA fabric.
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{Content-Aware Java Image Editor --- Seam Carving (CS2510 Term Project)}{Spring 2024}
+\begin{itemize}
+  \item Implemented the seam carving algorithm (Avidan \& Shamir, 2007) for content-aware image
+        resizing in Java, dynamically identifying and removing low-energy pixel seams to resize
+        images while preserving salient visual content.
+  \item Built an interactive command-line menu supporting multiple editing operations; applied
+        object-oriented design patterns throughout using Java and Apache Maven.
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{``Fail Early and Often'' --- Python Roguelite (CMU 15-112 Term Project)}{Summer 2022}
+\begin{itemize}
+  \item Designed and implemented a fully-featured roguelite RPG in Python as the term project
+        for CMU CS~15-112 (Fundamentals of Programming \& CS); approximately 25 hours of
+        development.
+  \item Built core game systems: procedural map generation, WASD movement, proximity-based melee
+        combat, a multi-slot inventory system with consumable potions, enemy AI wave logic, sprite
+        rendering, collision detection, and a toggle-able cone-of-vision mechanic.
+  \item Demo: \href{https://youtu.be/aftX408l35E}{youtu.be/aftX408l35E}
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{Space Invaders --- Python Arcade Game}{2020}
+\begin{itemize}
+  \item Designed and implemented a Space Invaders clone in Python using Pygame, practicing sprite
+        rendering, collision detection, enemy AI wave logic, and a high-score persistence system.
+\end{itemize}
+
+%--- ACTIVITIES ---
+\section{Activities \& Interests}
+
+\textbf{Athletics:} Varsity Rowing, Trinity College Men's Crew (Division~III). Outside of crew, training interests include triathlon,
+road and gravel cycling (power meter training, pedal-stroke symmetry analysis), ski mountaineering,
+technical mountaineering, and backcountry backpacking.
+
+\vspace{4pt}
+\textbf{Cooking:} Serious home cook across a wide range of cuisines --- tacos, samosas, katsu
+ramen, Indian, Italian, and whatever fusion experiment sounds right that week. The kitchen is
+where precision and improvisation meet, which is probably why it keeps me coming back.
+
+\vspace{4pt}
+\textbf{Music \& Technology:} Technology Chair and Singer, Trinity College Accidentals (premier
+a cappella group) --- manage live sound engineering, recording infrastructure, and digital
+production for performances and studio sessions.
+
+\vspace{4pt}
+\textbf{Engineering \& Making:} 3D printing on a heavily modified Creality Ender~3~v2 running
+Klipper open-source firmware.
+
+\vspace{4pt}
+\textbf{Research Interests:} Privacy law (GDPR, BIPA, biometric autonomy); XR ethics and
+surveillance capitalism; hardware-constrained software design; distributed systems and cloud
+microservices; HPC and parallel computing; embedded systems for sports science.
+
+%--- REFERENCES ---
+\section{References}
+
+Available upon request.
+
+\end{document}

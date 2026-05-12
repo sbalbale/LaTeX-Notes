@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find the Red Thread</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,800;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #D63030;
+  --red-dark: #A82020;
+  --red-glow: rgba(214,48,48,0.35);
+  --cream: #F7F3ED;
+  --warm: #EDE7DC;
+  --warm2: #DDD4C4;
+  --ink: #1C1510;
+  --ink2: #4A3F35;
+  --ink3: #7A6E63;
+  --border: rgba(28,21,16,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  min-height: 100vh;
+  color: var(--ink);
+}
+
+@keyframes sway      { 0%,100%{transform:rotate(-4deg) translateY(0);} 50%{transform:rotate(4deg) translateY(-4px);} }
+@keyframes fadeUp    { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+@keyframes bounceIn  { 0%{transform:translateY(-28px) scale(0.6);opacity:0;} 65%{transform:translateY(5px) scale(1.08);opacity:1;} 82%{transform:translateY(-3px) scale(0.97);} 100%{transform:translateY(0) scale(1);opacity:1;} }
+@keyframes wiggle    { 0%,100%{transform:rotate(0);} 25%{transform:rotate(-8deg);} 75%{transform:rotate(8deg);} }
+@keyframes floatUp   { 0%{opacity:1;transform:translateY(0) scale(1);} 100%{opacity:0;transform:translateY(-56px) scale(1.5);} }
+@keyframes pulseRing { 0%{transform:scale(0.6);opacity:1;} 100%{transform:scale(2.8);opacity:0;} }
+@keyframes confettiFall { 0%{transform:translateY(-20px) rotate(0deg);opacity:1;} 100%{transform:translateY(100vh) rotate(720deg);opacity:0;} }
+@keyframes celebFadeIn  { 0%{opacity:0;} 100%{opacity:1;} }
+@keyframes celebBounce  { 0%{transform:scale(0.3);opacity:0;} 60%{transform:scale(1.15);} 80%{transform:scale(0.95);} 100%{transform:scale(1);opacity:1;} }
+@keyframes shimmer      { 0%,100%{opacity:1;} 50%{opacity:0.6;} }
+
+#celebration-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0,0,0,0.55);
+  animation: celebFadeIn 0.3s ease both;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.celeb-card {
+  background: #fff;
+  border-radius: 28px;
+  padding: 40px 36px;
+  text-align: center;
+  max-width: 360px;
+  width: 90%;
+  animation: celebBounce 0.6s cubic-bezier(0.36,0.07,0.19,0.97) both;
+  position: relative;
+  overflow: hidden;
+}
+.celeb-emoji { font-size: 56px; margin-bottom: 12px; animation: shimmer 1s ease infinite; }
+.celeb-title { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 800; color: var(--red-dark); margin-bottom: 8px; line-height: 1.2; }
+.celeb-sub   { font-size: 15px; color: var(--ink3); margin-bottom: 24px; }
+.celeb-score { font-size: 14px; font-weight: 500; color: var(--ink2); background: var(--warm); border-radius: 10px; padding: 8px 18px; display: inline-block; margin-bottom: 24px; }
+.celeb-btn   { background: var(--red); color: #fff; border: none; border-radius: 14px; padding: 14px 40px; font-size: 16px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s; }
+.celeb-btn:hover { background: var(--red-dark); }
+.confetti-piece { position: fixed; width: 10px; height: 10px; border-radius: 2px; pointer-events: none; z-index: 1000; animation: confettiFall linear forwards; }
+@keyframes popIn     { 0%{transform:scale(0.82);opacity:0;} 70%{transform:scale(1.04);} 100%{transform:scale(1);opacity:1;} }
+@keyframes redPulse  { 0%,100%{box-shadow:0 0 0 0 var(--red-glow);} 50%{box-shadow:0 0 0 10px rgba(214,48,48,0);} }
+@keyframes scoreJump { 0%{transform:scale(1);} 40%{transform:scale(1.5);color:var(--red);} 100%{transform:scale(1);} }
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 16px 48px;
+  min-height: 100vh;
+}
+
+.game-header { text-align: center; margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
+.game-header h1 { font-family: 'Fraunces', serif; font-size: clamp(26px, 6vw, 40px); font-weight: 800; letter-spacing: -0.5px; }
+.game-header h1 span { color: var(--red); font-style: italic; }
+.game-header p { font-size: 13px; color: var(--ink3); margin-top: 6px; font-weight: 300; }
+
+/* SETUP */
+#setup-screen { width: 100%; max-width: 480px; animation: fadeUp 0.5s ease both; }
+.setup-card { background: #fff; border-radius: 24px; border: 1px solid var(--border); padding: 36px 28px; text-align: center; }
+.setup-preview { display: flex; align-items: flex-end; justify-content: center; gap: 7px; height: 68px; margin-bottom: 28px; }
+.preview-thread { border-radius: 5px; animation: sway ease-in-out infinite; }
+.setup-label { font-size: 12px; color: var(--ink3); text-transform: uppercase; letter-spacing: 1px; font-weight: 500; margin-bottom: 16px; }
+.pick-control { display: flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 32px; }
+.ctrl-btn {
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 1.5px solid var(--border); background: var(--cream);
+  font-size: 24px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink2); transition: all 0.15s; line-height: 1;
+  font-family: 'DM Sans', sans-serif;
+}
+.ctrl-btn:hover { background: var(--warm); border-color: var(--warm2); }
+.ctrl-btn:active { transform: scale(0.92); }
+.ctrl-btn:disabled { opacity: 0.3; cursor: default; }
+.ctrl-display { text-align: center; min-width: 80px; }
+.ctrl-number { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--ink); }
+.ctrl-unit { font-size: 12px; color: var(--ink3); margin-top: 2px; }
+.btn-start {
+  background: var(--red); color: #fff; border: none;
+  border-radius: 14px; padding: 16px 52px; font-size: 17px; font-weight: 500;
+  cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s, transform 0.1s;
+}
+.btn-start:hover { background: var(--red-dark); }
+.btn-start:active { transform: scale(0.97); }
+
+/* GAME */
+#game-screen { width: 100%; max-width: 620px; }
+.scoreboard { display: grid; grid-template-columns: 1fr 64px 1fr; gap: 10px; align-items: center; margin-bottom: 20px; }
+.player-card { background: #fff; border-radius: 18px; border: 1.5px solid var(--border); padding: 18px 10px; text-align: center; transition: border-color 0.3s, box-shadow 0.3s; }
+.player-card.is-active { border-color: #3a8fd8; box-shadow: 0 0 0 4px rgba(58,143,216,0.1); }
+.player-card.is-winner { border-color: var(--red); animation: redPulse 1.2s ease infinite; }
+.player-label { font-size: 11px; color: var(--ink3); text-transform: uppercase; letter-spacing: 1px; font-weight: 500; margin-bottom: 5px; }
+.player-score { font-family: 'Fraunces', serif; font-size: 44px; font-weight: 800; line-height: 1; }
+.player-tag { font-size: 11px; background: #e8f2fb; color: #1a6db5; border-radius: 20px; padding: 3px 10px; display: inline-block; margin-top: 5px; font-weight: 500; }
+.vs-col { text-align: center; }
+.vs-text { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; color: var(--ink3); font-style: italic; }
+.round-text { font-size: 11px; color: var(--ink3); margin-top: 4px; }
+
+.status-area { text-align: center; margin-bottom: 18px; }
+.status-main { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.status-sub  { font-size: 13px; color: var(--ink3); font-weight: 300; }
+
+.basket-wrap { background: var(--warm); border-radius: 20px; border: 1px solid var(--warm2); padding: 18px 14px; margin-bottom: 18px; position: relative; overflow: hidden; }
+.basket-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.basket-title { font-size: 12px; color: var(--ink3); text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+.basket-count { font-size: 12px; color: var(--ink3); }
+.threads-grid { display: flex; flex-wrap: wrap; gap: 9px; justify-content: center; }
+
+.thread-wrap { display: flex; flex-direction: column; align-items: center; cursor: pointer; position: relative; }
+.thread-wrap.is-pulled  { pointer-events: none; }
+.thread-wrap.is-locked  { cursor: default; }
+.thread-knob { width: 14px; height: 14px; border-radius: 50%; transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1); z-index: 2; position: relative; }
+.thread-body { width: 16px; border-radius: 6px; transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s; }
+.thread-wrap:hover:not(.is-pulled):not(.is-locked) .thread-knob,
+.thread-wrap:hover:not(.is-pulled):not(.is-locked) .thread-body { transform: translateY(-10px); }
+.thread-wrap.is-selected .thread-knob,
+.thread-wrap.is-selected .thread-body { transform: translateY(-14px); }
+.thread-wrap.is-selected .thread-body { outline: 2.5px solid var(--red); outline-offset: 2px; }
+.thread-wrap.is-pulled .thread-knob,
+.thread-wrap.is-pulled .thread-body  { opacity: 0.6; transform: translateY(-5px) !important; transition: opacity 1.2s ease, transform 0.4s ease; }
+.thread-wrap.do-wiggle { animation: wiggle 0.38s ease; }
+.thread-wrap.do-bounce { animation: bounceIn 0.5s cubic-bezier(0.36,0.07,0.19,0.97) both; }
+
+.particle-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: 20px; }
+.p-ring { position: absolute; border: 3px solid var(--red); border-radius: 50%; width: 32px; height: 32px; animation: pulseRing 0.75s ease-out forwards; }
+.p-star { position: absolute; font-size: 20px; font-weight: 700; color: var(--red); animation: floatUp 0.9s ease forwards; font-family: 'Fraunces', serif; }
+
+.action-area { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.pull-btn {
+  width: 100%; max-width: 400px; background: var(--red); color: #fff;
+  border: none; border-radius: 14px; padding: 18px; font-size: 17px; font-weight: 500;
+  cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s, transform 0.1s;
+}
+.pull-btn:hover:not(:disabled) { background: var(--red-dark); }
+.pull-btn:active:not(:disabled) { transform: scale(0.98); }
+.pull-btn:disabled { opacity: 0.35; cursor: default; }
+
+.secondary-btn {
+  background: transparent; border: 1px solid var(--border); border-radius: 10px;
+  padding: 8px 22px; font-size: 13px; color: var(--ink3); cursor: pointer;
+  font-family: 'DM Sans', sans-serif; transition: background 0.12s;
+}
+.secondary-btn:hover { background: var(--warm); }
+
+.result-box {
+  width: 100%; max-width: 420px; border-radius: 18px; padding: 24px 20px; text-align: center;
+  animation: popIn 0.4s cubic-bezier(0.36,0.07,0.19,0.97) both; margin-bottom: 10px;
+}
+.result-box.safe { background: #fff; border: 1px solid var(--border); }
+.result-box.won  { background: #fff5f5; border: 1.5px solid #f0b0b0; }
+.result-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; margin-bottom: 6px; line-height: 1.25; }
+.result-box.safe .result-title { color: var(--ink); }
+.result-box.won  .result-title { color: var(--red-dark); }
+.result-sub-text { font-size: 13px; color: var(--ink3); margin-bottom: 20px; font-weight: 300; }
+.result-box.won .result-sub-text { color: #c04040; }
+.result-btns { display: flex; gap: 10px; justify-content: center; }
+.result-btns button {
+  flex: 1; max-width: 180px; border-radius: 11px; padding: 13px 16px;
+  font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  border: none; transition: background 0.13s, transform 0.1s;
+}
+.result-btns button:active { transform: scale(0.97); }
+.btn-continue { background: var(--red); color: #fff; }
+.btn-continue:hover { background: var(--red-dark); }
+.btn-reset    { background: var(--warm); color: var(--ink2); }
+.btn-reset:hover { background: var(--warm2); }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <div class="game-header">
+    <h1>Find the <span>Red</span> Thread</h1>
+    <p>20 threads in the basket &middot; one is red &middot; you vs the computer</p>
+  </div>
+
+  <!-- SETUP -->
+  <div id="setup-screen">
+    <div class="setup-card">
+      <div class="setup-preview" id="preview-basket"></div>
+      <div class="setup-label">Threads each player picks per round</div>
+      <div class="pick-control">
+        <button class="ctrl-btn" id="dec-btn" onclick="changeSetup(-1)">&#8722;</button>
+        <div class="ctrl-display">
+          <div class="ctrl-number" id="setup-num">3</div>
+          <div class="ctrl-unit">per round</div>
+        </div>
+        <button class="ctrl-btn" id="inc-btn" onclick="changeSetup(1)">+</button>
+      </div>
+      <button class="btn-start" id="start-btn" onclick="beginGame()">Start Game</button>
+    </div>
+  </div>
+
+  <!-- GAME -->
+  <div id="game-screen" style="display:none;">
+    <div class="scoreboard">
+      <div class="player-card" id="pcard-1">
+        <div class="player-label">You</div>
+        <div class="player-score" id="pscore-1">0</div>
+        <div class="player-tag" id="ptag-1" style="visibility:hidden">your turn</div>
+      </div>
+      <div class="vs-col">
+        <div class="vs-text">vs</div>
+        <div class="round-text" id="round-text">Rd 1</div>
+      </div>
+      <div class="player-card" id="pcard-2">
+        <div class="player-label">Computer</div>
+        <div class="player-score" id="pscore-2">0</div>
+        <div class="player-tag" id="ptag-2" style="visibility:hidden">thinking...</div>
+      </div>
+    </div>
+
+    <div class="status-area">
+      <div class="status-main" id="status-main">Choose your threads</div>
+      <div class="status-sub"  id="status-sub"></div>
+    </div>
+
+    <div class="basket-wrap">
+      <div class="basket-top">
+        <span class="basket-title">The Basket</span>
+        <span class="basket-count" id="basket-count">20 remaining</span>
+      </div>
+      <div class="threads-grid" id="thread-grid"></div>
+      <div class="particle-layer" id="particle-layer"></div>
+    </div>
+
+    <div class="action-area">
+      <button class="pull-btn" id="pull-btn" onclick="executePull()" disabled>Pull Threads</button>
+      <div id="result-area" style="display:none;width:100%;display:none;flex-direction:column;align-items:center;">
+        <div class="result-box safe" id="result-box">
+          <div class="result-title" id="result-title"></div>
+          <div class="result-sub-text" id="result-sub-text"></div>
+          <div class="result-btns">
+            <button class="btn-continue" id="continue-btn" onclick="advanceTurn()">Continue</button>
+            <button class="btn-reset" onclick="returnSetup()">New Game</button>
+          </div>
+        </div>
+      </div>
+      <button class="secondary-btn" onclick="returnSetup()">New game</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- CELEBRATION OVERLAY -->
+<div id="celebration-overlay" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.6);flex-direction:column;align-items:center;justify-content:center;animation:celebFadeIn 0.3s ease both;">
+  <div class="celeb-card">
+    <div class="celeb-emoji" id="celeb-emoji">&#127881;</div>
+    <div class="celeb-title" id="celeb-title">You found it!</div>
+    <div class="celeb-sub"  id="celeb-sub">You pulled the red thread!</div>
+    <div class="celeb-score" id="celeb-score"></div>
+    <button class="celeb-btn" onclick="closeCelebration()">Play Again</button>
+  </div>
+</div>
+
+<script>
+var THREAD_DISGUISE = '#8B7355';
+var COLORS = [
+  '#4A90D9','#27AE6E','#8B6FD4','#E07B30','#5AAF3A',
+  '#6A8FD4','#D4A017','#2176AE','#1A7A5E','#6A4BC9',
+  '#D08C2A','#3E8F28','#6A3565','#B07F10','#145F9A',
+  '#0E5E47','#4A2FA8','#5B6820','#4A4F55','#7A7010'
+];
+var HEIGHTS = [46,52,44,56,48,42,54,50,44,52,48,46,54,42,50,56,44,52,46,50];
+var setupN = 3;
+var G = {};
+
+function changeSetup(d) {
+  setupN = Math.max(1, Math.min(10, setupN + d));
+  document.getElementById('setup-num').textContent = setupN;
+  document.getElementById('dec-btn').disabled = (setupN <= 1);
+  document.getElementById('inc-btn').disabled = (setupN >= 10);
+}
+
+(function buildPreview() {
+  var el = document.getElementById('preview-basket');
+  var cols = ['#4A90D9','#8B7355','#27AE6E','#8B6FD4','#E07B30','#5AAF3A','#8B7355','#D4A017','#2176AE','#8B7355'];
+  for (var i = 0; i < cols.length; i++) {
+    var d = document.createElement('div');
+    d.className = 'preview-thread';
+    var h = 28 + Math.floor(Math.random() * 26);
+    d.style.cssText = 'background:' + cols[i] + ';width:14px;height:' + h + 'px;border-radius:5px;animation-duration:' + (1.6 + i * 0.12) + 's;animation-delay:' + (i * 0.14) + 's;';
+    el.appendChild(d);
+  }
+})();
+
+function beginGame() {
+  G = {
+    n:        setupN,
+    redIdx:   Math.floor(Math.random() * 20),
+    pulled:   [],
+    selected: [],
+    scores:   [0, 0],
+    turn:     1,
+    game:     1,
+    locked:   false
+  };
+  document.getElementById('setup-screen').style.display = 'none';
+  document.getElementById('game-screen').style.display  = 'block';
+  document.getElementById('result-area').style.display  = 'none';
+  document.getElementById('pull-btn').style.display     = 'block';
+  document.getElementById('pull-btn').disabled          = true;
+  buildGrid();
+  refreshUI();
+}
+
+function returnSetup() {
+  document.getElementById('game-screen').style.display  = 'none';
+  document.getElementById('setup-screen').style.display = 'block';
+}
+
+function buildGrid() {
+  var grid = document.getElementById('thread-grid');
+  grid.innerHTML = '';
+  for (var i = 0; i < 20; i++) {
+    (function(idx) {
+      var isPulled   = (G.pulled.indexOf(idx) !== -1);
+      var isSelected = (G.selected.indexOf(idx) !== -1);
+      var wrap = document.createElement('div');
+      wrap.className = 'thread-wrap' +
+        (isPulled   ? ' is-pulled'   : '') +
+        (isSelected ? ' is-selected' : '') +
+        (G.locked || G.turn === 2 ? ' is-locked' : '');
+      wrap.id = 'tw-' + idx;
+      wrap.onclick = function() { toggleThread(idx); };
+
+      var displayColor = isPulled
+        ? (idx === G.redIdx ? '#D63030' : COLORS[idx])
+        : THREAD_DISGUISE;
+      var h = HEIGHTS[idx];
+
+      var knob = document.createElement('div');
+      knob.className = 'thread-knob';
+      knob.style.background = displayColor;
+
+      var body = document.createElement('div');
+      body.className = 'thread-body';
+      body.style.background = displayColor;
+      body.style.height = h + 'px';
+
+      wrap.appendChild(knob);
+      wrap.appendChild(body);
+      grid.appendChild(wrap);
+
+      if (!isPulled) {
+        (function(el, delay) {
+          setTimeout(function() {
+            el.classList.add('do-bounce');
+            setTimeout(function() { el.classList.remove('do-bounce'); }, 520);
+          }, delay);
+        })(wrap, idx * 38);
+      }
+    })(i);
+  }
+}
+
+function toggleThread(i) {
+  if (G.locked || G.turn === 2) return;
+  if (G.pulled.indexOf(i) !== -1) return;
+  var pos = G.selected.indexOf(i);
+  if (pos !== -1) {
+    G.selected.splice(pos, 1);
+  } else {
+    if (G.selected.length >= G.n) return;
+    G.selected.push(i);
+    var wrap = document.getElementById('tw-' + i);
+    wrap.classList.add('do-wiggle');
+    setTimeout(function() { wrap.classList.remove('do-wiggle'); }, 400);
+  }
+  syncStyles();
+  refreshUI();
+}
+
+function syncStyles() {
+  for (var i = 0; i < 20; i++) {
+    if (G.pulled.indexOf(i) !== -1) continue;
+    var w = document.getElementById('tw-' + i);
+    if (!w) continue;
+    if (G.selected.indexOf(i) !== -1) {
+      w.classList.add('is-selected');
+    } else {
+      w.classList.remove('is-selected');
+    }
+  }
+}
+
+function refreshUI() {
+  document.getElementById('pscore-1').textContent   = G.scores[0];
+  document.getElementById('pscore-2').textContent   = G.scores[1];
+  document.getElementById('round-text').textContent = 'Game ' + G.game;
+
+  document.getElementById('pcard-1').className = 'player-card' + (G.turn === 1 ? ' is-active' : '');
+  document.getElementById('pcard-2').className = 'player-card' + (G.turn === 2 ? ' is-active' : '');
+  document.getElementById('ptag-1').style.visibility = (G.turn === 1) ? 'visible' : 'hidden';
+  document.getElementById('ptag-2').style.visibility = (G.turn === 2) ? 'visible' : 'hidden';
+
+  var rem = 20 - G.pulled.length;
+  document.getElementById('basket-count').textContent = rem + ' thread' + (rem !== 1 ? 's' : '') + ' remaining';
+
+  if (!G.locked) {
+    if (G.turn === 1) {
+      var need = G.n - G.selected.length;
+      document.getElementById('status-main').textContent = 'Your turn \u2014 find the red thread!';
+      document.getElementById('status-sub').textContent  = need > 0
+        ? 'Select ' + need + ' thread' + (need > 1 ? 's' : '') + ' to pull'
+        : 'Ready! Hit Pull Threads';
+      document.getElementById('pull-btn').disabled = (G.selected.length < G.n);
+      document.getElementById('pull-btn').textContent = 'Pull Threads';
+    } else {
+      document.getElementById('status-main').textContent = 'Computer is thinking\u2026';
+      document.getElementById('status-sub').textContent  = '';
+      document.getElementById('pull-btn').disabled = true;
+    }
+  }
+}
+
+function executePull() {
+  if (G.selected.length < G.n || G.locked || G.turn !== 1) return;
+  G.locked = true;
+  document.getElementById('pull-btn').disabled = true;
+  revealThreads(G.selected.slice(), false);
+}
+
+/* Computer picks n random unpulled threads (never knowingly picks red — it's random, fair) */
+function computerTakeTurn() {
+  var avail = [];
+  for (var i = 0; i < 20; i++) {
+    if (G.pulled.indexOf(i) === -1) avail.push(i);
+  }
+  /* Shuffle and pick n */
+  for (var j = avail.length - 1; j > 0; j--) {
+    var k = Math.floor(Math.random() * (j + 1));
+    var tmp = avail[j]; avail[j] = avail[k]; avail[k] = tmp;
+  }
+  var picks = avail.slice(0, G.n);
+
+  /* Animate the computer "hovering" over threads before pulling */
+  var hoverDelay = 0;
+  for (var h = 0; h < picks.length; h++) {
+    (function(idx, d) {
+      setTimeout(function() {
+        var w = document.getElementById('tw-' + idx);
+        if (w) {
+          w.classList.add('is-selected');
+          setTimeout(function() {}, 200);
+        }
+      }, d);
+    })(picks[h], hoverDelay);
+    hoverDelay += 350;
+  }
+
+  setTimeout(function() {
+    revealThreads(picks, true);
+  }, hoverDelay + 300);
+}
+
+function revealThreads(toReveal, isComputer) {
+  G.selected = [];
+  var redFound = false;
+  var delay = 0;
+
+  for (var o = 0; o < toReveal.length; o++) {
+    (function(idx, order) {
+      setTimeout(function() {
+        if (redFound) return;
+        var wrap = document.getElementById('tw-' + idx);
+        if (!wrap) return;
+        wrap.classList.add('do-wiggle');
+
+        setTimeout(function() {
+          wrap.classList.remove('do-wiggle', 'is-selected');
+          if (G.pulled.indexOf(idx) === -1) G.pulled.push(idx);
+
+          var isRed = (idx === G.redIdx);
+          var c = isRed ? '#D63030' : COLORS[idx];
+          wrap.querySelector('.thread-knob').style.background = c;
+          wrap.querySelector('.thread-body').style.background = c;
+          wrap.classList.add('is-pulled');
+
+          if (isRed) {
+            redFound = true;
+            spawnParticles(wrap);
+            setTimeout(function() { showWinner(isComputer); }, 1000);
+          } else if (order === toReveal.length - 1 && !redFound) {
+            setTimeout(function() { showMiss(isComputer); }, 480);
+          }
+        }, 400);
+      }, delay);
+    })(toReveal[o], o);
+    delay += 260;
+  }
+}
+
+function spawnParticles(wrap) {
+  /* Small local burst on the thread */
+  var layer = document.getElementById('particle-layer');
+  var wr = wrap.getBoundingClientRect();
+  var lr = layer.getBoundingClientRect();
+  var cx = wr.left - lr.left + 8;
+  var cy = wr.top  - lr.top  + 28;
+
+  var ring = document.createElement('div');
+  ring.className = 'p-ring';
+  ring.style.left = (cx - 16) + 'px';
+  ring.style.top  = (cy - 16) + 'px';
+  layer.appendChild(ring);
+  setTimeout(function() { if (ring.parentNode) ring.parentNode.removeChild(ring); }, 850);
+
+  var syms = ['&#9733;','!','&#10022;','!'];
+  for (var i = 0; i < syms.length; i++) {
+    (function(sym, offset, del) {
+      var s = document.createElement('div');
+      s.className = 'p-star';
+      s.innerHTML = sym;
+      s.style.left = (cx + offset) + 'px';
+      s.style.top  = (cy - 4) + 'px';
+      s.style.animationDelay = del + 's';
+      layer.appendChild(s);
+      setTimeout(function() { if (s.parentNode) s.parentNode.removeChild(s); }, 1100);
+    })(syms[i], (i - 1.5) * 20, i * 0.06);
+  }
+}
+
+function launchConfetti() {
+  var colors = ['#D63030','#FFD700','#FF6B35','#4CAF50','#2196F3','#9C27B0','#FF4081','#00BCD4'];
+  var shapes = ['circle', 'square'];
+  for (var i = 0; i < 120; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        var color = colors[Math.floor(Math.random() * colors.length)];
+        var shape = shapes[Math.floor(Math.random() * shapes.length)];
+        var size = 6 + Math.floor(Math.random() * 10);
+        var left = Math.random() * 100;
+        var duration = 1.5 + Math.random() * 2;
+        var delay = Math.random() * 0.8;
+        piece.style.cssText =
+          'left:' + left + 'vw;' +
+          'top:-20px;' +
+          'width:' + size + 'px;' +
+          'height:' + size + 'px;' +
+          'background:' + color + ';' +
+          'border-radius:' + (shape === 'circle' ? '50%' : '2px') + ';' +
+          'animation-duration:' + duration + 's;' +
+          'animation-delay:' + delay + 's;';
+        document.body.appendChild(piece);
+        setTimeout(function() {
+          if (piece.parentNode) piece.parentNode.removeChild(piece);
+        }, (duration + delay) * 1000 + 200);
+      }, i * 18);
+    })(i);
+  }
+}
+
+function showWinner(isComputer) {
+  var winner = isComputer ? 2 : 1;
+  G.scores[winner - 1]++;
+
+  var scoreEl = document.getElementById('pscore-' + winner);
+  scoreEl.textContent = G.scores[winner - 1];
+  scoreEl.style.animation = 'scoreJump 0.5s ease both';
+  setTimeout(function() { scoreEl.style.animation = ''; }, 600);
+  document.getElementById('pcard-' + winner).className = 'player-card is-winner';
+
+  /* Update normal result box too (hidden behind overlay) */
+  var box     = document.getElementById('result-box');
+  var contBtn = document.getElementById('continue-btn');
+  box.className       = isComputer ? 'result-box safe' : 'result-box won';
+  contBtn.textContent = 'Play Again';
+
+  document.getElementById('status-main').textContent = '';
+  document.getElementById('status-sub').textContent  = '';
+  document.getElementById('pull-btn').style.display  = 'none';
+  G.locked = true;
+
+  /* Show celebration overlay */
+  var overlay = document.getElementById('celebration-overlay');
+  var celebEmoji = document.getElementById('celeb-emoji');
+  var celebTitle = document.getElementById('celeb-title');
+  var celebSub   = document.getElementById('celeb-sub');
+  var celebScore = document.getElementById('celeb-score');
+
+  if (isComputer) {
+    celebEmoji.innerHTML = '&#128128;';
+    celebTitle.textContent = 'Computer wins!';
+    celebTitle.style.color = '#4A3F35';
+    celebSub.textContent   = 'The computer pulled the red thread!';
+  } else {
+    celebEmoji.innerHTML = '&#127881;';
+    celebTitle.textContent = 'You found it!';
+    celebTitle.style.color = '#A82020';
+    celebSub.textContent   = 'You pulled the red thread!';
+    launchConfetti();
+  }
+  celebScore.textContent = 'Score — You: ' + G.scores[0] + '  |  Computer: ' + G.scores[1];
+  overlay.style.display = 'flex';
+}
+
+function showMiss(isComputer) {
+  var rem  = 20 - G.pulled.length;
+  var box  = document.getElementById('result-box');
+  var title = document.getElementById('result-title');
+  var sub   = document.getElementById('result-sub-text');
+  var contBtn = document.getElementById('continue-btn');
+
+  box.className = 'result-box safe';
+  if (isComputer) {
+    title.textContent   = 'Computer missed!';
+    sub.textContent     = rem + ' thread' + (rem !== 1 ? 's' : '') + ' left \u2014 your turn to find it!';
+    contBtn.textContent = 'My Turn';
+  } else {
+    title.textContent   = 'Not this time!';
+    sub.textContent     = rem + ' thread' + (rem !== 1 ? 's' : '') + ' left \u2014 computer\u2019s turn';
+    contBtn.textContent = "Computer's Turn";
+  }
+
+  document.getElementById('status-main').textContent = '';
+  document.getElementById('status-sub').textContent  = '';
+  document.getElementById('pull-btn').style.display  = 'none';
+  document.getElementById('result-area').style.display = 'flex';
+}
+
+function closeCelebration() {
+  document.getElementById('celebration-overlay').style.display = 'none';
+  /* Trigger Play Again logic */
+  G.game++;
+  G.pulled   = [];
+  G.selected = [];
+  G.redIdx   = Math.floor(Math.random() * 20);
+  G.locked   = false;
+  G.turn     = 1;
+  document.getElementById('pcard-1').className = 'player-card';
+  document.getElementById('pcard-2').className = 'player-card';
+  document.getElementById('result-area').style.display = 'none';
+  document.getElementById('pull-btn').style.display    = 'block';
+  buildGrid();
+  refreshUI();
+}
+
+function advanceTurn() {
+  var box = document.getElementById('result-box');
+  var isWin = (box.className.indexOf('won') !== -1);
+
+  if (isWin || (box.className.indexOf('safe') !== -1 && document.getElementById('result-title').textContent.indexOf('found') !== -1 )) {
+    /* Play Again — full reset */
+    G.game++;
+    G.pulled   = [];
+    G.selected = [];
+    G.redIdx   = Math.floor(Math.random() * 20);
+    G.locked   = false;
+    G.turn     = 1;
+    document.getElementById('pcard-1').className = 'player-card';
+    document.getElementById('pcard-2').className = 'player-card';
+    document.getElementById('result-area').style.display = 'none';
+    document.getElementById('pull-btn').style.display    = 'block';
+    buildGrid();
+    refreshUI();
+  } else {
+    /* Miss — switch turns */
+    G.turn   = (G.turn === 1) ? 2 : 1;
+    G.locked = false;
+    G.selected = [];
+    document.getElementById('pcard-1').className = 'player-card';
+    document.getElementById('pcard-2').className = 'player-card';
+    document.getElementById('result-area').style.display = 'none';
+    document.getElementById('pull-btn').style.display    = 'block';
+
+    syncStyles();
+    refreshUI();
+
+    if (G.turn === 2) {
+      /* Computer's turn — trigger after short delay */
+      G.locked = true;
+      setTimeout(function() {
+        computerTakeTurn();
+      }, 900);
+    }
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{float}
+
+% Formatting
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.5\baselineskip}
+
+% Title setup
+\title{\vspace{-1in}\textbf{TA Solution \& Reference Guide} \\ \Large ENGR 212 Lab 9 - Capacitors and RC Circuits}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{-0.5in}
+\hrule
+\vspace{0.2in}
+
+\section*{Lab Parameters \& Setup}
+\begin{itemize}
+  \item \textbf{Function Generator:} Agilent 33120A or 33220A \SI{15}{\mega\hertz} Function/Arbitrary Waveform Generator.
+  \item \textbf{Oscilloscope:} Agilent DSO3202A.
+  \item \textbf{Resistors:} $R = \SI{1}{\kilo\ohm}$, \SI{1.2}{\kilo\ohm}, \SI{1.5}{\kilo\ohm}, \SI{1.8}{\kilo\ohm}, and \SI{2}{\kilo\ohm}.
+  \item \textbf{Capacitors:} $C = \SI{0.01}{\micro\farad}$ and \SI{1}{\micro\farad}.
+  \item \textbf{Input Waveform:} Square wave, 50\% duty cycle, with a period strictly greater than 14 time constants ($>14\tau$).
+\end{itemize}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Part 1: Lab Objectives \& Core Concepts}
+
+The primary goal of this lab is for students to empirically verify the transient response (charging and discharging phases) of an RC circuit. Students will use an oscilloscope and a square wave from a function generator to simulate a DC step-input. They must manually use the oscilloscope's cursor functions to measure the \textbf{Time Constant ($\tau$)}.
+
+\textbf{Key Mathematical Relationships:}
+\begin{itemize}
+  \item \textbf{Time Constant:} $\tau = R \times C$
+  \item \textbf{Charging Equation:} $v_c(t) = V_s(1 - e^{-t/RC})$
+  \item \textbf{Discharging Equation:} $v_c(t) = V_0(e^{-t/RC})$
+  \item \textbf{At exactly $t = 1\tau$:}
+    \begin{itemize}
+      \item Charging reaches $1 - e^{-1} \approx 0.632$ (or \textbf{63.2\%}) of the maximum source voltage.
+      \item Discharging falls to $e^{-1} \approx 0.368$ (or \textbf{36.8\%}) of the initial peak voltage.
+    \end{itemize}
+\end{itemize}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Part 2: Expected Theoretical Calculations (Table 1)}
+
+Students will test five different resistors. The lab manual lists two available capacitors: \SI{1}{\micro\farad} and \SI{0.01}{\micro\farad}. Students will likely stick to one capacitor to fill out Table 1, but below are the theoretical values for \textit{both} so you can grade regardless of their choice.
+
+\begin{table}[H]
+  \centering
+  \caption{Theoretical Time Constants ($\tau = R \times C$)}
+  \begin{tabular}{ccc}
+    \toprule
+    \textbf{Resistor ($R$)} & \textbf{Cap = \SI{1}{\micro\farad} ($10^{-6}$ F)} & \textbf{Cap = \SI{0.01}{\micro\farad} ($10^{-8}$ F)} \\
+    \midrule
+    \textbf{\SI{1}{\kilo\ohm}}   & \SI{1.0}{\milli\second} & \SI{10}{\micro\second} \\
+    \textbf{\SI{1.2}{\kilo\ohm}} & \SI{1.2}{\milli\second} & \SI{12}{\micro\second} \\
+    \textbf{\SI{1.5}{\kilo\ohm}} & \SI{1.5}{\milli\second} & \SI{15}{\micro\second} \\
+    \textbf{\SI{1.8}{\kilo\ohm}} & \SI{1.8}{\milli\second} & \SI{18}{\micro\second} \\
+    \textbf{\SI{2}{\kilo\ohm}}   & \SI{2.0}{\milli\second} & \SI{20}{\micro\second} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textit{Note on Grading:} The experimental charging and discharging time constants should match each other closely. However, they will likely deviate from the exact theoretical values above by 5--10\% due to the standard physical tolerances of the breadboard resistors ($\pm 5\%$) and electrolytic/ceramic capacitors ($\pm 10$--$20\%$). Do not penalize students for this hardware variance.
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Part 3: Equipment Setup \& Function Generator Checks}
+
+The most common point of failure in this lab is incorrect Function Generator setup. The lab manual explicitly states: \textit{``You would need to select a square wave with overall period greater than 14 time constants.''} Before students take measurements, verify their parameters:
+
+\subsection*{A. Frequency Selection (The ``14 Time Constant'' Rule)}
+If the period is too short, the capacitor will not fully charge/discharge, causing the wave to look like a triangle wave, and destroying their 63.2\% voltage measurements.
+\begin{itemize}
+  \item \textbf{If using the \SI{1}{\micro\farad} capacitor:} The longest $\tau$ is \SI{2.0}{\milli\second} (with the \SI{2}{\kilo\ohm} resistor).
+    \begin{itemize}
+      \item Minimum period required: $14 \times \SI{2.0}{\milli\second} = \SI{28}{\milli\second}$.
+      \item Maximum allowable frequency: $f = 1 / \SI{0.028}{\second} \approx \mathbf{\SI{35}{\hertz}}$.
+      \item \textit{Check:} Students should be using a frequency around \textbf{\SI{20}{\hertz} to \SI{30}{\hertz}}.
+    \end{itemize}
+  \item \textbf{If using the \SI{0.01}{\micro\farad} capacitor:} The longest $\tau$ is \SI{20}{\micro\second}.
+    \begin{itemize}
+      \item Minimum period required: $14 \times \SI{20}{\micro\second} = \SI{280}{\micro\second}$.
+      \item Maximum allowable frequency: $f = 1 / \SI{0.00028}{\second} \approx \mathbf{\SI{3500}{\hertz}}$.
+      \item \textit{Check:} Students should be using a frequency around \textbf{\SI{1}{\kilo\hertz} to \SI{2}{\kilo\hertz}}.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{B. Waveform Parameters}
+\begin{itemize}
+  \item \textbf{Amplitude \& Offset:} To simulate a standard DC step from \SI{0}{\volt} to a maximum voltage ($V_s$), the students should apply a DC offset equal to half the peak-to-peak voltage ($V_{pp}/2$).
+  \item \textit{Example target:} $\SI{5}{\volt}_{pp}$ with a $\mathbf{+\SI{2.5}{\volt}}$ offset. This causes the square wave to oscillate strictly between \SI{0}{\volt} and \SI{+5}{\volt}.
+\end{itemize}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Part 4: Oscilloscope Measurement Walkthrough}
+
+Students are required to use the tracking cross-hair cursors. Here is the exact methodology they should be using to find where to place their Y-axis cursors (assuming a \SI{0}{\volt} to \SI{5}{\volt} Square Wave):
+
+\begin{enumerate}
+  \item \textbf{For Charging Time Constant:}
+    \begin{itemize}
+      \item Set Cursor A at the exact start of the rising edge ($t = \SI{0}{\second}, V = \SI{0}{\volt}$).
+      \item Calculate 63.2\% of the max voltage: $0.632 \times \SI{5}{\volt} = \mathbf{\SI{3.16}{\volt}}$.
+      \item Move Cursor B along the curve until the \texttt{B->Y} value reads \SI{3.16}{\volt}.
+      \item The resulting \texttt{$\Delta$X} or \texttt{B->X} value is their experimental Time Constant ($\tau$).
+    \end{itemize}
+  \item \textbf{For Discharging Time Constant:}
+    \begin{itemize}
+      \item Set Cursor A at the exact start of the falling edge ($t = \SI{0}{\second}, V = \SI{5}{\volt}$).
+      \item Calculate 36.8\% of the max voltage: $0.368 \times \SI{5}{\volt} = \mathbf{\SI{1.84}{\volt}}$.
+      \item Move Cursor B along the curve until the \texttt{B->Y} value reads \SI{1.84}{\volt}.
+      \item The resulting \texttt{$\Delta$X} or \texttt{B->X} value is their experimental Time Constant ($\tau$).
+    \end{itemize}
+\end{enumerate}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Common Hardware Troubleshooting \& Checks}
+
+\begin{enumerate}
+  \item \textbf{Ground Loops:} The function generator ground and the oscilloscope ground probe MUST be connected to the same node in the breadboard. If they wire the resistor and capacitor in series but place the oscilloscope ground \textit{between} them, they will short out half their circuit.
+  \item \textbf{Measuring the Wrong Component:} The lab asks for the voltage across the \textit{capacitor} ($v_c$). Ensure Channel 1 is measuring the raw input from the function generator, and Channel 2 is measuring strictly across the capacitor (in parallel).
+  \item \textbf{Forgetting DC Offset:} If a student forgets the DC offset on the function generator, their square wave will oscillate between $-V$ and $+V$ (e.g., \SI{-2.5}{\volt} to \SI{+2.5}{\volt}). The 63.2\% math still works, but it must be applied to the total \textit{change} in voltage (63.2\% of a \SI{5}{\volt} swing is \SI{3.16}{\volt}, meaning they must look for the crossing at $\SI{-2.5}{\volt} + \SI{3.16}{\volt} = \mathbf{+\SI{0.66}{\volt}}$). It is much easier to instruct them to add the DC offset to make the baseline \SI{0}{\volt}.
+  \item \textbf{Improper Oscilloscope Triggering:} If the wave is jumping around the screen, ensure they have the trigger menu set to the Channel carrying the square wave (usually Ch 1), mode set to \texttt{Edge}, and the trigger level set to roughly half their $V_{max}$ (e.g., \SI{2.5}{\volt}).
+\end{enumerate}
+
+\end{document}

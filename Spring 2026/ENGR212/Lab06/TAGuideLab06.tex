@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{float}
+
+% Formatting
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.5\baselineskip}
+
+% Title setup
+\title{\vspace{-1in}\textbf{TA Solution \& Reference Guide} \\ \Large ENGR 212 Lab 6 - Operational Amplifiers}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{-0.5in}
+\hrule
+\vspace{0.2in}
+
+\section*{Lab Parameters \& Setup}
+\begin{itemize}
+  \item \textbf{Op-Amp:} LM324 Quad Operational Amplifier.
+  \item \textbf{Power Supply:} Split supply with $V_{CC} = \SI{+10}{\volt}$ and $V_{EE} = \SI{-10}{\volt}$.
+  \item \textbf{Resistors:} $R_1 = \SI{11}{\kilo\ohm}$ and $R_2 = \SI{33}{\kilo\ohm}$.
+  \item \textbf{Input Sweep:} \SI{0}{\volt} to \SI{4}{\volt} in \SI{0.5}{\volt} increments.
+\end{itemize}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Part 1: Inverting Amplifier}
+
+\textbf{Theoretical Equation:} $v_{OUT} = -\frac{R_2}{R_1}v_{IN}$ \\
+\textbf{Theoretical Gain:} $-\SI{33}{\kilo\ohm} / \SI{11}{\kilo\ohm} = -3$
+
+\subsection*{1. Expected Calculated Table}
+Students should use the exact ideal formula to fill out their calculated columns.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ccc}
+    \toprule
+    \textbf{$V_{IN}$ (Sweep)} & \textbf{Calculated $V_{OUT}$} & \textbf{Calculated Gain ($V_{OUT}/V_{IN}$)} \\
+    \midrule
+    \SI{0.0}{\volt} & \SI{0.0}{\volt} & N/A (Divide by zero) \\
+    \SI{0.5}{\volt} & \SI{-1.5}{\volt} & -3 \\
+    \SI{1.0}{\volt} & \SI{-3.0}{\volt} & -3 \\
+    \SI{1.5}{\volt} & \SI{-4.5}{\volt} & -3 \\
+    \SI{2.0}{\volt} & \SI{-6.0}{\volt} & -3 \\
+    \SI{2.5}{\volt} & \SI{-7.5}{\volt} & -3 \\
+    \SI{3.0}{\volt} & \SI{-9.0}{\volt} & -3 \\
+    \SI{3.5}{\volt} & \SI{-10.5}{\volt} & -3 \\
+    \SI{4.0}{\volt} & \SI{-12.0}{\volt} & -3 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection*{2. TA Hints \& Real-World Checks (Bench Behavior)}
+\begin{itemize}
+  \item \textbf{The Saturation Trap:} Because the op-amp is powered by a $\pm\SI{10}{\volt}$ supply, the physical $V_{OUT}$ \textbf{cannot} exceed these rails.
+  \item When students measure $V_{IN} = \SI{3.5}{\volt}$ and \SI{4.0}{\volt}, their physical multimeters will \textit{not} show \SI{-10.5}{\volt} or \SI{-12.0}{\volt}. The output will ``clip'' (saturate) near \SI{-9.5}{\volt} to \SI{-10}{\volt}.
+  \item \textbf{TA Question for Students:} If a student asks why their \SI{4.0}{\volt} measurement is ``wrong'' compared to their calculation, use this to test their understanding of energy conservation and supply rails ($V_{CC}$ and $V_{EE}$).
+\end{itemize}
+
+\newpage
+% -------------------------------------------------------------------
+\section*{Part 2: Non-Inverting Amplifier}
+
+\textbf{Theoretical Equation:} $v_{OUT} = \left(1 + \frac{R_2}{R_1}\right) v_{IN}$ \\
+\textbf{Theoretical Gain:} $1 + (\SI{33}{\kilo\ohm} / \SI{11}{\kilo\ohm}) = 4$
+
+\subsection*{1. Expected Calculated Table}
+Students should use the exact ideal formula to fill out their calculated columns.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ccc}
+    \toprule
+    \textbf{$V_{IN}$ (Sweep)} & \textbf{Calculated $V_{OUT}$} & \textbf{Calculated Gain ($V_{OUT}/V_{IN}$)} \\
+    \midrule
+    \SI{0.0}{\volt} & \SI{0.0}{\volt} & N/A \\
+    \SI{0.5}{\volt} & \SI{2.0}{\volt} & 4 \\
+    \SI{1.0}{\volt} & \SI{4.0}{\volt} & 4 \\
+    \SI{1.5}{\volt} & \SI{6.0}{\volt} & 4 \\
+    \SI{2.0}{\volt} & \SI{8.0}{\volt} & 4 \\
+    \SI{2.5}{\volt} & \SI{10.0}{\volt} & 4 \\
+    \SI{3.0}{\volt} & \SI{12.0}{\volt} & 4 \\
+    \SI{3.5}{\volt} & \SI{14.0}{\volt} & 4 \\
+    \SI{4.0}{\volt} & \SI{16.0}{\volt} & 4 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection*{2. TA Hints \& Real-World Checks}
+\begin{itemize}
+  \item \textbf{Early Saturation:} The non-inverting configuration has a higher gain ($4$ instead of magnitude $3$). Therefore, it will hit the $\SI{+10}{\volt}$ supply rail much earlier in the input sweep.
+  \item \textbf{LM324 Quirk:} The LM324 is \textit{not} a rail-to-rail op-amp. The maximum positive output voltage is typically $V_{CC} - \SI{1.5}{\volt}$. Therefore, students will likely see clipping begin around \textbf{\SI{+8.5}{\volt}}, meaning physical measurements for $V_{IN} \geq \SI{2.5}{\volt}$ will all plateau around \SI{8.5}{\volt} to \SI{9}{\volt} rather than hitting the calculated \SI{10}{\volt}, \SI{12}{\volt}, \SI{14}{\volt}, and \SI{16}{\volt}.
+\end{itemize}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Common Hardware Troubleshooting \& Checks}
+
+If a student's circuit is outputting \SI{0}{\volt} constantly, outputting a constant supply voltage regardless of input, or heating up, check the following:
+
+\begin{enumerate}
+  \item \textbf{Pinout Confusion:} The LM324 is a quad op-amp. Ensure they are using the correct pins for \textit{one} of the four internal amplifiers.
+    \begin{itemize}
+      \item Output 1: Pin 1
+      \item Inverting Input 1 (-): Pin 2
+      \item Non-inverting Input 1 (+): Pin 3
+    \end{itemize}
+  \item \textbf{Power Supply Wiring ($V_{CC}$ and $V_{EE}$):}
+    \begin{itemize}
+      \item $V_{CC}$ (\SI{+10}{\volt}) must go to \textbf{Pin 4}.
+      \item $V_{EE}$ (\SI{-10}{\volt}) must go to \textbf{Pin 11}.
+      \item \textit{Frequent Mistake:} Students often wire Pin 11 to the circuit Ground instead of the \SI{-10}{\volt} supply, or they mix up the split power supply connections on the bench.
+    \end{itemize}
+  \item \textbf{Floating Grounds:} Ensure the ground from the variable $V_{IN}$ supply, the ground from the split $\pm\SI{10}{\volt}$ supply, and the circuit's reference ground are all tied together on the breadboard.
+  \item \textbf{Measuring Resistors in Circuit:} Remind students they must measure their actual $R_1$ and $R_2$ values \textit{disconnected} from the rest of the circuit to avoid parallel resistance errors from the op-amp.
+\end{enumerate}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Grading the Final Report Plots}
+When reviewing student plots (which should include both measured and calculated data on the same graph):
+\begin{itemize}
+  \item The ``Calculated'' line should be perfectly straight (linear).
+  \item The ``Measured'' line should track the calculated line closely at low voltages.
+  \item The ``Measured'' line \textbf{must flatten out (saturate)} at the higher input voltages. If their measured line perfectly tracks to \SI{-12}{\volt} or \SI{+16}{\volt}, they fabricated their DMM data rather than actually recording it from the bench.
+\end{itemize}
+
+\end{document}

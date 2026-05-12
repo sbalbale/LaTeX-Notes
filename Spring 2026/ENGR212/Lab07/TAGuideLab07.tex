@@ -1,0 +1,160 @@
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{float}
+
+% Formatting
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.5\baselineskip}
+
+\begin{document}
+
+\begin{center}
+  \Large\textbf{TA Solution \& Reference Guide} \\
+  \vspace{0.1in}
+  \huge\textbf{ENGR 212 Lab 7 - Active Filters}
+\end{center}
+
+\vspace{0.1in}
+\hrule
+\vspace{0.2in}
+
+\section*{Lab Parameters \& Setup}
+\begin{itemize}
+  \item \textbf{Op-Amp:} LM324 Operational Amplifier.
+  \item \textbf{Power Supply:} Split supply with $V_{CC} = \SI{+10}{\volt}$ and $V_{EE} = \SI{-10}{\volt}$.
+  \item \textbf{Input Signal:} $\SI{1}{\volt}_{pp}$ sine wave from the function generator.
+  \item \textbf{Components:} $R_1 = \SI{11}{\kilo\ohm}$, $R_2 = \SI{33}{\kilo\ohm}$, $C = \SI{0.01}{\micro\farad}$.
+  \item \textbf{Measurement:} AC Voltage (RMS) using the Agilent 34401A DMM.
+\end{itemize}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Part 1: Active Low-Pass Filter}
+
+\textbf{Theoretical Equations:}
+\begin{itemize}
+  \item \textbf{Transfer Function:} $H(s) = -\frac{R_2}{R_1} \frac{1}{1 + sR_2C}$
+  \item \textbf{Cutoff Frequency ($f_c$):} $f_c = \frac{1}{2\pi R_2 C}$
+  \item \textbf{Passband Gain (DC):} $|K| = \frac{R_2}{R_1}$
+\end{itemize}
+
+\textbf{Step-by-Step Calculations:}
+
+\textbf{1. Cutoff Frequency ($f_c$):}
+\begin{align*}
+  f_c &= \frac{1}{2\pi R_2 C} \\
+  f_c &= \frac{1}{2\pi (\SI{33e3}{\ohm})(\SI{0.01e-6}{\farad})} \\
+  f_c &= \frac{1}{2\pi (\SI{3.3e-4}{\second})} \\
+  f_c &= \frac{1}{0.002073} \\
+  f_c &\approx \mathbf{482.3 \text{ \si{\hertz}}}
+\end{align*}
+
+\textbf{2. Passband Gain (Linear \& Decibels):}
+\begin{align*}
+  |K| &= \frac{R_2}{R_1} \\
+  |K| &= \frac{\SI{33}{\kilo\ohm}}{\SI{11}{\kilo\ohm}} = \mathbf{3 \text{ V/V}} \\[1ex]
+  |K|_{\text{dB}} &= 20 \log_{10}(|K|) \\
+  |K|_{\text{dB}} &= 20 \log_{10}(3) \\
+  |K|_{\text{dB}} &\approx 20 (0.4771) \approx \mathbf{9.54 \text{ dB}}
+\end{align*}
+
+\textbf{3. Gain at Cutoff Frequency:}
+\begin{align*}
+  \text{Gain at } f_c &= |K|_{\text{dB}} - 3\text{ dB} \\
+  \text{Gain at } f_c &= 9.54\text{ dB} - 3\text{ dB} \\
+  \text{Gain at } f_c &= \mathbf{6.54 \text{ dB}}
+\end{align*}
+
+\textit{TA Note on Data Collection:} Students are required to measure at $f_c$. Make sure they explicitly set their function generator to $\sim \SI{482}{\hertz}$ to take this measurement.
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Part 2: Active High-Pass Filter}
+
+\textbf{Theoretical Equations:}
+\begin{itemize}
+  \item \textbf{Transfer Function:} $H(s) = -\frac{R_2}{R_1} \frac{sR_1C}{1 + sR_1C}$
+  \item \textbf{Cutoff Frequency ($f_c$):} $f_c = \frac{1}{2\pi R_1 C}$
+  \item \textbf{Passband Gain (High Frequency):} $|K| = \frac{R_2}{R_1}$
+\end{itemize}
+
+\textbf{Step-by-Step Calculations:}
+
+\textbf{1. Cutoff Frequency ($f_c$):}
+\begin{align*}
+  f_c &= \frac{1}{2\pi R_1 C} \\
+  f_c &= \frac{1}{2\pi (\SI{11e3}{\ohm})(\SI{0.01e-6}{\farad})} \\
+  f_c &= \frac{1}{2\pi (\SI{1.1e-4}{\second})} \\
+  f_c &= \frac{1}{0.000691} \\
+  f_c &\approx \mathbf{1446.9 \text{ \si{\hertz}}}
+\end{align*}
+
+\textbf{2. Passband Gain (Linear \& Decibels):}
+\begin{align*}
+  |K| &= \frac{R_2}{R_1} \\
+  |K| &= \frac{\SI{33}{\kilo\ohm}}{\SI{11}{\kilo\ohm}} = \mathbf{3 \text{ V/V}} \\[1ex]
+  |K|_{\text{dB}} &= 20 \log_{10}(|K|) \\
+  |K|_{\text{dB}} &= 20 \log_{10}(3) \approx \mathbf{9.54 \text{ dB}}
+\end{align*}
+
+\textbf{3. Gain at Cutoff Frequency:}
+\begin{align*}
+  \text{Gain at } f_c &= |K|_{\text{dB}} - 3\text{ dB} \\
+  \text{Gain at } f_c &= 9.54\text{ dB} - 3\text{ dB} \\
+  \text{Gain at } f_c &= \mathbf{6.54 \text{ dB}}
+\end{align*}
+
+\textit{TA Note on Data Collection:} Make sure students sweep up to at least $\SI{10000}{\hertz}$ to clearly see the plateau of the passband at $\sim 9.54 \text{ dB}$.
+
+\newpage
+% -------------------------------------------------------------------
+\section*{Common Bench Troubleshooting \& Pitfalls}
+
+If a student's circuit is outputting \SI{0}{\volt}, clipping heavily, or yielding completely flat frequency responses, check the following:
+
+\begin{enumerate}
+  \item \textbf{Function Generator ``High-Z'' Mismatch:} By default, Agilent function generators assume a $\SI{50}{\ohm}$ load. If a student sets it to $\SI{1}{\volt}_{pp}$, the open-circuit voltage will actually be $\SI{2}{\volt}_{pp}$. \textbf{Fix:} The lab instructions correctly tell students to ``Measure both $V_{IN}$ and $V_{OUT}$ with the DMM''. As long as they calculate gain using their \textit{actual} DMM $V_{IN}$ measurement rather than assuming the function generator display is correct, their dB calculations will be perfect.
+
+  \item \textbf{DMM AC vs. DC Mode:} Students must use the \textbf{AC Voltage} setting on the DMM. If they measure in DC, they will read $\sim \SI{0}{\volt}$ since the average of a sine wave is zero.
+
+  \item \textbf{LM324 Power Rails:}
+    \begin{itemize}
+      \item $V_{CC}$ ($\SI{+10}{\volt}$) must be connected to \textbf{Pin 4}.
+      \item $V_{EE}$ ($\SI{-10}{\volt}$) must be connected to \textbf{Pin 11}.
+      \item \textit{Frequent Mistake:} Students tie Pin 11 to Ground instead of the negative power supply, which will severely clip the negative half of the AC sine wave.
+    \end{itemize}
+
+  \item \textbf{Breadboard Parasitics at \SI{10}{\kilo\hertz}:} At higher frequencies, loose wires and breadboard capacitance can slightly degrade the signal. If their $\SI{10}{\kilo\hertz}$ measurement droops slightly below $9.54 \text{ dB}$, this is a normal real-world non-ideality.
+\end{enumerate}
+
+\vspace{0.2in}
+% -------------------------------------------------------------------
+\section*{Grading the Formal Report}
+
+Unlike Lab 6, this experiment requires a \textbf{Formal Lab Report}. Ensure students follow the standard formal structure (Abstract/Introduction, Methodology, Results, Discussion, Conclusion).
+
+\textbf{What to look for in the Data \& Results:}
+\begin{itemize}
+  \item \textbf{Data Tables:} They must have calculated the theoretical gain alongside their measured $V_{OUT}/V_{IN}$. Gains must be properly converted to Decibels ($20 \log_{10}(V_{out}/V_{in})$).
+
+  \item \textbf{Bode Plots (Magnitude Only):}
+    \begin{itemize}
+      \item The x-axis \textbf{must} be on a logarithmic scale (Semilog graph).
+      \item Both theoretical and measured curves must be plotted on the \textit{same graph} for comparison.
+      \item Low-Pass should start flat at $\sim 9.5 \text{ dB}$ and roll off at $-20 \text{ dB/decade}$ after $\SI{482}{\hertz}$.
+      \item High-Pass should rise at $+20 \text{ dB/decade}$ and flatten out at $\sim 9.5 \text{ dB}$ after $\SI{1447}{\hertz}$.
+    \end{itemize}
+
+  \item \textbf{Error Analysis:} The manual specifically asks to quantify the percentage error between measured and calculated data \textit{at the cutoff frequencies}. Ensure they explicitly calculated error at $\SI{482}{\hertz}$ and $\SI{1447}{\hertz}$. Standard component tolerances (resistors $\pm 5\%$, capacitors $\pm 10\% - 20\%$) usually result in $f_c$ errors of around $5\% - 15\%$.
+\end{itemize}
+
+\end{document}
