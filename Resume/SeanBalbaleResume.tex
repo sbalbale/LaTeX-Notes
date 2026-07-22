@@ -49,10 +49,8 @@
 Bachelor of Science in Electrical and Computer Engineering \hfill GPA: 3.65\\
 Bachelor of Science in Computer Science\\
 \textit{Coursework:} High-Performance Computing, Embedded Systems Design, Deep Learning,
-Software Engineering, Microelectronic Circuits, Intro to Computer Systems,
-Data Structures \& Algorithms, Discrete Structures, Circuits \& Signals,
-Differential Equations \& Linear Algebra, Applied Linear Algebra, Calculus III,
-International Trade, Engineering Materials.\\
+Software Engineering, Microelectronic Circuits, Data Structures \& Algorithms,
+Automatic Control Systems, Intro to Computer Systems.\\
 \textit{Extracurriculars:} Varsity Athlete --- Trinity College Men's Rowing;\quad
 Singer \& Technology Chair --- The Trinity College Accidentals.
 
@@ -72,22 +70,28 @@ Assembly (8051/MIPS), Verilog, SQL, MATLAB, LaTeX\\
 \section{Work Experience}
 
 \noindent
-\textbf{Cloud/Service Software Engineering Intern} --- Sonos | Boston, MA
+\textbf{Software Engineer Intern} --- Sonos | Boston, MA
 \hfill \textit{Summer 2026}
 \begin{itemize}
-  \item Joining the Cloud Accounts team to architect and maintain backend Java microservices
-    powering user-identity, subscription entitlements, player settings, and
-    API-permission systems across all Sonos hardware products globally.
-  \item Operating within an AWS and Kubernetes environment; applying containerization,
-    orchestration, and GitHub source-control best practices at production scale.
+  \item Led migration of two production Java/Spring Boot services (Cloud Content team)
+    from WebSocket command delivery to an SQS-backed fire-and-forget queue: authored
+    the design plan and Jira epic, implemented feature-flagged per-player fan-out with
+    retry-until-acceptance semantics, and validated both transports against real speakers.
+  \item Diagnosed a silent delivery failure in a pre-production environment by tracing
+    commands through the SDK and queue infrastructure to an endpoint-routing defect, and
+    drove the fix across both services.
+  \item Made the service's functional-test suite runnable locally for the first time by
+    porting its DynamoDB-stream Lambda into a local test harness, enabling 24-minute
+    pre-push validation ahead of the hour-long shared CI run; also built Datadog
+    dashboards and monitors for the new delivery path.
 \end{itemize}
 
 \vspace{1pt}\noindent
 \textbf{Engineering Teaching Assistant} --- ENGR 212L Linear Circuit Theory, Trinity College | Hartford, CT
 \hfill \textit{Spring 2026}
 \begin{itemize}
-  \item Led weekly lab sessions covering RLC circuit analysis, op-amps, Laplace transforms,
-    Fourier series, and active filter design; delivered written feedback on student lab reports.
+  \item Led weekly lab sessions for ENGR 212L covering RLC circuit analysis, op-amps,
+    Laplace transforms, Fourier series, and active filter design.
 \end{itemize}
 
 \vspace{1pt}\noindent
@@ -110,28 +114,18 @@ Assembly (8051/MIPS), Verilog, SQL, MATLAB, LaTeX\\
     verified manufactured parts against SolidWorks CAD tolerances in-house and on-site.
 \end{itemize}
 
-\vspace{1pt}\noindent
-\textbf{Engineering Intern} --- Titan Advanced Energy Solutions | Salem, MA
-\hfill \textit{Summer 2023}
-\begin{itemize}
-  \item Wrote Python software to parse raw JSON from ultrasound sensors and render waveform
-    visualizations alongside existing heat maps for non-destructive evaluation of EV battery
-    packs, directly accelerating defect detection and classification.
-\end{itemize}
-
 %% RESEARCH, HONORS & SELECTED PROJECTS
 \section{Research, Honors \& Selected Projects --- More on Portfolio Website}
 
 \noindent
 \textbf{``Embodied Harms and Inferred Data: Redefining Privacy in Extended Reality''}
-\hfill \textit{Expected Late May 2026}\\
+\hfill \textit{Expected Late August 2026}\\
 \textit{The International Journal of Law, Ethics, and Technology} --- In Production
 \begin{itemize}
   \item Peer-reviewed paper arguing BIPA and GDPR are structurally inadequate for XR
-    environments that passively extract behavioral biometrics; proposes a ``Bodyright''
-    framework reclassifying biometric data as an inalienable extension of human sovereignty.
-  \item Awarded the \textbf{Alumni Prize in English Composition} ---
-    Trinity College Department of English, Honors Day, May 2026.
+    environments; proposes a ``Bodyright'' framework reclassifying biometric data as an
+    inalienable extension of human sovereignty. Awarded the
+    \textbf{Alumni Prize in English Composition}, Trinity College, May 2026.
 \end{itemize}
 
 \vspace{1pt}\noindent
@@ -154,8 +148,8 @@ Assembly (8051/MIPS), Verilog, SQL, MATLAB, LaTeX\\
 \section{Personal}
 
 \noindent
-Serious home cook across a wide range of cuisines --- a proper katsu ramen takes four hours
+Serious home cook across a wide range of cuisines --- a proper katsu ramen takes hours
 and a good samosa crimp takes thirty seconds of muscle memory. Outside the kitchen:
-cycling, ski mountaineering, and an Ender 3 running Klipper firmware.
+cycling, ski mountaineering, and tinkering on whatever project has captured my attention that week.
 
 \end{document}
