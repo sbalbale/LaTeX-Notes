@@ -3,21 +3,20 @@
 
 \documentclass[10pt, letterpaper]{article}
 
-\usepackage[top=0.35in, bottom=0.35in, left=0.5in, right=0.5in]{geometry}
+\usepackage[top=0.22in, bottom=0.22in, left=0.5in, right=0.5in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{lmodern}
-\usepackage{microtype}
 \usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
 \usepackage{enumitem}
 \setlist[itemize]{leftmargin=1.1em, itemsep=0pt, parsep=0pt, topsep=0pt}
 \usepackage{titlesec}
 \titleformat{\section}{\normalfont\bfseries\uppercase}{}{0em}{}
 [\vspace{-4pt}\rule{\linewidth}{0.4pt}\vspace{2pt}]
-\titlespacing*{\section}{0pt}{3pt}{1pt}
+\titlespacing*{\section}{0pt}{2pt}{1pt}
 \pagestyle{empty}
 
 \begin{document}
+\small
 
 %% NAME & CONTACT
 \begin{center}
@@ -30,16 +29,14 @@
   \href{https://github.com/sbalbale}{github.com/sbalbale}
 \end{center}
 
-% %% HEADLINE
-% \begin{center}
-%   \small\textit{%
-%     ECE \& CS Junior at Trinity College \;\textbullet\;
-%     Full-Stack \& Embedded Systems Engineer \;\textbullet\;
-%     Published Researcher in XR Privacy Law%
-%   }
-% \end{center}
+%% SUMMARY
+\section{Summary}
 
-% \vspace{-2pt}
+\noindent
+ECE/CS student at Trinity College building across the stack — bare-metal firmware, enterprise
+Java backends, and a self-hosted AI product running on infrastructure I designed and operate
+myself. I care about precision under real constraints, whether that's a sub-100ms embedded
+control loop or a production Spring Boot migration with zero downtime.
 
 %% EDUCATION
 \section{Education}
@@ -60,9 +57,9 @@ Singer \& Technology Chair --- The Trinity College Accidentals.
 \noindent
 \textbf{Languages:} Java, Python, C, C++, TypeScript, JavaScript,
 Assembly (8051/MIPS), Verilog, SQL, MATLAB, LaTeX\\
-\textbf{Backend:} Spring Boot 3, Jakarta EE, JUnit 5, Mockito, REST APIs, Node.js\\
-\textbf{Frontend:} React, Next.js, Tailwind CSS, AngularJS\\
-\textbf{Cloud \& DevOps:} AWS, Kubernetes, Docker, Git, Linux, CI/CD, Log4j2, Slurm, MPI\\
+\textbf{Backend:} Spring Boot 3, Jakarta EE, JUnit 5, Mockito, REST APIs, Node.js, FastAPI\\
+\textbf{Frontend:} React, Next.js, Svelte, Tailwind CSS, AngularJS\\
+\textbf{Cloud \& DevOps:} AWS, Kubernetes, Docker, Proxmox, Git, Linux, CI/CD, Supabase, Slurm, MPI\\
 \textbf{Embedded / Hardware:} Arduino, ARM, 8051, FPGA, BLE 5, ANT+, SPI/I2C, LTspice, Oscilloscopes, Logic Analyzers\\
 \textbf{Other:} SolidWorks, 3D Printing (Klipper), Precision Metrology, Systems Engineering
 
@@ -80,10 +77,10 @@ Assembly (8051/MIPS), Verilog, SQL, MATLAB, LaTeX\\
   \item Diagnosed a silent delivery failure in a pre-production environment by tracing
     commands through the SDK and queue infrastructure to an endpoint-routing defect, and
     drove the fix across both services.
-  \item Made the service's functional-test suite runnable locally for the first time by
-    porting its DynamoDB-stream Lambda into a local test harness, enabling
-    pre-push validation ahead of the shared CI run; also built Datadog
-    dashboards and monitors for the new delivery path.
+  \item Made the service's functional-test suite runnable locally by porting its
+    DynamoDB-stream Lambda into a local test harness, enabling pre-push validation
+    ahead of the shared CI run; also built Datadog dashboards and monitors for the
+    new delivery path.
 \end{itemize}
 
 \vspace{1pt}\noindent
@@ -129,20 +126,28 @@ Assembly (8051/MIPS), Verilog, SQL, MATLAB, LaTeX\\
 \end{itemize}
 
 \vspace{1pt}\noindent
-\textbf{Edge-Compute Pacing Node} --- Senior Capstone (CPSC 498 / ENGR 483)
-\hfill \textit{Fall 2026 -- Spring 2027}
+\textbf{Astraphe AI} --- Mobile AI Athletic Coaching Platform (Solo Founder/Engineer)
+\hfill \textit{2026 -- Active}
 \begin{itemize}
-  \item Embedded node on Nordic nRF52840 running W$'$ balance fatigue model in C/C++ on
-    FreeRTOS; $\leq$100\,ms sensor-to-LED latency via BLE\,5/ANT+ ---
-    entirely offline, no cloud or smartphone offload.
+  \item Built a mobile-first AI coaching platform end-to-end: multi-source data pipeline
+    (Strava, WHOOP, Garmin, intervals.icu) deduplicated onto canonical records; server-side
+    training-load engine (TSS, CTL/ATL/TSB, composite Readiness, Strain) in FastAPI; a
+    Gemma 4 coaching agent with a pgvector RAG pipeline over coaching memory.
+  \item Svelte 5 / Capacitor mobile client (iOS/Android); self-hosted Dockerized backend
+    and Supabase (Postgres + pgvector) on personal infrastructure, with CI/CD via GitHub
+    Actions over a Cloudflare Tunnel.
 \end{itemize}
 
-\vspace{2pt}\noindent
-\textbf{Personal Portfolio} --- \href{https://seanbalbale.com}{seanbalbale.com}
-\hfill \textit{Spring 2026}
+\vspace{1pt}\noindent
+\textbf{Cherrybrook Homelab} --- Self-Hosted Infrastructure
+\hfill \textit{2025 -- Present}
 \begin{itemize}
-  \item Production Next.js/React/TypeScript app on Vercel with CI/CD; custom backend API
-    for transactional email dispatch, dark/light mode theming, and embedded PDF viewer.
+  \item Built and operate a four-node Proxmox VE cluster (custom i7-9700K + Tesla V100
+    server, two Dell PowerEdge servers, a repurposed ThinkPad quorum/backup node) hosting
+    Dockerized production workloads including Astraphe AI and a self-hosted Second Brain
+    MCP server.
+  \item Executed a live VLAN/subnet migration with split-horizon DNS to resolve VPN
+    conflicts; manages reverse proxy/SSL, tailnet DNS, and a UniFi network stack.
 \end{itemize}
 
 \section{Personal}
