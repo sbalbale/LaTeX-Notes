@@ -66,9 +66,10 @@ a Nordic nRF52840 --- no cloud offload, sub-100\,ms latency. The constraint of t
 edge is something I find genuinely satisfying; it forces precision that higher-level
 abstractions let you avoid. On the other side of the stack, I owned a Spring Boot~2
 to Spring Boot~3 framework migration across multiple production Java services at
-Bullhorn, and this summer I am joining Sonos to build the backend microservices
-powering user identity and subscriptions across the platform. The problems are
-different at each layer --- but the methodology isn't.\\
+Bullhorn, and this summer I led a WebSocket-to-SQS migration for two production
+services on Sonos's Cloud Content team, tracing a silent delivery failure to an
+endpoint-routing defect along the way. The problems are different at each layer ---
+but the methodology isn't.\\
 
 
 Beyond implementation, I research the systems we are building toward.
@@ -93,7 +94,7 @@ execution, and zero tolerance for drift.
 \vspace{1pt}
 \textit{Bachelor of Science in Electrical and Computer Engineering} \\
 \textit{Bachelor of Science in Computer Science} \\
-\textbf{GPA:} 3.65 / 4.00
+\textbf{GPA:} 3.70 / 4.00
 
 \vspace{4pt}
 \textbf{Coursework Completed:} Data Structures \& Algorithms, Embedded Systems Design,
@@ -167,12 +168,12 @@ Varsity Ski Team; Concert Choir; Jazz Choir.
     Java, Python, C, C++, TypeScript, JavaScript (Node.js), Assembly (8051, MIPS), Verilog,
     SQL, MATLAB, \LaTeX \\[3pt]
   \textbf{Backend} &
-    Spring Boot 3, Jakarta EE, JUnit 5, Mockito, Node.js, REST APIs \\[3pt]
+    Spring Boot 3, Jakarta EE, JUnit 5, Mockito, Node.js, FastAPI, REST APIs \\[3pt]
   \textbf{Frontend / Full-Stack} &
-    React, Next.js, Tailwind CSS, AngularJS \\[3pt]
+    React, Next.js, Svelte, Tailwind CSS, AngularJS \\[3pt]
   \textbf{Cloud \& DevOps} &
-    AWS, Kubernetes, Docker, Linux, Git (feature branches, merge requests, code review),
-    CI/CD pipelines, Log4j2, Slurm, MPI \\[3pt]
+    AWS, Kubernetes, Docker, Proxmox, Linux, Git (feature branches, merge requests, code review),
+    CI/CD pipelines, Log4j2, Supabase, Slurm, MPI \\[3pt]
   \textbf{Embedded / Hardware} &
     Arduino, ESP32, 8051 Microcontroller, Intel Cyclone~V FPGA, Nordic nRF52840,
     SPI/I\textsuperscript{2}C, BLE~5, ANT+, FreeRTOS, NI-DAQ, Oscilloscopes, Logic Analyzers,
@@ -190,13 +191,17 @@ Varsity Ski Team; Concert Choir; Jazz Choir.
 
 \cventry{Cloud/Service Software Engineering Intern}{Sonos}{Boston, MA}{Summer 2026}
 \begin{itemize}
-  \item Joining the Software Services Cloud Accounts team to architect and maintain backend Java
-        microservices powering core user-identity, subscription entitlement, player-settings,
-        and API-permission systems across the Sonos platform.
-  \item Working within an AWS and Kubernetes environment on containerized cloud services that
-        underpin the user experience for all Sonos hardware products globally.
-  \item Applying containerization, orchestration, and source-control best practices (GitHub) as
-        specified in team pre-internship preparation guidelines.
+  \item Led migration of two production Java/Spring Boot services on the Cloud Content team from
+        WebSocket command delivery to an SQS-backed fire-and-forget queue: authored the design plan
+        and Jira epic, implemented feature-flagged per-player fan-out with retry-until-acceptance
+        semantics, and validated both transports against real speakers.
+  \item Diagnosed a silent delivery failure in a pre-production environment by tracing commands
+        through the SDK and queue infrastructure to an endpoint-routing defect, and drove the fix
+        across both services.
+  \item Made the service's functional-test suite runnable locally by porting its DynamoDB-stream
+        Lambda into a local test harness, enabling pre-push validation ahead of the shared CI run.
+  \item Built Datadog dashboards and monitors for the new delivery path to support on-call
+        visibility after launch.
 \end{itemize}
 
 \vspace{6pt}
@@ -348,6 +353,7 @@ Varsity Ski Team; Concert Choir; Jazz Choir.
 \section{Selected Projects}
 
 \cvproject{Edge-Compute Pacing \& Feedback Node (Senior Capstone)}{Fall 2026 -- Spring 2027}
+\textit{CPSC~498 / ECE~483 --- with Zoe Davidow, advised by Prof. Kenneth Kousen}\\[2pt]
 \begin{itemize}
   \item An embedded edge-compute node that delivers real-time biomechanical and fatigue
         feedback to endurance athletes (rowers and cyclists) without cloud or smartphone offload.
@@ -363,6 +369,23 @@ Varsity Ski Team; Concert Choir; Jazz Choir.
         continuous ground truth; (2) optimal FreeRTOS scheduling policy for worst-case latency
         on a single-core MCU; (3) feasibility of a lightweight LSTM for personalised
         $\tau_{W'}$ estimation beyond population-level constants.
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{Astraphe AI --- Mobile AI Athletic Coaching Platform}{2026 -- Active}
+\begin{itemize}
+  \item Built a mobile-first AI coaching platform end-to-end: a multi-source data pipeline
+        (Strava, WHOOP, Garmin, intervals.icu) deduplicating activity data onto canonical
+        records, and a server-side training-load engine (TSS, CTL/ATL/TSB, composite Readiness,
+        Strain) implemented in FastAPI.
+  \item Built a Gemma~4 coaching agent with a pgvector RAG pipeline over coaching memory,
+        exposed through a Svelte~5 / Capacitor mobile client (iOS/Android).
+  \item Self-hosted the platform on a Kubernetes (k3s) cluster with CI/CD via GitHub Actions
+        enforcing an 80\% test-coverage gate.
+  \item Later added a standalone MCP server exposing user data to Claude via a spec-compliant
+        OAuth~2.1 flow (Dynamic Client Registration, PKCE), and open-sourced the platform under
+        Apache-2.0.
 \end{itemize}
 
 \vspace{4pt}
@@ -392,12 +415,23 @@ Varsity Ski Team; Concert Choir; Jazz Choir.
 
 \vspace{4pt}
 
-\cvproject{HPC Cluster --- High-Performance Computing Lab}{Fall 2025}
+\cvproject{HPC Cluster --- High-Performance Computing Lab}{Spring 2026}
 \begin{itemize}
   \item Assembled and configured a personal three-node HPC cluster using Lenovo ThinkStation
         P340~SSF machines interconnected via a dedicated Gigabit Ethernet switch.
   \item Installed and configured Slurm workload manager for job scheduling; benchmarked parallel
         workloads using MPI for CPSC\,375 (High-Performance Computing).
+\end{itemize}
+
+\vspace{4pt}
+
+\cvproject{Cherrybrook Homelab --- Self-Hosted Infrastructure}{2025 -- Present}
+\begin{itemize}
+  \item Built and operate a four-node Proxmox VE cluster (custom i7-9700K + Tesla V100 server,
+        two Dell PowerEdge servers, a repurposed ThinkPad quorum/backup node) hosting Dockerized
+        production workloads, including Astraphe AI and a self-hosted Second Brain MCP server.
+  \item Executed a live VLAN/subnet migration with split-horizon DNS to resolve VPN conflicts;
+        manages reverse proxy/SSL, tailnet DNS, and a UniFi network stack.
 \end{itemize}
 
 \vspace{4pt}
@@ -476,6 +510,44 @@ Varsity Ski Team; Concert Choir; Jazz Choir.
   \item Designed and implemented a Space Invaders clone in Python using Pygame, practicing sprite
         rendering, collision detection, enemy AI wave logic, and a high-score persistence system.
 \end{itemize}
+
+%--- ADDITIONAL PROJECTS & LINKS ---
+\section{Additional Projects \& Links}
+
+Selected additional repositories from
+\href{https://github.com/sbalbale}{github.com/sbalbale} (42 repositories, 91 stars) not detailed above:
+
+\vspace{2pt}
+\begin{itemize}
+  \item \textbf{Bike Handlebar Clamp} (reverse-engineering pipeline) --- Reverse-engineered a
+        replacement handlebar clamp via an iPhone photogrammetry $\to$ RealityCapture $\to$
+        CloudCompare $\to$ SolidWorks pipeline, designing a swept-solid geometry with a TPU-liner
+        interface.
+  \item \textbf{Trinity Accidentals Digital Heritage Platform}
+        (\href{https://github.com/sbalbale/trinity-accidentals}{trinity-accidentals}) --- Next.js /
+        Sanity monorepo archiving the Trinity College Accidentals' performance history and media.
+  \item \textbf{hermes-sendblue-plugin}
+        (\href{https://github.com/sbalbale/hermes-sendblue-plugin}{GitHub}) --- Sendblue
+        (iMessage/SMS) integration plugin for the Hermes personal-agent framework.
+  \item \textbf{boop-agent} (\href{https://github.com/sbalbale/boop-agent}{GitHub}) --- iMessage
+        personal agent built on the Claude Agent SDK, with memory, sub-agents, and automations.
+  \item \textbf{wealthfolio-simplefin-sync}
+        (\href{https://github.com/sbalbale/wealthfolio-simplefin-sync}{GitHub}) --- Addon syncing
+        investment holdings and cash balances into Wealthfolio via the SimpleFIN Bridge.
+  \item \textbf{3D-Printer-Firmware}
+        (\href{https://github.com/sbalbale/3D-Printer-Firmware}{GitHub}) --- Custom Klipper
+        firmware configuration for a modified Creality Ender~3~v2.
+\end{itemize}
+
+\vspace{2pt}
+\textbf{Repository links for projects detailed above:} AstrapheAI
+(\href{https://github.com/sbalbale/astraphe-ai-coach}{astraphe-ai-coach}, renamed from
+``Astrape AI'' May 2026), Cherrybrook Homelab
+(\href{https://github.com/sbalbale/cherrybrook-networks}{cherrybrook-networks}), Remote MCP Server
+(\href{https://github.com/sbalbale/second-brain-mcp}{second-brain-mcp}), Personal Portfolio
+(\href{https://github.com/sbalbale/portfolio-site}{portfolio-site}), Project Aletheia
+(\href{https://github.com/sbalbale/project-aletheia}{project-aletheia}), Haptic Horizon
+(\href{https://github.com/sbalbale/Haptic-Horizon}{Haptic-Horizon}).
 
 %--- ACTIVITIES ---
 \section{Activities \& Interests}
