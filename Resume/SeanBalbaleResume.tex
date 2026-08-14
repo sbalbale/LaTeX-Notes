@@ -3,7 +3,7 @@
 
 \documentclass[10pt, letterpaper]{article}
 
-\usepackage[top=0.22in, bottom=0.22in, left=0.5in, right=0.5in]{geometry}
+\usepackage[top=0.35in, bottom=0.35in, left=0.5in, right=0.5in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
@@ -70,17 +70,15 @@ Assembly (8051/MIPS), Verilog, SQL, MATLAB, LaTeX\\
 \textbf{Cloud Service Software Engineering Intern} --- Sonos | Boston, MA
 \hfill \textit{Summer 2026}
 \begin{itemize}
-  \item Led migration of two production Java/Spring Boot services (Cloud Content team)
-    from WebSocket command delivery to an SQS-backed fire-and-forget queue: authored
-    the design plan and Jira epic, implemented feature-flagged per-player fan-out with
+  \item Led migration of two production Java/Spring Boot services from WebSocket command
+    delivery to an SQS-backed queue: designed the feature-flagged per-player fan-out with
     retry-until-acceptance semantics, and validated both transports against real speakers.
-  \item Diagnosed a silent delivery failure in a pre-production environment by tracing
-    commands through the SDK and queue infrastructure to an endpoint-routing defect, and
-    drove the fix across both services.
-  \item Made the service's functional-test suite runnable locally by porting its
-    DynamoDB-stream Lambda into a local test harness, enabling pre-push validation
-    ahead of the shared CI run; also built Datadog dashboards and monitors for the
-    new delivery path.
+  \item Diagnosed a silent delivery failure in pre-production by tracing commands through
+    the SDK and queue infrastructure to an endpoint-routing defect, and drove the fix
+    across both services.
+  \item Made the functional-test suite runnable locally by porting its DynamoDB-stream
+    Lambda into a local harness for pre-push validation; also built Datadog dashboards
+    and monitors for the new delivery path.
 \end{itemize}
 
 \vspace{1pt}\noindent
@@ -119,33 +117,32 @@ Assembly (8051/MIPS), Verilog, SQL, MATLAB, LaTeX\\
 \hfill \textit{Expected Late August 2026}\\
 \textit{The International Journal of Law, Ethics, and Technology} --- In Production
 \begin{itemize}
-  \item Peer-reviewed paper arguing BIPA and GDPR are structurally inadequate for XR
-    environments; proposes a ``Bodyright'' framework reclassifying biometric data as an
-    inalienable extension of human sovereignty. Awarded the
-    \textbf{Alumni Prize in English Composition}, Trinity College, May 2026.
+  \item Peer-reviewed paper arguing BIPA and GDPR are structurally inadequate for XR;
+    proposes a ``Bodyright'' framework treating biometric data as an inalienable property
+    right, not a consent-revocable one. Awarded the \textbf{Alumni Prize in English
+    Composition}, Trinity College, May 2026.
 \end{itemize}
 
 \vspace{1pt}\noindent
-\textbf{Astraphe AI} --- Mobile AI Athletic Coaching Platform (Solo Founder/Engineer)
+\textbf{Astraphe AI} --- Mobile AI Athletic Coaching Platform
 \hfill \textit{2026 -- Active}
 \begin{itemize}
-  \item Built a mobile-first AI coaching platform end-to-end: multi-source data pipeline
-    (Strava, WHOOP, Garmin, intervals.icu) deduplicated onto canonical records; server-side
-    training-load engine (TSS, CTL/ATL/TSB, composite Readiness, Strain) in FastAPI; a
-    Gemma 4 coaching agent with a pgvector RAG pipeline over coaching memory.
-  \item Svelte 5 / Capacitor mobile client (iOS/Android); self-hosted Dockerized backend
-    and Supabase (Postgres + pgvector) on personal infrastructure, with CI/CD via GitHub
-    Actions over a Cloudflare Tunnel.
+  \item Built a mobile-first AI coaching platform: multi-source data pipeline (Strava,
+    WHOOP, Garmin, intervals.icu) deduplicated onto canonical records; a server-side
+    training-load engine (TSS, CTL/ATL/TSB, Strain) in FastAPI; a Gemma 4 coaching
+    agent with a pgvector RAG pipeline over coaching memory.
+  \item Svelte 5 / Capacitor mobile client (iOS/Android), self-hosted on Kubernetes (k3s)
+    with CI/CD via GitHub Actions (80\% coverage gate); added an MCP server exposing user
+    data to Claude via OAuth 2.1, open-sourced under Apache-2.0.
 \end{itemize}
 
 \vspace{1pt}\noindent
 \textbf{Cherrybrook Homelab} --- Self-Hosted Infrastructure
 \hfill \textit{2025 -- Present}
 \begin{itemize}
-  \item Built and operate a four-node Proxmox VE cluster (custom i7-9700K + Tesla V100
-    server, two Dell PowerEdge servers, a repurposed ThinkPad quorum/backup node) hosting
-    Dockerized production workloads including Astraphe AI and a self-hosted Second Brain
-    MCP server.
+  \item Built and operate a four-node Proxmox VE cluster (i7-9700K + Tesla V100 server, two
+    Dell PowerEdge servers, a ThinkPad quorum/backup node) hosting Dockerized production
+    workloads including Astraphe AI and a self-hosted Second Brain MCP server.
   \item Executed a live VLAN/subnet migration with split-horizon DNS to resolve VPN
     conflicts; manages reverse proxy/SSL, tailnet DNS, and a UniFi network stack.
 \end{itemize}
