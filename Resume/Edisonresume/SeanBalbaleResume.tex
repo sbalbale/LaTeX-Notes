@@ -1,0 +1,151 @@
+%% Sean Balbale — ATS-Optimized One-Page Resume (Edison Scientific — Forward Deployed AI Engineer)
+%% Compile with: pdflatex SeanBalbaleResume.tex
+
+\documentclass[10pt, letterpaper]{article}
+
+\usepackage[top=0.3in, bottom=0.3in, left=0.5in, right=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.1em, itemsep=0pt, parsep=0pt, topsep=0pt}
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\bfseries\uppercase}{}{0em}{}
+[\vspace{-4pt}\rule{\linewidth}{0.4pt}\vspace{2pt}]
+\titlespacing*{\section}{0pt}{2pt}{1pt}
+\pagestyle{empty}
+
+\begin{document}
+\small
+
+%% NAME & CONTACT
+\begin{center}
+  {\Large \textbf{Sean Balbale}}\\[1pt]
+  \small
+  +1\,(781)\,290-8862 \;|\;
+  \href{mailto:sean.balbale@trincoll.edu}{sean.balbale@trincoll.edu} \;|\;
+  \href{https://www.linkedin.com/in/seanbalbale/}{linkedin.com/in/seanbalbale} \;|\;
+  \href{https://seanbalbale.com}{seanbalbale.com} \;|\;
+  \href{https://github.com/sbalbale}{github.com/sbalbale}\\[3pt]
+  \textbf{Available for full-time employment starting June 2027}
+\end{center}
+
+%% SUMMARY
+\section{Summary}
+
+\noindent
+ECE/CS student building production-grade agentic AI systems: an LLM coaching agent
+orchestrated over a self-hosted RAG pipeline, deployed and operated on infrastructure I
+run myself. Alongside that, internship experience owning backend features end-to-end and
+debugging live production incidents at Sonos and Bullhorn. Comfortable working directly
+in ambiguous, real-world systems rather than notebooks.
+
+%% SELECTED PROJECTS
+\section{Selected Projects --- More on Portfolio Website}
+
+\noindent
+\textbf{Astraphe AI} --- Agentic AI Athletic Coaching Platform
+\hfill \textit{2026}
+\begin{itemize}
+  \item Designed and shipped a production agentic coaching system end-to-end: a Gemma 4
+    LLM agent orchestrated over a pgvector RAG pipeline that retrieves structured coaching
+    memory (training history, readiness, athlete goals) to ground its guidance, rather than
+    a stateless chatbot wrapper.
+  \item Built the orchestration and data layer in FastAPI: a multi-source ingestion
+    pipeline (Strava, WHOOP, Garmin, intervals.icu) deduplicated onto canonical records,
+    feeding a training-load engine (TSS, CTL/ATL/TSB, Strain) that grounds agent outputs
+    in real athlete state.
+  \item Self-hosted the full system in production on Kubernetes (k3s) with GitHub Actions
+    CI/CD (80\% coverage gate); owned the Svelte 5 / Capacitor mobile client (iOS/Android)
+    end-to-end. Later added a standalone MCP server exposing user data to Claude via
+    OAuth 2.1 --- a second, independent tool-use integration; open-sourced under Apache-2.0.
+\end{itemize}
+
+\vspace{1pt}\noindent
+\textbf{Cherrybrook Homelab \& HPC Cluster} --- Self-Hosted Infrastructure
+\hfill \textit{2025 -- Present}
+\begin{itemize}
+  \item Built and operate a four-node Proxmox VE cluster hosting Dockerized production
+    workloads including Astraphe AI; executed a live VLAN/subnet migration with
+    split-horizon DNS. Separately, assembled a three-node Slurm/MPI HPC cluster for
+    parallel workload benchmarking.
+\end{itemize}
+
+%% WORK EXPERIENCE
+\section{Work Experience}
+
+\noindent
+\textbf{Cloud Service Software Engineering Intern} --- Sonos | Boston, MA
+\hfill \textit{Summer 2026}
+\begin{itemize}
+  \item Owned migration of two production Java/Spring Boot services from WebSocket command
+    delivery to an SQS-backed queue end-to-end: designed the feature-flagged per-player
+    fan-out with retry-until-acceptance semantics, and validated both transports against
+    real speakers.
+  \item Diagnosed a silent delivery failure in pre-production by tracing commands live
+    through the SDK and queue infrastructure to an endpoint-routing defect, and drove the
+    fix across both services.
+  \item Ported the test suite's DynamoDB-stream Lambda into a local harness for pre-push
+    validation; built Datadog dashboards for the new delivery path.
+\end{itemize}
+
+\vspace{1pt}\noindent
+\textbf{Software Engineering Intern} --- Bullhorn | Boston, MA
+\hfill \textit{Summer 2025}
+\begin{itemize}
+  \item Owned the BH Boot 1.0.0 framework migration end-to-end: upgraded multiple
+    production Java services from Spring Boot 2 to Spring Boot 3, refactoring all
+    \texttt{javax} namespaces to \texttt{jakarta} and restructuring the proprietary data
+    access layer.
+  \item Led the Log4j2 security upgrade across SEARCH\_AI, ATS\_CRM, and MIDDLE\_OFFICE
+    service groups; refactored legacy TestNG/JMockit suites to JUnit 5 and Mockito.
+\end{itemize}
+
+\vspace{1pt}\noindent
+\textbf{Engineering Teaching Assistant} --- ENGR 212L Linear Circuit Theory, Trinity College | Hartford, CT
+\hfill \textit{Spring 2026}
+\begin{itemize}
+  \item Led weekly lab sessions for ENGR 212L covering RLC circuit analysis, op-amps,
+    Laplace transforms, Fourier series, and active filter design.
+\end{itemize}
+
+%% EDUCATION
+\section{Education}
+
+\noindent
+\textbf{Trinity College} --- Hartford, CT \hfill \textit{Expected May 2027}\\
+Bachelor of Science in Electrical and Computer Engineering \hfill GPA: 3.70\\
+Bachelor of Science in Computer Science\\
+\textit{Coursework:} Deep Learning, Software Engineering, High-Performance Computing,
+Data Structures \& Algorithms.\\
+\textit{Extracurriculars:} Varsity Athlete --- Trinity College Men's Rowing;\quad
+Singer \& Technology Chair --- The Trinity College Accidentals.
+
+%% SKILLS
+\section{Skills}
+
+\noindent
+\textbf{AI/LLM:} LLM Orchestration \& Agent Design, RAG (pgvector), MCP, Prompt Engineering,
+Gemma, OAuth 2.1\\
+\textbf{Languages:} Python, Java, TypeScript, JavaScript, C, C++, SQL, MATLAB, LaTeX\\
+\textbf{Backend:} FastAPI, Spring Boot 3, Jakarta EE, Node.js, REST APIs, JUnit 5, Mockito\\
+\textbf{Frontend:} React, Next.js, Svelte, Tailwind CSS\\
+\textbf{Cloud \& DevOps:} Kubernetes, Docker, AWS, CI/CD (GitHub Actions), Proxmox, Git,
+Linux, Supabase, Slurm, MPI\\
+\textbf{Embedded / Hardware:} Arduino, ARM, 8051, FPGA, BLE 5, SPI/I2C
+
+%% RESEARCH & HONORS
+\section{Research \& Honors}
+
+\noindent
+\textbf{``Embodied Harms and Inferred Data: Redefining Privacy in Extended Reality''}
+--- \textit{Int'l Journal of Law, Ethics, and Technology} (in production); awarded the
+Alumni Prize in English Composition, Trinity College, May 2026.
+
+\section{Personal}
+
+\noindent
+Serious home cook across a wide range of cuisines. Outside the kitchen: cycling, ski
+mountaineering, and tinkering on whatever project has captured my attention.
+
+\end{document}
