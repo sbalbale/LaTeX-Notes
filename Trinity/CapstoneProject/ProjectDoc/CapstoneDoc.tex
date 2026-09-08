@@ -1,0 +1,641 @@
+\documentclass[11pt, letterpaper]{article}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{siunitx}
+\usepackage{longtable}
+\usepackage[T1]{fontenc}
+
+% ── Colour palette ─────────────────────────────────────────────────────────────
+\definecolor{trinityblue}{RGB}{10, 60, 130}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{245, 245, 245}
+\definecolor{accentblue}{RGB}{30, 100, 200}
+
+% ── Hyperref setup ─────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=trinityblue,
+  urlcolor=accentblue,
+  citecolor=trinityblue
+}
+
+% ── Section title formatting ───────────────────────────────────────────────────
+\titleformat{\section}
+{\large\bfseries\color{trinityblue}}
+{\thesection}
+{0.6em}
+{}
+[\vspace{-0.5ex}\rule{\linewidth}{0.8pt}\vspace{0.5ex}]
+
+\titleformat{\subsection}
+{\normalsize\bfseries\color{darkgray}}
+{\thesubsection}
+{0.6em}
+{}
+
+\titlespacing{\section}{0pt}{1.2em}{0.5em}
+\titlespacing{\subsection}{0pt}{0.8em}{0.3em}
+
+% ── Header / Footer ────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small\color{darkgray} Edge-Compute Pacing \& Feedback Node}
+\fancyhead[R]{\small\color{darkgray} System Design Document}
+\fancyfoot[L]{\small\color{darkgray} CPSC 498 / ECE Senior Project}
+\fancyfoot[R]{\small\color{darkgray}\thepage}
+
+% ── List style ─────────────────────────────────────────────────────────────────
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=1.4em}
+\setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=1.4em}
+
+% ── Small helper for decision-record boxes ─────────────────────────────────────
+\newcommand{\decision}[2]{%
+  \par\vspace{0.4em}
+  \noindent\colorbox{lightgray}{\parbox{0.97\linewidth}{\vspace{0.3em}
+  \textbf{\color{trinityblue} Decision:} #1 \\[0.3em]
+  \textbf{Rationale:} #2
+  \vspace{0.3em}}}%
+  \par\vspace{0.4em}
+}
+
+% ==============================================================================
+\begin{document}
+
+% ── Title Block ───────────────────────────────────────────────────────────────
+\begin{center}
+  {\LARGE\bfseries\color{trinityblue} Edge-Compute Pacing \& Feedback Node}\\[0.4em]
+  {\large\color{darkgray} System \& Firmware Design Document}\\[0.8em]
+  \begin{tabular}{rl}
+    \textbf{Students:}          & Sean Balbale, Zoe Davidow \& Kayla Walsh \\
+    \textbf{Program:}           & B.S.\ ECE\,/\,B.S.\ CS, Trinity College (Class of 2027) \\
+    \textbf{Faculty Advisor:}   & Prof.\ Kenneth A.\ Kousen \\
+    \textbf{Concept Summary:}   & April 28, 2026 \\
+    \textbf{This Revision:}     & \parbox{3.6in}{September 2026 --- adds hardware/ECE design
+                                   detail and revises the sensing model from power- to HR-based}
+  \end{tabular}
+\end{center}
+
+\vspace{0.3em}
+\noindent\rule{\linewidth}{1.2pt}
+\vspace{0.3em}
+
+% ── Abstract ──────────────────────────────────────────────────────────────────
+\section{Abstract}
+
+This project develops an embedded edge-compute node that gives endurance athletes ---
+specifically rowers and cyclists --- real-time fatigue feedback with no phone and no cloud
+in the loop. The device pairs with a wireless heart-rate chest strap (BLE, with an ANT+
+fallback path if required), runs a physiologically motivated depletion/recovery model directly
+on a resource-constrained microcontroller, and expresses the result through an on-board LED
+array and buzzer. The contribution spans two disciplines: an \textbf{ECE} contribution in
+sensor interfacing, power budgeting, and concurrent real-time firmware on a strict memory and
+power envelope, and a \textbf{CS} contribution in the discretization and validation of a
+continuous-time physiological model running on fixed-point, resource-constrained hardware.
+
+% ── Problem Statement ─────────────────────────────────────────────────────────
+\section{Problem Statement}
+
+Commercial cycling and rowing head units display raw telemetry (watts, cadence, heart rate,
+split) but perform no predictive computation. Athletes must self-interpret numbers while under
+physiological stress, a cognitively expensive task that degrades pacing decisions. Smartphone
+and cloud offload solve the compute problem but introduce connectivity dependency, latency, and
+battery vulnerability --- unacceptable in competitive race settings.
+
+\begin{center}
+  \colorbox{lightgray}{\parbox{0.88\linewidth}{
+      \vspace{0.4em}
+      \textit{Can a real-time fatigue model be implemented with sub-100\,ms latency on a
+        bare-metal or RTOS microcontroller, with sufficient numerical precision to provide
+      actionable pacing feedback --- entirely offline, and driven by sensor hardware that is
+      realistically available to a rower or cyclist without a \$400+ power meter?}
+      \vspace{0.4em}
+  }}
+\end{center}
+
+% ── Sensing and Fatigue Model ─────────────────────────────────────────────────
+\section{Sensing \& Fatigue Model}
+
+\subsection{From Power-Based to HR-Based Sensing}
+
+The original concept used the $W'$ balance model, driven by an athlete's instantaneous power
+output. In practice, the vast majority of rowers and club/collegiate cyclists do not own a
+power meter (\$400--\$1500), while heart-rate chest straps are inexpensive (\$50--\$100) and
+already owned by most endurance athletes. To make the device usable by an actual team rather
+than only athletes with power-meter-equipped bikes, the primary sensor input is changed to
+heart rate.
+
+\decision{Primary fatigue input changes from power (W) to heart rate (bpm).}
+{Sensor availability and cost across the target user base (teammates, club athletes) rather
+than sensor precision. This is an access/equity decision, not a claim that HR is a better
+signal than power.}
+
+This has a real algorithmic consequence, documented for the advisor and for the written
+thesis: the Monod--Scherrer/Skiba $W'$ model is defined and validated in terms of power against
+Critical Power. Heart rate is not power. It lags true effort by tens of seconds to minutes, does
+not register short anaerobic surges the way power does, and drifts with heat, hydration, and
+accumulated fatigue independent of instantaneous output. Sections \ref{sec:wprime} and
+\ref{sec:hprime} below keep the validated model as the literature reference case and present the
+HR-driven model as an explicitly \textit{adapted, unvalidated} analog --- which becomes a
+research question in its own right (Section \ref{sec:cs-questions}) rather than a
+weakened version of the original claim.
+
+\subsection{Reference Case: The $W'$ Balance Model}
+\label{sec:wprime}
+
+Two athlete-specific parameters govern the reference model:
+\begin{itemize}
+  \item $CP$ --- Critical Power (W), the highest sustainable steady-state output.
+  \item $W'$ --- the finite anaerobic energy reservoir (J) above $CP$.
+\end{itemize}
+
+\begin{equation}
+  W'_{\mathrm{bal}}(t) = W' - \int_{0}^{t} \bigl[P(\tau) - CP\bigr]^{+} \, d\tau
+  \label{eq:depletion}
+\end{equation}
+
+\begin{equation}
+  \frac{dW'_{\mathrm{bal}}}{dt} =
+  \begin{cases}
+    -\!\bigl(P(t) - CP\bigr) & P(t) \geq CP \quad (\text{depletion}) \\[6pt]
+    \dfrac{W' - W'_{\mathrm{bal}}(t)}{\tau_{W'}} & P(t) < CP \quad (\text{recovery})
+  \end{cases}
+  \label{eq:skiba}
+\end{equation}
+
+\begin{equation}
+  \tau_{W'}(t) = 546\,e^{-0.01\,[CP - P(t)]} + 316 \quad [\text{s}]
+  \label{eq:tau}
+\end{equation}
+
+This remains the literature-grounded case used to validate the discretization approach
+(Section \ref{sec:discrete}) whenever a power meter is available for bench testing.
+
+\subsection{Adapted Case: HR-Analog Depletion Model}
+\label{sec:hprime}
+
+The primary, deployed model substitutes heart rate for power and lactate-threshold heart rate
+($LTHR$) for Critical Power, keeping the same depletion/recovery structure:
+
+\begin{equation}
+  H'_{\mathrm{bal}}(t) = H' - \int_{0}^{t} \bigl[\mathrm{HR}(\tau) - LTHR\bigr]^{+} \, d\tau
+  \label{eq:hdepletion}
+\end{equation}
+
+\begin{equation}
+  \frac{dH'_{\mathrm{bal}}}{dt} =
+  \begin{cases}
+    -\!\bigl(\mathrm{HR}(t) - LTHR\bigr) & \mathrm{HR}(t) \geq LTHR \\[6pt]
+    \dfrac{H' - H'_{\mathrm{bal}}(t)}{\tau_{H'}} & \mathrm{HR}(t) < LTHR
+  \end{cases}
+  \label{eq:hskiba}
+\end{equation}
+
+where $H'$ is a normalized reservoir size (not a physical energy quantity --- there is no
+literature basis for an anaerobic joule-equivalent in HR terms) and $\tau_{H'}$ reuses the
+functional form of Eq.~\eqref{eq:tau} with $LTHR$ in place of $CP$, pending empirical
+re-fitting in Phase 2. This substitution is stated plainly as a design assumption to be tested,
+not asserted as physiologically validated.
+
+\subsection{Threshold Calibration ($LTHR$, $HR_{max}$, $HR_{rest}$)}
+
+Three athlete-specific constants are required and must be enterable in the field (Section
+\ref{sec:ui}):
+\begin{itemize}
+  \item \textbf{$LTHR$} --- primary threshold for Eq.~\eqref{eq:hskiba}. Estimated via a guided
+    on-device field test (last 20 minutes of a 30-minute time-trial effort, averaged), with
+    manual entry as an override for athletes with a known lab-tested value.
+  \item \textbf{$HR_{max}$, $HR_{rest}$} --- used for Karvonen \%HRR normalization in the
+    calibration UI and for sanity-bounding sensor readings (reject implausible HR samples).
+\end{itemize}
+
+\subsection{Discrete-Time Implementation}
+\label{sec:discrete}
+
+Both models share one parameterized Euler update, so the same firmware path handles the power
+case (bench validation) and the HR case (deployed):
+
+\begin{equation}
+  X'_{\mathrm{bal}}[n] =
+  \begin{cases}
+    X'_{\mathrm{bal}}[n-1] - \bigl(S[n] - T\bigr)\,\Delta t & S[n] \geq T \\[8pt]
+    X'_{\mathrm{bal}}[n-1] + \dfrac{X' - X'_{\mathrm{bal}}[n-1]}{\tau_{X'}[n]}\,\Delta t & S[n] < T
+  \end{cases}
+  \label{eq:discrete}
+\end{equation}
+
+where $(S, T, X') = (P, CP, W')$ for the reference case or $(\mathrm{HR}, LTHR, H')$ for the
+deployed case, $\Delta t = 1\,\mathrm{s}$ (matching the BLE HR notification interval), and
+$X'_{\mathrm{bal}}[0] = X'$. Fixed-point arithmetic only; well within the Cortex-M4F budget at
+\SI{64}{\mega\hertz}.
+
+\subsection{LED Feedback Mapping}
+
+\begin{equation}
+  k_{\mathrm{lit}}[n] = \left\lfloor N \cdot \frac{X'_{\mathrm{bal}}[n]}{X'} \right\rfloor,
+  \qquad
+  \mathrm{hue}[n] =
+  \begin{cases}
+    \text{green} & k_{\mathrm{lit}}/N > 0.50 \\
+    \text{amber} & 0.20 < k_{\mathrm{lit}}/N \leq 0.50 \\
+    \text{red}   & k_{\mathrm{lit}}/N \leq 0.20
+  \end{cases}
+\end{equation}
+
+A buzzer interrupt fires when $X'_{\mathrm{bal}}[n] < 0.10 \cdot X'$.
+
+% ── Hardware Architecture ─────────────────────────────────────────────────────
+\section{Hardware Architecture \& Component Selection}
+\label{sec:hardware}
+
+\subsection{Microcontroller}
+
+\decision{Nordic nRF52840 (Adafruit Feather nRF52840 Express for prototyping).}
+{Native dual-radio silicon (BLE 5 and ANT, on the same die) means the sensor-protocol decision
+below is a \emph{firmware} choice, not a board respin. The Feather's built-in USB and LiPo
+charge circuitry also removes a discrete charger IC from the BOM. Cortex-M4F @ \SI{64}{\mega\hertz},
+\SI{256}{\kilo\byte} RAM, \SI{1}{\mega\byte} flash --- ample headroom for the Euler-update
+compute load, an I2C OLED driver, and FreeRTOS.}
+
+\subsection{Wireless Sensor Protocol: BLE vs.\ ANT+}
+\label{sec:protocol}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.30\linewidth}>{\raggedright\arraybackslash}p{0.30\linewidth}}
+\toprule
+ & \textbf{BLE-only (Arduino/CircuitPython)} & \textbf{ANT+ (S340 SoftDevice)} \\
+\midrule
+Toolchain & Stays on Adafruit's Arduino core, current firmware plan unchanged & Requires leaving
+Arduino for the nRF5 SDK / nRF Connect SDK; free ANT+ Adopter registration required to obtain
+the S340 hex \\
+Strap compatibility & Covers any dual-mode strap (Polar H10, Garmin HRM-Dual/Pro, Wahoo TICKR
+--- confirmed to broadcast BLE + ANT+ simultaneously) & Required only for ANT+-only hardware
+(rare among current chest straps) \\
+Multi-athlete environments & Standard HR Service scan, connect to strap's stored MAC address & 
+15 configurable channels, better suited to crowded-field broadcast scenarios (e.g.\ a regatta
+with dozens of straps active) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\decision{Default to BLE-only; keep ANT+ as a documented fallback path, not a Phase 1 requirement.}
+{The straps realistically available to the team broadcast both protocols simultaneously, so
+BLE-only satisfies Phase 1 without the SDK migration cost. The ANT+ path (Section
+\ref{sec:protocol}, right column) is retained as a designed-for option if a strap without BLE
+turns up, or if channel behavior in a crowded regatta start line makes ANT+ preferable ---
+this is an open item, see Section \ref{sec:risks}.}
+
+\subsection{Power System}
+\label{sec:power}
+
+\decision{3.7\,V LiPo pouch cell (JST-PH, \SI{2000}{\milli\ampere\hour}) instead of an 18650 cell
+with a separate BMS/charger module.}
+{The Feather's onboard charge IC and battery-voltage monitoring already expect exactly this
+battery type and connector --- adding a bare 18650 would mean sourcing and wiring a separate
+TP4056-class charger and physical cell holder for no functional benefit at this power budget.}
+
+\begin{center}
+\small
+\begin{longtable}{p{0.30\linewidth}p{0.14\linewidth}p{0.10\linewidth}p{0.36\linewidth}}
+\toprule
+\textbf{Subsystem} & \textbf{Est.\ avg.\ current} & \textbf{Duty} & \textbf{Notes} \\
+\midrule
+nRF52840 core (sensor sampling + Euler compute) & \SI{5}{\milli\ampere} & continuous & Cortex-M4F
+active during 1\,Hz compute tick, sleeps between ticks \\
+BLE connection (HR notifications @ 1\,Hz) & \SI{1.5}{\milli\ampere} & continuous & Connection
+interval tuned for the 1\,s sensor cadence, not BLE's fastest possible rate \\
+NeoPixel strip (8 px, typical amber/green states) & \SI{15}{\milli\ampere} & continuous &
+Worst case (8 px full white) is \textasciitilde\SI{144}{\milli\ampere}; normal operation stays
+well under this \\
+OLED (calibration menu only) & \SI{15}{\milli\ampere} & intermittent & Off during a session;
+averages under \SI{1}{\milli\ampere} over a full ride/row \\
+Buzzer (threshold alerts) & \SI{30}{\milli\ampere} & intermittent & Averages under
+\SI{0.5}{\milli\ampere} over a session \\
+\midrule
+\textbf{Estimated average draw} & \textbf{\textasciitilde\SI{23}{\milli\ampere}} & & \\
+\textbf{Estimated runtime on \SI{2000}{\milli\ampere\hour}} & \textbf{\textasciitilde 85\,h} & &
+Far exceeds the \SI{6}{\hour} target \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\textit{These are first-pass estimates from component datasheets, not bench measurements ---
+Phase 1 hardware bring-up includes a runtime validation pass under real load (Section
+\ref{sec:timeline}).} Given the wide margin above the \SI{6}{\hour} target, a smaller
+\SI{500}{\milli\ampere\hour}--\SI{1200}{\milli\ampere\hour} cell is worth evaluating once real
+draw is measured, trading unused runtime for a smaller, lighter handlebar/hull-mount enclosure.
+
+\subsection{User Interface Hardware}
+\label{sec:ui}
+
+\begin{itemize}
+  \item \textbf{Output:} WS2812B NeoPixel stick (8 px) for the primary $X'_{\mathrm{bal}}$
+    readout; piezo buzzer for the low-reserve alert.
+  \item \textbf{Calibration input:} three 6\,mm tactile buttons (Up / Down / Select) plus a
+    0.91-inch 128$\times$32 I2C OLED (STEMMA QT), added specifically because entering a
+    3-digit $LTHR$ value via LED blink-count feedback is error-prone in the field. The OLED
+    shares the I2C bus with no other peripheral, so it adds two GPIO pins total.
+  \item \textbf{Config mode:} Select cycles $LTHR \rightarrow HR_{max} \rightarrow HR_{rest}
+    \rightarrow$ save/exit; Up/Down adjust the active field with accelerating auto-repeat on a
+    held press. Buttons are inert during an active session to prevent accidental input
+    mid-effort.
+\end{itemize}
+
+\subsection{USB Connector}
+\label{sec:usbc}
+
+\decision{Add a USB Type-C breakout board (downstream configuration) wired to the Feather's
+onboard Micro-USB connector, rather than using the stock Micro-USB port directly or an external
+Micro-B-to-C adapter cable.}
+{The Feather's native USB already handles both charging and full data (serial console, DFU
+flashing) --- the only gap is that its physical connector is Micro-USB. An adapter cable would
+close that gap with zero rework, but the breakout gives a cleaner result: it has the 5.1\,k$\Omega$
+CC pulldown resistors needed for reliable 5\,V/1.5\,A negotiation built in (avoiding the
+charger-compatibility question an unpowered adapter cable carries), and it panel-mounts flush
+into the 3D-printed enclosure wall instead of leaving an internal cable loop.}
+
+The nRF52840's USB D+/D$-$ lines are not broken out to any 0.1" header pin on the Feather ---
+they run only to the pads of the onboard Micro-USB connector. Implementation is therefore a
+piggyback solder job, not a header-wire connection: four fine-gauge (30\,AWG) wires are tacked
+directly onto the Micro-USB connector's VBUS, D+, D$-$, and GND legs (the 5th, ID, pin is
+unused) and routed to the matching pads on the breakout board. Desoldering the Micro-USB
+connector outright is deliberately avoided, since lifting a pad on a fine-pitch SMT part is a
+real risk without hot-air rework equipment. Continuity should be bench-verified with a
+multimeter before final enclosure assembly, since the joints are not inspectable once sealed.
+
+\subsection{Mechanical / Form Factor}
+
+Handlebar mount (cycling) or hull-mount (rowing shell), 3D-printed in-house. Rowing introduces a
+splash/spray exposure the original cycling-only form factor did not need to fully account for;
+enclosure sealing around the button, OLED, and USB-C cutouts is called out as an open item
+(Section \ref{sec:risks}).
+
+% ── Firmware ───────────────────────────────────────────────────────────────
+\section{Firmware \& Software Architecture}
+
+\subsection{RTOS Task Structure}
+
+FreeRTOS with four tasks on defined priorities and circular-buffer IPC: \textbf{sensor} (BLE HR
+notification handling), \textbf{compute} (Eq.~\eqref{eq:discrete} Euler tick), \textbf{output}
+(NeoPixel/buzzer drive), and \textbf{UI} (button debounce and OLED refresh during calibration).
+The UI task is lowest priority and never blocks the sensor-to-LED path, preserving the
+\SI{100}{\milli\second} end-to-end latency target from the original problem statement.
+
+\subsection{Sensor Pairing}
+
+\begin{itemize}
+  \item \textbf{BLE:} scan for the standard Heart Rate Service (UUID 0x180D); connect to the
+    first match; store the strap's MAC address in flash. Subsequent boots connect directly to
+    the stored address rather than re-scanning, falling back to a fresh scan only on a
+    connection timeout. This avoids picking up a nearby teammate's strap during team practice
+    or a race start.
+  \item \textbf{ANT+ (if implemented per Section \ref{sec:protocol}):} wildcard search on HR
+    profile (device type 120) once, then lock to the discovered device number for all
+    subsequent searches.
+  \item Both paths expose a manual re-pair trigger (button hold) for swapping straps.
+\end{itemize}
+
+\subsection{Language \& Validation}
+
+C/C++ against the nRF5 SDK (or Adafruit's Arduino core for the BLE-only path). The Euler-update
+compute path is unit-tested against a reference Python implementation of Eq.~\eqref{eq:discrete}
+before on-device deployment, for both the power and HR parameterizations.
+
+% ── Research Framing ──────────────────────────────────────────────────────────
+\section{Research Framing}
+
+\subsection{Computer Science Research Questions}
+\label{sec:cs-questions}
+
+\begin{enumerate}
+  \item \textbf{Algorithmic correctness under discretization.} How does Euler-step sampling
+    frequency affect $X'_{\mathrm{bal}}$ accuracy relative to the continuous-time ground truth,
+    for \emph{both} the validated power case and the adapted HR case?
+  \item \textbf{Model transfer.} Does the depletion/recovery structure validated for power
+    (Skiba et al.) produce a comparably informative fatigue signal when driven by heart rate
+    instead --- and if the two disagree, where and why? (Requires bench sessions with both a
+    power meter and HR strap on the same athlete for direct comparison.)
+  \item \textbf{Concurrent firmware architecture.} What FreeRTOS scheduling policy minimizes
+    worst-case latency while preventing sensor-buffer overflow on a single-core MCU?
+  \item \textbf{Extensibility toward ML (stretch goal).} Can a lightweight recurrent model
+    trained on historical HR traces forecast near-term HR well enough to make the LED feedback
+    anticipatory rather than reactive, addressing the cardiac-lag weakness named in Section
+    \ref{sec:hprime}? Full specification in Section \ref{sec:ml-stretch}.
+\end{enumerate}
+
+\subsection{ECE Research Questions}
+
+\begin{enumerate}
+  \item \textbf{Power budget validation.} Does measured current draw under real BLE connection
+    and NeoPixel activity match the datasheet-derived estimate in Section \ref{sec:power}, and does the
+    system meet the \SI{6}{\hour} runtime target with margin to downsize the battery?
+  \item \textbf{RF behavior in the deployed environment.} Does BLE connection stability hold up
+    mounted on a carbon bicycle frame or an aluminum/carbon rowing shell (both RF-unfriendly
+    environments), and does antenna placement in the 3D-printed enclosure need adjustment?
+  \item \textbf{End-to-end latency budget.} With the wireless link now in the loop (strap
+    $\rightarrow$ BLE notification $\rightarrow$ compute $\rightarrow$ LED), where does the
+    \SI{100}{\milli\second} budget actually get spent, and is BLE connection-interval tuning
+    sufficient to hold it?
+\end{enumerate}
+
+% ── ML Stretch Goal ────────────────────────────────────────────────────────────
+\section{Stretch Goal: On-Device HR Forecasting}
+\label{sec:ml-stretch}
+
+This is scoped as a \textbf{Phase 5 stretch goal}, not a Phase 1--4 dependency --- the core
+deliverable (Sections 3--6) is complete and demoable without it. It is included here because it
+turns the model's stated weakness into the project's most interesting extension, and because a
+real training dataset already exists (Section \ref{sec:ml-data}).
+
+\subsection{Motivation}
+
+Section \ref{sec:hprime} names cardiac lag as the central limitation of the HR-analog model: by
+the time $\mathrm{HR}(t)$ crosses $LTHR$, the athlete's actual effort crossed it tens of seconds
+earlier. The LED feedback is therefore always a step behind reality. A small forecasting model
+sitting in front of the depletion equation --- predicting $\mathrm{HR}(t + \delta)$ from the
+recent trace rather than reacting to $\mathrm{HR}(t)$ --- gives the athlete a genuine early
+warning instead of a delayed one, which is a materially different (and more useful) product
+behavior, not just a numerical refinement.
+
+\subsection{Model \& Integration}
+
+\begin{itemize}
+  \item \textbf{Architecture:} single-layer GRU or LSTM, 8--16 hidden units, taking the trailing
+    30--60 samples of $\mathrm{HR}(t)$ (plus first difference) at the existing 1\,Hz cadence and
+    predicting $\mathrm{HR}(t + 5\text{--}10\,\mathrm{s})$.
+  \item \textbf{Footprint:} at this size, a handful of hundred to $\sim$2000 parameters ---
+    low single-digit \si{\kilo\byte} of flash at 8-bit quantization. RAM is dominated by the
+    inference runtime overhead (TFLite Micro's interpreter, roughly
+    \SIrange{2}{10}{\kilo\byte} depending on configuration) rather than the model itself, and
+    should be benchmarked against whatever the S140/S340 SoftDevice reserves before assuming
+    it fits (Section \ref{sec:power}'s RAM headroom is for the compute task, not the radio
+    stack).
+  \item \textbf{Inference cost:} a model this small runs in microseconds to low single-digit
+    milliseconds on the Cortex-M4F --- does not threaten the \SI{100}{\milli\second} end-to-end
+    latency budget (Section \ref{sec:discrete}).
+  \item \textbf{Integration point:} the compute task (Section \ref{sec:discrete}) gains an
+    inference substep ahead of the Euler tick; $H'_{\mathrm{bal}}$ is computed against the
+    forecast $\widehat{\mathrm{HR}}(t+\delta)$ rather than the raw sample, and the LED hue
+    transition fires on the forecast crossing $LTHR$.
+\end{itemize}
+
+\subsection{Training Data}
+\label{sec:ml-data}
+
+Unlike a typical student ML project, this does not need a bootstrapped or public dataset ---
+historical session data already exists from AstrapheAI, Sean's self-hosted endurance-coaching
+platform, which ingests Strava/WHOOP telemetry per workout including \textbf{power, heart rate,
+speed, elevation}, and additional derived fields. This is a real, already-labeled corpus of
+multi-athlete session data rather than a synthetic or public substitute, and is queryable
+directly (workout listing and windowed stream extraction) rather than requiring a new export
+pipeline.
+
+\begin{itemize}
+  \item \textbf{Session split:} train/validation/test split by athlete and by session (not by
+    sample) to avoid leaking a single ride's autocorrelated HR trace across splits.
+  \item \textbf{Label quality check before committing to this scope:} confirm sampling rate and
+    gap frequency in the existing HR streams are consistent enough for a 1\,Hz forecasting
+    target, and confirm whether per-session effort/RPE context exists or whether HR and power
+    alone are the only signal available for training.
+  \item \textbf{Cross-signal opportunity:} since power is also present in the same dataset for
+    sessions where it was recorded, the same corpus supports the model-transfer research
+    question (Section \ref{sec:cs-questions}, item 2) --- training and evaluating the forecast
+    model against sessions where \emph{both} power and HR exist gives a direct check of how much
+    the HR-analog model's lag actually costs, using the athlete's own data rather than a
+    literature estimate.
+  \item \textbf{Offline training:} standard Python/PyTorch or TensorFlow training loop, exported
+    and quantized to TFLite Micro (or a small hand-rolled fixed-point inference routine, given
+    the model's size) for on-device deployment; unit-tested against the Python reference
+    forecast output before flashing, following the same validation pattern already used for the
+    Euler update (Section \ref{sec:discrete}).
+\end{itemize}
+
+\subsection{Risk}
+
+Genuinely a stretch goal: if Phase 1--4 timeline slips, this is the first thing to cut without
+weakening the core deliverable, and the fallback in CS Research Question 4's original framing
+(online $\tau_{H'}$ personalization via a lightweight estimator rather than a trained network)
+remains available as a lower-effort substitute.
+
+% ── Deliverables & Timeline ───────────────────────────────────────────────────
+\section{Deliverables \& Timeline}
+\label{sec:timeline}
+
+\begin{center}
+\begin{longtable}{cp{0.68\linewidth}l}
+\toprule
+\textbf{Phase} & \textbf{Milestone} & \textbf{Target} \\
+\midrule
+1 & Hardware bring-up; BLE HR strap pairing verified; power budget bench-validated & Sep 2026 \\
+2 & $H'$ model on MCU; validated against Python reference and, where possible, against the
+    power-based $W'$ reference case & Oct 2026 \\
+3 & FreeRTOS integration; UI/calibration task; latency and scheduling benchmarks & Nov 2026 \\
+4 & Full feedback loop; field test with HR strap on-bike and on-water & Dec 2026 \\
+5 & Formal write-up, poster, and final public demo & Apr 2027 \\
+5$^\dagger$ & \textit{Stretch:} HR-forecasting model (Section \ref{sec:ml-stretch}) --- training data
+    audit, offline training, on-device integration & Apr 2027 \\
+\bottomrule
+\end{longtable}
+{\small $^\dagger$Stretch goal; does not block the core Phase 5 deliverable if timeline is tight.}
+\end{center}
+
+% ── Bill of Materials ──────────────────────────────────────────────────────────
+\section{Bill of Materials}
+\label{sec:bom}
+
+Linked items are current as of this revision; prices are list price at the linked retailer and
+will drift. Items marked \textit{(source locally)} are generic enough that any supplier works
+and are not worth pinning to a specific link.
+
+\begin{center}
+\small
+\begin{longtable}{p{0.38\linewidth}p{0.10\linewidth}p{0.42\linewidth}}
+\toprule
+\textbf{Item} & \textbf{Price} & \textbf{Notes} \\
+\midrule
+\endhead
+\href{https://www.adafruit.com/product/4062}{Adafruit Feather nRF52840 Express} &
+  \$24.95 & Core MCU. Native BLE, USB, onboard LiPo charge circuit. \\
+\href{https://www.adafruit.com/product/2011}{Lithium Ion Battery --- 3.7\,V \SI{2000}{\milli\ampere\hour}, JST-PH} &
+  \$12.50 & Plugs directly into the Feather's onboard battery port; no separate charger/BMS needed. \\
+\href{https://www.adafruit.com/product/1426}{NeoPixel Stick --- 8 x WS2812/SK6812 RGB LED} &
+  \$5.95 & Primary $H'_{\mathrm{bal}}$ readout. \\
+\href{https://www.adafruit.com/product/1536}{Buzzer 5V --- Breadboard friendly} &
+  \$1.95 & Low-reserve alert; self-driving, apply 3--5\,V directly. \\
+\href{https://www.adafruit.com/product/367}{Tactile Button Switch (6mm) --- 20 Pack} &
+  \$4.95 & Up / Down / Select calibration buttons (3 used, 17 spares). \\
+\href{https://www.adafruit.com/product/4440}{Monochrome 0.91" 128$\times$32 I2C OLED --- STEMMA QT} &
+  $\sim$\$15 & Threshold-entry and live-HR display during calibration. \\
+\href{https://www.adafruit.com/product/4209}{STEMMA QT to Premium Male Headers Cable} &
+  \$0.95 & Solderless I2C hookup from OLED to Feather header pins. \\
+\href{https://www.adafruit.com/product/4090}{USB Type C Breakout Board --- Downstream Connection} &
+  \$2.95 & External USB-C port (Section \ref{sec:usbc}); wire to the Feather's Micro-USB pins. \\
+\midrule
+Protoboard / perfboard \textit{(source locally)} & $\sim$\$5 & \\
+22--26\,AWG hookup wire, incl.\ fine 30\,AWG for the USB-C piggyback joints \textit{(source locally)} &
+  $\sim$\$8 & \\
+JST-PH 2-pin connectors, a few \textit{(source locally)} & $\sim$\$5 & For detachable buzzer/NeoPixel leads. \\
+\midrule
+\textbf{Linked components subtotal} & \textbf{$\sim$\$69} & \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\textbf{Optional --- HR chest strap for bench testing:}
+\href{https://www.polar.com/us-en/sensors/h10-heart-rate-sensor}{Polar H10 Heart Rate Sensor}
+($\sim$\$90--105) if the team does not already have a spare dual-mode (BLE + ANT+) strap
+available for dedicated bench work. Any teammate's Polar H10, Garmin HRM-Dual/Pro, or Wahoo
+TICKR works as-is with the BLE-only plan in Section \ref{sec:protocol}.
+
+% ── Open Decisions & Risks ────────────────────────────────────────────────────
+\section{Open Decisions \& Risks}
+\label{sec:risks}
+
+\begin{itemize}
+  \item \textbf{ANT+ vs.\ BLE-only:} pending confirmation that every strap the team will
+    actually use is dual-mode. If not, the ANT+/S340 path in Section \ref{sec:protocol} needs
+    to move from "documented fallback" to "Phase 1 requirement."
+  \item \textbf{$LTHR$ field-test accuracy:} the guided on-device test is a standard field
+    estimate, not a lab-grade measurement; needs validation against a known value for at least
+    one athlete before being trusted as the default calibration path.
+  \item \textbf{Enclosure sealing:} rowing's splash exposure is a materially different
+    environment than cycling for the button/OLED cutouts; needs a sealing approach before the
+    on-water field test in Phase 4.
+\end{itemize}
+
+% ── Advisor Engagement ────────────────────────────────────────────────────────
+\section{Advisor Engagement}
+
+Prof.\ Kousen's advising continues to focus on software architecture, algorithmic design, and
+CS rigor per the original concept summary; the hardware/ECE decisions in Section \ref{sec:hardware} are outside
+his stated area and are tracked here for the ECE half of the advising/grading structure. Monthly
+check-ins continue to cover the written deliverables (proposal, interim report, thesis) and, per
+Section \ref{sec:cs-questions}, the model-transfer question this revision introduces.
+
+\vspace{1em}
+\noindent\rule{\linewidth}{0.5pt}
+\vspace{0.2em}
+{\small
+  \noindent \textbf{Contact:}\;
+  Sean Balbale ---
+  \href{mailto:sean.balbale@trincoll.edu}{sean.balbale@trincoll.edu}
+  $\;\big|\;$
+  Zoe Davidow ---
+  \href{mailto:zoe.davidow@trincoll.edu}{zoe.davidow@trincoll.edu}
+  $\;\big|\;$
+  Kayla Walsh ---
+  \href{mailto:kayla.walsh@trincoll.edu}{kayla.walsh@trincoll.edu}
+}
+
+\end{document}
