@@ -1,0 +1,232 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{xcolor}
+
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Edge-Compute Pacing \& Feedback Node --- Hardware Design Pitch}
+\fancyfoot[C]{ECE Senior Project \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE \bfseries Edge-Compute Pacing \& Feedback Node}\\[4pt]
+{\large Hardware, Mechanical \& Firmware Design Pitch}\\[10pt]
+{\normalsize ECE Senior Project --- Concept Pitch}\\[4pt]
+\vspace{4pt}
+\textbf{Students:} Sean Balbale \& Aidan Cullinan\\
+\textbf{Program:} B.S. Electrical \& Computer Engineering, Trinity College (Class of 2027)\\
+\textbf{Proposed Advisor:} Prof.\ Fixel \emph{or} Prof.\ Byers (TBD)\\
+\textbf{Companion CS Effort:} Sean Balbale \& Zoe Davidow, CPSC 498, advised by Prof.\ Kenneth A.\ Kousen\\
+\textbf{Date:} September 2026
+\end{center}
+
+\section*{Abstract}
+This pitch scopes the \textbf{electrical and computer engineering} half of the Edge-Compute Pacing \& Feedback Node --- a wearable-adjacent, battery-powered device that mounts to a bicycle or rowing shell, pairs with a wireless heart-rate strap, and gives an athlete real-time fatigue feedback through an on-board LED array and buzzer with no phone and no cloud in the loop. A parallel effort, advised separately by Prof.\ Kousen under CPSC 498, covers the fatigue-model algorithm and its discretization; \textbf{this document is scoped to the hardware, mechanical, and hardware-adjacent firmware work} --- microcontroller and sensor-protocol selection, power budgeting, enclosure CAD, and environmental sealing for a device that will see genuine splash exposure on the water. The two efforts share firmware and a single physical device, but the engineering questions below --- SWaP-constrained real-time system design, RF performance in a hostile mounting environment, and waterproofing a multi-penetration enclosure --- are a self-contained ECE contribution independent of how the fatigue algorithm evolves.
+
+\section{Problem Statement}
+Commercial cycling and rowing head units are compute-light: they display raw sensor telemetry but do no on-device prediction, and virtually all of them assume a fixed, factory-sealed enclosure with no user-serviceable calibration UI. This project's engineering problem is narrower and more concrete than the CS framing:
+
+\begin{quote}
+\emph{Can a battery-powered microcontroller node --- with a user-facing calibration UI, a wireless sensor link, and an LED/buzzer output --- be packaged into a sealed enclosure that survives splash exposure on a rowing shell and vibration on a bicycle, while holding a sub-100\,ms sensor-to-output latency and a multi-hour runtime on a coin-cell-adjacent power budget?}
+\end{quote}
+
+That question decomposes into three engineering sub-problems, each owned by this half of the project:
+\begin{enumerate}[topsep=2pt,itemsep=2pt]
+    \item \textbf{Component selection and power budgeting} under a strict current draw and battery volume constraint.
+    \item \textbf{RF and packaging co-design} --- keeping a BLE radio link reliable once it is embedded in a 3D-printed enclosure mounted to a carbon or aluminum frame.
+    \item \textbf{Environmental sealing} of an enclosure that has more penetrations (buttons, OLED window, USB-C, LED window) than a typical sealed sensor puck, on a device that will be actively dunked with spray during on-water use.
+\end{enumerate}
+
+\section{Hardware Architecture \& Component Selection}
+
+\subsection{Microcontroller}
+\textbf{Selected part:} Nordic nRF52840 (Adafruit Feather nRF52840 Express for prototyping). The nRF52840 puts BLE~5 and ANT+ on the same silicon, so the sensor-protocol question in Section~2.2 is a firmware decision rather than a board respin later in the project. It also carries an ARM Cortex-M4F at 64\,MHz with 256\,kB of RAM and 1\,MB of flash, and the Feather form factor bundles USB and LiPo charge-management circuitry on-board, which removes a discrete charger IC from the bill of materials. That headroom needs to comfortably cover the sensor task, the compute task, an I2C OLED driver, and FreeRTOS running concurrently --- confirming that fits is a Phase~1 bring-up task, not an assumption.
+
+\subsection{Wireless Sensor Protocol: BLE vs.\ ANT+}
+The device needs to read a chest-strap heart-rate signal reliably, including in a crowded environment (a regatta start line with dozens of straps broadcasting at once). Two protocols are available on the chosen radio:
+
+\begin{center}
+\begin{tabular}{L{3.6cm} L{5.6cm} L{5.6cm}}
+\toprule
+ & \textbf{BLE-only (Arduino/CircuitPython)} & \textbf{ANT+ (S340 SoftDevice)} \\
+\midrule
+Toolchain & Stays on Adafruit's Arduino core; current firmware plan unchanged & Requires leaving Arduino for the nRF5/nRF~Connect SDK; free ANT+ Adopter registration needed for the S340 hex \\
+Strap compatibility & Covers any dual-mode strap (Polar~H10, Garmin HRM-Dual/Pro, Wahoo~TICKR --- all confirmed to broadcast BLE and ANT+ simultaneously) & Needed only for ANT+-only hardware, which is rare among current chest straps \\
+Multi-athlete environments & Standard HR Service scan, connect to the strap's stored MAC address & 15 configurable channels, better suited to crowded-field broadcast (e.g.\ a regatta start) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Decision:} default to BLE-only for Phase~1; retain ANT+ as a documented, designed-for fallback rather than a Phase~1 requirement. The straps realistically available to the team are dual-mode, so BLE satisfies the near-term need without the SDK migration cost. Whether the fallback needs to be activated is an open item tracked in Section~7.
+
+\subsection{Power System}
+\textbf{Selected part:} a 3.7\,V LiPo pouch cell (JST-PH connector, 2000\,mAh) rather than an 18650 cylindrical cell with a separate BMS/charger module. The Feather's on-board charge IC and battery-voltage monitoring already expect exactly this battery type and connector; sourcing a bare 18650 would mean adding a separate TP4056-class charger and a physical cell holder for no benefit at this power budget.
+
+\begin{center}
+\begin{tabular}{L{4.6cm} c c L{5cm}}
+\toprule
+\textbf{Subsystem} & \textbf{Est.\ avg.\ current} & \textbf{Duty} & \textbf{Notes} \\
+\midrule
+nRF52840 core (sampling + compute) & 5\,mA & continuous & Cortex-M4F active during the 1\,Hz compute tick, sleeps between ticks \\
+BLE connection (HR notifications @ 1\,Hz) & 1.5\,mA & continuous & Connection interval tuned to the 1\,s sensor cadence, not BLE's fastest possible rate \\
+NeoPixel strip (8\,px, typical amber/green states) & 15\,mA & continuous & Worst case (8\,px full white) is $\sim$144\,mA; normal operation stays well under this \\
+OLED (calibration menu only) & 15\,mA & intermittent & Off during a session; averages under 1\,mA over a full ride/row \\
+Buzzer (threshold alerts) & 30\,mA & intermittent & Averages under 0.5\,mA over a session \\
+\midrule
+\multicolumn{2}{l}{\textbf{Estimated average draw}} & \multicolumn{2}{l}{$\sim$23\,mA} \\
+\multicolumn{2}{l}{\textbf{Estimated runtime on 2000\,mAh}} & \multicolumn{2}{l}{$\sim$85\,h --- far exceeds the 6\,h target} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These are datasheet-derived first-pass estimates, not bench measurements. Phase~1 hardware bring-up includes a runtime validation pass under real load. Given the wide margin over the 6\,h target, a smaller 500--1200\,mAh cell is worth evaluating once real draw is measured, trading unused runtime for a smaller, lighter enclosure --- directly relevant to the CAD and waterproofing work in Section~3.
+
+\subsection{User Interface Hardware}
+\begin{itemize}[topsep=2pt,itemsep=2pt]
+    \item \textbf{Output:} an 8-pixel WS2812B NeoPixel stick for the primary fatigue readout, plus a piezo buzzer for the low-reserve alert.
+    \item \textbf{Calibration \& pairing input:} three 6\,mm tactile buttons (Up / Down / Select) plus a 0.91-inch 128$\times$32 I2C OLED (STEMMA QT). The OLED/button pair was originally scoped for threshold-value entry alone (a three-digit heart-rate value via LED blink-count feedback proved error-prone in the field), but the same interface is now the \textbf{primary sensor-pairing UI} as well --- see Section~4.2 --- rather than the device silently auto-connecting to the first strap it hears. The OLED shares the existing I2C bus, adding only two GPIO pins.
+    \item \textbf{Config mode:} Select cycles through \emph{Pair Sensor} $\to$ LTHR $\to$ HR$_{\text{max}}$ $\to$ HR$_{\text{rest}}$ $\to$ save/exit; Up/Down adjust the active field (or scroll the discovered-device list) with accelerating auto-repeat on a held press. Buttons are disabled during an active session to prevent accidental input mid-effort --- a detail with direct sealing implications, since a button that never needs pressing mid-row is a button that can be sealed more aggressively (Section~3.3).
+\end{itemize}
+
+\subsection{USB-C Connector}
+\textbf{Decision:} add a USB Type-C breakout board (downstream configuration), wired to the Feather's on-board Micro-USB connector, rather than using the stock Micro-USB port directly or an external Micro-B-to-C adapter cable. The Feather's native USB already handles both charging and full data (serial console, DFU flashing); the only gap is the physical connector. The breakout closes that gap with built-in 5.1\,k$\Omega$ CC pulldown resistors for reliable 5\,V/1.5\,A negotiation, and it panel-mounts flush into the printed enclosure wall instead of leaving an internal cable loop --- which also makes it the one connector on the device that has to be sealed against the outside world (Section~3.3).
+
+Because the nRF52840's USB D+/D$-$ lines are not broken out to any header pin on the Feather, the implementation is a piggyback solder job: four 30\,AWG wires tack directly onto the Micro-USB connector's VBUS, D+, D$-$, and GND legs and route to the matching pads on the breakout board. Desoldering the Micro-USB connector outright is deliberately avoided, since lifting a pad on a fine-pitch SMT part is a real risk without hot-air rework equipment. Continuity is bench-verified with a multimeter before final enclosure assembly, since the joints are not inspectable once sealed.
+
+\section{Mechanical Design, CAD \& Waterproofing}
+This is the section of the project with the least existing precedent to lean on: the software side has a validated algorithm and a firmware skeleton to iterate from, but the enclosure is a from-scratch mechanical design problem with a genuinely different failure mode on each of the two intended mounts.
+
+\subsection{Form Factor}
+Two mounting contexts, one enclosure: a handlebar mount for cycling and a hull-mount for a rowing shell. Rowing introduces a splash/spray exposure that a cycling-only enclosure would not need to fully account for, which is why sealing is treated as a first-class design constraint here rather than an afterthought once the electronics are working.
+
+\subsection{Enclosure CAD Workflow}
+\begin{itemize}[topsep=2pt,itemsep=2pt]
+    \item \textbf{Parametric modeling:} the enclosure is modeled parametrically (dimensions and cutout positions driven by variables, not fixed sketches) so that PCB revisions, connector placement changes, and the possible battery downsize noted in Section~2.3 don't require a full CAD rebuild.
+    \item \textbf{Iterative fit-testing:} each enclosure revision is printed and dry-fit against the actual PCB, battery, buttons, and OLED before any sealing features are added, so mechanical fit is de-risked separately from watertightness.
+    \item \textbf{Mount interface:} the handlebar-side mount targets compatibility with an existing standard bike-computer mount pattern where feasible, to avoid designing and validating a second custom clamp; the hull-side mount is a custom bracket sized to the shell's rigger or gunwale geometry, since no off-the-shelf standard applies there.
+    \item \textbf{Print material:} FDM in a rigid, UV-stable filament (e.g.\ ASA or PETG) for the outer shell, chosen over PLA for outdoor UV and thermal exposure on a bike or shell left in direct sun.
+\end{itemize}
+
+\subsection{Waterproofing Strategy}
+The enclosure has more penetrations than a typical sealed sensor puck --- button shafts, an OLED viewing window, a USB-C port, and an LED window --- and each one needs its own sealing approach rather than a single gasket solving the whole problem:
+
+\begin{itemize}[topsep=2pt,itemsep=2pt]
+    \item \textbf{Case seam:} a compressible gasket (silicone cord or a printed TPU gasket) in a channel at the lid/base seam, compressed by the case screws, as the primary boundary against splash and spray.
+    \item \textbf{Buttons:} since Section~2.4 establishes that buttons are inert during an active session, a silicone membrane cap over each button shaft --- rather than a dynamic rotary or shaft seal --- is sufficient and simpler to manufacture and replace.
+    \item \textbf{OLED and LED windows:} a clear acrylic or polycarbonate window bonded or gasketed into the enclosure wall, sized to the display and LED strip footprints.
+    \item \textbf{USB-C port:} either a panel-mount connector with an integrated gasket, or a hinged silicone port cover, so the one connector that must remain user-accessible for charging and DFU flashing doesn't become the weak point in the seal.
+    \item \textbf{Target rating:} an IP-rated target (informally, IPX4--IPX6-equivalent splash/spray resistance) is the right bar for this use case --- full submersion resistance is not required, since the device is mounted above the waterline in both contexts, but sustained spray and rain must not compromise it.
+    \item \textbf{Internal moisture control:} a small desiccant packet inside the sealed enclosure, and consideration of a pressure-equalizing vent membrane (a Gore-style hydrophobic vent) at one point in the case, to avoid trapped condensation from thermal cycling without compromising the seal.
+\end{itemize}
+
+These are the design's starting hypotheses, not yet validated choices --- proving out the sealing approach empirically is an explicit Phase~1--4 deliverable (Section~6), not an assumption carried into the field test.
+
+\subsection{Splash/Immersion Testing Plan}
+Before the on-water field test in Phase~4, the sealed enclosure needs a standalone bench test: directed spray exposure at the seams and each penetration, followed by a dry-out and continuity/functionality check, repeated across a few wet/dry cycles to catch a seal that degrades with reuse rather than one that only needed to pass once.
+
+\section{Firmware Supporting the Hardware Layer}
+The fatigue-model algorithm itself is scoped to the companion CS effort; the firmware work owned here is the layer underneath it --- the concurrent real-time structure that has to hold the sensor link, the compute tick, and the output drive together on a single core without missing the latency budget.
+
+\subsection{RTOS Task Structure}
+FreeRTOS with four tasks on defined priorities and circular-buffer IPC: a \textbf{sensor} task handling BLE HR notifications, a \textbf{compute} task running the fatigue-model tick, an \textbf{output} task driving the NeoPixel strip and buzzer, and a \textbf{UI} task handling button debounce and OLED refresh during both calibration and the device-selection screen introduced in Section~4.2. The UI task is lowest priority and never blocks the sensor-to-output path, which is what preserves the sub-100\,ms end-to-end latency target regardless of what's happening on the calibration or pairing screen --- including while a BLE scan for candidate straps is actively running.
+
+\subsection{Sensor Pairing}
+\textbf{Updated approach:} pairing is now a user-driven selection through the OLED/button interface, not an automatic connect-to-first-match. On BLE, entering \emph{Pair Sensor} from the config menu (Section~2.4) triggers a scan for the standard Heart Rate Service (UUID~0x180D); every strap heard during the scan window is listed on the OLED (by MAC suffix, and by device name where the strap advertises one), and Up/Down scroll the list while Select confirms the chosen device. The confirmed strap's MAC address is then stored in flash, and subsequent boots connect directly to the stored address rather than re-scanning, falling back to a fresh scan (and the same selection UI) only on a connection timeout or an explicit re-pair.
+
+This replaces the earlier first-match design specifically to handle team and race-day conditions: a practice session or regatta start line routinely has several straps broadcasting at once, and silently locking onto whichever one answers first risks pairing to a teammate's strap instead of the wearer's own. Surfacing the candidate list and requiring an explicit Select is the fix, at the cost of one extra UI interaction during setup. A manual re-pair trigger (button hold) remains available for swapping straps mid-season. If the ANT+ fallback from Section~2.2 is activated, the equivalent path is a wildcard search on the HR profile (device type~120), with discovered device numbers surfaced through the same OLED list-and-select flow rather than locking to the first one found.
+
+\subsection{Power Management}
+The core sleeps between the 1\,Hz compute ticks rather than busy-waiting, which is what keeps the average draw in Section~2.3 close to the datasheet estimate instead of the worst case. Validating that the RTOS scheduler actually achieves this sleep behavior under real BLE traffic --- rather than assuming it from the idle-current datasheet number --- is one of the Phase~1 bring-up tasks.
+
+\section{ECE Research Questions}
+\begin{enumerate}[topsep=2pt,itemsep=3pt]
+    \item \textbf{Power budget validation.} Does measured current draw under real BLE connection and NeoPixel activity match the datasheet-derived estimate in Section~2.3, and does the system meet the 6\,h runtime target with enough margin to downsize the battery (and therefore the enclosure)?
+    \item \textbf{RF behavior in the deployed environment.} Does BLE connection stability hold up once the radio is mounted on a carbon bicycle frame or an aluminum/carbon rowing shell --- both RF-unfriendly environments --- and does antenna placement inside the printed enclosure need adjustment?
+    \item \textbf{End-to-end latency budget.} With the wireless link in the loop (strap $\to$ BLE notification $\to$ compute $\to$ LED), where does the 100\,ms budget actually get spent, and is BLE connection-interval tuning sufficient to hold it?
+    \item \textbf{Environmental sealing under real use.} Does the multi-penetration sealing strategy in Section~3.3 actually hold up across repeated wet/dry cycles and the vibration profile of an on-water or on-bike mount, or does a specific penetration (buttons, USB-C, window) turn out to be the weak point in practice?
+\end{enumerate}
+
+\section{Bill of Materials}
+Linked items are current as of this revision; prices are list price at the linked retailer and will drift. Items marked (source locally) are generic enough that any supplier works and are not worth pinning to a specific link. Enclosure sealing materials (gasket stock, silicone membrane caps, desiccant, vent membrane) are not yet priced pending the CAD design pass in Section~3 and are omitted here rather than estimated.
+
+\begin{center}
+\begin{tabular}{L{6.2cm} c L{6cm}}
+\toprule
+\textbf{Item} & \textbf{Price} & \textbf{Notes} \\
+\midrule
+Adafruit Feather nRF52840 Express & \$24.95 & Core MCU. Native BLE, USB, on-board LiPo charge circuit. \\
+Lithium Ion Battery --- 3.7\,V 2000\,mAh, JST-PH & \$12.50 & Plugs directly into the Feather's on-board battery port; no separate charger/BMS needed. \\
+NeoPixel Stick --- 8$\times$WS2812/SK6812 RGB LED & \$5.95 & Primary fatigue readout. \\
+Buzzer 5V --- breadboard friendly & \$1.95 & Low-reserve alert; self-driving, apply 3--5\,V directly. \\
+Tactile Button Switch (6\,mm) --- 20 pack & \$4.95 & Up/Down/Select calibration buttons (3 used, 17 spares). \\
+Monochrome 0.91" 128$\times$32 I2C OLED --- STEMMA QT & $\sim$\$15 & Threshold-entry and live-HR display during calibration. \\
+STEMMA QT to Premium Male Headers Cable & \$0.95 & Solderless I2C hookup from OLED to Feather header pins. \\
+USB Type-C Breakout Board --- downstream connection & \$2.95 & External USB-C port (Section~2.5); wired to the Feather's Micro-USB pins. \\
+Protoboard/perfboard (source locally) & $\sim$\$5 & \\
+22--26\,AWG hookup wire, incl.\ fine 30\,AWG for the USB-C piggyback joints (source locally) & $\sim$\$8 & \\
+JST-PH 2-pin connectors, a few (source locally) & $\sim$\$5 & For detachable buzzer/NeoPixel leads. \\
+\midrule
+\textbf{Linked components subtotal} & $\sim$\textbf{\$69} & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Optional --- HR chest strap for bench testing:} a Polar~H10 ($\sim$\$90--105) if the team does not already have a spare dual-mode (BLE + ANT+) strap for dedicated bench work. Any teammate's Polar~H10, Garmin HRM-Dual/Pro, or Wahoo~TICKR works as-is with the BLE-only plan.
+
+\section{Deliverables \& Timeline}
+\begin{center}
+\begin{tabular}{c L{9.5cm} c}
+\toprule
+\textbf{Phase} & \textbf{Milestone} & \textbf{Target} \\
+\midrule
+1 & Hardware bring-up; BLE HR strap pairing verified; power budget bench-validated & Sep 2026 \\
+2 & Enclosure CAD v1 dry-fit against real PCB/battery/OLED; sealing approach prototyped & Oct 2026 \\
+3 & FreeRTOS integration; UI/calibration task; latency and scheduling benchmarks & Nov 2026 \\
+4 & Sealed enclosure passes splash/wet-dry-cycle bench test; on-bike and on-water field test & Dec 2026 \\
+5 & Formal write-up, poster, and final public demo & Apr 2027 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Open Decisions \& Risks}
+\begin{itemize}[topsep=2pt,itemsep=2pt]
+    \item \textbf{ANT+ vs.\ BLE-only:} pending confirmation that every strap the team will actually use is dual-mode. If not, the ANT+/S340 path in Section~2.2 needs to move from ``documented fallback'' to a Phase~1 requirement.
+    \item \textbf{Enclosure sealing:} rowing's splash exposure is a materially different environment than cycling for the button/OLED/USB-C cutouts; the approach in Section~3.3 needs bench validation before the on-water field test in Phase~4.
+    \item \textbf{Battery sizing:} the $\sim$85\,h estimated runtime against a 6\,h target (Section~2.3) leaves room to shrink the cell and the enclosure, but only once real current draw is bench-measured --- premature downsizing risks cutting margin the team hasn't actually confirmed exists.
+    \item \textbf{Mount interface:} whether the handlebar mount can reuse an existing standard bike-computer mount pattern, or needs a fully custom clamp, affects both the CAD timeline and whether the same base enclosure design can serve both mounting contexts without modification.
+\end{itemize}
+
+\section{What We Are Asking of an Advisor}
+\begin{itemize}[topsep=2pt,itemsep=2pt]
+    \item Review of the microcontroller, power system, and sensor-protocol decisions in Section~2 as the project moves from datasheet estimates to bench-validated numbers.
+    \item Guidance on the enclosure CAD and waterproofing approach in Section~3 --- particularly on sealing multiple heterogeneous penetrations (buttons, display window, USB-C) on a 3D-printed enclosure, an area neither student has direct prior experience with.
+    \item Feedback on the RF and packaging co-design question (Section~4, item~2): whether antenna placement or enclosure material choice needs to change once the radio is mounted on a carbon frame or shell.
+    \item Guidance on setting up a credible splash/wet-dry-cycle bench test (Section~3.4) that stands in for real on-water use without requiring destructive testing of every enclosure revision.
+\end{itemize}
+
+\vspace{6pt}
+\textbf{Contact:} Sean Balbale --- \href{mailto:sean.balbale@trincoll.edu}{sean.balbale@trincoll.edu}\\
+Aidan Cullinan --- \href{mailto:aidan.cullinan@trincoll.edu}{aidan.cullinan@trincoll.edu}
+
+\end{document}

@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+
+% ---------- Packages (per course conventions) ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+
+% =========================================================
+% EDIT THESE FOR EACH NEW ASSIGNMENT
+% =========================================================
+\newcommand{\assignmentNumber}{X}
+\newcommand{\assignedDate}{}
+\newcommand{\dueDate}{}
+\newcommand{\numProblems}{8} % just for your own reference; add/remove \problempage calls below as needed
+
+% ---------- Boxed-answer helper ----------
+\newtcolorbox{finalanswer}{
+    colback=white, colframe=black, boxrule=1pt,
+    title=Answer, fonttitle=\bfseries, coltitle=black,
+    colbacktitle=white
+}
+
+% ---------- Blank sketch box helper ----------
+% Usage: \sketchbox[height]
+\newcommand{\sketchbox}[1][6cm]{%
+    \begin{tikzpicture}
+        \draw[thick] (0,0) rectangle (\textwidth,#1);
+        \node[anchor=north west, gray] at (0.1,#1-0.1) {\small \textit{Sketch / free-body diagram (label axes, forces, angles)}};
+    \end{tikzpicture}
+}
+
+% ---------- Reusable problem scaffold ----------
+% \problempage{Problem number}{Problem prompt/summary text -- paraphrase, don't copy verbatim}
+\newcommand{\problempage}[2]{%
+    \clearpage
+    \section*{Problem #1}
+
+    \textbf{Given / Find:} #2
+
+    \vspace{0.3cm}
+    \textbf{Sketch:}
+
+    \sketchbox
+
+    \vspace{0.5cm}
+    \textbf{Equations \& Solution:}
+
+    \vspace{0.2cm}
+    % --- Set up governing equations here, e.g.: ---
+    % \begin{align*}
+    %     \sum F_x &= 0 \\
+    %     \sum F_y &= 0
+    % \end{align*}
+
+    \vspace{4cm}
+
+    \begin{finalanswer}
+        % Report to 3 significant figures with units, e.g.: $F_R = \SI{393}{lb}$, $\theta = 353^\circ$
+    \end{finalanswer}
+}
+
+\begin{document}
+
+% =========================================================
+% COVERSHEET
+% =========================================================
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\LARGE \bfseries ENGR 225: Mechanics 1} \\[0.3cm]
+    {\Large Homework Coversheet} \\[0.3cm]
+    {\large Assoc.\ Prof.\ Clayton Byers} \\[2cm]
+
+    \begin{flushleft}
+        \Large
+        \textbf{NAME:} \underline{\hspace{10cm}} \\[1cm]
+        \textbf{DATE:} \underline{\hspace{10cm}} \\[1cm]
+        \textbf{ASSIGNMENT:} \underline{\hspace{9cm}} \\[2cm]
+    \end{flushleft}
+
+    \large
+    \textbf{Level of involvement of AI, LLMs, or related tools in the completion of this assignment:}
+
+    \vspace{1cm}
+
+    \begin{flushleft}
+        \Large
+        $\square$ \quad None \\[0.7cm]
+        $\square$ \quad Minor \\[0.7cm]
+        $\square$ \quad Major \\[0.7cm]
+        $\square$ \quad Extensive \\[1.5cm]
+    \end{flushleft}
+
+    \normalsize
+    \textit{Mark the box that applies (e.g., replace $\square$ with $\blacksquare$, or type an X beside it, before compiling/printing). Your disclosure does not affect your grade -- it keeps you accountable for the work you are doing.}
+
+\end{titlepage}
+
+% =========================================================
+% HOMEWORK HEADER
+% =========================================================
+\section*{ENGR 225 -- Homework \assignmentNumber}
+\textbf{Assigned:} \assignedDate \hfill \textbf{Due:} \dueDate
+
+\vspace{0.3cm}
+\textit{Formatting per course guidelines: each problem on its own page, with problem summary, labeled sketch, governing equations, units carried throughout, results to 3 significant figures, and a clearly boxed final answer.}
+
+% =========================================================
+% PROBLEMS
+% Copy/paste the \problempage block below for each new problem,
+% renumber the first argument, and fill in a short paraphrased
+% Given/Find summary as the second argument. Delete unused blocks
+% for assignments with fewer problems, or duplicate for more.
+% =========================================================
+
+\problempage{1}{
+    % Paraphrase what's given and what you're solving for.
+}
+
+\problempage{2}{
+    %
+}
+
+\problempage{3}{
+    %
+}
+
+\problempage{4}{
+    %
+}
+
+\problempage{5}{
+    %
+}
+
+\problempage{6}{
+    %
+}
+
+\problempage{7}{
+    %
+}
+
+\problempage{8}{
+    %
+}
+
+\end{document}
