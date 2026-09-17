@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+\hypersetup{colorlinks=true, urlcolor=blue}
+\titleformat{\section}{\normalfont\bfseries}{\thesection.}{0.5em}{}
+\setlength{\parskip}{0.6em}
+
+\title{\vspace{-2em}Talk Analysis: \\ \large Boston Infinite Money Glitch: Hacking Transit Cards Without Ending Up In Handcuffs}
+\author{Sean Balbale \\ CPSC 403: Computer Science Seminar}
+\date{September 22, 2026}
+
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+
+\noindent\textbf{Talk:} DEF CON 31, August 2023, Zach Bertocchi, Scott Campbell, Noah Gibson, and Matthew Harris \\
+\textbf{Video:} \url{https://www.youtube.com/watch?v=1JT_lTfK69Q}
+
+\section{The ask}
+Stated directly at 2:33--2:56: the audience should leave able to reverse-engineer a transit card, know how to disclose a vulnerability to a government agency without getting sued, and, failing that, have a fun story. The real ask is narrower. A system nobody has cracked in fifteen years is crackable by four vocational-school students with a \$9 NFC reader, provided you are patient enough to fail through three broken readers first.
+
+\section{The hero}
+They are the heroes of their own story, despite two early gestures the other way. At 1:37--1:53 they deny expertise (``we don't actually have any real qualifications... we call ourselves amateur miscreants''), and at 2:33 they frame the payoff around what the audience gets. The narrative from 12:43 to 35:34 is still a first-person account of their own trial and error: three failed NFC readers, a soldering attempt, a 24-hour brute-force run that returned nothing. At 21:14 a successful clone draws a genuine round of applause. The room is applauding what they did, not something the audience can now do.
+
+\section{The shape}
+The sparkline starts at \emph{what is}: a 2004 smartcard running proprietary 48-bit encryption that nobody has cracked in fifteen years (6:26--11:59). The first turning point comes at 16:34, when default keys turn up in a public repository after two failed attacks; that is where \emph{what-could-be} first looks reachable. The second turning point, and the more important one, is the XOR breakthrough at 26:27, which turns cloning into forging and lets them push a card's balance to \$327.67 before hitting a 16-bit integer overflow. The S.T.A.R.\ moment is the live demo at 43:20--44:04. Onstage they tap a \$0.25 card, edit its value to \$251.50 on the reader, and re-tap it to show the change took, then repeat the trick to reclassify it as an employee card.
+
+\section{What landed}
+``This wouldn't be Defcon without computer glitches'' (4:29) gets a laugh (4:34) and buys six more minutes of slide trouble. The 21:14 applause matters more. It follows nine minutes of narrated failure (three dead readers, a null 24-hour run), so the crowd is rewarding a payoff it watched get earned. Duarte's what-is/what-could-be contrast only works if the audience believes what-is was hard, and the reader-buying saga supplies that.
+
+\section{What did not}
+At 36:07--36:15 a speaker says ``we only got 10 minutes left,'' and the explanation compresses from there. The vocabulary for the automated forging process (data modifier, checksum modifier, lookup table) is introduced and then dropped mid-sentence: ``I'm just going to skip part of this'' (36:46). The lookup table itself turns out to be something they were asked not to share (37:02--37:18), which cuts the technical payoff right when it should land. A second AV failure at 41:12--42:17 (``wrong one, wrong one... no, the other video'') means the S.T.A.R. moment has to recover from stage trouble twice.
+
+\section{One change}
+Cut the disclosure section (39:36--40:53, Bobby Rauch's article and the MBTA complaint form) to two sentences and give the reclaimed minute to the XOR explanation. Disclosure is a what-should-happen-next argument and survives being told fast. XOR is the actual technical turn of the talk and the one section that runs out of time.
+
+\end{document}
