@@ -190,12 +190,12 @@ In the sketches, applied loads are red, support reactions are blue, and member f
 \end{sketchframe}
 
 \textbf{Equations \& Solution:}\\
-The coordinates (in ft) are $A(0,-5,4)$, $B(0,-3,0)$, and $C(-5,0,0)$, with $F_1$ applied at $(0,-5,5)$. Each bearing only resists force perpendicular to its shaft, so the unknowns are $A_x$ and $A_y$ at $A$, $B_x$ and $B_z$ at $B$, and $C_z$ at $C$ ($C_y$ is set to zero). That gives six unknowns for the six equilibrium equations.
+The coordinates (in ft) are $A(0,-5,4)$, $B(0,-3,0)$, and $C(-5,0,0)$, with $F_1$ applied at $(0,-5,5)$. Each bearing only resists force perpendicular to its shaft, so the unknowns are $A_x$ and $A_y$ at $A$, $B_x$ and $B_z$ at $B$, and $C_z$ at $C$ ($C_y$ is set to zero). Together with $F_2$, that makes six unknowns for the six equilibrium equations.
 \begin{align*}
 \mathbf F_1 &= 300(0,\,-\cos45^\circ,\,-\sin45^\circ)=(0,\,-212.1,\,-212.1)\ \si{\lb}\\
 \mathbf F_2 &= F_2(\cos45^\circ\sin30^\circ,\ \cos45^\circ\cos30^\circ,\ -\sin45^\circ)=F_2(0.3536,\ 0.6124,\ -0.7071)
 \end{align*}
-I summed moments about $O$, since $F_2$ acts at $O$ and doesn't show up in any of the moment equations:
+I summed moments about $O$ because $F_2$ acts at $O$ and does not appear in any of the moment equations:
 \begin{align*}
 \textstyle\sum F_x&:\ A_x+B_x+0.3536F_2=0 &(1) \qquad \textstyle\sum M_x&:\ -4A_y-3B_z+2121=0 &(4)\\
 \textstyle\sum F_y&:\ A_y+0.6124F_2-212.1=0 &(2) \qquad \textstyle\sum M_y&:\ 4A_x+5C_z=0 &(5)\\
@@ -219,16 +219,16 @@ C_z&=-0.4243F_2
 \textbf{Into (4):}
 \begin{align*}
 -4A_y-3B_z+2121&=0\ \Rightarrow\ B_z=\frac{2121-4A_y}{3}\\
-B_z&=\frac{2121-4(212.1-0.6124F_2)}{3}=\frac{2121-848.5+2.449F_2}{3}\\
-B_z&=424.3+0.8165F_2
+B_z&=\frac{2121-4(212.1-0.6124F_2)}{3}=\frac{2121-848.4+2.4496F_2}{3}\\
+B_z&=424.2+0.8165F_2
 \end{align*}
 \textbf{Into (3):}
 \begin{align*}
 B_z+C_z-0.7071F_2-212.1&=0\\
-(424.3+0.8165F_2)+(-0.4243F_2)-0.7071F_2-212.1&=0\\
+(424.2+0.8165F_2)+(-0.4243F_2)-0.7071F_2-212.1&=0\\
 212.1+(0.8165-0.4243-0.7071)F_2&=0\\
 212.1-0.3149F_2&=0\\
-F_2&=\frac{212.1}{0.3149}=\SI{673.7}{\lb}
+F_2&=\frac{212.1}{0.3149}=\SI{673.5}{\lb}
 \end{align*}
 
 \begin{finalanswer}
@@ -278,7 +278,7 @@ $F_2=\SI{674}{\lb}$
 \end{sketchframe}
 
 \textbf{Equations \& Solution:}\\
-Since the rod fits loosely, the joint can slide along it, so $A_x=0$. Because the rod is square, the joint still can't rotate about any axis, so $A$ also has couple moments $M_x$, $M_y$, and $M_z$.
+Because the rod fits loosely, the joint can slide along it, so $A_x=0$. The square cross-section still prevents rotation about all three axes, so $A$ also has couple moments $M_x$, $M_y$, and $M_z$.
 
 The coordinates (in ft) are $A(0,0,0)$, $D(0,6,0)$, $B(-3,6,0)$, and $C(0,0,2)$. The cable runs along $\overrightarrow{BC}=(3,-6,2)$, which has a length of \SI{7}{\ft}.
 \[
@@ -291,7 +291,7 @@ The coordinates (in ft) are $A(0,0,0)$, $D(0,6,0)$, $B(-3,6,0)$, and $C(0,0,2)$.
 \end{align*}
 The cable is the only force on the member with an $x$-component, so its tension has to be zero.
 
-Summing moments about $A$, the only moment comes from the weight: $\mathbf r_{AD}\times\mathbf W=(0,6,0)\times(0,0,-800)=(-4800,0,0)$ lb$\cdot$ft.
+With $T_{BC}=0$, the weight is the only force with a moment about $A$: $\mathbf r_{AD}\times\mathbf W=(0,6,0)\times(0,0,-800)=(-4800,0,0)$ lb$\cdot$ft.
 \begin{align*}
 \textstyle\sum M_x&:\ M_x-4800=0 &&\Rightarrow M_x=\SI{4800}{\lb\cdot\ft}\\
 \textstyle\sum M_y&:\ M_y=0, \qquad \textstyle\sum M_z:\ M_z=0
@@ -409,7 +409,7 @@ $BD$ (T) & $1.333P$ & \SI{2000}{\lb} & \SI{1500}{\lb}\\
 \bottomrule
 \end{tabular}
 \end{center}
-The smallest of these is \SI{848.5}{\lb}, from members $AB$ and $BC$, so they reach their limit first. I rounded down to \SI{848}{\lb} so neither member goes over \SI{800}{\lb}.
+The smallest of these is \SI{848.5}{\lb}, from members $AB$ and $BC$, so they reach their limit first. With $P$ rounded down to \SI{848}{\lb}, the force in $AB$ and $BC$ is $0.9428(848)=\SI{799.5}{\lb}$, which stays under the \SI{800}{\lb} limit.
 
 \begin{finalanswer}
 $P_{\max}=\SI{848}{\lb}$
@@ -516,7 +516,7 @@ $P_{\max}=\SI{4.16}{\kN}$
 \end{sketchframe}
 
 \textbf{Equations \& Solution:}\\
-Joint $D$ has no load and only two members, and they aren't collinear, so $DE$ and $DC$ are both zero-force members. Starting at joint $E$ means the support reactions aren't needed.
+Joint $D$ has no load and only two members, and they are not collinear, so $DE$ and $DC$ are both zero-force members. Starting at joint $E$ means the support reactions are not needed.
 
 Member $EC$ spans \SI{1.5}{m} horizontally and \SI{2}{m} vertically, a 3-4-5 triangle, so its direction from $E$ to $C$ is $(0.6,\,-0.8)$.
 \begin{align*}
@@ -585,7 +585,7 @@ $F_{AB}=\SI{45.0}{\kN}$ (T), \quad $F_{BF}=0$, \quad $F_{BG}=\SI{35.4}{\kN}$ (C)
 % =========================================================
 % PROBLEM 8
 % =========================================================
-\problemstart{8}{The space truss is supported by ball-and-socket joints at $A$, $B$, $C$, and $D$. Find the force in each member and state whether it is in tension or compression. (This problem is ungraded.)}
+\problemstart{8}{The space truss is supported by ball-and-socket joints at $A$, $B$, $C$, and $D$. Find the force in each member and state whether it is in tension or compression.}
 
 \begin{sketchframe}
 \scalebox{1.15}{\begin{tikzpicture}[x={(-0.72cm,-0.4cm)}, y={(0.95cm,-0.18cm)}, z={(0cm,0.92cm)}, font=\small]
@@ -657,19 +657,19 @@ $F_{AB}=\SI{45.0}{\kN}$ (T), \quad $F_{BF}=0$, \quad $F_{BG}=\SI{35.4}{\kN}$ (C)
 
 \clearpage
 \textbf{Equations \& Solution:}\\
-The coordinates (in m) are $A(0,-2,0)$, $B(0,2,0)$, $C(0,2,4)$, $D(0,-2,4)$, $E(4,0,0)$, and $G(4,0,4)$. The joint FBDs are drawn from a rotated view so the members at $E$ don't overlap. Joint $G$ only has three unknown member forces, so I solved it first and then moved to $E$.
+The coordinates (in m) are $A(0,-2,0)$, $B(0,2,0)$, $C(0,2,4)$, $D(0,-2,4)$, $E(4,0,0)$, and $G(4,0,4)$. The joint FBDs are drawn from a rotated view so the members at $E$ do not overlap. Joint $G$ only has three unknown member forces, so I solved it first and then moved to $E$.
 
-\textbf{Joint $G$:} the unit vectors from $G$ toward $E$, $C$, and $D$ are $(0,0,-1)$, $(-0.894,\,0.447,\,0)$, and $(-0.894,\,-0.447,\,0)$. The applied load is $(0,-4,-6)$ kN.
+\textbf{Joint $G$:} the unit vectors from $G$ toward $E$, $C$, and $D$ are $(0,0,-1)$, $(-0.8944,\,0.4472,\,0)$, and $(-0.8944,\,-0.4472,\,0)$. The applied load is $(0,-4,-6)$ kN.
 \begin{align*}
-\textstyle\sum F_x&=-0.894(F_{CG}+F_{DG})=0 &&\Rightarrow F_{DG}=-F_{CG}\\
-\textstyle\sum F_y&=0.447(F_{CG}-F_{DG})-4=0 &&\Rightarrow F_{CG}=\SI{4.472}{\kN},\ F_{DG}=\SI{-4.472}{\kN}\\
+\textstyle\sum F_x&=-0.8944(F_{CG}+F_{DG})=0 &&\Rightarrow F_{DG}=-F_{CG}\\
+\textstyle\sum F_y&=0.4472(F_{CG}-F_{DG})-4=0 &&\Rightarrow F_{CG}=\SI{4.472}{\kN},\ F_{DG}=\SI{-4.472}{\kN}\\
 \textstyle\sum F_z&=-F_{EG}-6=0 &&\Rightarrow F_{EG}=\SI{-6.00}{\kN}
 \end{align*}
-\textbf{Joint $E$:} the unit vectors from $E$ toward $A$, $B$, and $D$ are $(-0.894,\,-0.447,\,0)$, $(-0.894,\,0.447,\,0)$, and $(-0.667,\,-0.333,\,0.667)$. There is no external load at $E$.
+\textbf{Joint $E$:} the unit vectors from $E$ toward $A$, $B$, and $D$ are $(-0.8944,\,-0.4472,\,0)$, $(-0.8944,\,0.4472,\,0)$, and $(-0.6667,\,-0.3333,\,0.6667)$. There is no external load at $E$.
 \begin{align*}
-\textstyle\sum F_z&=F_{EG}+0.667F_{DE}=0 &&\Rightarrow F_{DE}=\SI{9.00}{\kN}\\
-\textstyle\sum F_x&=-0.894(F_{AE}+F_{BE})-0.667(9)=0 &&\Rightarrow F_{AE}+F_{BE}=-6.708\\
-\textstyle\sum F_y&=0.447(F_{BE}-F_{AE})-0.333(9)=0 &&\Rightarrow F_{BE}-F_{AE}=6.708
+\textstyle\sum F_z&=F_{EG}+0.6667F_{DE}=0 &&\Rightarrow F_{DE}=\SI{9.00}{\kN}\\
+\textstyle\sum F_x&=-0.8944(F_{AE}+F_{BE})-0.6667(9)=0 &&\Rightarrow F_{AE}+F_{BE}=-6.708\\
+\textstyle\sum F_y&=0.4472(F_{BE}-F_{AE})-0.3333(9)=0 &&\Rightarrow F_{BE}-F_{AE}=6.708
 \end{align*}
 Solving the last two equations together gives $F_{BE}=0$ and $F_{AE}=\SI{-6.708}{\kN}$.
 
