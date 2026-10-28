@@ -1,0 +1,16 @@
+num =
+         0         0    1.0000    3.0000
+den =
+     1     6    11     6
+G = 
+          s + 3
+  ----------------------
+  s^3 + 6 s^2 + 11 s + 6
+ 
+Continuous-time transfer function.
+Gmin = 
+        1
+  -------------
+  s^2 + 3 s + 2
+ 
+Continuous-time transfer function.

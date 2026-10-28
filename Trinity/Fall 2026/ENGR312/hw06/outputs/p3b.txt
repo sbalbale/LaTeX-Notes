@@ -1,0 +1,10 @@
+num =
+         0    3.0000    1.0000
+den =
+     1     2     5
+G = 
+     3 s + 1
+  -------------
+  s^2 + 2 s + 5
+ 
+Continuous-time transfer function.
