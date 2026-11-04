@@ -1,0 +1,268 @@
+\documentclass[11pt]{article}
+
+% ---------- Packages (per course conventions) ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{caption}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6\baselineskip}
+\setlist{nosep, leftmargin=1.5em}
+\captionsetup{font=small, skip=4pt}
+\sisetup{group-separator={,}, group-minimum-digits=4}
+
+\begin{document}
+
+% =========================================================
+% COVERSHEET
+% =========================================================
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\LARGE \bfseries ENGR 225: Mechanics 1} \\[0.3cm]
+    {\Large Homework Coversheet} \\[0.3cm]
+    {\large Assoc.\ Prof.\ Clayton Byers} \\[2cm]
+
+    \begin{flushleft}
+        \Large
+        \textbf{NAME:} \underline{\makebox[10cm][l]{\ Sean Balbale}} \\[1cm]
+        \textbf{DATE:} \underline{\makebox[10cm][l]{\ 6 November 2026}} \\[1cm]
+        \textbf{ASSIGNMENT:} \underline{\makebox[9cm][l]{\ Design Project, Part 1}} \\[2cm]
+    \end{flushleft}
+
+    \large
+    \textbf{Level of involvement of AI, LLMs, or related tools in the completion of this assignment:}
+
+    \vspace{1cm}
+
+    \begin{flushleft}
+        \Large
+        $\square$ \quad None \\[0.7cm]
+        $\square$ \quad Minor \\[0.7cm]
+        $\square$ \quad Major \\[0.7cm]
+        $\square$ \quad Extensive \\[1.5cm]
+    \end{flushleft}
+
+    \normalsize
+    \textit{Mark the box that applies (e.g., replace $\square$ with $\blacksquare$, or type an X beside it, before compiling/printing). Your disclosure does not affect your grade -- it keeps you accountable for the work you are doing.}
+\end{titlepage}
+
+% =========================================================
+% REPORT
+% =========================================================
+\begin{center}
+    {\Large \bfseries ENGR 225 Design Project, Part 1: Roadway Selection} \\[0.2cm]
+    Sean Balbale \hfill Assigned: 26 Oct 2026 \hfill Due: 6 Nov 2026
+\end{center}
+
+\section{Design Basis and Classification}
+
+The roadway carries two lanes of traffic in each direction across a \SI{60}{\meter} canyon span with no pedestrian accommodation, and it is meant to be comparable to Route~2 outside Hartford. I classify it as an urban principal arterial \emph{freeway}: divided, full control of access, and two through lanes per direction. Route~2 over Griswold Street in Glastonbury, a six-lane section of the same corridor, carries an average daily traffic of \num{74400} vehicles with 6\% trucks (2021) \cite{nbi_griswold}. I use that count as the design volume, which works out to roughly \num{4460} trucks per day.
+
+Because the roadway sits on a bridge, two layers of standards govern it. Geometric criteria (lane and shoulder widths) come from AASHTO's freeway policy, and the deck section (slab, waterproofing, wearing surface) comes from the CTDOT Bridge Design Manual and CTDOT pavement guidance. The bridge carries the full approach width rather than narrowing over the span.
+
+\section{Geometry and Materials}
+
+\paragraph{Cross-Section Widths}
+AASHTO requires a minimum freeway lane width of \SI{12}{ft} and a minimum shoulder width of \SI{10}{ft}, except for the left (median-side) shoulder of a 4-lane freeway, which may be \SI{4}{ft} \cite{fhwa_pts}. I use those minimums directly, since minimizing material is a stated design goal and every foot of width carries through to every quantity below. Barriers are a \SI{32}{in} concrete parapet on each edge and a \SI{42}{in} median barrier. Barrier base widths of \SI{21}{in} (parapet) and \SI{24}{in} (median) are my assumptions, not CTDOT plate values.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=0.17cm, y=0.17cm, font=\scriptsize]
+    % deck slab
+    \fill[gray!25] (0,0) rectangle (81.5,-0.71);
+    \draw (0,0) rectangle (81.5,-0.71);
+    % overlay
+    \fill[black!70] (1.75,0) rectangle (39.75,0.25);
+    \fill[black!70] (41.75,0) rectangle (79.75,0.25);
+    % parapets and median barrier
+    \fill[gray!55] (0,0) -- (1.75,0) -- (1.0,2.67) -- (0,2.67) -- cycle;
+    \fill[gray!55] (81.5,0) -- (79.75,0) -- (80.5,2.67) -- (81.5,2.67) -- cycle;
+    \fill[gray!55] (39.75,0) -- (41.75,0) -- (41.08,3.5) -- (40.42,3.5) -- cycle;
+    % dimension ticks
+    \foreach \x/\l in {1.75/,11.75/,23.75/,35.75/,39.75/,41.75/,45.75/,57.75/,69.75/,79.75/}
+        \draw (\x,4.6) -- (\x,5.4);
+    \draw (1.75,5) -- (39.75,5); \draw (41.75,5) -- (79.75,5);
+    \node[above] at (6.75,5) {10' shldr};
+    \node[above] at (17.75,5) {12' lane};
+    \node[above] at (29.75,5) {12' lane};
+    \node[above] at (37.75,5.9) {4'};
+    \node[above] at (43.75,5.9) {4'};
+    \node[above] at (51.75,5) {12' lane};
+    \node[above] at (63.75,5) {12' lane};
+    \node[above] at (74.75,5) {10' shldr};
+    \draw[<->] (0,-2.3) -- (81.5,-2.3) node[midway, below] {out-to-out deck width = \SI{81.5}{ft} (\SI{24.8}{m}); curb-to-curb = $2 \times \SI{38}{ft} = \SI{76}{ft}$};
+\end{tikzpicture}
+\caption{Roadway cross-section looking along the span: \SI{3}{in} HMA on membrane over an \SI{8.5}{in} reinforced concrete slab (not to scale vertically).}
+\label{fig:section}
+\end{figure}
+
+\paragraph{Deck Section}
+The deck section follows Connecticut practice from the bottom up:
+\begin{itemize}
+    \item \textbf{Structural slab:} cast-in-place reinforced concrete, \SI{8.5}{in} (\SI{216}{mm}) thick. This is the CTDOT minimum for a cast-in-place deck, with \SI{2.5}{in} of cover over the top reinforcing mat \cite{ctdot_bdm8}. Reinforcement is taken as \SI{150}{kg/m^3} of concrete, a typical value for a two-mat deck; the real figure comes out of the Part~2 load analysis.
+    \item \textbf{Waterproofing:} CTDOT protects its decks with a waterproofing membrane under a bituminous riding surface, and has shifted mostly to spray-applied cold liquid elastomeric membranes \cite{ctdot_overlay}.
+    \item \textbf{Wearing surface:} \SI{3}{in} of hot-mix asphalt (HMA), CTDOT's standard overlay thickness on bridge decks: a \SI{1}{in} HMA S0.25 lift directly over the membrane and a \SI{2}{in} HMA S0.5 top course \cite{ctdot_overlay}.
+\end{itemize}
+
+\paragraph{Quantities}
+With $L = \SI{60}{m}$, out-to-out width $W = \SI{24.84}{m}$, and curb-to-curb width $w_c = \SI{23.16}{m}$:
+\begin{align*}
+V_{\text{deck}} &= L \, W \, t_s = (\SI{60}{m})(\SI{24.84}{m})(\SI{0.216}{m}) = \SI{322}{m^3} \\
+V_{\text{barrier}} &= L\,(2A_p + A_m) = (\SI{60}{m})(2 \times \SI{0.279}{m^2} + \SI{0.434}{m^2}) = \SI{59.5}{m^3} \\
+m_{\text{rebar}} &= (\SI{381}{m^3})(\SI{150}{kg/m^3}) = \SI{57.2}{t} \\
+m_{\text{HMA}} &= L \, w_c \, t_o \, \rho_{\text{HMA}} = (\SI{60}{m})(\SI{23.16}{m})(\SI{0.0762}{m})(\SI{2.35}{t/m^3}) = \SI{249}{t}
+\end{align*}
+Total concrete is \SI{381}{m^3} (\SI{499}{yd^3}) and membrane area is \SI{1390}{m^2}.
+
+\section{Environmental Impact}
+
+\paragraph{Embodied Carbon (A1--A3, Cradle to Gate)}
+I quantify global warming potential (GWP) using environmental product declarations (EPDs), which report kg~CO$_2$e per unit of material through extraction, transport to the plant, and manufacturing. Ready-mix \SI{4000}{psi} mixes from a Connecticut-area producer range from \SIrange{265}{335}{kg/m^3} across the mixes in a single NRMCA-verified EPD \cite{epd_conco}; I use the \SI{300}{kg/m^3} midpoint. The CRSI industry-average EPD gives \SI{854}{kg} CO$_2$e per metric ton of fabricated rebar \cite{crsi_epd}, and a representative HMA EPD published by FHWA gives \SI{71.1}{kg} per metric ton \cite{fhwa_edc7}.
+
+\begin{table}[H]
+    \centering
+    \caption{Baseline embodied carbon of the roadway materials (A1--A3)}
+    \label{tab:carbon}
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Material} & \textbf{Quantity} & \textbf{GWP Factor} & \textbf{CO$_2$e (t)} \\
+        \midrule
+        Concrete (deck + barriers) & \SI{381}{m^3} & \SI{300}{kg/m^3} & 114 \\
+        Reinforcing steel & \SI{57.2}{t} & \SI{854}{kg/t} & 48.8 \\
+        HMA overlay & \SI{249}{t} & \SI{71.1}{kg/t} & 17.7 \\
+        \midrule
+        \textbf{Total} & & & \textbf{181} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Concrete accounts for 63\% of the total, and almost all of that comes from portland cement, which releases CO$_2$ both from kiln fuel and from calcining limestone. The membrane is left out because I could not find a published EPD for a spray-applied bridge membrane; at a few millimeters thick over \SI{1390}{m^2}, its mass is small relative to the slab.
+
+\paragraph{Other Impacts}
+Carbon is not the only cost. The concrete and HMA together contain several hundred tonnes of quarried aggregate, which carries land disturbance, dust, and truck traffic at the quarry. The A1--A3 figures above also stop at the plant gate, so delivery to the site is not counted; a distant plant with a lower EPD value can end up worse than a nearby one once hauling is included. Specifying recycled asphalt pavement (RAP) in the HMA reduces both virgin aggregate and binder demand.
+
+\paragraph{Alternatives and Perspective}
+Table~\ref{tab:alts} compares the baseline against material substitutions that do not change the geometry.
+
+\begin{table}[H]
+    \centering
+    \caption{Embodied carbon of alternative material choices}
+    \label{tab:alts}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Option} & \textbf{Total CO$_2$e (t)} & \textbf{Change} \\
+        \midrule
+        Baseline (Table~\ref{tab:carbon}) & 181 & -- \\
+        Slag-cement concrete, 40--50\% lower concrete GWP \cite{pulse_scm} & 124--135 & $-25$ to $-32\%$ \\
+        EAF rebar on renewable power, \SI{300}{kg/t} \cite{epd_xcarb} & 149 & $-18\%$ \\
+        \SI{3}{in} concrete wearing surface instead of HMA & 195 & $+8\%$ \\
+        Slag concrete (45\%) + low-carbon rebar & 98 & $-46\%$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Two results stand out. First, HMA is the correct wearing surface on carbon grounds as well as CTDOT practice: replacing it with \SI{106}{m^3} of extra concrete adds \SI{14}{t}. Second, the cement content of the slab is the single biggest lever. A 60\% slag mix approved for Australian infrastructure cut embodied carbon by an estimated 40--50\% \cite{pulse_scm}. The trade-off is slower early strength gain, which affects the construction schedule but not the finished deck.
+
+For scale, EPA puts the average passenger vehicle at about \SI{400}{g} CO$_2$ per mile \cite{epa_vehicle}. At \num{74400} vehicles per day, traffic crossing this \SI{60}{m} span emits roughly
+\[
+(\num{74400})\left(\frac{\SI{60}{m}}{\SI{1609}{m/mi}}\right)(\SI{0.400}{kg/mi}) = \SI{1.11}{t~CO_2/day},
+\]
+so the baseline materials equal about 163 days of tailpipe emissions on the bridge itself. This overstates the ratio slightly, since trucks emit more per mile than cars. The materials are a one-time cost against a service life measured in decades, but they are the part of the footprint the designer directly controls.
+
+\section{Raw Material Cost}
+
+\begin{table}[H]
+    \centering
+    \caption{Raw material cost estimate (2026 USD, delivered, excluding labor and formwork)}
+    \label{tab:cost}
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Material} & \textbf{Quantity} & \textbf{Unit Price} & \textbf{Cost} \\
+        \midrule
+        Ready-mix concrete & \SI{499}{yd^3} & \$185/yd$^3$ \cite{concrete_ne} & \$92{,}300 \\
+        Reinforcing steel & \SI{57.2}{t} & \$1{,}100/t \cite{gmk_rebar} & \$62{,}900 \\
+        HMA (S0.25 + S0.5) & \SI{274}{short~tons} & \$130/ton \cite{ctdot_bid_0155} & \$35{,}700 \\
+        \midrule
+        \textbf{Total} & & & \textbf{\$191{,}000} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The concrete price is the top of the \$155--\$185/yd$^3$ Northeast range \cite{concrete_ne}, since a bridge deck mix is air-entrained and higher strength than residential concrete. The rebar price rounds up from the US ex-works average of \$1{,}058/t at the start of 2026 \cite{gmk_rebar} to allow for fabrication. The HMA price is a CTDOT bid price, \$129--\$135/ton for HMA S0.5 on a recent bridge contract \cite{ctdot_bid_0155}; it includes placement, so it is an upper bound on material cost. Membrane material is excluded for the same reason as in Section~3. For comparison, the same contract bid Class~F deck concrete at \$700--\$915/yd$^3$ in place \cite{ctdot_bid_0155}. Raw concrete is roughly a quarter of the installed price; forming, placing, finishing, and curing a deck over a canyon make up the rest.
+
+\section{Conclusion}
+
+The roadway is a 4-lane urban freeway deck, \SI{60}{m} long and \SI{24.8}{m} wide out-to-out:
+\begin{enumerate}
+    \item \textbf{Geometry:} four \SI{12}{ft} lanes, \SI{10}{ft} right and \SI{4}{ft} left shoulders, \SI{76}{ft} curb-to-curb, per AASHTO freeway minimums. Widening the left shoulders to \SI{10}{ft} would add 15\% to every quantity in this report.
+    \item \textbf{Materials:} \SI{8.5}{in} cast-in-place reinforced concrete slab, waterproofing membrane, and \SI{3}{in} HMA overlay, per the CTDOT Bridge Design Manual and pavement guidance.
+    \item \textbf{Environmental impact:} \SI{181}{t} CO$_2$e cradle-to-gate, 63\% of it from concrete. Slag cement and low-carbon rebar together cut that to about \SI{98}{t}.
+    \item \textbf{Cost:} about \$191{,}000 in raw materials, with concrete the largest line at 48\%.
+\end{enumerate}
+The slab thickness and rebar density are the two values most likely to change once Part~2 sizes the truss and the deck span between supports.
+
+\paragraph{AI Use}
+I used Claude (Anthropic) to locate the CTDOT, FHWA, and EPD sources listed below, to run the quantity and carbon arithmetic, and to draft this report from those numbers. I checked each design value against its cited source and made the classification, shoulder-width, and material decisions myself.
+
+% =========================================================
+% BIBLIOGRAPHY (IEEE)
+% =========================================================
+\begin{thebibliography}{99}
+\footnotesize
+\setlength{\itemsep}{0pt}
+
+\bibitem{nbi_griswold}
+``Route 2 over Griswold Street, Glastonbury, CT,'' National Bridge Inventory record, BridgeLookup. [Online]. Available: \url{https://bridgelookup.com/bridge/74712}
+
+\bibitem{fhwa_pts}
+Federal Highway Administration, ``Chapter 8: Geometric design,'' in \emph{Use of Freeway Shoulders for Travel}, FHWA-HOP-15-023. [Online]. Available: \url{https://ops.fhwa.dot.gov/Publications/fhwahop15023/ch8.htm}
+
+\bibitem{ctdot_bdm8}
+Connecticut Department of Transportation, ``Section 8: Decks and deck protective systems,'' in \emph{Bridge Design Manual}, Newington, CT, USA. [Online]. Available: \url{https://portal.ct.gov/-/media/DOT/documents/dpublications/bridge/Division-1/Section-08-Decks-and-Deck-Protective-Systems.pdf}
+
+\bibitem{ctdot_overlay}
+Connecticut Department of Transportation, Pavement Design Unit, ``Bridge deck overlay guidance,'' Dec. 14, 2022. [Online]. Available: \url{https://portal.ct.gov/-/media/dot/documents/dpavement/bridge_deck_overlay_guidance_12-14-22.pdf}
+
+\bibitem{epd_conco}
+Conco Companies, Sherman St. Plant, ``Ready-mix concrete, 4000 psi,'' NRMCA EPD 20142, 2025, via One Click LCA. [Online]. Available: \url{https://materials.oneclicklca.com/it/material/ready-mix-concrete/68e016f78c603d767267f93e}
+
+\bibitem{crsi_epd}
+Concrete Reinforcing Steel Institute, ``Environmental product declaration: Fabricated steel reinforcement,'' ASTM International EPD 362. [Online]. Available: \url{https://www.crsi.org/sustainability/environmental-product-declaration/}
+
+\bibitem{fhwa_edc7}
+Federal Highway Administration, ``Environmental product declarations,'' Every Day Counts (EDC-7) fact sheet. [Online]. Available: \url{https://www.fhwa.dot.gov/innovation/everydaycounts/edc_7/docs/EDC-7FactsheetEPDs.pdf}
+
+\bibitem{pulse_scm}
+``Advancing low carbon concrete in Australian infrastructure,'' \emph{Roads \& Infrastructure Australia}, Apr. 1, 2026. [Online]. Available: \url{https://www.pulse.bot/construction/news/advancing-low-carbon-concrete-in-australian-infrastructure-31d0c281-fa9e-4b83-b868-9dd11e86ee4a}
+
+\bibitem{epd_xcarb}
+ArcelorMittal Europe, ``XCarb recycled and renewably produced reinforcing steel,'' EPD, via One Click LCA. [Online]. Available: \url{https://materials.oneclicklca.com/en/material/reinforcing-steel-rebar/63186018eacb8327acb30d11}
+
+\bibitem{epa_vehicle}
+U.S. Environmental Protection Agency, ``Greenhouse gas emissions from a typical passenger vehicle,'' EPA-420-F-23-014, Jun. 2023. [Online]. Available: \url{https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle}
+
+\bibitem{concrete_ne}
+``Average concrete cost by state in 2026,'' UseCalcPro. [Online]. Available: \url{https://usecalcpro.com/blog/average-concrete-cost-by-state-2026}
+
+\bibitem{gmk_rebar}
+GMK Center, ``Prices for rebar showed mixed dynamics at the beginning of the year,'' 2026. [Online]. Available: \url{https://gmk.center/en/news/prices-for-rebar-showed-mixed-dynamics-at-the-beginning-of-the-year/}
+
+\bibitem{ctdot_bid_0155}
+Connecticut Department of Transportation, ``Tabulation of bids, State Project 0155-0169.'' [Online]. Available: \url{https://portal.ct.gov/-/media/dot/documents/dcontracts/01550169bidtabspdf.pdf}
+
+\end{thebibliography}
+
+\end{document}
