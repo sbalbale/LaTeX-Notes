@@ -70,31 +70,32 @@
 \section{Objective}
 The objective of Part~1 is to select and quantify the roadway that the truss bridge will carry. The specific goals are:
 \begin{itemize}
-    \item To classify the roadway and select lane, shoulder, and barrier widths from AASHTO and CTDOT standards.
-    \item To specify the deck section (slab, waterproofing, wearing surface) and calculate material quantities for the \SI{60}{m} span.
-    \item To estimate the cradle-to-gate embodied carbon of those materials and compare it against lower-carbon alternatives.
+    \item To classify the roadway and select lane, shoulder, and barrier widths from AASHTO standards.
+    \item To specify the deck section (slab, waterproofing, wearing surface) and calculate material quantities for the \SI{196.9}{ft} (\SI{60}{m}) span.
+    \item To estimate the embodied carbon of those materials and compare it against lower-carbon alternatives.
     \item To estimate the raw material cost.
 \end{itemize}
 
 \section{Design Basis}
 \paragraph{Given Parameters}
 \begin{itemize}
-    \item \textbf{Span:} $L = \SI{60}{m}$, two lanes per direction, no pedestrian traffic.
-    \item \textbf{Reference roadway:} Route~2 over Griswold St., Glastonbury: \num{74400} vehicles/day, 6\% trucks (2021) \cite{nbi_griswold}, or about \num{4460} trucks/day.
-    \item \textbf{Classification:} urban principal arterial freeway (divided, full access control).
-    \item \textbf{Standards:} AASHTO freeway criteria for widths \cite{fhwa_pts}; CTDOT Bridge Design Manual and pavement guidance for the deck section \cite{ctdot_bdm8, ctdot_overlay}.
+    \item \textbf{Span:} $L = \SI{60}{m} = \SI{196.9}{ft}$, two lanes per direction, no pedestrian traffic.
+    \item \textbf{Reference roadway:} Route~2 outside Hartford, a divided freeway with full access control.
+    \item \textbf{Classification:} urban principal arterial freeway.
+    \item \textbf{Units:} U.S. customary throughout. Emissions are in metric tons (t) of CO$_2$e, the standard unit for greenhouse gas reporting.
+    \item \textbf{Standards:} AASHTO freeway criteria for widths \cite{fhwa_pts}; AASHTO LRFD for the deck slab \cite{fhwa_deck}; the CTDOT Pavement Design Handbook for the wearing surface \cite{ctdot_pdh}.
 \end{itemize}
 
 \section{Roadway Design}
 
 \paragraph{Cross-Section}
-AASHTO sets a \SI{12}{ft} minimum lane width and a \SI{10}{ft} minimum shoulder, except that the left shoulder of a 4-lane freeway can be \SI{4}{ft} \cite{fhwa_pts}. I used the minimums, since every foot of width carries into the slab, rebar, and overlay quantities. The bridge carries the full approach width. Each edge has a \SI{32}{in} concrete parapet and the median has a \SI{42}{in} barrier; the barrier base widths (\SI{21}{in} and \SI{24}{in}) are my assumptions, not CTDOT plate values.
+AASHTO sets a \SI{12}{ft} minimum lane width and a \SI{10}{ft} minimum shoulder, except the left shoulder on a 4-lane freeway, which can be \SI{4}{ft} \cite{fhwa_pts}. I used the minimums to keep the deck as narrow as possible. Each edge has a \SI{32}{in} parapet and the median has a \SI{42}{in} barrier; the barrier base widths (\SI{21}{in} and \SI{24}{in}) are assumed.
 
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[x=0.17cm, y=0.17cm, font=\scriptsize]
-    \fill[gray!25] (0,0) rectangle (81.5,-0.71);
-    \draw (0,0) rectangle (81.5,-0.71);
+    \fill[gray!25] (0,0) rectangle (81.5,-0.67);
+    \draw (0,0) rectangle (81.5,-0.67);
     \fill[black!70] (1.75,0) rectangle (39.75,0.25);
     \fill[black!70] (41.75,0) rectangle (79.75,0.25);
     \fill[gray!55] (0,0) -- (1.75,0) -- (1.0,2.67) -- (0,2.67) -- cycle;
@@ -111,117 +112,143 @@ AASHTO sets a \SI{12}{ft} minimum lane width and a \SI{10}{ft} minimum shoulder,
     \node[above] at (51.75,5) {12' lane};
     \node[above] at (63.75,5) {12' lane};
     \node[above] at (74.75,5) {10' shldr};
-    \draw[<->] (0,-2.3) -- (81.5,-2.3) node[midway, below] {out-to-out = \SI{81.5}{ft} (\SI{24.8}{m}); curb-to-curb = \SI{76}{ft} (\SI{23.2}{m})};
+    \draw[<->] (0,-2.3) -- (81.5,-2.3) node[midway, below] {out-to-out = \SI{81.5}{ft}; curb-to-curb = \SI{76}{ft}};
 \end{tikzpicture}
-\caption{Roadway cross-section: \SI{3}{in} HMA on membrane over an \SI{8.5}{in} reinforced concrete slab (vertical not to scale).}
+\caption{Roadway cross-section: \SI{3}{in} HMA on membrane over an \SI{8}{in} reinforced concrete slab (vertical not to scale).}
 \label{fig:section}
 \end{figure}
 
 \paragraph{Deck Section}
 \begin{itemize}
-    \item \textbf{Slab:} \SI{8.5}{in} (\SI{216}{mm}) cast-in-place reinforced concrete, the CTDOT minimum, with \SI{2.5}{in} cover over the top mat \cite{ctdot_bdm8}. Reinforcement is assumed at \SI{150}{kg/m^3} until Part~2 sizes it.
-    \item \textbf{Waterproofing:} spray-applied liquid membrane, CTDOT's current standard under a bituminous surface \cite{ctdot_overlay}.
-    \item \textbf{Wearing surface:} \SI{3}{in} hot-mix asphalt (HMA): a \SI{1}{in} S0.25 lift on the membrane and a \SI{2}{in} top course \cite{ctdot_overlay}.
+    \item \textbf{Slab:} \SI{8}{in} cast-in-place reinforced concrete, \SI{2.5}{in} top cover. AASHTO LRFD requires at least \SI{7}{in}, and many states use \SI{8}{in} \cite{fhwa_deck}.
+    \item \textbf{Waterproofing:} membrane under the HMA \cite{ctdot_pdh}.
+    \item \textbf{Wearing surface:} \SI{3}{in} hot-mix asphalt (HMA), \SI{1}{in} of S0.25 over the membrane and \SI{2}{in} of S0.5 on top. CTDOT recommends S0.25 as the first lift over bridge membranes and caps S0.5 at \SI{2.5}{in} on bridges \cite{ctdot_pdh}.
 \end{itemize}
 
 \paragraph{Quantities}
-With out-to-out width $W = \SI{24.84}{m}$ and curb-to-curb width $w_c = \SI{23.16}{m}$:
+With out-to-out width $W = \SI{81.5}{ft}$, curb-to-curb width $w_c = \SI{76}{ft}$, parapet area $A_p = \SI{3.00}{ft^2}$, median barrier area $A_m = \SI{4.67}{ft^2}$, and an assumed HMA density of \SI{147}{lb/ft^3}:
 \begin{align*}
-V_{\text{deck}} &= L W t_s = (\SI{60}{m})(\SI{24.84}{m})(\SI{0.216}{m}) = \SI{322}{m^3} \\
-V_{\text{barrier}} &= L(2A_p + A_m) = (\SI{60}{m})(2 \times \SI{0.279}{m^2} + \SI{0.434}{m^2}) = \SI{59.5}{m^3} \\
-m_{\text{rebar}} &= (\SI{381}{m^3})(\SI{150}{kg/m^3}) = \SI{57.2}{t} \\
-m_{\text{HMA}} &= L w_c t_o \rho_{\text{HMA}} = (\SI{60}{m})(\SI{23.16}{m})(\SI{0.0762}{m})(\SI{2.35}{t/m^3}) = \SI{249}{t}
+V_{\text{deck}} &= L W t_s = (\SI{196.9}{ft})(\SI{81.5}{ft})(\SI{0.667}{ft}) = \SI{10696}{ft^3} = \SI{396}{yd^3} \\
+V_{\text{barrier}} &= L(2A_p + A_m) = (\SI{196.9}{ft})(2 \times \SI{3.00}{ft^2} + \SI{4.67}{ft^2}) = \SI{2100}{ft^3} = \SI{78}{yd^3} \\
+W_{\text{HMA}} &= L w_c t_o \gamma_{\text{HMA}} = (\SI{196.9}{ft})(\SI{76}{ft})(\SI{0.25}{ft})(\SI{147}{lb/ft^3}) = \SI{548700}{lb} = \SI{274}{tons}
 \end{align*}
-Total concrete is \SI{381}{m^3} (\SI{499}{yd^3}).
+Total concrete is \SI{474}{yd^3}. Tons are U.S. short tons (\SI{2000}{lb}).
+
+\textbf{Reinforcement:} The bar layout is from the FHWA \SI{8}{in} deck example \cite{fhwa_deck}, with nominal bar weights of \SI{0.668}{lb/ft} (\#4) and \SI{1.043}{lb/ft} (\#5):
+\begin{align*}
+\text{Top transverse, \#5 @ \SI{8}{in}:} &\quad (1.043)(12/8) = \SI{1.56}{lb/ft^2} \\
+\text{Bottom transverse, \#5 @ \SI{7}{in}:} &\quad (1.043)(12/7) = \SI{1.79}{lb/ft^2} \\
+\text{Top longitudinal, \#4 @ \SI{12}{in}:} &\quad (0.668)(12/12) = \SI{0.67}{lb/ft^2} \\
+\text{Bottom longitudinal, \#5 @ \SI{10}{in}:} &\quad (1.043)(12/10) = \SI{1.25}{lb/ft^2} \\
+\textbf{Total:} &\quad q_{\text{rebar}} = \SI{5.27}{lb/ft^2}
+\end{align*}
+\[
+W_{\text{rebar}} = q_{\text{rebar}} L W = (\SI{5.27}{lb/ft^2})(\SI{196.9}{ft})(\SI{81.5}{ft}) = \SI{84580}{lb} = \SI{42.3}{tons}
+\]
+This leaves out laps, overhang bars, and barrier steel, so it is a lower bound. The FHWA deck sits on girders at \SI{9}{ft}-\SI{8}{in}, so the real bar sizes depend on how this deck is supported on the truss.
 
 \section{Environmental Impact}
 
 \paragraph{Embodied Carbon}
-I used environmental product declarations (EPDs), which report cradle-to-gate (A1--A3) CO$_2$e per unit of material. A Connecticut-area \SI{4000}{psi} EPD covers mixes from \SIrange{265}{335}{kg/m^3} \cite{epd_conco}, so I used the \SI{300}{kg/m^3} midpoint. Rebar is \SI{854}{kg/t} from the CRSI industry average \cite{crsi_epd}, and HMA is \SI{71.1}{kg/t} from an FHWA example EPD \cite{fhwa_edc7}.
+All carbon factors are industry averages. Rebar is \SI{854}{kg} CO$_2$e per metric ton (\SI{775}{kg/ton}) from the CRSI EPD, which covers steelmaking, transport to the fabricator, and fabrication (stages A1--A3) \cite{crsi}. Concrete is \SI{261}{kg/yd^3} from the NRMCA Eastern benchmark for \SI{4000}{psi} \cite{nrmca}, and HMA is \SI{64.5}{kg/ton} from FHWA's sample EPD \cite{fhwa_epd}. Those two do not list their stages, so I assumed they cover the same ones.
 
 \begin{table}[H]
     \centering
-    \caption{Baseline embodied carbon (A1--A3)}
+    \caption{Baseline embodied carbon}
     \label{tab:carbon}
     \begin{tabular}{lccc}
         \toprule
         \textbf{Material} & \textbf{Quantity} & \textbf{GWP Factor} & \textbf{CO$_2$e (t)} \\
         \midrule
-        Concrete (deck + barriers) & \SI{381}{m^3} & \SI{300}{kg/m^3} & 114 \\
-        Reinforcing steel & \SI{57.2}{t} & \SI{854}{kg/t} & 48.8 \\
-        HMA overlay & \SI{249}{t} & \SI{71.1}{kg/t} & 17.7 \\
+        Concrete (deck + barriers) & \SI{474}{yd^3} & \SI{261}{kg/yd^3} & 124 \\
+        Reinforcing steel & \SI{42.3}{tons} & \SI{775}{kg/ton} & 32.8 \\
+        HMA overlay & \SI{274}{tons} & \SI{64.5}{kg/ton} & 17.7 \\
         \midrule
-        \textbf{Total} & & & \textbf{181} \\
+        \textbf{Total} & & & \textbf{174} \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-Concrete is 63\% of the total, and nearly all of that is the portland cement, which emits CO$_2$ from both kiln fuel and limestone calcination. The membrane is excluded since I could not find an EPD for it; it is a few millimeters thick, so its mass is small next to the slab.
+Concrete is 71\% of the total, and most of that is cement. The benchmark mix has \SI{475}{lb/yd^3} of it \cite{nrmca}, and at about \SI{0.9}{tons} of CO$_2$ per ton of cement \cite{sca}, cement is about 74\% of the mix's GWP. I left out the membrane since I could not find an EPD for it; at a few millimeters thick it is negligible next to the slab.
 
 \paragraph{Alternatives}
+\textbf{1. Slag cement:} The benchmark mix has \SI{82}{lb/yd^3} of slag out of \SI{604}{lb/yd^3} of cementitious material \cite{nrmca}. Raising slag to 50\% removes \SI{220}{lb/yd^3} of cement:
+\[
+\Delta\text{GWP} = (\SI{220}{lb/yd^3})(0.9) = \SI{198}{lb/yd^3} = \SI{89.8}{kg/yd^3} \quad (-34\%)
+\]
+This ignores the emissions from making the slag, so it slightly overstates the savings.
+
+\textbf{2. Concrete wearing surface:} Swapping the \SI{139}{yd^3} of HMA for concrete adds \SI{18.5}{t}, so HMA is the better choice on carbon too.
+
 \begin{table}[H]
     \centering
-    \caption{Embodied carbon of alternative materials (same geometry)}
+    \caption{Embodied carbon of alternatives (same geometry)}
     \label{tab:alts}
     \begin{tabular}{lcc}
         \toprule
         \textbf{Option} & \textbf{CO$_2$e (t)} & \textbf{Change} \\
         \midrule
-        Baseline & 181 & -- \\
-        Slag-cement concrete, 40--50\% lower GWP \cite{pulse_scm} & 124--135 & $-25$ to $-32\%$ \\
-        EAF rebar on renewable power, \SI{300}{kg/t} \cite{epd_xcarb} & 149 & $-18\%$ \\
-        Concrete wearing surface instead of HMA & 195 & $+8\%$ \\
-        Slag concrete (45\%) + EAF rebar & 98 & $-46\%$ \\
+        Baseline & 174 & -- \\
+        50\% slag cement concrete & 132 & $-24\%$ \\
+        Concrete wearing surface instead of HMA & 193 & $+11\%$ \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-Cement content is the biggest lever: a 60\% slag mix approved for Australian infrastructure cut embodied carbon by an estimated 40--50\% \cite{pulse_scm}, at the cost of slower early strength gain. HMA is also the better wearing surface on carbon, not just by CTDOT practice; replacing it with \SI{106}{m^3} of concrete adds \SI{14}{t}.
-
-\paragraph{Perspective}
-EPA puts a typical passenger vehicle at about \SI{400}{g} CO$_2$ per mile \cite{epa_vehicle}, so traffic over the span emits
-\[
-(\num{74400}/\text{day})\left(\frac{\SI{60}{m}}{\SI{1609}{m/mi}}\right)(\SI{0.400}{kg/mi}) = \SI{1.11}{t/day}.
-\]
-The baseline materials equal about 163 days of that traffic. This slightly overstates the ratio since trucks emit more per mile than cars, but the materials are the part of the footprint the designer controls.
-
 \paragraph{Other Impacts}
-The concrete and HMA contain several hundred tonnes of quarried aggregate, with the land disturbance and truck traffic that comes with it. The A1--A3 figures also stop at the plant gate, so a distant plant with a lower EPD value can come out worse once hauling is counted. Recycled asphalt pavement (RAP) in the HMA cuts virgin aggregate and binder demand.
+The concrete and HMA use several hundred tons of quarried aggregate. None of these figures include trucking to the site, so a lower-carbon supplier far away could end up worse than a closer one. Recycled asphalt pavement (RAP) in the HMA cuts both new aggregate and binder.
 
 \section{Raw Material Cost}
+Costs are for raw ingredients only, not batching, delivery, or labor.
+
+\paragraph{Unit Prices}
+\begin{itemize}
+    \item \textbf{Portland cement:} \$425/ton, and \textbf{liquid asphalt binder:} \$625/ton (MassDOT, late 2025) \cite{massdot}. Slag and fly ash are priced as cement (conservative).
+    \item \textbf{Aggregate:} \$18.50 per metric ton (\$16.78/ton) for crushed stone \cite{usgs}, applied to all aggregate.
+    \item \textbf{Rebar:} \$920--\$960/ton FOB mill for \#5 bar (May 2026) \cite{steelorbis}; I used the \$940/ton midpoint.
+\end{itemize}
+
+\paragraph{Calculations}
+The benchmark mix has \SI{604}{lb} of cementitious material and \SI{2979}{lb} of aggregate per cubic yard \cite{nrmca}:
+\[
+\frac{\SI{604}{lb}}{\SI{2000}{lb/ton}}(\$425) + (\SI{1.49}{tons})(\$16.78) = \$128.4 + \$25.0 = \$153/\text{yd}^3
+\]
+For HMA I assumed 5.5\% binder by mass, typical for a dense-graded mix:
+\[
+(0.055)(\$625) + (0.945)(\$16.78) = \$34.4 + \$15.9 = \$50/\text{ton}
+\]
 
 \begin{table}[H]
     \centering
-    \caption{Raw material cost (2026 USD, excluding labor and formwork)}
+    \caption{Raw material cost (2026 USD)}
     \label{tab:cost}
     \begin{tabular}{lccc}
         \toprule
-        \textbf{Material} & \textbf{Quantity} & \textbf{Unit Price} & \textbf{Cost} \\
+        \textbf{Material} & \textbf{Quantity} & \textbf{Unit Cost} & \textbf{Cost} \\
         \midrule
-        Ready-mix concrete & \SI{499}{yd^3} & \$185/yd$^3$ \cite{concrete_ne} & \$92{,}200 \\
-        Reinforcing steel & \SI{57.2}{t} & \$1{,}100/t \cite{gmk_rebar} & \$62{,}900 \\
-        HMA & \SI{274}{short~tons} & \$130/ton \cite{ctdot_bid_0155} & \$35{,}700 \\
+        Concrete ingredients & \SI{474}{yd^3} & \$153/yd$^3$ & \$72{,}670 \\
+        Reinforcing steel & \SI{42.3}{tons} & \$940/ton & \$39{,}750 \\
+        HMA ingredients & \SI{274}{tons} & \$50/ton & \$13{,}780 \\
         \midrule
-        \textbf{Total} & & & \textbf{\$191{,}000} \\
+        \textbf{Total} & & & \textbf{\$126{,}200} \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-Concrete is priced at the top of the \$155--\$185/yd$^3$ Northeast range \cite{concrete_ne}, since a deck mix is air-entrained and higher strength than residential concrete. Rebar rounds up from the \$1{,}058/t US average at the start of 2026 \cite{gmk_rebar} to cover fabrication. HMA is a CTDOT bid price for S0.5 (\$129--\$135/ton) \cite{ctdot_bid_0155}, which includes placement, so it is an upper bound. The same contract bid deck concrete at \$700--\$915/yd$^3$ installed, so raw concrete is only 20--26\% of the in-place cost.
+Installed cost will be several times higher once batching, hauling, forming, and placement are included.
 
 \section{Conclusion}
-The roadway is a 4-lane urban freeway deck, \SI{60}{m} long and \SI{24.8}{m} wide out-to-out.
+The roadway is a 4-lane urban freeway deck, \SI{196.9}{ft} (\SI{60}{m}) long and \SI{81.5}{ft} wide out-to-out.
 \begin{enumerate}
     \item \textbf{Geometry:} four \SI{12}{ft} lanes, \SI{10}{ft} right and \SI{4}{ft} left shoulders, \SI{76}{ft} curb-to-curb. Widening the left shoulders to \SI{10}{ft} would add about 15\% to the deck and overlay quantities.
-    \item \textbf{Deck section:} \SI{8.5}{in} reinforced concrete slab, liquid membrane, and \SI{3}{in} HMA, giving \SI{381}{m^3} of concrete, \SI{57.2}{t} of rebar, and \SI{249}{t} of HMA.
-    \item \textbf{Embodied carbon:} \SI{181}{t} CO$_2$e, 63\% from concrete. Slag cement and EAF rebar together bring it to about \SI{98}{t} ($-46\%$).
-    \item \textbf{Cost:} about \$191{,}000 in raw materials, 48\% of it concrete.
+    \item \textbf{Deck section:} \SI{8}{in} reinforced concrete slab, membrane, and \SI{3}{in} HMA, giving \SI{474}{yd^3} of concrete, \SI{42.3}{tons} of rebar, and \SI{274}{tons} of HMA.
+    \item \textbf{Embodied carbon:} \SI{174}{t} CO$_2$e, 71\% from concrete. A 50\% slag mix brings it to about \SI{132}{t} ($-24\%$).
+    \item \textbf{Cost:} about \$126{,}200 in raw materials, 58\% of it concrete.
 \end{enumerate}
-Slab thickness and rebar density are the values most likely to change once Part~2 sizes the truss and the deck span between supports.
+Rebar is the number most likely to change, since it comes from a girder-supported deck and the deck supports on the truss are not set yet.
 
 \paragraph{AI Use}
-I used Claude (Anthropic) to locate the CTDOT, FHWA, and EPD sources, check the quantity and carbon arithmetic, and draft and edit this report. I checked each design value against its cited source and made the classification, shoulder-width, and material decisions myself.
-
+I used Claude (Anthropic) to locate the AASHTO, CTDOT, EPD, and pricing sources, check the quantity, carbon, and cost arithmetic, and to help edit this report. 
 % =========================================================
 % BIBLIOGRAPHY (IEEE)
 % =========================================================
@@ -229,44 +256,35 @@ I used Claude (Anthropic) to locate the CTDOT, FHWA, and EPD sources, check the 
 \footnotesize
 \setlength{\itemsep}{0pt}
 
-\bibitem{nbi_griswold}
-``Route 2 over Griswold Street, Glastonbury, CT,'' National Bridge Inventory record, BridgeLookup. [Online]. Available: \url{https://bridgelookup.com/bridge/74712}
-
 \bibitem{fhwa_pts}
-Federal Highway Administration, ``Chapter 8: Geometric design,'' in \emph{Use of Freeway Shoulders for Travel}, FHWA-HOP-15-023. [Online]. Available: \url{https://ops.fhwa.dot.gov/Publications/fhwahop15023/ch8.htm}
+Federal Highway Administration, ``Chapter 8: Implementation process,'' in \emph{Use of Freeway Shoulders for Travel: Guide for Planning, Evaluating, and Designing Part-Time Shoulder Use as a Traffic Management Strategy}, FHWA-HOP-15-023. [Online]. Available: \url{https://ops.fhwa.dot.gov/Publications/fhwahop15023/ch8.htm}
 
-\bibitem{ctdot_bdm8}
-Connecticut Department of Transportation, ``Section 8: Decks and deck protective systems,'' in \emph{Bridge Design Manual}, Newington, CT, USA. [Online]. Available: \url{https://portal.ct.gov/-/media/DOT/documents/dpublications/bridge/Division-1/Section-08-Decks-and-Deck-Protective-Systems.pdf}
+\bibitem{fhwa_deck}
+Federal Highway Administration, ``Design step 4: Deck slab design,'' in \emph{LRFD Comprehensive Design Example for Prestressed Concrete Girder Superstructure Bridge}. [Online]. Available: \url{https://www.fhwa.dot.gov/bridge/Lrfd/pscus04.cfm}
 
-\bibitem{ctdot_overlay}
-Connecticut Department of Transportation, Pavement Design Unit, ``Bridge deck overlay guidance,'' Dec. 14, 2022. [Online]. Available: \url{https://portal.ct.gov/-/media/dot/documents/dpavement/bridge_deck_overlay_guidance_12-14-22.pdf}
+\bibitem{ctdot_pdh}
+Connecticut Department of Transportation, \emph{CTDOT Pavement Design Handbook}, Rep. CT-2307-F-20-1, Jul. 2020. [Online]. Available: \url{https://rosap.ntl.bts.gov/view/dot/57390}
 
-\bibitem{epd_conco}
-Conco Companies, Sherman St. Plant, ``Ready-mix concrete, 4000 psi,'' NRMCA EPD 20142, 2025, via One Click LCA. [Online]. Available: \url{https://materials.oneclicklca.com/it/material/ready-mix-concrete/68e016f78c603d767267f93e}
+\bibitem{crsi}
+Concrete Reinforcing Steel Institute, ``Environmental product declaration: Fabricated steel reinforcement,'' ASTM International EPD 362, Sep. 2022. [Online]. Available: \url{https://www.astm.org/v3/assets/blt5eb0a2cb04534832/blt4900ac0ff22764a2/697b1fc25e3544dd57d83a3d/362.EPD_for_CRSI_EPD_FINAL_2017-08-28.pdf}
 
-\bibitem{crsi_epd}
-Concrete Reinforcing Steel Institute, ``Environmental product declaration: Fabricated steel reinforcement,'' ASTM International EPD 362. [Online]. Available: \url{https://www.crsi.org/sustainability/environmental-product-declaration/}
+\bibitem{nrmca}
+Athena Sustainable Materials Institute, ``Appendix D: NRMCA member national and regional LCA benchmark (industry average) report,'' National Ready Mixed Concrete Association, V3.0, Nov. 2019. [Online]. Available: \url{https://www.nrmca.org/wp-content/uploads/2020/02/NRMCA_REGIONAL_BENCHMARK_Nov2019.pdf}
 
-\bibitem{fhwa_edc7}
-Federal Highway Administration, ``Environmental product declarations,'' Every Day Counts (EDC-7) fact sheet. [Online]. Available: \url{https://www.fhwa.dot.gov/innovation/everydaycounts/edc_7/docs/EDC-7FactsheetEPDs.pdf}
+\bibitem{fhwa_epd}
+Federal Highway Administration, ``EPDs for sustainable project delivery,'' FHWA-22-CAI-037. [Online]. Available: \url{https://www.fhwa.dot.gov/innovation/everydaycounts/edc_7/docs/EDC-7FactsheetEPDs.pdf}
 
-\bibitem{pulse_scm}
-``Advancing low carbon concrete in Australian infrastructure,'' \emph{Roads \& Infrastructure Australia}, Apr. 1, 2026. [Online]. Available: \url{https://www.pulse.bot/construction/news/advancing-low-carbon-concrete-in-australian-infrastructure-31d0c281-fa9e-4b83-b868-9dd11e86ee4a}
+\bibitem{sca}
+Slag Cement Association, ``Slag cement's role in sustainable construction,'' Information Sheet 22. [Online]. Available: \url{https://www.slagcement.org/_files/ugd/7a9259_beeb82497fd84b4db8e67c6ce36d3102.pdf}
 
-\bibitem{epd_xcarb}
-ArcelorMittal Europe, ``XCarb recycled and renewably produced reinforcing steel,'' EPD, via One Click LCA. [Online]. Available: \url{https://materials.oneclicklca.com/en/material/reinforcing-steel-rebar/63186018eacb8327acb30d11}
+\bibitem{massdot}
+Massachusetts Department of Transportation, Highway Division, ``Period price archives for 2025.'' [Online]. Available: \url{https://www.mass.gov/doc/2025-period-prices/download}
 
-\bibitem{epa_vehicle}
-U.S. Environmental Protection Agency, ``Greenhouse gas emissions from a typical passenger vehicle,'' EPA-420-F-23-014, Jun. 2023. [Online]. Available: \url{https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle}
+\bibitem{usgs}
+J. C. Willett, ``Stone (crushed),'' in \emph{Mineral Commodity Summaries 2026}, U.S. Geological Survey, Feb. 2026. [Online]. Available: \url{https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-stone-crushed.pdf}
 
-\bibitem{concrete_ne}
-``Average concrete cost by state in 2026,'' UseCalcPro. [Online]. Available: \url{https://usecalcpro.com/blog/average-concrete-cost-by-state-2026}
-
-\bibitem{gmk_rebar}
-GMK Center, ``Prices for rebar showed mixed dynamics at the beginning of the year,'' 2026. [Online]. Available: \url{https://gmk.center/en/news/prices-for-rebar-showed-mixed-dynamics-at-the-beginning-of-the-year/}
-
-\bibitem{ctdot_bid_0155}
-Connecticut Department of Transportation, ``Tabulation of bids, State Project 0155-0169.'' [Online]. Available: \url{https://portal.ct.gov/-/media/dot/documents/dcontracts/01550169bidtabspdf.pdf}
+\bibitem{steelorbis}
+``ISA reports US rebar market recovery accelerating in Q2 2026,'' \emph{SteelOrbis}, May 1, 2026. [Online]. Available: \url{https://www.steelorbis.com/steel-news/latest-news/isa-reports-us-rebar-market-recovery-accelerating-in-q2-2026-1451268.htm}
 
 \end{thebibliography}
 
