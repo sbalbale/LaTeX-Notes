@@ -75,7 +75,7 @@
     \begin{flushleft}
         \Large
         $\square$ \quad None \\[0.7cm]
-        $\blacksquare$ \quad Minor \\[0.7cm]
+        $\square$ \quad Minor \\[0.7cm]
         $\square$ \quad Major \\[0.7cm]
         $\square$ \quad Extensive \\[1.5cm]
     \end{flushleft}
@@ -88,11 +88,11 @@
 % =========================================================
 % HOMEWORK HEADER
 % =========================================================
-% \section*{ENGR 225 -- Homework \assignmentNumber}
-% \textbf{Assigned:} \assignedDate \hfill \textbf{Due:} \dueDate
+\section*{ENGR 225 -- Homework \assignmentNumber}
+\textbf{Assigned:} \assignedDate \hfill \textbf{Due:} \dueDate
 
 
-% \textbf{Convention:} internal loads drawn positive (left segment: $N\rightarrow$, $V\downarrow$, $M\circlearrowleft$; right segment: $N\leftarrow$, $V\uparrow$, $M\circlearrowright$). $\circlearrowleft$ positive in $\sum M$.
+Sign convention: $+x$ right, $+y$ up, CCW moments positive. Internal $N$, $V$, $M$ are drawn in their positive sense, so a negative result means the load acts opposite to the direction drawn.
 
 % =========================================================
 % PROBLEM 1
@@ -161,26 +161,26 @@
 \end{tikzpicture}
 \end{center}
 
-\textbf{Equations \& Solution:}
+\textbf{Solution:}
 
 \textit{Reactions} ($B_x = 0$):
 \begin{align*}
-\circlearrowleft\sum M_B = 0:\quad -A_y(14\un{ft}) + (500\un{lb})(8\un{ft}) - (300\un{lb})(8\un{ft}) &= 0\\
-A_y &= \frac{4000 - 2400}{14}\un{lb} = 114.3\un{lb}\ \uparrow\\[4pt]
-+\uparrow\sum F_y = 0:\quad A_y + B_y - 500\un{lb} - 200\un{lb} - 300\un{lb} &= 0\\
-B_y &= 1000\un{lb} - 114.3\un{lb} = 885.7\un{lb}\ \uparrow
+\textstyle\sum M_B &= -A_y(14\un{ft}) + (500\un{lb})(8\un{ft}) - (300\un{lb})(8\un{ft}) = 0\\
+A_y &= \frac{4000 - 2400}{14}\un{lb} = 114.3\un{lb}\\[4pt]
+\textstyle\sum F_y &= A_y + B_y - 500\un{lb} - 200\un{lb} - 300\un{lb} = 0\\
+B_y &= 1000\un{lb} - 114.3\un{lb} = 885.7\un{lb}
 \end{align*}
 
 \textit{Section $C$, left segment $AC$:}
 \begin{align*}
-+\uparrow\sum F_y = 0:\quad 114.3\un{lb} - 500\un{lb} - V_C &= 0 \;\Rightarrow\; V_C = -385.7\un{lb}\\
-\circlearrowleft\sum M_C = 0:\quad M_C - (114.3\un{lb})(10\un{ft}) + (500\un{lb})(4\un{ft}) &= 0 \;\Rightarrow\; M_C = 1143 - 2000 = -857.1\un{lb\,ft}
+\textstyle\sum F_y &= 114.3\un{lb} - 500\un{lb} - V_C = 0 \;\Rightarrow\; V_C = -385.7\un{lb}\\
+\textstyle\sum M_C &= M_C - (114.3\un{lb})(10\un{ft}) + (500\un{lb})(4\un{ft}) = 0 \;\Rightarrow\; M_C = 1143 - 2000 = -857.1\un{lb\,ft}
 \end{align*}
 
 \textit{Section $D$, right segment $DE$:}
 \begin{align*}
-+\uparrow\sum F_y = 0:\quad V_D - 300\un{lb} &= 0 \;\Rightarrow\; V_D = 300\un{lb}\\
-\circlearrowleft\sum M_D = 0:\quad -M_D - (300\un{lb})(2\un{ft}) &= 0 \;\Rightarrow\; M_D = -600\un{lb\,ft}
+\textstyle\sum F_y &= V_D - 300\un{lb} = 0 \;\Rightarrow\; V_D = 300\un{lb}\\
+\textstyle\sum M_D &= -M_D - (300\un{lb})(2\un{ft}) = 0 \;\Rightarrow\; M_D = -600\un{lb\,ft}
 \end{align*}
 
 \begin{finalanswer}
@@ -272,28 +272,28 @@ $V_C = -386\un{lb}$, \quad $M_C = -857\un{lb\,ft}$, \qquad $V_D = 300\un{lb}$, \
 \end{tikzpicture}
 \end{center}
 
-\textbf{Equations \& Solution:}
+\textbf{Solution:}
 
 \textit{Segment $AB$} (hinge: $M_B = 0$):
 \begin{align*}
-\circlearrowleft\sum M_B = 0:\quad -A_y(12\un{ft}) + (5\un{kip})(6\un{ft}) + 6\un{kip\,ft} &= 0 \;\Rightarrow\; A_y = \frac{36}{12} = 3.00\un{kip}\ \uparrow\\
-+\uparrow\sum F_y = 0:\quad 3\un{kip} - 5\un{kip} + B_y &= 0 \;\Rightarrow\; B_y = 2.00\un{kip}\ \uparrow\ \text{(on $AB$)}\\
-\xrightarrow{+}\sum F_x = 0:\quad B_x &= 0
+\textstyle\sum M_B &= -A_y(12\un{ft}) + (5\un{kip})(6\un{ft}) + 6\un{kip\,ft} = 0 \;\Rightarrow\; A_y = \frac{36}{12} = 3.00\un{kip}\\
+\textstyle\sum F_y &= 3\un{kip} - 5\un{kip} + B_y = 0 \;\Rightarrow\; B_y = 2.00\un{kip}\ \text{(on $AB$)}\\
+\textstyle\sum F_x &= B_x = 0
 \end{align*}
 Hinge force on $BC$: 2.00 kip $\downarrow$.
 
 \textit{Section $D$, left segment $AD$} (5 kip just right of cut):
 \begin{align*}
-\xrightarrow{+}\sum F_x = 0:\quad N_D &= 0\\
-+\uparrow\sum F_y = 0:\quad 3\un{kip} - V_D &= 0 \;\Rightarrow\; V_D = 3.00\un{kip}\\
-\circlearrowleft\sum M_D = 0:\quad M_D - (3\un{kip})(6\un{ft}) + 6\un{kip\,ft} &= 0 \;\Rightarrow\; M_D = 12.0\un{kip\,ft}
+\textstyle\sum F_x &= N_D = 0\\
+\textstyle\sum F_y &= 3\un{kip} - V_D = 0 \;\Rightarrow\; V_D = 3.00\un{kip}\\
+\textstyle\sum M_D &= M_D - (3\un{kip})(6\un{ft}) + 6\un{kip\,ft} = 0 \;\Rightarrow\; M_D = 12.0\un{kip\,ft}
 \end{align*}
 
 \textit{Section $E$, segment $BE$} (distributed resultant $1.5(4) = 6\un{kip}$, 2 ft from $E$):
 \begin{align*}
-\xrightarrow{+}\sum F_x = 0:\quad N_E &= 0\\
-+\uparrow\sum F_y = 0:\quad -2\un{kip} - 6\un{kip} - V_E &= 0 \;\Rightarrow\; V_E = -8.00\un{kip}\\
-\circlearrowleft\sum M_E = 0:\quad M_E + (2\un{kip})(4\un{ft}) + (6\un{kip})(2\un{ft}) &= 0 \;\Rightarrow\; M_E = -20.0\un{kip\,ft}
+\textstyle\sum F_x &= N_E = 0\\
+\textstyle\sum F_y &= -2\un{kip} - 6\un{kip} - V_E = 0 \;\Rightarrow\; V_E = -8.00\un{kip}\\
+\textstyle\sum M_E &= M_E + (2\un{kip})(4\un{ft}) + (6\un{kip})(2\un{ft}) = 0 \;\Rightarrow\; M_E = -20.0\un{kip\,ft}
 \end{align*}
 
 \begin{finalanswer}
@@ -351,20 +351,20 @@ $N_E = 0$, \quad $V_E = -8.00\un{kip}$, \quad $M_E = -20.0\un{kip\,ft}$
 \end{tikzpicture}
 \end{center}
 
-\textbf{Equations \& Solution:}
+\textbf{Solution:}
 
 \textit{Whole frame} ($T$ horizontal at $E$, 1 m above $AD$):
 \begin{align*}
-\circlearrowleft\sum M_A = 0:\quad T(1\un{m}) - (200\un{N})(4\un{m}) - 800\un{N\,m} &= 0 \;\Rightarrow\; T = 1600\un{N}\\
-\xrightarrow{+}\sum F_x = 0:\quad A_x - 1600\un{N} &= 0 \;\Rightarrow\; A_x = 1600\un{N}\ \rightarrow\\
-+\uparrow\sum F_y = 0:\quad A_y - 200\un{N} &= 0 \;\Rightarrow\; A_y = 200\un{N}\ \uparrow
+\textstyle\sum M_A &= T(1\un{m}) - (200\un{N})(4\un{m}) - 800\un{N\,m} = 0 \;\Rightarrow\; T = 1600\un{N}\\
+\textstyle\sum F_x &= A_x - 1600\un{N} = 0 \;\Rightarrow\; A_x = 1600\un{N}\\
+\textstyle\sum F_y &= A_y - 200\un{N} = 0 \;\Rightarrow\; A_y = 200\un{N}
 \end{align*}
 
 \textit{Section $C$, left segment $AC$:}
 \begin{align*}
-\xrightarrow{+}\sum F_x = 0:\quad 1600\un{N} + N_C &= 0 \;\Rightarrow\; N_C = -1600\un{N}\ \text{(compression)}\\
-+\uparrow\sum F_y = 0:\quad 200\un{N} - V_C &= 0 \;\Rightarrow\; V_C = 200\un{N}\\
-\circlearrowleft\sum M_C = 0:\quad M_C - (200\un{N})(1\un{m}) &= 0 \;\Rightarrow\; M_C = 200\un{N\,m}
+\textstyle\sum F_x &= 1600\un{N} + N_C = 0 \;\Rightarrow\; N_C = -1600\un{N}\ \text{(compression)}\\
+\textstyle\sum F_y &= 200\un{N} - V_C = 0 \;\Rightarrow\; V_C = 200\un{N}\\
+\textstyle\sum M_C &= M_C - (200\un{N})(1\un{m}) = 0 \;\Rightarrow\; M_C = 200\un{N\,m}
 \end{align*}
 
 \begin{finalanswer}
@@ -417,7 +417,7 @@ $N_C = -1.60\un{kN}$ (compression), \quad $V_C = 200\un{N}$, \quad $M_C = 200\un
 {\small FBD of segment $BCD$ ($C$ = elbow, $D$ = free end). Internal loads at $B$ drawn in the $+x$, $+y$, $+z$ directions (single arrow = force, double arrow = moment); a negative answer means the actual load points the other way.}
 \end{center}
 
-\textbf{Equations \& Solution:}
+\textbf{Solution:}
 
 \textit{Outboard segment $BCD$}, position vectors from $B$:
 \[
@@ -426,14 +426,14 @@ $N_C = -1.60\un{kN}$ (compression), \quad $V_C = 200\un{N}$, \quad $M_C = 200\un
 
 \textit{Force equilibrium:}
 \begin{align*}
-\sum \vec F = 0:\quad \vec F_B + \vec F_1 + \vec F_2 &= 0\\
+\textstyle\sum \vec F &= \vec F_B + \vec F_1 + \vec F_2 = 0\\
 \vec F_B &= -\big[(100+100)\hat\imath + (-200+500)\hat\jmath + (-300)\hat k\big]\un{N}\\
 &= (-200\hat\imath - 300\hat\jmath + 300\hat k)\un{N}
 \end{align*}
 
 \textit{Moment equilibrium about $B$:}
 \begin{align*}
-\sum \vec M_B = 0:\quad \vec M_B + \vec r_{BD}\times\vec F_1 + \vec r_{BC}\times\vec F_2 &= 0\\[4pt]
+\textstyle\sum \vec M_B &= \vec M_B + \vec r_{BD}\times\vec F_1 + \vec r_{BC}\times\vec F_2 = 0\\[4pt]
 \vec r_{BD}\times\vec F_1 = \begin{vmatrix}\hat\imath & \hat\jmath & \hat k\\ 1 & 1.5 & 0\\ 100 & -200 & -300\end{vmatrix}
 &= \big[(1.5)(-300) - (0)(-200)\big]\hat\imath - \big[(1)(-300) - (0)(100)\big]\hat\jmath\\
 &\qquad + \big[(1)(-200) - (1.5)(100)\big]\hat k\\
@@ -484,12 +484,12 @@ $M_x = 450\un{N\,m}$, \quad $M_y = -300\un{N\,m}$, \quad $M_z = -150\un{N\,m}$
 \end{tikzpicture}
 \end{center}
 
-\textbf{Equations \& Solution:}
+\textbf{Solution:}
 
 \textit{Reactions:} $F_R = \tfrac12(24)(4) = 48\un{kip}$ at $x = 12$ ft; $A_x = 0$.
 \begin{align*}
-+\uparrow\sum F_y = 0:\quad A_y - 48\un{kip} &= 0 \;\Rightarrow\; A_y = 48.0\un{kip}\ \uparrow\\
-\circlearrowleft\sum M_A = 0:\quad M_A - (48\un{kip})(12\un{ft}) &= 0 \;\Rightarrow\; M_A = 576\un{kip\,ft}\ \circlearrowleft
+\textstyle\sum F_y &= A_y - 48\un{kip} = 0 \;\Rightarrow\; A_y = 48.0\un{kip}\\
+\textstyle\sum M_A &= M_A - (48\un{kip})(12\un{ft}) = 0 \;\Rightarrow\; M_A = 576\un{kip\,ft}
 \end{align*}
 So $M(0) = -576\un{kip\,ft}$.
 
@@ -497,14 +497,14 @@ $w(x) = \tfrac{x}{3}$ ($0 \le x \le 12$), \quad $w(x) = \tfrac{24-x}{3}$ ($12 \l
 
 \textit{Region 1, $0 \le x \le 12$ (left segment):} load $\tfrac{x^2}{6}$ kip at $\tfrac{x}{3}$ from cut.
 \begin{align*}
-+\uparrow\sum F_y = 0:\quad 48 - \frac{x^2}{6} - V &= 0 \;\Rightarrow\; V(x) = -\frac{1}{6}x^2 + 48 \quad \text{(kip)}\\
-\circlearrowleft\sum M_{\text{cut}} = 0:\quad M + 576 - 48x + \frac{x^2}{6}\cdot\frac{x}{3} &= 0\\ M(x) &= -\frac{1}{18}x^3 + 48x - 576 \quad \text{(kip$\cdot$ft)}
+\textstyle\sum F_y &= 48 - \frac{x^2}{6} - V = 0 \;\Rightarrow\; V(x) = -\frac{1}{6}x^2 + 48 \quad \text{(kip)}\\
+\textstyle\sum M_{\text{cut}} &= M + 576 - 48x + \frac{x^2}{6}\cdot\frac{x}{3} = 0\\ M(x) &= -\frac{1}{18}x^3 + 48x - 576 \quad \text{(kip$\cdot$ft)}
 \end{align*}
 
 \textit{Region 2, $12 \le x \le 24$ (right segment):} load $\tfrac{(24-x)^2}{6}$ kip at $\tfrac{24-x}{3}$ from cut.
 \begin{align*}
-+\uparrow\sum F_y = 0:\quad V - \frac{(24-x)^2}{6} &= 0 \;\Rightarrow\; V(x) = \frac{1}{6}x^2 - 8x + 96 \quad \text{(kip)}\\\\
-\circlearrowleft\sum M_{\text{cut}} = 0:\quad -M - \frac{(24-x)^2}{6}\cdot\frac{24-x}{3} &= 0 \;\Rightarrow\; M(x) = -\frac{(24-x)^3}{18}\\
+\textstyle\sum F_y &= V - \frac{(24-x)^2}{6} = 0 \;\Rightarrow\; V(x) = \frac{1}{6}x^2 - 8x + 96 \quad \text{(kip)}\\\\
+\textstyle\sum M_{\text{cut}} &= -M - \frac{(24-x)^2}{6}\cdot\frac{24-x}{3} = 0 \;\Rightarrow\; M(x) = -\frac{(24-x)^3}{18}\\
 M(x) &= \frac{1}{18}x^3 - 4x^2 + 96x - 768 \quad \text{(kip$\cdot$ft)}
 \end{align*}
 
@@ -600,24 +600,24 @@ $V_{\max} = 48.0$ kip and $M_{\min} = -576$ kip$\cdot$ft, both at $x = 0$ (wall)
 \end{tikzpicture}
 \end{center}
 
-\textbf{Equations \& Solution:}
+\textbf{Solution:}
 
 \textit{Reactions:} triangle $\tfrac12(6)(3) = 9\un{kip}$ at 4 ft; uniform $2(3) = 6\un{kip}$ at 7.5 ft; $A_x = 0$.
 \begin{align*}
-\circlearrowleft\sum M_A = 0:\quad B_y(6\un{ft}) - (9\un{kip})(4\un{ft}) - (6\un{kip})(7.5\un{ft}) &= 0 \;\Rightarrow\; B_y = \frac{36 + 45}{6} = 13.5\un{kip}\ \uparrow\\
-+\uparrow\sum F_y = 0:\quad A_y + 13.5 - 9 - 6 &= 0 \;\Rightarrow\; A_y = 1.50\un{kip}\ \uparrow
+\textstyle\sum M_A &= B_y(6\un{ft}) - (9\un{kip})(4\un{ft}) - (6\un{kip})(7.5\un{ft}) = 0 \;\Rightarrow\; B_y = \frac{36 + 45}{6} = 13.5\un{kip}\\
+\textstyle\sum F_y &= A_y + 13.5 - 9 - 6 = 0 \;\Rightarrow\; A_y = 1.50\un{kip}
 \end{align*}
 
 \textit{Region 1, $0 \le x < 6$ (left segment):} $w = \tfrac{x}{2}$, load $\tfrac{x^2}{4}$ kip at $\tfrac{x}{3}$ from cut.
 \begin{align*}
-+\uparrow\sum F_y = 0:\quad 1.5 - \frac{x^2}{4} - V &= 0 \;\Rightarrow\; V(x) = -\frac14 x^2 + 1.5 \quad \text{(kip)}\\
-\circlearrowleft\sum M_{\text{cut}} = 0:\quad M - 1.5x + \frac{x^2}{4}\cdot\frac{x}{3} &= 0 \;\Rightarrow\; M(x) = -\frac{1}{12}x^3 + 1.5x \quad \text{(kip$\cdot$ft)}
+\textstyle\sum F_y &= 1.5 - \frac{x^2}{4} - V = 0 \;\Rightarrow\; V(x) = -\frac14 x^2 + 1.5 \quad \text{(kip)}\\
+\textstyle\sum M_{\text{cut}} &= M - 1.5x + \frac{x^2}{4}\cdot\frac{x}{3} = 0 \;\Rightarrow\; M(x) = -\frac{1}{12}x^3 + 1.5x \quad \text{(kip$\cdot$ft)}
 \end{align*}
 
 \textit{Region 2, $6 < x \le 9$ (right segment):} load $2(9-x)$ kip at $\tfrac{9-x}{2}$ from cut.
 \begin{align*}
-+\uparrow\sum F_y = 0:\quad V - 2(9-x) &= 0 \;\Rightarrow\; V(x) = -2x + 18 \quad \text{(kip)}\\
-\circlearrowleft\sum M_{\text{cut}} = 0:\quad -M - 2(9-x)\cdot\frac{9-x}{2} &= 0\\ M(x) &= -(9-x)^2 = -x^2 + 18x - 81 \quad \text{(kip$\cdot$ft)}
+\textstyle\sum F_y &= V - 2(9-x) = 0 \;\Rightarrow\; V(x) = -2x + 18 \quad \text{(kip)}\\
+\textstyle\sum M_{\text{cut}} &= -M - 2(9-x)\cdot\frac{9-x}{2} = 0\\ M(x) &= -(9-x)^2 = -x^2 + 18x - 81 \quad \text{(kip$\cdot$ft)}
 \end{align*}
 
 \textit{Critical values:}
@@ -717,26 +717,26 @@ $V = 0$ and $M_{\max} = 2.45$ kip$\cdot$ft at $x = 2.45$ ft; $M = 0$ at $x = 4.2
 \end{tikzpicture}
 \end{center}
 
-\textbf{Equations \& Solution:}
+\textbf{Solution:}
 
 \textit{Reactions:} each triangle $\tfrac12(6)(400) = 1200\un{lb}$, at $x = 4$ and $x = 10$ ft; $A_x = 0$.
 \begin{align*}
-\circlearrowleft\sum M_A = 0:\quad B_y(12) - 1200(4) - 1200(10) - 1500(16) &= 0\\ B_y &= \frac{4800 + 12\,000 + 24\,000}{12}\un{lb} = 3400\un{lb}\ \uparrow\\
-+\uparrow\sum F_y = 0:\quad A_y + 3400 - 1200 - 1200 - 1500 &= 0 \;\Rightarrow\; A_y = 500\un{lb}\ \uparrow
+\textstyle\sum M_A &= B_y(12) - 1200(4) - 1200(10) - 1500(16) = 0\\ B_y &= \frac{4800 + 12\,000 + 24\,000}{12}\un{lb} = 3400\un{lb}\\
+\textstyle\sum F_y &= A_y + 3400 - 1200 - 1200 - 1500 = 0 \;\Rightarrow\; A_y = 500\un{lb}
 \end{align*}
 
 \textit{Region 1, $0 \le x \le 6$ (left segment):} $w = 66.7x$, load $33.3x^2$ lb at $\tfrac{x}{3}$ from cut.
 \begin{align*}
-+\uparrow\sum F_y = 0:\quad 500 - 33.3x^2 - V &= 0 \;\Rightarrow\; V(x) = -33.3x^2 + 500 \quad \text{(lb)}\\
-\circlearrowleft\sum M_{\text{cut}} = 0:\quad M - 500x + 33.3x^2\cdot\frac{x}{3} &= 0 \;\Rightarrow\; M(x) = -11.1x^3 + 500x \quad \text{(lb$\cdot$ft)}
+\textstyle\sum F_y &= 500 - 33.3x^2 - V = 0 \;\Rightarrow\; V(x) = -33.3x^2 + 500 \quad \text{(lb)}\\
+\textstyle\sum M_{\text{cut}} &= M - 500x + 33.3x^2\cdot\frac{x}{3} = 0 \;\Rightarrow\; M(x) = -11.1x^3 + 500x \quad \text{(lb$\cdot$ft)}
 \end{align*}
 
 \textit{Region 2, $6 \le x < 12$ (left segment):} first triangle 1200 lb at $x = 4$; second $33.3(x-6)^2$ lb at $\tfrac{x-6}{3}$ from cut.
 \begin{align*}
-+\uparrow\sum F_y = 0:\quad 500 - 1200 - 33.3(x-6)^2 - V &= 0\\
+\textstyle\sum F_y &= 500 - 1200 - 33.3(x-6)^2 - V = 0\\
 V(x) &= -700 - 33.3(x^2 - 12x + 36)\\
 &= -33.3x^2 + 400x - 1900 \quad \text{(lb)}\\
-\circlearrowleft\sum M_{\text{cut}} = 0:\quad M - 500x + 1200(x-4)\qquad&\\ +\, 33.3(x-6)^2\cdot\frac{x-6}{3} &= 0\\
+\textstyle\sum M_{\text{cut}} &= M - 500x + 1200(x-4) + 33.3(x-6)^2\cdot\frac{x-6}{3} = 0\\
 M(x) &= -700x + 4800\\ &\qquad - 11.1(x^3 - 18x^2 + 108x - 216)\\
 &= -11.1x^3 + 200x^2 - 1900x + 7200 \quad \text{(lb$\cdot$ft)}
 \end{align*}
@@ -744,8 +744,8 @@ Check: $M(6) = 600\un{lb\,ft}$ (matches region 1). The posted key's $200x$ term 
 
 \textit{Region 3, $12 < x \le 16$ (right segment):}
 \begin{align*}
-+\uparrow\sum F_y = 0:\quad V - 1500 &= 0 \;\Rightarrow\; V(x) = 1500\un{lb}\\
-\circlearrowleft\sum M_{\text{cut}} = 0:\quad -M - 1500(16 - x) &= 0 \;\Rightarrow\; M(x) = 1500x - 24\,000 \quad \text{(lb$\cdot$ft)}
+\textstyle\sum F_y &= V - 1500 = 0 \;\Rightarrow\; V(x) = 1500\un{lb}\\
+\textstyle\sum M_{\text{cut}} &= -M - 1500(16 - x) = 0 \;\Rightarrow\; M(x) = 1500x - 24\,000 \quad \text{(lb$\cdot$ft)}
 \end{align*}
 
 \textit{Critical values:}
@@ -901,7 +901,7 @@ $M_{\max} = 1290$ lb$\cdot$ft at $x = 3.87$ ft ($V = 0$); $M = 0$ at $x = 6.85$ 
 \end{tikzpicture}
 \end{center}
 
-\textbf{Equations \& Solution:}
+\textbf{Solution:}
 
 \textit{Geometry} ($A$, $E$ level; $B$, $C$ at depth $y_B$; $D$ at 3 m):
 \[
@@ -910,7 +910,7 @@ $M_{\max} = 1290$ lb$\cdot$ft at $x = 3.87$ ft ($V = 0$); $M = 0$ at $x = 6.85$ 
 
 $\sum F_x = 0$ at each joint $\Rightarrow$ constant horizontal component $T_H = T_{BC}$; vertical component of each segment $= T_H\tan\theta$.
 
-\textit{$+\uparrow\sum F_y = 0$ at each joint:}
+\textit{$\sum F_y = 0$ at each joint:}
 \begin{align}
 \text{Joint } B:\quad T_H\frac{y_B}{4} - 4\un{kN} &= 0 \tag{1}\\
 \text{Joint } C:\quad T_H\frac{y_B - 3}{3} - P &= 0 \tag{2}\\
