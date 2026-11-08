@@ -75,7 +75,7 @@
     \begin{flushleft}
         \Large
         $\square$ \quad None \\[0.7cm]
-        $\square$ \quad Minor \\[0.7cm]
+        $\blacksquare$ \quad Minor \\[0.7cm]
         $\square$ \quad Major \\[0.7cm]
         $\square$ \quad Extensive \\[1.5cm]
     \end{flushleft}
@@ -88,11 +88,11 @@
 % =========================================================
 % HOMEWORK HEADER
 % =========================================================
-\section*{ENGR 225 -- Homework \assignmentNumber}
-\textbf{Assigned:} \assignedDate \hfill \textbf{Due:} \dueDate
+% \section*{ENGR 225 -- Homework \assignmentNumber}
+% \textbf{Assigned:} \assignedDate \hfill \textbf{Due:} \dueDate
 
 
-\textbf{Convention:} internal loads drawn positive (left segment: $N\rightarrow$, $V\downarrow$, $M\circlearrowleft$; right segment: $N\leftarrow$, $V\uparrow$, $M\circlearrowright$). $\circlearrowleft$ positive in $\sum M$.
+% \textbf{Convention:} internal loads drawn positive (left segment: $N\rightarrow$, $V\downarrow$, $M\circlearrowleft$; right segment: $N\leftarrow$, $V\uparrow$, $M\circlearrowright$). $\circlearrowleft$ positive in $\sum M$.
 
 % =========================================================
 % PROBLEM 1
@@ -863,32 +863,41 @@ $M_{\max} = 1290$ lb$\cdot$ft at $x = 3.87$ ft ($V = 0$); $M = 0$ at $x = 6.85$ 
 
 \vspace{0.3cm}
 \begin{tikzpicture}[x=1cm,y=1cm]
-  % joint B
-  \fill (0,0) circle (2pt) node[below left]{$B$};
-  \draw[force] (0,0) -- (-0.8,0.706) node[above left]{$T_{AB}$};
-  \draw[force] (0,0) -- (1.2,0) node[right]{$T_{BC}$};
-  \draw[force] (0,0) -- (0,-1.1) node[below]{4 kN};
-  \draw[thin] (-0.4,0.353) -- (-0.4,0) -- (0,0);
-  \node[left] at (-0.4,0.18) {\tiny $y_B$};
-  \node[below] at (-0.25,0) {\tiny 4};
-  % joint C
-  \begin{scope}[xshift=5.2cm]
-  \fill (0,0) circle (2pt) node[below right]{$C$};
-  \draw[force] (0,0) -- (-1.2,0) node[left]{$T_{BC}$};
-  \draw[force] (0,0) -- (1.2,0.21) node[right]{$T_{CD}$};
-  \draw[force] (0,0) -- (0,-1.1) node[below]{$P$};
+  % ---- joint B ----
+  \draw[force] (0,0) -- (-1.350,1.191) node[above]{$T_{AB}$};
+  \draw[force] (0,0) -- (1.4,0) node[right]{$T_{BC}$};
+  \draw[force] (0,0) -- (0,-1.4) node[below]{4 kN};
+  \fill (0,0) circle (2.2pt);
+  \node[below right] at (0,0) {$B$};
+  \draw[thin] (-0.603,0.132) -- (-1.346,0.132) -- (-1.346,0.787) -- cycle;
+  \node[below] at (-0.975,0.132) {\small 4};
+  \node[left] at (-1.346,0.460) {\small $y_B$};
+  % ---- joint C ----
+  \begin{scope}[xshift=6.0cm]
+  \draw[force] (0,0) -- (-1.4,0) node[left]{$T_{BC}$};
+  \draw[force] (0,0) -- (1.773,0.313) node[right]{$T_{CD}$};
+  \draw[force] (0,0) -- (0,-1.4) node[below]{$P$};
+  \fill (0,0) circle (2.2pt);
+  \node[below left] at (0,0) {$C$};
+  \draw[thin] (0.593,-0.251) -- (1.568,-0.251) -- (1.568,-0.079) -- cycle;
+  \node[below] at (1.080,-0.251) {\small 3};
+  \node[right] at (1.568,-0.165) {\small $y_B-3$};
   \end{scope}
-  % joint D
-  \begin{scope}[xshift=10.4cm]
-  \fill (0,0) circle (2pt) node[below left]{$D$};
-  \draw[force] (0,0) -- (-1.2,-0.21) node[left]{$T_{CD}$};
-  \draw[force] (0,0) -- (0.6,0.9) node[above right]{$T_{DE}$};
-  \draw[force] (0,0) -- (0,-1.1) node[below]{6 kN};
-  \draw[thin] (0.4,0) -- (0.4,0.6);
-  \node[right] at (0.4,0.25) {\tiny 3};
-  \node[below] at (0.2,0) {\tiny 2};
+  % ---- joint D ----
+  \begin{scope}[xshift=12.0cm]
+  \draw[force] (0,0) -- (-1.773,-0.313) node[below left]{$T_{CD}$};
+  \draw[force] (0,0) -- (0.998,1.498) node[above]{$T_{DE}$};
+  \draw[force] (0,0) -- (0,-1.4) node[below]{6 kN};
+  \fill (0,0) circle (2.2pt);
+  \node[below right] at (0,0) {$D$};
+  \draw[thin] (-0.584,0.202) -- (-1.559,0.202) -- (-1.559,0.030) -- cycle;
+  \node[above] at (-1.071,0.202) {\small 3};
+  \node[left] at (-1.559,0.116) {\small $y_B-3$};
+  \draw[thin] (0.566,0.272) -- (1.115,0.272) -- (1.115,1.096) -- cycle;
+  \node[below] at (0.840,0.272) {\small 2};
+  \node[right] at (1.115,0.684) {\small 3};
   \end{scope}
-  \node at (5.2,-2.0) {\small Joint FBDs at $B$, $C$, $D$};
+  \node at (6.0,-2.5) {\small Joint FBDs at $B$, $C$, $D$ (tensions pull away from each joint; triangles give segment slopes in m)};
 \end{tikzpicture}
 \end{center}
 
