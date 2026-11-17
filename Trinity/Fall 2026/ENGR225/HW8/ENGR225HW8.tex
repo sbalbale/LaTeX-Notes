@@ -102,9 +102,7 @@
 \section*{ENGR 225 -- Homework \assignmentNumber}
 \textbf{Assigned:} \assignedDate \hfill \textbf{Due:} \dueDate
 
-\textit{Each problem starts on its own page, with a problem summary, labeled sketch, governing equations, units carried throughout, results to 3 significant figures, and a boxed final answer.}
-
-\textbf{Conventions used throughout.} Moments are positive counterclockwise. Every friction problem is set up at \emph{impending} motion, so wherever slip is assumed the friction force equals $\mu_s N$ and points opposite the direction the surface would slide. Free-body diagram colors:
+Moments positive counterclockwise. Friction at impending slip: $F = \mu_s N$.
 \legendline
 
 % =========================================================
@@ -167,22 +165,20 @@
 \end{tikzpicture}
 \end{center}
 
-The clockwise torque would turn the bottom of the wheel to the left, so friction on the wheel at $B$ points right. By Newton's third law, friction on the lever points left and $N_B$ pushes the lever down.
-
 \textbf{Solution:}
 
-\textit{Wheel.} The friction force required to hold the wheel does not depend on $P$:
+\textit{Wheel:}
 \begin{align*}
     \sum M_O &= F_B(\SI{0.150}{m}) - \SI{5}{N.m} = 0 \quad\Rightarrow\quad F_B = \SI{33.3}{N}
 \end{align*}
 
-\textit{Lever.} Moments about $A$ eliminate the pin reactions. $F_B$ acts \SI{50}{mm} below $A$, so it contributes a moment:
+\textit{Lever:}
 \begin{align*}
     \sum M_A &= P(\SI{0.600}{m}) - N_B(\SI{0.200}{m}) - F_B(\SI{0.050}{m}) = 0 \\
     \Rightarrow\quad N_B &= \frac{P(\SI{0.600}{m}) - (\SI{33.3}{N})(\SI{0.050}{m})}{\SI{0.200}{m}}
 \end{align*}
 
-\textit{Slip check.} The brake holds only if the required friction does not exceed the maximum available, $F_B \le (F_B)_{\max} = \mu_s N_B$.
+\textit{Slip check,} $F_B \le (F_B)_{\max} = \mu_s N_B$:
 
 \begin{center}
 \begin{tabular}{cccl}
@@ -196,8 +192,8 @@ The clockwise torque would turn the bottom of the wheel to the left, so friction
 \end{center}
 
 \begin{finalanswer}
-    $P = \SI{30}{N}$: $(F_B)_{\max} = \SI{24.5}{N} < \SI{33.3}{N}$, so the brake \textbf{cannot} hold the wheel. \\
-    $P = \SI{70}{N}$: $(F_B)_{\max} = \SI{60.5}{N} > \SI{33.3}{N}$, so the brake \textbf{can} hold the wheel.
+    $P = \SI{30}{N}$: \textbf{cannot} hold the wheel \\
+    $P = \SI{70}{N}$: \textbf{can} hold the wheel
 \end{finalanswer}
 
 % =========================================================
@@ -240,31 +236,25 @@ The clockwise torque would turn the bottom of the wheel to the left, so friction
 \end{tikzpicture}
 \end{center}
 
-The smooth wall can only push horizontally, so $N_B$ is the only force at $B$. If the pole slid, $A$ would move away from the wall, so friction at $A$ points toward the wall.
-
 \textbf{Solution:}
 
-\textit{Geometry.} Height of $B$ above the floor:
+\textit{Geometry:}
 \[
     h = \sqrt{(\SI{26}{\ft})^2 - (\SI{10}{\ft})^2} = \SI{24}{\ft}
 \]
-The weight acts at the midpoint $G$, \SI{5}{\ft} from the wall and \SI{5}{\ft} horizontally from $A$.
-
-\textit{Equilibrium.} Assume the pole stays put and solve for the friction it needs:
+\textit{Equilibrium:}
 \begin{align*}
     \sum F_y &= N_A - \SI{30}{\lb} = 0 &&\Rightarrow\quad N_A = \SI{30.0}{\lb} \\
     \sum M_A &= (\SI{30}{\lb})(\SI{5}{\ft}) - N_B(\SI{24}{\ft}) = 0 &&\Rightarrow\quad N_B = \SI{6.25}{\lb} \\
     \sum F_x &= N_B - F_A = 0 &&\Rightarrow\quad F_A = \SI{6.25}{\lb}
 \end{align*}
 
-\textit{Slip check.} Maximum friction available at $A$:
+\textit{Slip check:}
 \[
-    (F_A)_{\max} = \mu_s N_A = 0.3(\SI{30.0}{\lb}) = \SI{9.00}{\lb}
+    (F_A)_{\max} = \mu_s N_A = 0.3(\SI{30.0}{\lb}) = \SI{9.00}{\lb} > F_A = \SI{6.25}{\lb}
 \]
-Since $F_A = \SI{6.25}{\lb} < \SI{9.00}{\lb}$, the floor can supply the friction needed.
-
 \begin{finalanswer}
-    $F_A = \SI{6.25}{\lb} < (F_A)_{\max} = \SI{9.00}{\lb}$, so the pole \textbf{remains in place} when released.
+    The pole \textbf{remains in place}.
 \end{finalanswer}
 
 % =========================================================
@@ -314,32 +304,31 @@ Since $F_A = \SI{6.25}{\lb} < \SI{9.00}{\lb}$, the floor can supply the friction
 \end{tikzpicture}
 \end{center}
 
-$P$ pushes the crate to the left, so the crate pushes the person to the right with the same $P$, and the floor's friction on the person, $F_p$, points left. The crate either slides or tips about its bottom left corner $O$; tipping is the case where $N_C$ moves to $O$ ($x = 0$).
-
 \textbf{Solution:}
 
-\textit{Person (largest push they can make).} The push is horizontal, so the floor carries all of their weight:
+\textit{Person:}
 \begin{align*}
     \sum F_y &= N_p - \SI{200}{\lb} = 0 &&\Rightarrow\quad N_p = \SI{200}{\lb} \\
     \sum F_x &= P - F_p = 0, \quad F_p \le 0.6N_p &&\Rightarrow\quad P_{\max} = 0.6(\SI{200}{\lb}) = \SI{120}{\lb}
 \end{align*}
 
-\textit{Crate, slipping.} With $F_C = \mu_s N_C$:
+\textit{Crate, slipping:}
 \begin{align*}
     \sum F_y &= N_C - \SI{450}{\lb} = 0 &&\Rightarrow\quad N_C = \SI{450}{\lb} \\
     \sum F_x &= F_C - P = 0 &&\Rightarrow\quad P_{\text{slip}} = 0.3(\SI{450}{\lb}) = \SI{135}{\lb}
 \end{align*}
 
-\textit{Crate, tipping.} With $N_C$ at $O$ ($x = 0$):
+\textit{Crate, tipping} ($x = 0$):
 \begin{align*}
     \sum M_O &= P(\SI{3}{\ft}) - (\SI{450}{\lb})(\SI{1}{\ft}) = 0 &&\Rightarrow\quad P_{\text{tip}} = \SI{150}{\lb}
 \end{align*}
 
-The crate would slide first, at \SI{135}{\lb}. That said, the most the person can push before their own shoes slip is \SI{120}{\lb}, and $\SI{120}{\lb} < \SI{135}{\lb} < \SI{150}{\lb}$.
+\[
+    P_{\max} = \SI{120}{\lb} < P_{\text{slip}} = \SI{135}{\lb} < P_{\text{tip}} = \SI{150}{\lb}
+\]
 
 \begin{finalanswer}
-    $P_{\max} = \SI{120}{\lb}$ (shoes slip) $< P_{\text{slip}} = \SI{135}{\lb} < P_{\text{tip}} = \SI{150}{\lb}$. \\
-    The person \textbf{cannot} move the crate; it neither slides nor tips.
+    The crate will \textbf{not} slide or tip.
 \end{finalanswer}
 
 % =========================================================
@@ -398,38 +387,35 @@ The crate would slide first, at \SI{135}{\lb}. That said, the most the person ca
         \draw[ext, dashed] (0,0) -- (0,1.3);
         \draw[thin] (0,0.9) arc[start angle=90, end angle=60, radius=0.9];
         \node[font=\scriptsize] at (0.22,1.1) {$\theta$};
-        \node[font=\bfseries\small] at (0.9,-2.35) {Rod $AC$ (two-force member)};
+        \node[font=\bfseries\small] at (0.9,-2.35) {Rod $AC$};
     \end{scope}
 \end{tikzpicture}
 \end{center}
 
-The rods are weightless and loaded only at their pins, so each is a two-force member. The rods spread outward at the feet, so friction at $A$ and $B$ points inward.
-
 \textbf{Solution:}
 
-\textit{Entire frame.} Moments about $A$, using the symmetric geometry:
+\textit{Entire frame:}
 \begin{align*}
     \sum M_A &= N_B(2L\sin\theta) - W(L\sin\theta) = 0 &&\Rightarrow\quad N_B = \frac{W}{2} \\
     \sum F_y &= N_A + N_B - W = 0 &&\Rightarrow\quad N_A = \frac{W}{2} \\
     \sum F_x &= F_A - F_B = 0 &&\Rightarrow\quad F_A = F_B
 \end{align*}
 
-\textit{Rod $AC$.} Because $AC$ is a two-force member, the resultant $R_A$ of $N_A$ and $F_A$ must lie along the rod, at angle $\theta$ from the vertical:
+\textit{Rod $AC$} ($R_A$ along the rod):
 \[
     \tan\theta = \frac{F_A}{N_A} \quad\Rightarrow\quad F_A = \frac{W}{2}\tan\theta
 \]
 
-\textit{Slip condition.} The foot holds as long as $F_A \le \mu_s N_A$:
+\textit{Slip condition,} $F_A \le \mu_s N_A$:
 \[
     \frac{W}{2}\tan\theta \le \mu_s\frac{W}{2} \quad\Rightarrow\quad \tan\theta \le \mu_s = 0.6
 \]
-$W$ cancels, so this limit holds for any cylinder mass. The same result applies at $B$ by symmetry, so both feet reach impending slip together.
 \[
     \theta_{\max} = \tan^{-1}(0.6) = 30.96^\circ
 \]
 
 \begin{finalanswer}
-    $\theta_{\max} = 31.0^\circ$, independent of the cylinder's mass.
+    $\theta_{\max} = 31.0^\circ$
 \end{finalanswer}
 
 % =========================================================
@@ -495,28 +481,26 @@ $W$ cancels, so this limit holds for any cylinder mass. The same result applies 
 \end{tikzpicture}
 \end{center}
 
-$P$ pulls the post to the right, so at impending slip the friction on the post at both $B$ and $C$ points left. The reaction pair at $B$ acts on the beam in the opposite directions. The post has negligible thickness, so all vertical forces on it pass through $C$.
-
 \textbf{Solution:}
 
-\textit{Loads.} $W_{\text{block}} = (\SI{200}{kg})(\SI{9.81}{m/s^2}) = \SI{1962}{N}$, $W_{\text{post}} = (\SI{20}{kg})(\SI{9.81}{m/s^2}) = \SI{196.2}{N}$
+\textit{Loads:} $W_{\text{block}} = (\SI{200}{kg})(\SI{9.81}{m/s^2}) = \SI{1962}{N}$, $W_{\text{post}} = (\SI{20}{kg})(\SI{9.81}{m/s^2}) = \SI{196.2}{N}$
 \[
     P_x = \tfrac{4}{5}(\SI{300}{N}) = \SI{240}{N}, \qquad P_y = \tfrac{3}{5}(\SI{300}{N}) = \SI{180}{N}
 \]
 
-\textit{Beam $AB$.} Moments about $A$ give the normal force the post must carry:
+\textit{Beam $AB$:}
 \begin{align*}
     \sum M_A &= N_B(\SI{3}{m}) - (\SI{1962}{N})(\SI{1.5}{m}) = 0 &&\Rightarrow\quad N_B = \SI{981}{N}
 \end{align*}
 
-\textit{Post $BC$.} Both ends slip, so the post translates without rotating, and moment equilibrium about $C$ splits $P_x$ between the two friction forces:
+\textit{Post $BC$:}
 \begin{align*}
     \sum M_C &= F_B(\SI{1.75}{m}) - (\SI{240}{N})(\SI{0.75}{m}) = 0 &&\Rightarrow\quad F_B = \SI{102.9}{N} \\
     \sum F_x &= \SI{240}{N} - F_B - F_C = 0 &&\Rightarrow\quad F_C = \SI{137.1}{N} \\
     \sum F_y &= N_C - N_B - \SI{196.2}{N} + \SI{180}{N} = 0 &&\Rightarrow\quad N_C = \SI{997.2}{N}
 \end{align*}
 
-\textit{Coefficients for simultaneous slip.} Set $F = \mu_s N$ at both contacts:
+\textit{Coefficients:}
 \[
     \mu_B = \frac{F_B}{N_B} = \frac{\SI{102.9}{N}}{\SI{981}{N}} = 0.105, \qquad
     \mu_C = \frac{F_C}{N_C} = \frac{\SI{137.1}{N}}{\SI{997.2}{N}} = 0.138
@@ -578,33 +562,28 @@ $P$ pulls the post to the right, so at impending slip the friction on the post a
 \end{tikzpicture}
 \end{center}
 
-\textit{Directions of friction.} $B$ moves down the $45^\circ$ slope by $u$ in each direction. The face between $A$ and $B$ drops only $u\tan 30^\circ = 0.577u$ over that horizontal travel, so the spring pushes $A$ down to stay in contact, and $A$ slides up and to the left relative to $B$. Friction on $A$ therefore points down-right along the $30^\circ$ face and up the wall; friction on $B$ points up-left along both of its inclined faces. The screw tip is smooth, so it applies only $P$.
-
 \textbf{Solution:}
 
-\textit{Spring force.} $F_s = kx = (\SI{20}{\lb/\inch})(\SI{5}{\inch}) = \SI{100}{\lb}$
+\textit{Spring force:} $F_s = kx = (\SI{20}{\lb/\inch})(\SI{5}{\inch}) = \SI{100}{\lb}$
 
-\textit{Block $A$.}
+\textit{Block $A$:}
 \begin{align*}
     \sum F_x &= -N_w + N_1\sin 30^\circ + 0.3N_1\cos 30^\circ = 0 &&\Rightarrow\quad N_w = 0.760N_1 \\
     \sum F_y &= -\SI{100}{\lb} + 0.3N_w + N_1\cos 30^\circ - 0.3N_1\sin 30^\circ = 0
 \end{align*}
-Substituting $N_w$:
 \[
     (0.228 + 0.716)N_1 = \SI{100}{\lb} \quad\Rightarrow\quad N_1 = \SI{105.9}{\lb}, \quad N_w = \SI{80.5}{\lb}
 \]
 
-\textit{Block $B$.}
+\textit{Block $B$:}
 \begin{align*}
     \sum F_y &= -N_1\cos 30^\circ + 0.3N_1\sin 30^\circ + N_2\cos 45^\circ + 0.3N_2\sin 45^\circ = 0 \\
     &\Rightarrow\quad N_2 = \frac{(0.716)(\SI{105.9}{\lb})}{0.919} = \SI{82.5}{\lb} \\[4pt]
     \sum F_x &= P - N_1\sin 30^\circ - 0.3N_1\cos 30^\circ + N_2\sin 45^\circ - 0.3N_2\cos 45^\circ = 0 \\
     &\Rightarrow\quad P = (0.760)(\SI{105.9}{\lb}) - (0.495)(\SI{82.5}{\lb}) = \SI{80.5}{\lb} - \SI{40.8}{\lb} = \SI{39.6}{\lb}
 \end{align*}
-Carrying full precision gives \SI{39.6}{\lb}. The posted \SI{39.7}{\lb} comes from rounding $N_1$ to \SI{106}{\lb} before the last step.
-
 \begin{finalanswer}
-    $P = \SI{39.6}{\lb}$ \quad (posted: \SI{39.7}{\lb}; difference is intermediate rounding)
+    $P = \SI{39.6}{\lb}$
 \end{finalanswer}
 
 % =========================================================
@@ -652,21 +631,21 @@ Carrying full precision gives \SI{39.6}{\lb}. The posted \SI{39.7}{\lb} comes fr
 \end{tikzpicture}
 \end{center}
 
-As $A$ moves right, $B$ rises against the wall, so friction from $D$ on $B$ points down. Relative to $A$, block $B$ slides up and to the left along the $15^\circ$ face, so friction on $B$ points down-right along that face and friction on $A$ points up-left. Friction from the floor on $A$ points left.
-
 \textbf{Solution:}
 
-\textit{Block $B$.}
+\textit{Block $B$:}
 \begin{align*}
     \sum F_x &= N\sin 15^\circ + 0.4N\cos 15^\circ - N_D = 0 \\
     \sum F_y &= N\cos 15^\circ - 0.4N\sin 15^\circ - 0.3N_D - \SI{3000}{\lb} = 0
 \end{align*}
-From the first equation, $N_D = (0.259 + 0.386)N = 0.645N$. Substituting into the second:
+\[
+    N_D = (0.259 + 0.386)N = 0.645N
+\]
 \[
     (0.966 - 0.104 - 0.194)N = \SI{3000}{\lb} \quad\Rightarrow\quad N = \SI{4485}{\lb}, \quad N_D = \SI{2894}{\lb}
 \]
 
-\textit{Wedge $A$.}
+\textit{Wedge $A$:}
 \begin{align*}
     \sum F_y &= N_C - N\cos 15^\circ + 0.4N\sin 15^\circ = 0 &&\Rightarrow\quad N_C = \SI{3868}{\lb} \\
     \sum F_x &= P - N\sin 15^\circ - 0.4N\cos 15^\circ - 0.3N_C = 0
@@ -676,7 +655,7 @@ From the first equation, $N_D = (0.259 + 0.386)N = 0.645N$. Substituting into th
 \]
 
 \begin{finalanswer}
-    $P = \SI{4.05}{\kip}$ \quad (\SI{4050}{\lb})
+    $P = \SI{4.05}{\kip}$
 \end{finalanswer}
 
 % =========================================================
@@ -738,35 +717,33 @@ From the first equation, $N_D = (0.259 + 0.386)N = 0.645N$. Substituting into th
 \end{tikzpicture}
 \end{center}
 
-The rope leaves the drum parallel to the $45^\circ$ incline and comes off vertically, so it is in contact for $\beta = 45^\circ + 90^\circ = 135^\circ = 3\pi/4$ rad. The incline axes $x'$ (up the slope) and $y'$ (normal) are used for the block. The pin reaction at $D$ does not enter the belt-friction relation and is not needed.
-
 \textbf{Solution:}
 
-\textit{Belt friction on the drum.} The rope is about to slip toward the side with the larger tension:
+\textit{Drum:}
 \[
+    \beta = 45^\circ + 90^\circ = 135^\circ = \tfrac{3\pi}{4}\ \text{rad}, \qquad
     \frac{T_2}{T_1} = e^{\mu_s\beta} = e^{(0.3)(3\pi/4)} = e^{0.707} = 2.028
 \]
 
-\textit{Block normal force} (same in both cases):
+\textit{Block, both cases:}
 \[
     \sum F_{y'} = N - (\SI{50}{\lb})\cos 45^\circ = 0 \quad\Rightarrow\quad N = \SI{35.36}{\lb}, \qquad 0.2N = \SI{7.07}{\lb}
 \]
 
-\textit{(a) Minimum $W$: block about to slide down.} Friction on the block acts up the slope. The block side of the rope has the larger tension, $T = We^{\mu_s\beta}$.
+\textit{(a) Impending down,} $T = We^{\mu_s\beta}$:
 \begin{align*}
     \sum F_{x'} &= T + 0.2N - (\SI{50}{\lb})\sin 45^\circ = 0 &&\Rightarrow\quad T = \SI{35.36}{\lb} - \SI{7.07}{\lb} = \SI{28.28}{\lb} \\
     W_{\min} &= \frac{T}{e^{\mu_s\beta}} = \frac{\SI{28.28}{\lb}}{2.028} = \SI{13.9}{\lb}
 \end{align*}
 
-\textit{(b) Maximum $W$: block about to slide up.} Friction on the block acts down the slope. The hanging side has the larger tension, $W = Te^{\mu_s\beta}$.
+\textit{(b) Impending up,} $W = Te^{\mu_s\beta}$:
 \begin{align*}
     \sum F_{x'} &= T - 0.2N - (\SI{50}{\lb})\sin 45^\circ = 0 &&\Rightarrow\quad T = \SI{35.36}{\lb} + \SI{7.07}{\lb} = \SI{42.43}{\lb} \\
     W_{\max} &= Te^{\mu_s\beta} = (\SI{42.43}{\lb})(2.028) = \SI{86.0}{\lb}
 \end{align*}
 
 \begin{finalanswer}
-    $W_{\min} = \SI{13.9}{\lb}$ (below this the block slips down the slope) \\
-    $W_{\max} = \SI{86.0}{\lb}$ (above this the block slides up the slope)
+    $W_{\min} = \SI{13.9}{\lb}$, \qquad $W_{\max} = \SI{86.0}{\lb}$
 \end{finalanswer}
 
 % =========================================================
@@ -826,16 +803,14 @@ The rope leaves the drum parallel to the $45^\circ$ incline and comes off vertic
 \end{tikzpicture}
 \end{center}
 
-Motion can start in two ways: $B$ slides down-left along the $20^\circ$ face while $A$ stays put, or $A$ and $B$ slide left together on the floor. Both are checked, and the smaller $W_D$ governs. In either case $D$ is falling, so the rope slips toward the hanging side and $W_D$ is the larger tension.
-
 \textbf{Solution:}
 
-\textit{Belt friction on the peg.}
+\textit{Peg:}
 \[
     W_D = Te^{\mu\beta} = Te^{(0.5)(\pi/2)} = 2.193\,T
 \]
 
-\textit{Case 1: $B$ slips on $A$.} Friction on $B$ points up-right along the face; $N_{BA}$ is perpendicular to the face.
+\textit{Case 1, $B$ slips on $A$:}
 \begin{align*}
     \sum F_y &= N_{BA}\cos 20^\circ + 0.6N_{BA}\sin 20^\circ - \SI{30}{\lb} = 0 &&\Rightarrow\quad N_{BA} = \frac{\SI{30}{\lb}}{1.145} = \SI{26.20}{\lb} \\
     \sum F_x &= -T - N_{BA}\sin 20^\circ + 0.6N_{BA}\cos 20^\circ = 0 &&\Rightarrow\quad T = (0.222)(\SI{26.20}{\lb}) = \SI{5.81}{\lb}
@@ -843,9 +818,7 @@ Motion can start in two ways: $B$ slides down-left along the $20^\circ$ face whi
 \[
     W_D = (2.193)(\SI{5.81}{\lb}) = \SI{12.7}{\lb}
 \]
-Check that $A$ stays put: the horizontal force $B$ transfers to $A$ equals $T = \SI{5.81}{\lb}$, well below the \SI{32.0}{\lb} the floor can hold (Case 2).
-
-\textit{Case 2: $A$ and $B$ slip together on $C$.}
+\textit{Case 2, $A$ and $B$ slip on $C$:}
 \begin{align*}
     \sum F_y &= N_C - \SI{80}{\lb} = 0 &&\Rightarrow\quad N_C = \SI{80.0}{\lb} \\
     \sum F_x &= -T + 0.4N_C = 0 &&\Rightarrow\quad T = \SI{32.0}{\lb}
@@ -854,10 +827,12 @@ Check that $A$ stays put: the horizontal force $B$ transfers to $A$ equals $T = 
     W_D = (2.193)(\SI{32.0}{\lb}) = \SI{70.2}{\lb}
 \]
 
-Case 1 requires the smaller weight, so $B$ slipping on $A$ is what starts the motion.
+\[
+    \SI{12.7}{\lb} < \SI{70.2}{\lb} \quad\Rightarrow\quad \text{Case 1 governs}
+\]
 
 \begin{finalanswer}
-    $W_D = \SI{12.7}{\lb}$ \\ $B$ slips on $A$ first; sliding $A$ and $B$ together would need \SI{70.2}{\lb}.
+    $W_D = \SI{12.7}{\lb}$
 \end{finalanswer}
 
 \end{document}
